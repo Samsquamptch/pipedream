@@ -1,0 +1,22 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ChangeWorkflowStepOfLanguageOrVariantQuery = void 0;
+const base_query_1 = require("../base-query");
+class ChangeWorkflowStepOfLanguageOrVariantQuery extends base_query_1.BaseQuery {
+    constructor(config, queryService, contentItemIdentifier, languageIdentifier, workflowIdentifier) {
+        super(config, queryService);
+        this.config = config;
+        this.queryService = queryService;
+        this.contentItemIdentifier = contentItemIdentifier;
+        this.languageIdentifier = languageIdentifier;
+        this.workflowIdentifier = workflowIdentifier;
+    }
+    toPromise() {
+        return this.queryService.changeWorkflowStepOfLanguageVariantAsync(this.getUrl(), this.queryConfig);
+    }
+    getAction() {
+        return this.apiEndpoints.changeWorkflowStepOfLanguageVariant(this.contentItemIdentifier, this.languageIdentifier, this.workflowIdentifier);
+    }
+}
+exports.ChangeWorkflowStepOfLanguageOrVariantQuery = ChangeWorkflowStepOfLanguageOrVariantQuery;
+//# sourceMappingURL=change-workflow-step-of-language-variant-query.class.js.map

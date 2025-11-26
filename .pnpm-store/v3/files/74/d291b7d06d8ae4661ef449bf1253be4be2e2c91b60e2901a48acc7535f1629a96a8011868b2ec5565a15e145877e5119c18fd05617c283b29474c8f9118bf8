@@ -1,0 +1,59 @@
+import { Contracts } from '../../contracts';
+import { IDeliveryClientConfig } from '../../config';
+import { IContentItem, IDeliveryNetworkResponse, Responses, IItemFeedQueryConfig } from '../../models';
+import { QueryService } from '../../services';
+import { BaseItemListingQuery } from '../common/base-item-listing-query.class';
+export declare class ItemsFeedQuery<TContentItem extends IContentItem = IContentItem> extends BaseItemListingQuery<Responses.IListItemsFeedResponse<TContentItem>, Responses.IListItemsFeedAllResponse<TContentItem>, IItemFeedQueryConfig, Contracts.IItemsFeedContract> {
+    protected config: IDeliveryClientConfig;
+    protected queryService: QueryService;
+    protected _queryConfig: IItemFeedQueryConfig;
+    constructor(config: IDeliveryClientConfig, queryService: QueryService);
+    /**
+     * Gets only item of given type
+     * @param type Codename of type to get
+     */
+    type(type: string): this;
+    /**
+     * Gets items of given types (logical or)
+     * I.e. get items of either 'Actor' or 'Movie' type
+     * @param types Types to get
+     */
+    types(types: string[]): this;
+    /**
+     * Gets only item from given collection
+     * @param collection Codename of collection to get
+     */
+    collection(collection: string): this;
+    /**
+     * Gets items from given collections (logical or)
+     * I.e. get items of either 'default' or 'christmas-campaign' collection
+     * @param collections Collections to get
+     */
+    collections(collections: string[]): this;
+    /**
+     * Language codename
+     * @param languageCodename Codename of the language
+     */
+    languageParameter(languageCodename: string): this;
+    /**
+     * Used to limit the number of elements returned by query.
+     * @param elementCodenames Array of element codenames to fetch
+     */
+    elementsParameter(elementCodenames: string[]): this;
+    /**
+     * Used to exclude elements returned by query.
+     * @param elementCodenames Array of element codenames to exclude
+     */
+    excludeElementsParameter(elementCodenames: string[]): this;
+    toPromise(): Promise<IDeliveryNetworkResponse<Responses.IListItemsFeedResponse<TContentItem>, Contracts.IItemsFeedContract>>;
+    getUrl(): string;
+    /**
+     * Used to configure query
+     * @param queryConfig Query configuration
+     */
+    queryConfig(queryConfig: IItemFeedQueryConfig): this;
+    map(json: any): Responses.IListItemsFeedResponse<TContentItem>;
+    protected allResponseFactory(items: TContentItem[], responses: IDeliveryNetworkResponse<Responses.IListItemsFeedResponse<TContentItem>, Contracts.IItemsFeedContract>[]): Responses.IListItemsFeedAllResponse<TContentItem>;
+    private linkFeedItems;
+    private canLinkItems;
+}

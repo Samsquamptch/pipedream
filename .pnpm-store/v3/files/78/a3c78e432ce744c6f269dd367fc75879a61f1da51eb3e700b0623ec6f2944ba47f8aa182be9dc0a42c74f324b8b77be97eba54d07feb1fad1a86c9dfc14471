@@ -1,0 +1,142 @@
+var $7swP8$lodashfpflow = $parcel$interopDefault(require("lodash/fp/flow"));
+var $7swP8$lodashmerge = $parcel$interopDefault(require("lodash/merge"));
+var $7swP8$qs = $parcel$interopDefault(require("qs"));
+
+function $parcel$export(e, n, v, s) {
+  Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
+}
+function $parcel$interopDefault(a) {
+  return a && a.__esModule ? a.default : a;
+}
+
+$parcel$export(module.exports, "ContactsApi", () => $9dcab62b605e8cc7$export$1d30d9639617c2f9);
+$parcel$export(module.exports, "ListsApi", () => $921cfa8305f2f338$export$545404bb0ccfa029);
+
+class $ee94a01400beeeb5$export$27b45002b4727c55 {
+    compile(parts = []) {
+        return $7swP8$lodashfpflow(parts)(this.defaultRequest);
+    }
+    constructor(username, password, account_code){
+        this.defaultRequest = {
+            url: 'https://api.ongage.net/api',
+            method: 'GET',
+            headers: {
+                X_USERNAME: username,
+                X_PASSWORD: password,
+                X_ACCOUNT_CODE: account_code
+            }
+        };
+    }
+}
+
+
+
+
+const $ee1c4879e4c72d92$export$de39b7a853fc2fd = (listId)=>(req)=>$7swP8$lodashmerge({
+        }, req, {
+            url: `https://api.ongage.net/${encodeURIComponent(listId)}/api`
+        })
+;
+const $ee1c4879e4c72d92$export$7eb84799c931fe91 = (path, args)=>(req)=>$7swP8$lodashmerge({
+        }, req, {
+            method: 'GET',
+            url: (req.url || '') + path + (args ? `?${$7swP8$qs.stringify(args)}` : '')
+        })
+;
+const $ee1c4879e4c72d92$export$192173cb4692483b = (path, body)=>(req)=>$7swP8$lodashmerge({
+        }, req, {
+            method: 'POST',
+            url: (req.url || '') + path,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        })
+;
+const $ee1c4879e4c72d92$export$b0773d2a1a04057f = (path, body)=>(req)=>$7swP8$lodashmerge({
+        }, req, {
+            method: 'PUT',
+            url: (req.url || '') + path,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        })
+;
+
+
+class $9dcab62b605e8cc7$export$1d30d9639617c2f9 extends $ee94a01400beeeb5$export$27b45002b4727c55 {
+    getById(id, listId = null) {
+        const parts = [];
+        if (listId) parts.push($ee1c4879e4c72d92$export$de39b7a853fc2fd(listId));
+        parts.push($ee1c4879e4c72d92$export$7eb84799c931fe91('/contacts/by_id/' + encodeURIComponent(id)));
+        return this.compile(parts);
+    }
+    getByEmail(email, listId = null) {
+        const parts = [];
+        if (listId) parts.push($ee1c4879e4c72d92$export$de39b7a853fc2fd(listId));
+        parts.push($ee1c4879e4c72d92$export$7eb84799c931fe91('/contacts/by_email/' + encodeURIComponent(email)));
+        return this.compile(parts);
+    }
+    getListsByEmail(email) {
+        const parts = [
+            $ee1c4879e4c72d92$export$7eb84799c931fe91('/contacts/cross_account', {
+                email: email
+            })
+        ];
+        return this.compile(parts);
+    }
+    create(payload, listId) {
+        const parts = [];
+        if (listId) parts.push($ee1c4879e4c72d92$export$de39b7a853fc2fd(listId));
+        parts.push($ee1c4879e4c72d92$export$192173cb4692483b('/v2/contacts', payload));
+        return this.compile(parts);
+    }
+    update(payload, listId) {
+        const parts = [];
+        if (listId) parts.push($ee1c4879e4c72d92$export$de39b7a853fc2fd(listId));
+        parts.push($ee1c4879e4c72d92$export$b0773d2a1a04057f('/v2/contacts', payload));
+        return this.compile(parts);
+    }
+    changeStatus(payload, listId) {
+        const parts = [];
+        if (listId) parts.push($ee1c4879e4c72d92$export$de39b7a853fc2fd(listId));
+        parts.push($ee1c4879e4c72d92$export$192173cb4692483b('/v2/contacts/change_status', payload));
+        return this.compile(parts);
+    }
+    changeEmail(payload, listId) {
+        const parts = [];
+        if (listId) parts.push($ee1c4879e4c72d92$export$de39b7a853fc2fd(listId));
+        parts.push($ee1c4879e4c72d92$export$b0773d2a1a04057f('/contacts/change_email', payload));
+        return this.compile(parts);
+    }
+    delete(payload, listId) {
+        const parts = [];
+        if (listId) parts.push($ee1c4879e4c72d92$export$de39b7a853fc2fd(listId));
+        parts.push($ee1c4879e4c72d92$export$192173cb4692483b('/contacts/delete', payload));
+        return this.compile(parts);
+    }
+}
+
+
+
+
+class $921cfa8305f2f338$export$545404bb0ccfa029 extends $ee94a01400beeeb5$export$27b45002b4727c55 {
+    get(id) {
+        const parts = [
+            $ee1c4879e4c72d92$export$7eb84799c931fe91('/lists/' + encodeURIComponent(id))
+        ];
+        return this.compile(parts);
+    }
+    getAll(config = {
+    }) {
+        const parts = [
+            $ee1c4879e4c72d92$export$7eb84799c931fe91('/lists', config)
+        ];
+        return this.compile(parts);
+    }
+}
+
+
+
+

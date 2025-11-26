@@ -1,0 +1,28 @@
+import { FontProps } from '../font';
+import { ChartType } from '../common';
+export type MarkerType = 'none' | 'circle' | 'square' | 'cross' | 'dot';
+export type MetricLineProps = {
+    key: string;
+    width: number;
+    marker: MarkerType;
+    markerSize: number;
+    showValue: boolean;
+    valueFont: FontProps;
+};
+export type AnimationProps = {
+    off: boolean;
+    duration: number;
+    infinite: boolean;
+    size: number;
+};
+export declare const defaultAnimation: () => AnimationProps;
+export type LineType = ChartType.LINE | ChartType.AREA | ChartType.DOT;
+export type LineProps = {
+    type: LineType;
+    accent: string;
+    lines: MetricLineProps[];
+    threshold: number;
+    area?: boolean;
+    animation: AnimationProps;
+    valueTilt: boolean;
+};

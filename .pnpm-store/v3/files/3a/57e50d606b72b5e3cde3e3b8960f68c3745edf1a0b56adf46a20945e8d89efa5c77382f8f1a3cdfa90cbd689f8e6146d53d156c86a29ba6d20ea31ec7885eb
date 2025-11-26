@@ -1,0 +1,18 @@
+export declare abstract class LinkupError extends Error {
+}
+export declare class LinkupInvalidRequestError extends LinkupError {
+    constructor(message: string);
+}
+export declare class LinkupNoResultError extends LinkupError {
+    constructor(message?: string);
+}
+export declare class LinkupAuthenticationError extends LinkupError {
+    constructor(message?: string);
+}
+export declare class LinkupInsufficientCreditError extends LinkupError {
+    constructor(message?: string);
+}
+export declare class LinkupUnknownError extends LinkupError {
+    constructor(message: string);
+}
+//# sourceMappingURL=errors.d.ts.map

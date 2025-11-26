@@ -1,0 +1,464 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotGoogleStoreInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    robot: z.ZodLiteral<"/google/store">;
+    result: z.ZodOptional<z.ZodBoolean>;
+    credentials: z.ZodString;
+    path: z.ZodDefault<z.ZodString>;
+    acl: z.ZodDefault<z.ZodNullable<z.ZodEnum<["authenticated-read", "bucket-owner-full-control", "private", "project-private", "public-read"]>>>;
+    cache_control: z.ZodOptional<z.ZodString>;
+    url_template: z.ZodDefault<z.ZodString>;
+    ssl_url_template: z.ZodDefault<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    path: string;
+    robot: "/google/store";
+    force_accept: boolean;
+    credentials: string;
+    acl: "private" | "public-read" | "authenticated-read" | "bucket-owner-full-control" | "project-private" | null;
+    url_template: string;
+    ssl_url_template: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    cache_control?: string | undefined;
+}, {
+    robot: "/google/store";
+    credentials: string;
+    path?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    cache_control?: string | undefined;
+    acl?: "private" | "public-read" | "authenticated-read" | "bucket-owner-full-control" | "project-private" | null | undefined;
+    url_template?: string | undefined;
+    ssl_url_template?: string | undefined;
+}>;
+export declare const robotGoogleStoreInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/google/store">;
+    credentials: z.ZodString;
+    path: z.ZodDefault<z.ZodString>;
+    acl: z.ZodDefault<z.ZodNullable<z.ZodEnum<["authenticated-read", "bucket-owner-full-control", "private", "project-private", "public-read"]>>>;
+    cache_control: z.ZodOptional<z.ZodString>;
+    url_template: z.ZodDefault<z.ZodString>;
+    ssl_url_template: z.ZodDefault<z.ZodString>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodOptional<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    path: string;
+    robot: "/google/store";
+    force_accept: boolean;
+    credentials: string;
+    acl: "private" | "public-read" | "authenticated-read" | "bucket-owner-full-control" | "project-private" | null;
+    url_template: string;
+    ssl_url_template: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    cache_control?: string | undefined;
+}, {
+    robot: "/google/store";
+    credentials: string;
+    path?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    cache_control?: string | undefined;
+    acl?: "private" | "public-read" | "authenticated-read" | "bucket-owner-full-control" | "project-private" | null | undefined;
+    url_template?: string | undefined;
+    ssl_url_template?: string | undefined;
+}>;
+export type RobotGoogleStoreInstructions = z.infer<typeof robotGoogleStoreInstructionsSchema>;
+export type RobotGoogleStoreInstructionsWithHiddenFields = z.infer<typeof robotGoogleStoreInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotGoogleStoreInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/google/store">;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    credentials: z.ZodString;
+    path: z.ZodDefault<z.ZodString>;
+    acl: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodEnum<["authenticated-read", "bucket-owner-full-control", "private", "project-private", "public-read"]>]>>>;
+    cache_control: z.ZodOptional<z.ZodString>;
+    url_template: z.ZodDefault<z.ZodString>;
+    ssl_url_template: z.ZodDefault<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    path: string;
+    robot: "/google/store";
+    force_accept: string | boolean;
+    credentials: string;
+    acl: string | null;
+    url_template: string;
+    ssl_url_template: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    cache_control?: string | undefined;
+}, {
+    robot: "/google/store";
+    credentials: string;
+    path?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    cache_control?: string | undefined;
+    acl?: string | null | undefined;
+    url_template?: string | undefined;
+    ssl_url_template?: string | undefined;
+}>;
+export type InterpolatableRobotGoogleStoreInstructions = InterpolatableRobotGoogleStoreInstructionsInput;
+export type InterpolatableRobotGoogleStoreInstructionsInput = z.input<typeof interpolatableRobotGoogleStoreInstructionsSchema>;
+export declare const interpolatableRobotGoogleStoreInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/google/store">;
+    credentials: z.ZodString;
+    path: z.ZodDefault<z.ZodString>;
+    acl: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodEnum<["authenticated-read", "bucket-owner-full-control", "private", "project-private", "public-read"]>]>>>;
+    cache_control: z.ZodOptional<z.ZodString>;
+    url_template: z.ZodDefault<z.ZodString>;
+    ssl_url_template: z.ZodDefault<z.ZodString>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    path: string;
+    robot: "/google/store";
+    force_accept: string | boolean;
+    credentials: string;
+    acl: string | null;
+    url_template: string;
+    ssl_url_template: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    cache_control?: string | undefined;
+}, {
+    robot: "/google/store";
+    credentials: string;
+    path?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    cache_control?: string | undefined;
+    acl?: string | null | undefined;
+    url_template?: string | undefined;
+    ssl_url_template?: string | undefined;
+}>;
+export type InterpolatableRobotGoogleStoreInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotGoogleStoreInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotGoogleStoreInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotGoogleStoreInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=google-store.d.ts.map

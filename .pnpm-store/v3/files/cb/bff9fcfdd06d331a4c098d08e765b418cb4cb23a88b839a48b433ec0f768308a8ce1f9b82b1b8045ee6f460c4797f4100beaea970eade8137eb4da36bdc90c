@@ -1,0 +1,73 @@
+{
+  "name": "dts-resolver",
+  "version": "2.1.1",
+  "description": "Resolves TypeScript declaration files for dependencies.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://github.com/sxzz/dts-resolver#readme",
+  "bugs": {
+    "url": "https://github.com/sxzz/dts-resolver/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sxzz/dts-resolver.git"
+  },
+  "author": "三咲智子 Kevin Deng <sxzz@sxzz.moe>",
+  "funding": "https://github.com/sponsors/sxzz",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "oxc-resolver": ">=11.0.0"
+  },
+  "peerDependenciesMeta": {
+    "oxc-resolver": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.27.5",
+    "@babel/types": "^7.27.3",
+    "@sxzz/eslint-config": "^7.0.2",
+    "@sxzz/prettier-config": "^2.2.1",
+    "@types/debug": "^4.1.12",
+    "@types/node": "^22.15.29",
+    "@types/yargs": "^17.0.33",
+    "@vue/reactivity": "^3.5.16",
+    "bumpp": "^10.1.1",
+    "eslint": "^9.28.0",
+    "fast-glob": "^3.3.3",
+    "magic-string": "^0.30.17",
+    "magic-string-ast": "^0.9.1",
+    "oxc-resolver": "^11.1.0",
+    "prettier": "^3.5.3",
+    "tsdown": "^0.12.6",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.1",
+    "vue": "^3.5.16"
+  },
+  "engines": {
+    "node": ">=20.18.0"
+  },
+  "prettier": "@sxzz/prettier-config",
+  "scripts": {
+    "lint": "eslint --cache .",
+    "lint:fix": "pnpm run lint --fix",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --cache --write .",
+    "release": "bumpp && pnpm publish"
+  }
+}

@@ -1,0 +1,9 @@
+export declare class CancellationToken {
+    private readonly _timeout;
+    private constructor();
+    timeout(): number;
+    static fromSeconds(seconds: number): CancellationToken;
+    static fromMinutes(minutes: number): CancellationToken;
+    static fromMilliseconds(milliseconds: number): CancellationToken;
+}
+//# sourceMappingURL=CancellationToken.d.ts.map

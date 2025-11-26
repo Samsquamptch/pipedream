@@ -1,0 +1,10 @@
+import { Verdict } from "../Verdict";
+export declare class VaasVerdict {
+    sha256: string;
+    verdict: Verdict;
+    detection: string | undefined;
+    file_type: string | undefined;
+    mime_type: string | undefined;
+    constructor(sha256: string, verdict: Verdict, detection: string | undefined, file_type: string | undefined, mime_type: string | undefined);
+}
+//# sourceMappingURL=vaas_verdict.d.ts.map

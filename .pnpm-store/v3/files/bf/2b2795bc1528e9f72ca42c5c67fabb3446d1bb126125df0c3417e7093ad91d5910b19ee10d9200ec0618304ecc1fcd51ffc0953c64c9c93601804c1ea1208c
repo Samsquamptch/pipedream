@@ -1,0 +1,63 @@
+"use strict";
+/*
+ * Copyright 2020-present columns.ai
+ *
+ * The code belongs to https://columns.ai
+ * Terms & conditions to be found at `LICENSE.txt`.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.codeHelper = exports.CodeHelper = void 0;
+const types_1 = require("../lib/types");
+const query_1 = require("./query");
+class CodeHelper {
+    // not really SQL but SQL-alike API code in JS
+    toSQL(req) {
+        const statement = [];
+        const keyList = req.keys.filter(e => e != types_1.KEY_WINDOW).map(k => `'${k}'`).join(',');
+        if (keyList) {
+            statement.push(keyList);
+        }
+        const metricList = req.metrics.map(m => m.display).join(',');
+        if (metricList) {
+            statement.push(metricList);
+        }
+        return `columns.source('${req.table}')
+    .time(${req.start}, ${req.end})
+    .select(${statement.join(',')})
+    .run()`;
+    }
+    run(code, tableState, onError) {
+        // try to eval user's code
+        try {
+            const columns = (0, query_1.evaluate)(code);
+            // allow not setting source since we have table state to fill in
+            columns.sourceIfAbsent(tableState.table_name);
+            // based on the code, let's build a model from it
+            const error = columns.validate();
+            if (error) {
+                onError(`Validation Error: ${error}`, 'error');
+                return null;
+            }
+            // convert the SDK data into a web request object
+            const req = columns.query();
+            // we allow unspecified time range
+            if (!req.start) {
+                req.start = tableState.min_time * 1000;
+            }
+            if (!req.end) {
+                req.end = tableState.max_time * 1000;
+            }
+            // append the source code to this query state
+            req.code = code;
+            return req;
+        }
+        catch (e) {
+            onError(`Code Error: ${e.message}`, 'error');
+            return null;
+        }
+    }
+}
+exports.CodeHelper = CodeHelper;
+;
+const codeHelper = () => new CodeHelper();
+exports.codeHelper = codeHelper;

@@ -1,0 +1,141 @@
+
+/**
+ * The class responsible for pagination.
+ *
+ * @param {Client} client
+ * @param {string} path
+ * @param {Object} params
+ */
+class Pager {
+  constructor (client, path, params) {
+    this.client = client
+    this.path = path
+    this.params = this._mapArrayParams(params)
+  }
+
+  /**
+   * Returns an async iterator over each page of results.
+   */
+  eachPage () {
+    return {
+      [Symbol.asyncIterator]: this._pageIterator.bind(this)
+    }
+  }
+
+  /**
+   * Returns an async iterator over each resource in results.
+   */
+  each () {
+    return {
+      [Symbol.asyncIterator]: this._resourceIterator.bind(this)
+    }
+  }
+
+  /**
+   * Count the number of resources that match this Pager's filters
+   *
+   * @return {Number} The count of resources
+   */
+  async count () {
+    const empty = await this.client._makeRequest('HEAD', this.path, null, { params: this.params })
+    return empty.getResponse().recordCount
+  }
+
+  /**
+   * Return only the first item. This is efficient because it tells
+   * the server to only return 1 item. You can also use this method
+   * to get the last resource by inverting the `order` parameter.
+   *
+   * @return {Object} The first resource in the list
+   */
+  async first () {
+    const firstParams = Object.assign({}, this.params, { limit: 1 })
+    let results = await this.client._makeRequest('GET', this.path, null, { params: firstParams })
+    return results.data && results.data[0]
+  }
+
+  _pageIterator () {
+    return {
+      next: () => {
+        if (this.done) {
+          return Promise.resolve({ done: true })
+        }
+        return new Promise((resolve, reject) => {
+          this.client._makeRequest('GET', this.path, null, { params: this._consumeParams() })
+            .then(results => {
+              this.done = !results.hasMore
+              this.path = results.next
+              resolve({
+                value: results.data,
+                done: false
+              })
+            })
+            .catch(reject)
+        })
+      }
+    }
+  }
+
+  _resourceIterator () {
+    let iterator = this._pageIterator()
+    let resourceNumber = 0
+    let resources = null
+    return {
+      next: () => {
+        if (resources && (resourceNumber < resources.length)) {
+          return Promise.resolve({ value: resources[resourceNumber++], done: false })
+        } else {
+          return new Promise((resolve, reject) => {
+            iterator.next()
+              .then(it => {
+                if (it.done) {
+                  resolve(it)
+                } else {
+                  resources = it.value
+                  resourceNumber = 0
+                  // if we have some resources, yield the first
+                  if (resources && resources.length > 0) {
+                    resolve({
+                      value: resources[resourceNumber++],
+                      done: false
+                    })
+                  // if we have some don't stop iteration
+                  } else {
+                    resolve({ done: true })
+                  }
+                }
+              })
+              .catch(reject)
+          })
+        }
+      }
+    }
+  }
+
+  // allows us to only apply the params
+  // to the first request. For each request after
+  // the params are already encoded in the path
+  _consumeParams () {
+    if (this._paramsConsumed) {
+      return null
+    }
+    this._paramsConsumed = true
+    return this.params
+  }
+
+  // Converts array parameters to CSV strings to maintain consistency with
+  // how the server expects the request to be formatted while providing the
+  // developer with an array type to maintain developer happiness!
+  _mapArrayParams (params) {
+    return Object.keys(params).reduce((res, key) => {
+      if (Array.isArray(params[key])) {
+        res[key] = params[key].join(',')
+      } else {
+        res[key] = params[key]
+      }
+      return res
+    }, {})
+  }
+}
+
+module.exports = Pager

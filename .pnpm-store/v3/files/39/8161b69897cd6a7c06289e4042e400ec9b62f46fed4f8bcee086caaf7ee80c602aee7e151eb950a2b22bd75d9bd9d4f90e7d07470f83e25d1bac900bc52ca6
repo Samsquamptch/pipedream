@@ -1,0 +1,3 @@
+import { ShortcutClient } from "./ShortcutClient.mjs";
+
+export { ShortcutClient, ShortcutClient as default };

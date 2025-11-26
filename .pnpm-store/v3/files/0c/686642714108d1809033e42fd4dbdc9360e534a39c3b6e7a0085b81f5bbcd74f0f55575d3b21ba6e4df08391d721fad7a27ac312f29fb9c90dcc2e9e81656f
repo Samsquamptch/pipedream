@@ -1,0 +1,47 @@
+import {
+  AwsSdkSigV4AuthInputConfig,
+  AwsSdkSigV4AuthResolvedConfig,
+  AwsSdkSigV4PreviouslyResolved,
+} from "@aws-sdk/core";
+import {
+  HandlerExecutionContext,
+  HttpAuthScheme,
+  HttpAuthSchemeParameters,
+  HttpAuthSchemeParametersProvider,
+  HttpAuthSchemeProvider,
+  Provider,
+} from "@smithy/types";
+import { RedshiftServerlessClientResolvedConfig } from "../RedshiftServerlessClient";
+export interface RedshiftServerlessHttpAuthSchemeParameters
+  extends HttpAuthSchemeParameters {
+  region?: string;
+}
+export interface RedshiftServerlessHttpAuthSchemeParametersProvider
+  extends HttpAuthSchemeParametersProvider<
+    RedshiftServerlessClientResolvedConfig,
+    HandlerExecutionContext,
+    RedshiftServerlessHttpAuthSchemeParameters,
+    object
+  > {}
+export declare const defaultRedshiftServerlessHttpAuthSchemeParametersProvider: (
+  config: RedshiftServerlessClientResolvedConfig,
+  context: HandlerExecutionContext,
+  input: object
+) => Promise<RedshiftServerlessHttpAuthSchemeParameters>;
+export interface RedshiftServerlessHttpAuthSchemeProvider
+  extends HttpAuthSchemeProvider<RedshiftServerlessHttpAuthSchemeParameters> {}
+export declare const defaultRedshiftServerlessHttpAuthSchemeProvider: RedshiftServerlessHttpAuthSchemeProvider;
+export interface HttpAuthSchemeInputConfig extends AwsSdkSigV4AuthInputConfig {
+  authSchemePreference?: string[] | Provider<string[]>;
+  httpAuthSchemes?: HttpAuthScheme[];
+  httpAuthSchemeProvider?: RedshiftServerlessHttpAuthSchemeProvider;
+}
+export interface HttpAuthSchemeResolvedConfig
+  extends AwsSdkSigV4AuthResolvedConfig {
+  readonly authSchemePreference: Provider<string[]>;
+  readonly httpAuthSchemes: HttpAuthScheme[];
+  readonly httpAuthSchemeProvider: RedshiftServerlessHttpAuthSchemeProvider;
+}
+export declare const resolveHttpAuthSchemeConfig: <T>(
+  config: T & HttpAuthSchemeInputConfig & AwsSdkSigV4PreviouslyResolved
+) => T & HttpAuthSchemeResolvedConfig;

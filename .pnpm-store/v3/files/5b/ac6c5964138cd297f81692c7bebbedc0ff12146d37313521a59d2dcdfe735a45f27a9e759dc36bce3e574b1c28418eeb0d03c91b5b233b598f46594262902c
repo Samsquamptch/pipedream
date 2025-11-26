@@ -1,0 +1,17 @@
+import { Margin, SimpleData, GraphData } from 'columns-graph-model';
+export type VaasRequest = {
+    id: string;
+    key: string;
+    name: string;
+    graph: GraphData;
+};
+export declare class Columns {
+    private apiKey;
+    private version;
+    private client;
+    constructor(apiKey: string);
+    data(keys: string[], metrics: string[], rows: any[]): SimpleData;
+    graph(data: SimpleData, margin?: Margin): GraphData;
+    template(visualId: string): Promise<GraphData>;
+    publish(name: string, graph: GraphData): Promise<string>;
+}

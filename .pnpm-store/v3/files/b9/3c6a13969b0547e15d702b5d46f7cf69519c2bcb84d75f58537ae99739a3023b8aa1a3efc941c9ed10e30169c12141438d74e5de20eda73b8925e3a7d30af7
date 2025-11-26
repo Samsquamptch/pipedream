@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.pascalCasePropertyNameResolver = void 0;
+const utilities_1 = require("../../utilities");
+const pascalCasePropertyNameResolver = (contentType, element) => {
+    return utilities_1.textHelper.addUnderscoreWhenStarsWithNumber(utilities_1.textHelper.removeZeroWidthCharacters(toPascalCase(element)));
+};
+exports.pascalCasePropertyNameResolver = pascalCasePropertyNameResolver;
+function toPascalCase(str) {
+    str = str.replace(utilities_1.textHelper.getPropertyNameRegex(), (_, c) => (c ? c.toUpperCase() : ''));
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
+}
+//# sourceMappingURL=pascal-case-property-name-resolver.class.js.map

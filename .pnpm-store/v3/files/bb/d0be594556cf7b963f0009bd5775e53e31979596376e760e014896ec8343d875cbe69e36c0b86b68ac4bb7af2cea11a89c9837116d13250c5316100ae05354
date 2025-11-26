@@ -1,0 +1,50 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  ListSnapshotsRequest,
+  ListSnapshotsResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface ListSnapshotsCommandInput extends ListSnapshotsRequest {}
+export interface ListSnapshotsCommandOutput
+  extends ListSnapshotsResponse,
+    __MetadataBearer {}
+declare const ListSnapshotsCommand_base: {
+  new (
+    input: ListSnapshotsCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListSnapshotsCommandInput,
+    ListSnapshotsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    ...[input]: [] | [ListSnapshotsCommandInput]
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListSnapshotsCommandInput,
+    ListSnapshotsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class ListSnapshotsCommand extends ListSnapshotsCommand_base {
+  protected static __types: {
+    api: {
+      input: ListSnapshotsRequest;
+      output: ListSnapshotsResponse;
+    };
+    sdk: {
+      input: ListSnapshotsCommandInput;
+      output: ListSnapshotsCommandOutput;
+    };
+  };
+}

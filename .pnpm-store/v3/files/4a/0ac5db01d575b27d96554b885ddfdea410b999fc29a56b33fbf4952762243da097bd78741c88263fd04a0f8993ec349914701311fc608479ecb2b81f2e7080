@@ -1,0 +1,13 @@
+import { RedshiftServerlessExtensionConfiguration } from "./extensionConfiguration";
+export interface RuntimeExtension {
+  configure(
+    extensionConfiguration: RedshiftServerlessExtensionConfiguration
+  ): void;
+}
+export interface RuntimeExtensionsConfig {
+  extensions: RuntimeExtension[];
+}
+export declare const resolveRuntimeExtensions: (
+  runtimeConfig: any,
+  extensions: RuntimeExtension[]
+) => any;

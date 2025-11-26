@@ -1,0 +1,50 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  CreateUsageLimitRequest,
+  CreateUsageLimitResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface CreateUsageLimitCommandInput extends CreateUsageLimitRequest {}
+export interface CreateUsageLimitCommandOutput
+  extends CreateUsageLimitResponse,
+    __MetadataBearer {}
+declare const CreateUsageLimitCommand_base: {
+  new (
+    input: CreateUsageLimitCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    CreateUsageLimitCommandInput,
+    CreateUsageLimitCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: CreateUsageLimitCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    CreateUsageLimitCommandInput,
+    CreateUsageLimitCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class CreateUsageLimitCommand extends CreateUsageLimitCommand_base {
+  protected static __types: {
+    api: {
+      input: CreateUsageLimitRequest;
+      output: CreateUsageLimitResponse;
+    };
+    sdk: {
+      input: CreateUsageLimitCommandInput;
+      output: CreateUsageLimitCommandOutput;
+    };
+  };
+}

@@ -1,0 +1,84 @@
+import { AxesProps, BarProps, BarRaceProps, BigTextProps, BoxplotProps, LineProps, MapProps, PieProps, RadarProps, ScatterProps, TableProps, TimelineProps, TreeProps, WordcloudProps } from './charts';
+import { Affixes, ChartType, Currency, Position, SimpleData, Size, ValueOption, ValueRange } from './common';
+import { Annotation } from './annotation';
+import { ArrowData } from './arrow';
+import { Condition } from './condition';
+import { FontProps } from './font';
+import { ForecastRow } from './forecast';
+import { GeneralProps } from './general';
+import { WidgetData } from './widget';
+export type SortColumn = {
+    col: string;
+    display?: string;
+    isn?: boolean;
+    desc?: boolean;
+};
+export interface ColumnOptions {
+    isDate?: boolean;
+    isPct?: boolean;
+}
+export type ValueFormatOption = {
+    option: ValueOption;
+    precision: number;
+};
+export type MetricsProps = {
+    aliases: Record<string, string>;
+    colors: Record<string, string>;
+    currencies: Record<string, Currency>;
+    affixes: Record<string, Affixes>;
+    formats: Record<string, ValueFormatOption>;
+    font: FontProps;
+    legendSize: Size;
+    legendPos: Position;
+};
+export type ChatProps = {
+    hide: boolean;
+};
+export type GraphSettings = {
+    bar?: BarProps;
+    map?: MapProps;
+    table?: TableProps;
+    pie?: PieProps;
+    line?: LineProps;
+    scatter?: ScatterProps;
+    brace?: BarRaceProps;
+    timeline?: TimelineProps;
+    metrics?: MetricsProps;
+    general?: GeneralProps;
+    axes?: AxesProps;
+    tree?: TreeProps;
+    chat?: ChatProps;
+    bigtext?: BigTextProps;
+    radar?: RadarProps;
+    box?: BoxplotProps;
+    wordcloud?: WordcloudProps;
+};
+export type GraphFilter = {
+    metrics: string[];
+    range: ValueRange;
+    keys: string[];
+    origin: SimpleData;
+};
+export interface GraphData {
+    id: string;
+    meta: string;
+    data: SimpleData;
+    forecasts: Record<string, ForecastRow[]>;
+    type: ChartType;
+    top: number;
+    sort: SortColumn[];
+    options: Record<string, ColumnOptions>;
+    annotations: Annotation[];
+    conditions: Condition[];
+    widgets: WidgetData[];
+    arrows: ArrowData[];
+    chats: string[];
+    settings: GraphSettings;
+    version: number;
+    shapes: Record<string, Position>;
+    viewbox: Size;
+    dataId: string;
+    cv: number;
+    summary: string[];
+    filter: GraphFilter;
+}

@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  DeleteEndpointAccessRequest,
+  DeleteEndpointAccessResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface DeleteEndpointAccessCommandInput
+  extends DeleteEndpointAccessRequest {}
+export interface DeleteEndpointAccessCommandOutput
+  extends DeleteEndpointAccessResponse,
+    __MetadataBearer {}
+declare const DeleteEndpointAccessCommand_base: {
+  new (
+    input: DeleteEndpointAccessCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    DeleteEndpointAccessCommandInput,
+    DeleteEndpointAccessCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: DeleteEndpointAccessCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    DeleteEndpointAccessCommandInput,
+    DeleteEndpointAccessCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class DeleteEndpointAccessCommand extends DeleteEndpointAccessCommand_base {
+  protected static __types: {
+    api: {
+      input: DeleteEndpointAccessRequest;
+      output: DeleteEndpointAccessResponse;
+    };
+    sdk: {
+      input: DeleteEndpointAccessCommandInput;
+      output: DeleteEndpointAccessCommandOutput;
+    };
+  };
+}

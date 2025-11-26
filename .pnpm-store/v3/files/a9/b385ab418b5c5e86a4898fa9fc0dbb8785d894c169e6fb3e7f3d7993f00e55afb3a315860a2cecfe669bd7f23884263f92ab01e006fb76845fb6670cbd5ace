@@ -1,0 +1,99 @@
+import { ElementType } from '../../elements';
+import { continuationTokenHeaderName } from '../../models';
+import { BaseQuery } from './base-query.class';
+export class BaseListingQuery extends BaseQuery {
+    constructor(config, queryService) {
+        super(config, queryService);
+        this.config = config;
+        this.queryService = queryService;
+    }
+    /**
+     * Sets continuation token header
+     */
+    withContinuationToken(token) {
+        var _a;
+        // remove previous continuation token if there is any
+        let queryHeaders = (_a = this._queryConfig.customHeaders) !== null && _a !== void 0 ? _a : [];
+        queryHeaders = queryHeaders.filter((m) => m.header !== continuationTokenHeaderName);
+        this._queryConfig.customHeaders = queryHeaders;
+        this.withHeaders([
+            {
+                header: continuationTokenHeaderName,
+                value: token
+            }
+        ]);
+        return this;
+    }
+    /**
+     * Query to get all items. Uses paging data and may execute multiple HTTP requests depending on number of items
+     */
+    toAllPromise(queryAllConfig) {
+        return this.queryService.getListAllResponse({
+            page: 1,
+            listQueryConfig: queryAllConfig,
+            allResponseFactory: (items, responses) => {
+                const response = this.allResponseFactory(items, responses);
+                return {
+                    data: response,
+                    responses: responses
+                };
+            },
+            getResponse: (nextPageUrl, continuationToken) => {
+                if (nextPageUrl) {
+                    this.withCustomUrl(nextPageUrl);
+                }
+                if (continuationToken) {
+                    this.withContinuationToken(continuationToken);
+                }
+                return this.toPromise();
+            }
+        });
+    }
+    linkItemsInRte(allContentItems) {
+        for (const item of allContentItems) {
+            for (const elementKey of Object.keys(item.elements)) {
+                const element = item.elements[elementKey];
+                if (element.type === ElementType.ModularContent) {
+                    const linkedItemElement = element;
+                    // We create separate array for ordered items because the 'linkedItems' from response might be incomplete
+                    // e.g. If 4 items are linked, only 2 might be available in the response. Rest needs to be mapped from all available items
+                    const orderedLinkedItems = [];
+                    for (const linkedItemCodename of linkedItemElement.value) {
+                        let linkedItem;
+                        const linkedItemInElement = linkedItemElement.linkedItems.find((m) => m.system.codename.toLowerCase() === linkedItemCodename.toLowerCase());
+                        if (linkedItemInElement) {
+                            linkedItem = linkedItemInElement;
+                        }
+                        else {
+                            linkedItem = allContentItems.find((m) => m.system.codename.toLowerCase() === linkedItemCodename.toLowerCase());
+                        }
+                        if (linkedItem) {
+                            orderedLinkedItems.push(linkedItem);
+                        }
+                    }
+                    // Replace linked items with the ordered one
+                    linkedItemElement.linkedItems = orderedLinkedItems;
+                }
+                if (element.type === ElementType.RichText) {
+                    const orderedLinkedItems = [];
+                    const richTextElement = element;
+                    for (const linkedItemCodename of richTextElement.linkedItemCodenames) {
+                        let linkedItem;
+                        const linkedItemInElement = richTextElement.linkedItems.find((m) => m.system.codename.toLowerCase() === linkedItemCodename.toLowerCase());
+                        if (linkedItemInElement) {
+                            linkedItem = linkedItemInElement;
+                        }
+                        else {
+                            linkedItem = allContentItems.find((m) => m.system.codename.toLowerCase() === linkedItemCodename.toLowerCase());
+                        }
+                        if (linkedItem) {
+                            orderedLinkedItems.push(linkedItem);
+                        }
+                    }
+                    richTextElement.linkedItems = orderedLinkedItems;
+                }
+            }
+        }
+    }
+}
+//# sourceMappingURL=base-listing-query.class.js.map

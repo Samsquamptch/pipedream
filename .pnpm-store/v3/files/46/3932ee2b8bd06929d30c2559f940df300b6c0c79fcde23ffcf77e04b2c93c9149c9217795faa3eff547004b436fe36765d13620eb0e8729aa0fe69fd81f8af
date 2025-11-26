@@ -1,0 +1,267 @@
+import { SENSITIVE_STRING } from "@smithy/smithy-client";
+import { RedshiftServerlessServiceException as __BaseException } from "./RedshiftServerlessServiceException";
+export class AccessDeniedException extends __BaseException {
+    name = "AccessDeniedException";
+    $fault = "client";
+    code;
+    constructor(opts) {
+        super({
+            name: "AccessDeniedException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, AccessDeniedException.prototype);
+        this.code = opts.code;
+    }
+}
+export class ConflictException extends __BaseException {
+    name = "ConflictException";
+    $fault = "client";
+    constructor(opts) {
+        super({
+            name: "ConflictException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, ConflictException.prototype);
+    }
+}
+export const SnapshotStatus = {
+    AVAILABLE: "AVAILABLE",
+    CANCELLED: "CANCELLED",
+    COPYING: "COPYING",
+    CREATING: "CREATING",
+    DELETED: "DELETED",
+    FAILED: "FAILED",
+};
+export class InternalServerException extends __BaseException {
+    name = "InternalServerException";
+    $fault = "server";
+    $retryable = {};
+    constructor(opts) {
+        super({
+            name: "InternalServerException",
+            $fault: "server",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, InternalServerException.prototype);
+    }
+}
+export class ResourceNotFoundException extends __BaseException {
+    name = "ResourceNotFoundException";
+    $fault = "client";
+    resourceName;
+    constructor(opts) {
+        super({
+            name: "ResourceNotFoundException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, ResourceNotFoundException.prototype);
+        this.resourceName = opts.resourceName;
+    }
+}
+export class ServiceQuotaExceededException extends __BaseException {
+    name = "ServiceQuotaExceededException";
+    $fault = "client";
+    constructor(opts) {
+        super({
+            name: "ServiceQuotaExceededException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, ServiceQuotaExceededException.prototype);
+    }
+}
+export class TooManyTagsException extends __BaseException {
+    name = "TooManyTagsException";
+    $fault = "client";
+    resourceName;
+    constructor(opts) {
+        super({
+            name: "TooManyTagsException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, TooManyTagsException.prototype);
+        this.resourceName = opts.resourceName;
+    }
+}
+export class ValidationException extends __BaseException {
+    name = "ValidationException";
+    $fault = "client";
+    constructor(opts) {
+        super({
+            name: "ValidationException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, ValidationException.prototype);
+    }
+}
+export class ThrottlingException extends __BaseException {
+    name = "ThrottlingException";
+    $fault = "client";
+    $retryable = {};
+    code;
+    constructor(opts) {
+        super({
+            name: "ThrottlingException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, ThrottlingException.prototype);
+        this.code = opts.code;
+    }
+}
+export const LogExport = {
+    CONNECTION_LOG: "connectionlog",
+    USER_ACTIVITY_LOG: "useractivitylog",
+    USER_LOG: "userlog",
+};
+export const NamespaceStatus = {
+    AVAILABLE: "AVAILABLE",
+    DELETING: "DELETING",
+    MODIFYING: "MODIFYING",
+};
+export const OfferingType = {
+    ALL_UPFRONT: "ALL_UPFRONT",
+    NO_UPFRONT: "NO_UPFRONT",
+};
+export var Schedule;
+(function (Schedule) {
+    Schedule.visit = (value, visitor) => {
+        if (value.at !== undefined)
+            return visitor.at(value.at);
+        if (value.cron !== undefined)
+            return visitor.cron(value.cron);
+        return visitor._(value.$unknown[0], value.$unknown[1]);
+    };
+})(Schedule || (Schedule = {}));
+export var TargetAction;
+(function (TargetAction) {
+    TargetAction.visit = (value, visitor) => {
+        if (value.createSnapshot !== undefined)
+            return visitor.createSnapshot(value.createSnapshot);
+        return visitor._(value.$unknown[0], value.$unknown[1]);
+    };
+})(TargetAction || (TargetAction = {}));
+export const State = {
+    ACTIVE: "ACTIVE",
+    DISABLED: "DISABLED",
+};
+export const UsageLimitBreachAction = {
+    DEACTIVATE: "deactivate",
+    EMIT_METRIC: "emit-metric",
+    LOG: "log",
+};
+export const UsageLimitPeriod = {
+    DAILY: "daily",
+    MONTHLY: "monthly",
+    WEEKLY: "weekly",
+};
+export const UsageLimitUsageType = {
+    CROSS_REGION_DATASHARING: "cross-region-datasharing",
+    SERVERLESS_COMPUTE: "serverless-compute",
+};
+export const PerformanceTargetStatus = {
+    DISABLED: "DISABLED",
+    ENABLED: "ENABLED",
+};
+export const WorkgroupStatus = {
+    AVAILABLE: "AVAILABLE",
+    CREATING: "CREATING",
+    DELETING: "DELETING",
+    MODIFYING: "MODIFYING",
+};
+export class InsufficientCapacityException extends __BaseException {
+    name = "InsufficientCapacityException";
+    $fault = "client";
+    $retryable = {};
+    constructor(opts) {
+        super({
+            name: "InsufficientCapacityException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, InsufficientCapacityException.prototype);
+    }
+}
+export class Ipv6CidrBlockNotFoundException extends __BaseException {
+    name = "Ipv6CidrBlockNotFoundException";
+    $fault = "client";
+    constructor(opts) {
+        super({
+            name: "Ipv6CidrBlockNotFoundException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, Ipv6CidrBlockNotFoundException.prototype);
+    }
+}
+export class InvalidPaginationException extends __BaseException {
+    name = "InvalidPaginationException";
+    $fault = "client";
+    constructor(opts) {
+        super({
+            name: "InvalidPaginationException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, InvalidPaginationException.prototype);
+    }
+}
+export const ManagedWorkgroupStatus = {
+    AVAILABLE: "AVAILABLE",
+    CREATING: "CREATING",
+    DELETING: "DELETING",
+    MODIFYING: "MODIFYING",
+    NOT_AVAILABLE: "NOT_AVAILABLE",
+};
+export const CreateNamespaceRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.adminUsername && { adminUsername: SENSITIVE_STRING }),
+    ...(obj.adminUserPassword && { adminUserPassword: SENSITIVE_STRING }),
+});
+export const NamespaceFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.adminUsername && { adminUsername: SENSITIVE_STRING }),
+});
+export const CreateNamespaceResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }),
+});
+export const DeleteNamespaceResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }),
+});
+export const GetCredentialsResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.dbUser && { dbUser: SENSITIVE_STRING }),
+    ...(obj.dbPassword && { dbPassword: SENSITIVE_STRING }),
+});
+export const GetNamespaceResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }),
+});
+export const ListNamespacesResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.namespaces && { namespaces: obj.namespaces.map((item) => NamespaceFilterSensitiveLog(item)) }),
+});
+export const UpdateNamespaceRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.adminUserPassword && { adminUserPassword: SENSITIVE_STRING }),
+    ...(obj.adminUsername && { adminUsername: SENSITIVE_STRING }),
+});
+export const UpdateNamespaceResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }),
+});
+export const RestoreFromRecoveryPointResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }),
+});
+export const RestoreFromSnapshotResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }),
+});

@@ -1,0 +1,5 @@
+Object.defineProperty(exports, '__esModule', { value: true });
+const require_ShortcutClient = require('./ShortcutClient.js');
+
+exports.ShortcutClient = require_ShortcutClient.ShortcutClient;
+exports.default = require_ShortcutClient.ShortcutClient;

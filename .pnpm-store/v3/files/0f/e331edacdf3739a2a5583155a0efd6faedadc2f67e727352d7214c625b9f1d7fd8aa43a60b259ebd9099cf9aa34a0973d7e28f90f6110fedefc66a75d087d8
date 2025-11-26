@@ -1,0 +1,14 @@
+export const DEFAULT_FIX_OPTIONS = {
+    cwd: process.cwd(),
+    tsconfig: './tsconfig.json',
+    filenameVar: true,
+    dirnameVar: true,
+    ext: true,
+    unlink: true,
+    debug: () => { }, // eslint-disable-line
+};
+export const normalizeOptions = (opts) => (Object.assign(Object.assign(Object.assign({}, DEFAULT_FIX_OPTIONS), opts), { debug: typeof (opts === null || opts === void 0 ? void 0 : opts.debug) === 'function'
+        ? opts.debug
+        : (opts === null || opts === void 0 ? void 0 : opts.debug) === true
+            ? console.log
+            : DEFAULT_FIX_OPTIONS.debug }));

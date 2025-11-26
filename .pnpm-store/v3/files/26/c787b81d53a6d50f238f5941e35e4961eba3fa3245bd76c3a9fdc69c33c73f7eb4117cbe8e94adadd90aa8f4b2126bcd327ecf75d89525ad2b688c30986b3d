@@ -1,0 +1,17 @@
+import { BaseQuery } from '../base-query';
+export class ViewLanguageVariantQuery extends BaseQuery {
+    constructor(config, queryService, contentItemIdentifier, languageIdentifier) {
+        super(config, queryService);
+        this.config = config;
+        this.queryService = queryService;
+        this.contentItemIdentifier = contentItemIdentifier;
+        this.languageIdentifier = languageIdentifier;
+    }
+    toPromise() {
+        return this.queryService.viewLanguageVariantAsync(this.getUrl(), this.queryConfig);
+    }
+    getAction() {
+        return this.apiEndpoints.viewOrUpsertLanguageVariant(this.contentItemIdentifier, this.languageIdentifier);
+    }
+}
+//# sourceMappingURL=view-language-variant-query.class.js.map

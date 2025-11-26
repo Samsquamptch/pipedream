@@ -1,0 +1,9 @@
+import { ApiConfig } from "./generated/http-client.mjs";
+import { Api } from "./generated/Api.mjs";
+
+//#region src/ShortcutClient.d.ts
+declare class ShortcutClient<SecurityDataType = unknown> extends Api<SecurityDataType> {
+  constructor(apiToken: string, config?: ApiConfig<SecurityDataType>);
+}
+//#endregion
+export { ShortcutClient };

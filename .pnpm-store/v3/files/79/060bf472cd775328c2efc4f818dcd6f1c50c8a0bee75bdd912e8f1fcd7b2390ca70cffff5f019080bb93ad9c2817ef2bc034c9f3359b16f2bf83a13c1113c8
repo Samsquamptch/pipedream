@@ -1,0 +1,25 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DefaultPalette = exports.ColorfulPalettes = exports.SingularPalettes = void 0;
+exports.SingularPalettes = [
+    ['#2563eb', '#637bef', '#8a93f3', '#aaadf7', '#c8c8fa', '#e4e3fd', '#ffffff'],
+    ['#0891b2', '#51a3bf', '#79b5cb', '#9cc7d8', '#bed9e5', '#dfecf2', '#ffffff'],
+    ['#059669', '#4aa880', '#72b999', '#96cbb1', '#b9dccb', '#dceee5', '#ffffff'],
+    ['#bd8a00', '#cc9c3d', '#daaf64', '#e6c28a', '#f0d6b0', '#f8ead7', '#ffffff'],
+    ['#ea580c', '#f4763b', '#fd9262', '#ffad88', '#ffc9ae', '#ffe4d6', '#ffffff'],
+    ['#dc2626', '#e95647', '#f47b69', '#fc9d8d', '#ffbeb2', '#ffded8', '#ffffff'],
+    ['#d326a8', '#de59b6', '#e77ec5', '#ef9fd3', '#f6bfe2', '#fbdff0', '#ffffff'],
+    ['#7c3aed', '#985df1', '#b17ef5', '#c79ef8', '#dbbefb', '#eddefd', '#ffffff'],
+];
+exports.ColorfulPalettes = [
+    ['#cdb4db', '#ffc8dd', '#ffafcc', '#bde0fe', '#a2d2ff', '#457b9d', '#1d3557'],
+    ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51', '#e63946', '#0bb4ff'],
+    ['#D81E5B', '#00A6ED', '#F2C057', '#8BC34A', '#F44336', '#009688', '#673AB7'],
+    ['#9C28B0', '#9D5BD1', '#FF5252', '#3F51B5', '#009688', '#4CAF50', '#FFC107'],
+    ['#E37A89', '#9CADC4', '#B1D1AE', '#F1D4AF', '#D4C4E4', '#A7C5EB', '#FAC7B1'],
+    ['#FF6B6B', '#68F6F6', '#FFD56B', '#A6FF68', '#FF68F6', '#68A3FF', '#D968FF'],
+    ['#FF5252', '#FF4081', '#E040FB', '#7C4DFF', '#448AFF', '#40C4FF', '#00E676'],
+    ['#CE4E4E', '#2DB079', '#CE4E4E', '#2DB079', '#CE4E4E', '#2DB079', '#CE4E4E'],
+];
+exports.DefaultPalette = exports.ColorfulPalettes[0];
+//# sourceMappingURL=color.js.map

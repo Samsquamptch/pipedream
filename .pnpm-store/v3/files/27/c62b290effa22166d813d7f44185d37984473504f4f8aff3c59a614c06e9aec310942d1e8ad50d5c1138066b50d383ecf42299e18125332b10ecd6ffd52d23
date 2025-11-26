@@ -1,0 +1,355 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.zGetMeResponse = exports.zGetAgentRunResponse = exports.zGetAgentRunRequest = exports.zPostAgentRunResponse = exports.zPostAgentRunRequest = exports.zPostAgentRunRequestWithoutMetadata = exports.zPostClassificationAgentRunRequest = exports.zPostTimingAgentRunRequest = exports.zPostCopywritingAgentRunRequest = exports.zPostQualifyingAgentRunRequest = exports.zPostResearchAgentRunRequest = exports.zPostAgentRunBaseRequest = exports.zLanguageCode = exports.zMetadata = exports.zResponse = void 0;
+// src/schemas.ts
+const zod_1 = require("zod");
+// Common schemas
+exports.zResponse = zod_1.z.object({ _status: zod_1.z.number().optional() });
+exports.zMetadata = zod_1.z.record(zod_1.z.any());
+const LANGUAGE_CODES = [
+    "en-US",
+    "en-UK",
+    "en-AU",
+    "nl",
+    "de",
+    "lb",
+    "fr",
+    "es",
+    "pt",
+    "it",
+    "gr",
+    "ru",
+    "tr",
+    "da",
+    "sv",
+    "fi",
+    "is",
+    "no",
+    "zh",
+    "ja",
+    "hi",
+    "th",
+    "vi",
+    "my",
+    "ko",
+    "et",
+    "lt",
+    "lv",
+    "mk",
+    "id",
+    "cs",
+    "pl",
+    "sl",
+    "sk",
+    "bg",
+    "bs",
+    "hu",
+    "uk",
+    "sr",
+    "ro",
+    "sq",
+    "hy",
+    "he",
+    "ar",
+];
+exports.zLanguageCode = zod_1.z.enum(LANGUAGE_CODES, {
+    message: "Language not recognized or supported; please contact support in case you'd like to add support for a language.",
+});
+const isValidDomainOrUrl = (value) => {
+    // Check if it's already a valid URL
+    try {
+        new URL(value);
+        return true;
+    }
+    catch {
+        // Check if adding https:// makes it valid
+        try {
+            new URL(`https://${value}`);
+            return true;
+        }
+        catch {
+            return false;
+        }
+    }
+};
+const zPerson = zod_1.z.object({
+    full_name: zod_1.z
+        .string()
+        .min(1, "full name is required")
+        .max(100, "full name must be less than 100 characters"),
+    linkedin_url: zod_1.z
+        .string()
+        .max(500, "linkedin url must be less than 500 characters")
+        .refine(isValidDomainOrUrl, "Please enter a valid URL or domain")
+        .optional(),
+    email: zod_1.z
+        .string()
+        .email()
+        .max(100, "email must be less than 100 characters")
+        .optional(),
+    job_title: zod_1.z
+        .string()
+        .max(100, "job title must be less than 100 characters")
+        .optional(),
+});
+const zCompany = zod_1.z.object({
+    website: zod_1.z
+        .string()
+        .refine(isValidDomainOrUrl, "Please enter a valid URL or domain"),
+    name: zod_1.z
+        .string()
+        .max(100, "company name must be less than 100 characters")
+        .optional(),
+    description: zod_1.z
+        .string()
+        .max(10000, "company description must be less than 10,000 characters")
+        .optional(),
+});
+exports.zPostAgentRunBaseRequest = zod_1.z.object({
+    lead: zod_1.z.object({
+        company: zCompany,
+        person: zPerson.optional(),
+    }),
+    user: zod_1.z
+        .object({
+        company: zCompany,
+        person: zPerson.optional(),
+    })
+        .optional(),
+    events: zod_1.z
+        .array(zod_1.z.object({
+        description: zod_1.z
+            .string()
+            .max(10000, "event description must be less than 10,000 characters"), // a description of what happened
+        timestamp_ms: zod_1.z.number().optional(),
+    }))
+        .max(100, "you can only provide up to 100 events")
+        .optional(),
+    context: zod_1.z
+        .string()
+        .max(10000, "context must be less than 10,000 characters")
+        .optional(), // free-format string, like a system prompt
+    min_research_steps: zod_1.z.number().min(0).max(20).optional(),
+    max_research_steps: zod_1.z.number().min(0).max(100).optional(),
+    callback_url: zod_1.z
+        .string()
+        .url()
+        .refine((url) => {
+        const allowedPatterns = ["https://integrations.utopianlabs.ai"];
+        const blockedPatterns = [
+            "localhost",
+            "127.0.0.1",
+            "utopianlabs",
+            "utopian-labs",
+            "luna.ai",
+            "getluna.dev",
+        ];
+        return (allowedPatterns.some((pattern) => url.toLowerCase().includes(pattern.toLowerCase())) ||
+            !blockedPatterns.some((pattern) => url.toLowerCase().includes(pattern.toLowerCase())));
+    }, "This callback URL is not allowed")
+        .optional(),
+    use_memory: zod_1.z.boolean().optional(), // if true, the agent will remember what it found in previous research runs
+    output_schema: zod_1.z.record(zod_1.z.string(), zod_1.z.unknown()).optional(), // if provided, the agent will return a structured output in the requested JSON format
+});
+exports.zPostResearchAgentRunRequest = exports.zPostAgentRunBaseRequest.extend({
+    agent: zod_1.z.enum(["r1", "r1-light"]),
+});
+exports.zPostQualifyingAgentRunRequest = exports.zPostAgentRunBaseRequest.extend({
+    agent: zod_1.z.enum(["r1-qualification", "r1-qualification-light"]),
+});
+exports.zPostCopywritingAgentRunRequest = exports.zPostAgentRunBaseRequest.extend({
+    agent: zod_1.z.enum(["r1-copywriting", "r1-copywriting-light"]),
+    language: exports.zLanguageCode.optional().default("en-US"),
+    sequence_length: zod_1.z.number().int().min(1).max(10).optional().default(1),
+});
+exports.zPostTimingAgentRunRequest = exports.zPostAgentRunBaseRequest.extend({
+    agent: zod_1.z.enum(["r1-timing", "r1-timing-light"]),
+});
+exports.zPostClassificationAgentRunRequest = exports.zPostAgentRunBaseRequest.extend({
+    agent: zod_1.z.enum(["r1-classification", "r1-classification-light"]),
+    options: zod_1.z
+        .array(zod_1.z.object({
+        name: zod_1.z.string().min(1),
+        description: zod_1.z.string().optional(),
+    }))
+        .min(2, "you must provide at least 2 options")
+        .max(10, "you can only provide up to 10 options"),
+});
+exports.zPostAgentRunRequestWithoutMetadata = zod_1.z.discriminatedUnion("agent", [
+    exports.zPostResearchAgentRunRequest,
+    exports.zPostQualifyingAgentRunRequest,
+    exports.zPostCopywritingAgentRunRequest,
+    exports.zPostTimingAgentRunRequest,
+    exports.zPostClassificationAgentRunRequest,
+]);
+exports.zPostAgentRunRequest = exports.zPostAgentRunRequestWithoutMetadata.and(zod_1.z.object({ metadata: exports.zMetadata.optional() }));
+exports.zPostAgentRunResponse = exports.zResponse.extend({ id: zod_1.z.string() });
+exports.zGetAgentRunRequest = zod_1.z.object({
+    agent: zod_1.z
+        .enum([
+        "r1",
+        "r1-light",
+        "r1-qualification",
+        "r1-qualification-light",
+        "r1-copywriting",
+        "r1-copywriting-light",
+        "r1-timing",
+        "r1-timing-light",
+        "r1-classification",
+        "r1-classification-light",
+    ])
+        .optional(),
+    run: zod_1.z.string(),
+});
+const zResearchStep = zod_1.z.object({
+    action: zod_1.z.string(),
+    outcome: zod_1.z.string().optional(),
+});
+const zGetQueuedRunResponse = exports.zResponse.extend({
+    id: zod_1.z.string(),
+    agent: zod_1.z.enum([
+        "r1",
+        "r1-light",
+        "r1-qualification",
+        "r1-qualification-light",
+        "r1-copywriting",
+        "r1-copywriting-light",
+        "r1-timing",
+        "r1-timing-light",
+        "r1-classification",
+        "r1-classification-light",
+    ]),
+    status: zod_1.z.literal("queued"),
+    metadata: exports.zMetadata.optional(),
+    created_at: zod_1.z.number(),
+});
+const zGetFailedRunResponse = exports.zResponse.extend({
+    id: zod_1.z.string(),
+    agent: zod_1.z.enum([
+        "r1",
+        "r1-light",
+        "r1-qualification",
+        "r1-qualification-light",
+        "r1-copywriting",
+        "r1-copywriting-light",
+        "r1-timing",
+        "r1-timing-light",
+        "r1-classification",
+        "r1-classification-light",
+    ]),
+    status: zod_1.z.literal("failed"),
+    error: zod_1.z.string().optional(),
+    metadata: exports.zMetadata.optional(),
+    created_at: zod_1.z.number(),
+});
+const zGetResearchRunWithResultResponse = exports.zResponse.extend({
+    id: zod_1.z.string(),
+    agent: zod_1.z.enum(["r1", "r1-light"]),
+    status: zod_1.z.enum(["completed", "running"]),
+    result: zod_1.z.object({
+        research: zod_1.z
+            .object({
+            steps: zod_1.z.array(zResearchStep),
+            conclusion: zod_1.z.string().optional(),
+            output: zod_1.z.record(zod_1.z.string(), zod_1.z.unknown()).optional(),
+        })
+            .nullish(),
+    }),
+    metadata: exports.zMetadata.optional(),
+    created_at: zod_1.z.number(),
+});
+const zGetQualifyingRunWithResultResponse = exports.zResponse.extend({
+    id: zod_1.z.string(),
+    agent: zod_1.z.enum(["r1-qualification", "r1-qualification-light"]),
+    status: zod_1.z.enum(["completed", "running"]),
+    result: zod_1.z.object({
+        research: zGetResearchRunWithResultResponse.shape.result.shape.research,
+        qualification: zod_1.z
+            .object({
+            score: zod_1.z.enum(["high", "medium", "low"]),
+            reason: zod_1.z.string(),
+        })
+            .nullish(),
+    }),
+    metadata: exports.zMetadata.optional(),
+    created_at: zod_1.z.number(),
+});
+const zGetTimingRunWithResultResponse = exports.zResponse.extend({
+    id: zod_1.z.string(),
+    agent: zod_1.z.enum(["r1-timing", "r1-timing-light"]),
+    status: zod_1.z.enum(["completed", "running"]),
+    result: zod_1.z.object({
+        research: zGetResearchRunWithResultResponse.shape.result.shape.research,
+        timing: zod_1.z
+            .object({
+            score: zod_1.z.enum(["high", "medium", "low"]),
+            reason: zod_1.z.string(),
+        })
+            .nullish(),
+    }),
+    metadata: exports.zMetadata.optional(),
+    created_at: zod_1.z.number(),
+});
+const zGetCopywritingRunWithResultResponse = exports.zResponse.extend({
+    id: zod_1.z.string(),
+    agent: zod_1.z.enum(["r1-copywriting", "r1-copywriting-light"]),
+    status: zod_1.z.enum(["completed", "running"]),
+    result: zod_1.z.object({
+        research: zGetResearchRunWithResultResponse.shape.result.shape.research,
+        message: zod_1.z
+            .object({
+            body: zod_1.z
+                .object({
+                markdown: zod_1.z.string(),
+                html: zod_1.z.string(),
+            })
+                .nullish(),
+            subject: zod_1.z.string().nullish(),
+        })
+            .nullish(),
+        sequence: zod_1.z
+            .array(zod_1.z.object({
+            body: zod_1.z
+                .object({
+                markdown: zod_1.z.string(),
+                html: zod_1.z.string(),
+            })
+                .nullish(),
+            subject: zod_1.z.string().nullish(),
+        }))
+            .optional(),
+    }),
+    metadata: exports.zMetadata.optional(),
+    created_at: zod_1.z.number(),
+});
+const zGetClassificationRunWithResultResponse = exports.zResponse.extend({
+    id: zod_1.z.string(),
+    agent: zod_1.z.enum(["r1-classification", "r1-classification-light"]),
+    status: zod_1.z.enum(["completed", "running"]),
+    result: zod_1.z.object({
+        research: zGetResearchRunWithResultResponse.shape.result.shape.research,
+        classification: zod_1.z
+            .object({
+            choice: zod_1.z.string(), // will return "unknown" if the agent couldn't make a choice
+            reason: zod_1.z.string(),
+        })
+            .nullish(),
+    }),
+    metadata: exports.zMetadata.optional(),
+    created_at: zod_1.z.number(),
+});
+const zGetRunWithResultResponse = zod_1.z.discriminatedUnion("agent", [
+    zGetResearchRunWithResultResponse,
+    zGetQualifyingRunWithResultResponse,
+    zGetCopywritingRunWithResultResponse,
+    zGetTimingRunWithResultResponse,
+    zGetClassificationRunWithResultResponse,
+]);
+exports.zGetAgentRunResponse = zGetQueuedRunResponse
+    .or(zGetFailedRunResponse)
+    .or(zGetRunWithResultResponse);
+exports.zGetMeResponse = zod_1.z.object({
+    status: zod_1.z.enum(["success", "error"]),
+    orgName: zod_1.z.string().optional(),
+    error: zod_1.z.string().optional(),
+});

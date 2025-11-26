@@ -1,0 +1,7 @@
+import { Message } from "./message";
+export declare class WebsocketError extends Message {
+    type: string;
+    text: string;
+    constructor(type: string, text: string);
+}
+//# sourceMappingURL=websocket_error.d.ts.map

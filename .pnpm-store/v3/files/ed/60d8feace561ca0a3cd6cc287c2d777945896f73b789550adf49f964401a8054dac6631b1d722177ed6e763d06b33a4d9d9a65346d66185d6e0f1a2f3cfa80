@@ -1,0 +1,36 @@
+/// <reference types="node" />
+import { LinearWebhookPayload, LinearWebhookHandler } from "./types";
+export declare const LINEAR_WEBHOOK_SIGNATURE_HEADER = "linear-signature";
+export declare const LINEAR_WEBHOOK_TS_FIELD = "webhookTimestamp";
+/**
+ * Client for handling Linear webhook requests with helpers.
+ */
+export declare class LinearWebhookClient {
+    private secret;
+    /**
+     * Creates a new LinearWebhookClient instance
+     * @param secret The webhook signing secret. See https://linear.app/developers/webhooks#securing-webhooks.
+     */
+    constructor(secret: string);
+    /**
+     * Creates a webhook handler function that can process Linear webhook requests
+     * @returns A webhook handler function with event registration capabilities.
+     * Returns `(request: Request) => Promise<Response>`
+     */
+    createHandler(): LinearWebhookHandler;
+    /**
+     * Verify the webhook signature
+     * @param rawBody The webhook request raw body
+     * @param signature The signature to verify
+     * @param timestamp The `webhookTimestamp` field from the request parsed body
+     */
+    verify(rawBody: Buffer, signature: string, timestamp?: number): boolean;
+    /**
+     * Parse and verify webhook data
+     * @param rawBody The webhook request raw body
+     * @param signature The signature to verify
+     * @param timestamp The `webhookTimestamp` field from the request parsed body
+     */
+    parseData(rawBody: Buffer, signature: string, timestamp?: number): LinearWebhookPayload;
+}
+//# sourceMappingURL=client.d.ts.map

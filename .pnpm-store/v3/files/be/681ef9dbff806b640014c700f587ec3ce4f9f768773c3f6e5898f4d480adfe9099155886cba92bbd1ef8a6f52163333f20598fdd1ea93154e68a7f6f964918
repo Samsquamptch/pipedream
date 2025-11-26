@@ -1,0 +1,17 @@
+import { AgentsEndpoints } from "./endpoints/agents";
+import { GetMeResponse } from "./schemas";
+export interface UtopianLabsConfig {
+    apiKey: string;
+    baseURL?: string;
+    version?: string;
+}
+export declare class UtopianLabs {
+    private client;
+    private _meEndpoints;
+    agents: AgentsEndpoints;
+    constructor(config: UtopianLabsConfig);
+    me(): Promise<GetMeResponse>;
+}
+export * from "./errors";
+export * from "./types";
+export * from "./schemas";

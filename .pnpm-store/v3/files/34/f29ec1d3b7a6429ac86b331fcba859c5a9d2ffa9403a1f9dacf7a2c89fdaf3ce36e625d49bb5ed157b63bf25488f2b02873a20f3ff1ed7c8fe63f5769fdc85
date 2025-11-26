@@ -1,0 +1,4 @@
+import { createPaginator } from "@smithy/core";
+import { ListManagedWorkgroupsCommand, } from "../commands/ListManagedWorkgroupsCommand";
+import { RedshiftServerlessClient } from "../RedshiftServerlessClient";
+export const paginateListManagedWorkgroups = createPaginator(RedshiftServerlessClient, ListManagedWorkgroupsCommand, "nextToken", "nextToken", "maxResults");

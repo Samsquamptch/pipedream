@@ -1,0 +1,7 @@
+import { Message } from "./message";
+export declare class AuthenticationRequest extends Message {
+    constructor(token: string, session_id?: string | undefined);
+    token: string;
+    session_id: string | undefined;
+}
+//# sourceMappingURL=authentication_request.d.ts.map

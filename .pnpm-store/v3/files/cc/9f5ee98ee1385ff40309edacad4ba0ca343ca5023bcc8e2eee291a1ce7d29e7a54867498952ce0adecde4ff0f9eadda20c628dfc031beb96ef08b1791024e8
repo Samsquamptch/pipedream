@@ -1,0 +1,113 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const gdocTypes_1 = require("./gdocTypes");
+const compute_1 = require("./compute");
+const findPlaceholders = (doc) => {
+    const placeholders = [];
+    doc.body.content.map(c => {
+        if (c.paragraph) {
+            c.paragraph.elements.map(e => {
+                if (e.textRun) {
+                    let textRun = e.textRun.content;
+                    const matches = textRun.match(/{{([^}]*)}}/gi) || [];
+                    for (let match of matches) {
+                        const start = e.startIndex + textRun.indexOf(match);
+                        textRun = textRun.replace(match, ''.padStart(match.length));
+                        placeholders.push({
+                            raw: match,
+                            position: {
+                                start,
+                                end: start + match.length
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+    return placeholders;
+};
+exports.findPlaceholders = findPlaceholders;
+const analyzePlaceholders = (placeholders, data, options) => {
+    return placeholders.map(placeholder => {
+        const rawWithoutBrackets = placeholder.raw.slice(2, -2).trim();
+        if (rawWithoutBrackets.startsWith('#')) {
+            return Object.assign({}, placeholder, { type: 'comment', value: rawWithoutBrackets.slice(1).trim() });
+        }
+        if (['%', '@'].includes(rawWithoutBrackets[0])) {
+            return placeholder;
+        }
+        return compute_1.default(placeholder, data, options);
+    });
+};
+exports.analyzePlaceholders = analyzePlaceholders;
+const buildUpdates = (placeholders) => {
+    const updates = [];
+    for (let placeholder of placeholders) {
+        if (placeholder.type == 'content') {
+            const contentPlaceholder = placeholder;
+            if (contentPlaceholder.output.url) {
+                const output = contentPlaceholder.output;
+                updates.push({
+                    insertInlineImage: {
+                        uri: output.url,
+                        objectSize: {
+                            width: output.width ? { magnitude: output.width, unit: gdocTypes_1.Unit.PT } : undefined,
+                            height: output.height ? { magnitude: output.height, unit: gdocTypes_1.Unit.PT } : undefined
+                        },
+                        location: {
+                            segmentId: '',
+                            index: placeholder.position.start
+                        }
+                    }
+                });
+                updates.push({
+                    replaceAllText: {
+                        replaceText: '',
+                        containsText: {
+                            text: placeholder.raw,
+                            matchCase: true
+                        }
+                    }
+                });
+            }
+            if (contentPlaceholder.output === `${contentPlaceholder.output}` ||
+                !isNaN(contentPlaceholder.output)) {
+                updates.push({
+                    replaceAllText: {
+                        replaceText: `${contentPlaceholder.output}`,
+                        containsText: {
+                            text: placeholder.raw,
+                            matchCase: true
+                        }
+                    }
+                });
+            }
+        }
+        else if (placeholder.type == 'comment') {
+            updates.push({
+                replaceAllText: {
+                    replaceText: '',
+                    containsText: {
+                        text: placeholder.raw,
+                        matchCase: true
+                    }
+                }
+            });
+        }
+    }
+    updates.sort((a, b) => {
+        if (a.insertInlineImage && !b.insertInlineImage)
+            return -1;
+        if (!a.insertInlineImage && b.insertInlineImage)
+            return 1;
+        return 0;
+    });
+    return updates;
+};
+exports.buildUpdates = buildUpdates;
+const processPlaceholders = (doc, data, formatters, strict) => {
+    let placeholders = findPlaceholders(doc);
+    return analyzePlaceholders(placeholders, data, { formatters, strict });
+};
+exports.default = processPlaceholders;

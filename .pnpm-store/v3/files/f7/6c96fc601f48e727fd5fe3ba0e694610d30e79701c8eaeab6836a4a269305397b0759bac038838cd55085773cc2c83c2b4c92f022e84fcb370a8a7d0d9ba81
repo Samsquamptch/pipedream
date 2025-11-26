@@ -1,0 +1,21 @@
+import { z } from 'zod';
+import { interpolateRobot, robotBase } from "./_instructions-primitives.js";
+// @ts-expect-error - AssemblySavejsonRobot is not ready yet @TODO please supply missing keys
+export const meta = {
+    name: 'AssemblySavejsonRobot',
+    priceFactor: 0,
+    queueSlotCount: 5,
+    isAllowedForUrlTransform: true,
+    trackOutputFileSize: false,
+    isInternal: true,
+    removeJobResultFilesFromDiskRightAfterStoringOnS3: false,
+};
+export const robotAssemblySavejsonInstructionsSchema = robotBase
+    .extend({
+    robot: z.literal('/assembly/savejson').describe(`
+TODO: Add robot description here
+`),
+})
+    .strict();
+export const interpolatableRobotAssemblySavejsonInstructionsSchema = interpolateRobot(robotAssemblySavejsonInstructionsSchema);
+//# sourceMappingURL=assembly-savejson.js.map

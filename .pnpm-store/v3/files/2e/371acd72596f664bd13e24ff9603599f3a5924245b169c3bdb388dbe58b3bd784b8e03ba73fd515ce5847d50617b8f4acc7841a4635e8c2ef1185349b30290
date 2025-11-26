@@ -1,0 +1,19 @@
+import { TimelineOptions } from 'nebula-js-lib';
+import { ChartType, MissingPolicy, SimpleData } from './common';
+import { GeneralProps } from './general';
+import { ColumnOptions, GraphSettings } from './graph';
+export declare const NONE = "None";
+export declare const KEY_WINDOW = "_window_";
+export declare const noPivot: (chart: ChartType) => boolean;
+export declare const precise: (value: number, precision: number) => number;
+export declare const isTimeline: (keys: string[], numMetrics: number) => boolean;
+export declare const pivot: (data: SimpleData, pivot: string, unit: number, type: ChartType, policy?: MissingPolicy) => SimpleData;
+export declare const rebase: (data: SimpleData, settings: GeneralProps) => SimpleData;
+export declare const accumulate: (data: SimpleData, settings: GeneralProps) => SimpleData;
+export declare const percentize: (data: SimpleData, general: GeneralProps) => Record<string, ColumnOptions>;
+export type SimpleTransform = {
+    data: SimpleData;
+    opts: Record<string, ColumnOptions>;
+    pivotKey: string;
+};
+export declare const transformSimple: (qr: SimpleData, pivotKey: string, timeline: TimelineOptions, chart: ChartType, settings: GraphSettings) => SimpleTransform;

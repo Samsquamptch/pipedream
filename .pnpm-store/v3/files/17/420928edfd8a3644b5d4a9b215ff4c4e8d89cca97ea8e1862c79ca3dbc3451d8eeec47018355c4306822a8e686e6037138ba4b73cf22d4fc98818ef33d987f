@@ -1,0 +1,1094 @@
+import { HttpHandlerOptions as __HttpHandlerOptions } from "@smithy/types";
+import {
+  ConvertRecoveryPointToSnapshotCommandInput,
+  ConvertRecoveryPointToSnapshotCommandOutput,
+} from "./commands/ConvertRecoveryPointToSnapshotCommand";
+import {
+  CreateCustomDomainAssociationCommandInput,
+  CreateCustomDomainAssociationCommandOutput,
+} from "./commands/CreateCustomDomainAssociationCommand";
+import {
+  CreateEndpointAccessCommandInput,
+  CreateEndpointAccessCommandOutput,
+} from "./commands/CreateEndpointAccessCommand";
+import {
+  CreateNamespaceCommandInput,
+  CreateNamespaceCommandOutput,
+} from "./commands/CreateNamespaceCommand";
+import {
+  CreateReservationCommandInput,
+  CreateReservationCommandOutput,
+} from "./commands/CreateReservationCommand";
+import {
+  CreateScheduledActionCommandInput,
+  CreateScheduledActionCommandOutput,
+} from "./commands/CreateScheduledActionCommand";
+import {
+  CreateSnapshotCommandInput,
+  CreateSnapshotCommandOutput,
+} from "./commands/CreateSnapshotCommand";
+import {
+  CreateSnapshotCopyConfigurationCommandInput,
+  CreateSnapshotCopyConfigurationCommandOutput,
+} from "./commands/CreateSnapshotCopyConfigurationCommand";
+import {
+  CreateUsageLimitCommandInput,
+  CreateUsageLimitCommandOutput,
+} from "./commands/CreateUsageLimitCommand";
+import {
+  CreateWorkgroupCommandInput,
+  CreateWorkgroupCommandOutput,
+} from "./commands/CreateWorkgroupCommand";
+import {
+  DeleteCustomDomainAssociationCommandInput,
+  DeleteCustomDomainAssociationCommandOutput,
+} from "./commands/DeleteCustomDomainAssociationCommand";
+import {
+  DeleteEndpointAccessCommandInput,
+  DeleteEndpointAccessCommandOutput,
+} from "./commands/DeleteEndpointAccessCommand";
+import {
+  DeleteNamespaceCommandInput,
+  DeleteNamespaceCommandOutput,
+} from "./commands/DeleteNamespaceCommand";
+import {
+  DeleteResourcePolicyCommandInput,
+  DeleteResourcePolicyCommandOutput,
+} from "./commands/DeleteResourcePolicyCommand";
+import {
+  DeleteScheduledActionCommandInput,
+  DeleteScheduledActionCommandOutput,
+} from "./commands/DeleteScheduledActionCommand";
+import {
+  DeleteSnapshotCommandInput,
+  DeleteSnapshotCommandOutput,
+} from "./commands/DeleteSnapshotCommand";
+import {
+  DeleteSnapshotCopyConfigurationCommandInput,
+  DeleteSnapshotCopyConfigurationCommandOutput,
+} from "./commands/DeleteSnapshotCopyConfigurationCommand";
+import {
+  DeleteUsageLimitCommandInput,
+  DeleteUsageLimitCommandOutput,
+} from "./commands/DeleteUsageLimitCommand";
+import {
+  DeleteWorkgroupCommandInput,
+  DeleteWorkgroupCommandOutput,
+} from "./commands/DeleteWorkgroupCommand";
+import {
+  GetCredentialsCommandInput,
+  GetCredentialsCommandOutput,
+} from "./commands/GetCredentialsCommand";
+import {
+  GetCustomDomainAssociationCommandInput,
+  GetCustomDomainAssociationCommandOutput,
+} from "./commands/GetCustomDomainAssociationCommand";
+import {
+  GetEndpointAccessCommandInput,
+  GetEndpointAccessCommandOutput,
+} from "./commands/GetEndpointAccessCommand";
+import {
+  GetNamespaceCommandInput,
+  GetNamespaceCommandOutput,
+} from "./commands/GetNamespaceCommand";
+import {
+  GetRecoveryPointCommandInput,
+  GetRecoveryPointCommandOutput,
+} from "./commands/GetRecoveryPointCommand";
+import {
+  GetReservationCommandInput,
+  GetReservationCommandOutput,
+} from "./commands/GetReservationCommand";
+import {
+  GetReservationOfferingCommandInput,
+  GetReservationOfferingCommandOutput,
+} from "./commands/GetReservationOfferingCommand";
+import {
+  GetResourcePolicyCommandInput,
+  GetResourcePolicyCommandOutput,
+} from "./commands/GetResourcePolicyCommand";
+import {
+  GetScheduledActionCommandInput,
+  GetScheduledActionCommandOutput,
+} from "./commands/GetScheduledActionCommand";
+import {
+  GetSnapshotCommandInput,
+  GetSnapshotCommandOutput,
+} from "./commands/GetSnapshotCommand";
+import {
+  GetTableRestoreStatusCommandInput,
+  GetTableRestoreStatusCommandOutput,
+} from "./commands/GetTableRestoreStatusCommand";
+import {
+  GetTrackCommandInput,
+  GetTrackCommandOutput,
+} from "./commands/GetTrackCommand";
+import {
+  GetUsageLimitCommandInput,
+  GetUsageLimitCommandOutput,
+} from "./commands/GetUsageLimitCommand";
+import {
+  GetWorkgroupCommandInput,
+  GetWorkgroupCommandOutput,
+} from "./commands/GetWorkgroupCommand";
+import {
+  ListCustomDomainAssociationsCommandInput,
+  ListCustomDomainAssociationsCommandOutput,
+} from "./commands/ListCustomDomainAssociationsCommand";
+import {
+  ListEndpointAccessCommandInput,
+  ListEndpointAccessCommandOutput,
+} from "./commands/ListEndpointAccessCommand";
+import {
+  ListManagedWorkgroupsCommandInput,
+  ListManagedWorkgroupsCommandOutput,
+} from "./commands/ListManagedWorkgroupsCommand";
+import {
+  ListNamespacesCommandInput,
+  ListNamespacesCommandOutput,
+} from "./commands/ListNamespacesCommand";
+import {
+  ListRecoveryPointsCommandInput,
+  ListRecoveryPointsCommandOutput,
+} from "./commands/ListRecoveryPointsCommand";
+import {
+  ListReservationOfferingsCommandInput,
+  ListReservationOfferingsCommandOutput,
+} from "./commands/ListReservationOfferingsCommand";
+import {
+  ListReservationsCommandInput,
+  ListReservationsCommandOutput,
+} from "./commands/ListReservationsCommand";
+import {
+  ListScheduledActionsCommandInput,
+  ListScheduledActionsCommandOutput,
+} from "./commands/ListScheduledActionsCommand";
+import {
+  ListSnapshotCopyConfigurationsCommandInput,
+  ListSnapshotCopyConfigurationsCommandOutput,
+} from "./commands/ListSnapshotCopyConfigurationsCommand";
+import {
+  ListSnapshotsCommandInput,
+  ListSnapshotsCommandOutput,
+} from "./commands/ListSnapshotsCommand";
+import {
+  ListTableRestoreStatusCommandInput,
+  ListTableRestoreStatusCommandOutput,
+} from "./commands/ListTableRestoreStatusCommand";
+import {
+  ListTagsForResourceCommandInput,
+  ListTagsForResourceCommandOutput,
+} from "./commands/ListTagsForResourceCommand";
+import {
+  ListTracksCommandInput,
+  ListTracksCommandOutput,
+} from "./commands/ListTracksCommand";
+import {
+  ListUsageLimitsCommandInput,
+  ListUsageLimitsCommandOutput,
+} from "./commands/ListUsageLimitsCommand";
+import {
+  ListWorkgroupsCommandInput,
+  ListWorkgroupsCommandOutput,
+} from "./commands/ListWorkgroupsCommand";
+import {
+  PutResourcePolicyCommandInput,
+  PutResourcePolicyCommandOutput,
+} from "./commands/PutResourcePolicyCommand";
+import {
+  RestoreFromRecoveryPointCommandInput,
+  RestoreFromRecoveryPointCommandOutput,
+} from "./commands/RestoreFromRecoveryPointCommand";
+import {
+  RestoreFromSnapshotCommandInput,
+  RestoreFromSnapshotCommandOutput,
+} from "./commands/RestoreFromSnapshotCommand";
+import {
+  RestoreTableFromRecoveryPointCommandInput,
+  RestoreTableFromRecoveryPointCommandOutput,
+} from "./commands/RestoreTableFromRecoveryPointCommand";
+import {
+  RestoreTableFromSnapshotCommandInput,
+  RestoreTableFromSnapshotCommandOutput,
+} from "./commands/RestoreTableFromSnapshotCommand";
+import {
+  TagResourceCommandInput,
+  TagResourceCommandOutput,
+} from "./commands/TagResourceCommand";
+import {
+  UntagResourceCommandInput,
+  UntagResourceCommandOutput,
+} from "./commands/UntagResourceCommand";
+import {
+  UpdateCustomDomainAssociationCommandInput,
+  UpdateCustomDomainAssociationCommandOutput,
+} from "./commands/UpdateCustomDomainAssociationCommand";
+import {
+  UpdateEndpointAccessCommandInput,
+  UpdateEndpointAccessCommandOutput,
+} from "./commands/UpdateEndpointAccessCommand";
+import {
+  UpdateNamespaceCommandInput,
+  UpdateNamespaceCommandOutput,
+} from "./commands/UpdateNamespaceCommand";
+import {
+  UpdateScheduledActionCommandInput,
+  UpdateScheduledActionCommandOutput,
+} from "./commands/UpdateScheduledActionCommand";
+import {
+  UpdateSnapshotCommandInput,
+  UpdateSnapshotCommandOutput,
+} from "./commands/UpdateSnapshotCommand";
+import {
+  UpdateSnapshotCopyConfigurationCommandInput,
+  UpdateSnapshotCopyConfigurationCommandOutput,
+} from "./commands/UpdateSnapshotCopyConfigurationCommand";
+import {
+  UpdateUsageLimitCommandInput,
+  UpdateUsageLimitCommandOutput,
+} from "./commands/UpdateUsageLimitCommand";
+import {
+  UpdateWorkgroupCommandInput,
+  UpdateWorkgroupCommandOutput,
+} from "./commands/UpdateWorkgroupCommand";
+import { RedshiftServerlessClient } from "./RedshiftServerlessClient";
+export interface RedshiftServerless {
+  convertRecoveryPointToSnapshot(
+    args: ConvertRecoveryPointToSnapshotCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ConvertRecoveryPointToSnapshotCommandOutput>;
+  convertRecoveryPointToSnapshot(
+    args: ConvertRecoveryPointToSnapshotCommandInput,
+    cb: (err: any, data?: ConvertRecoveryPointToSnapshotCommandOutput) => void
+  ): void;
+  convertRecoveryPointToSnapshot(
+    args: ConvertRecoveryPointToSnapshotCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ConvertRecoveryPointToSnapshotCommandOutput) => void
+  ): void;
+  createCustomDomainAssociation(
+    args: CreateCustomDomainAssociationCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<CreateCustomDomainAssociationCommandOutput>;
+  createCustomDomainAssociation(
+    args: CreateCustomDomainAssociationCommandInput,
+    cb: (err: any, data?: CreateCustomDomainAssociationCommandOutput) => void
+  ): void;
+  createCustomDomainAssociation(
+    args: CreateCustomDomainAssociationCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: CreateCustomDomainAssociationCommandOutput) => void
+  ): void;
+  createEndpointAccess(
+    args: CreateEndpointAccessCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<CreateEndpointAccessCommandOutput>;
+  createEndpointAccess(
+    args: CreateEndpointAccessCommandInput,
+    cb: (err: any, data?: CreateEndpointAccessCommandOutput) => void
+  ): void;
+  createEndpointAccess(
+    args: CreateEndpointAccessCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: CreateEndpointAccessCommandOutput) => void
+  ): void;
+  createNamespace(
+    args: CreateNamespaceCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<CreateNamespaceCommandOutput>;
+  createNamespace(
+    args: CreateNamespaceCommandInput,
+    cb: (err: any, data?: CreateNamespaceCommandOutput) => void
+  ): void;
+  createNamespace(
+    args: CreateNamespaceCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: CreateNamespaceCommandOutput) => void
+  ): void;
+  createReservation(
+    args: CreateReservationCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<CreateReservationCommandOutput>;
+  createReservation(
+    args: CreateReservationCommandInput,
+    cb: (err: any, data?: CreateReservationCommandOutput) => void
+  ): void;
+  createReservation(
+    args: CreateReservationCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: CreateReservationCommandOutput) => void
+  ): void;
+  createScheduledAction(
+    args: CreateScheduledActionCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<CreateScheduledActionCommandOutput>;
+  createScheduledAction(
+    args: CreateScheduledActionCommandInput,
+    cb: (err: any, data?: CreateScheduledActionCommandOutput) => void
+  ): void;
+  createScheduledAction(
+    args: CreateScheduledActionCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: CreateScheduledActionCommandOutput) => void
+  ): void;
+  createSnapshot(
+    args: CreateSnapshotCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<CreateSnapshotCommandOutput>;
+  createSnapshot(
+    args: CreateSnapshotCommandInput,
+    cb: (err: any, data?: CreateSnapshotCommandOutput) => void
+  ): void;
+  createSnapshot(
+    args: CreateSnapshotCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: CreateSnapshotCommandOutput) => void
+  ): void;
+  createSnapshotCopyConfiguration(
+    args: CreateSnapshotCopyConfigurationCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<CreateSnapshotCopyConfigurationCommandOutput>;
+  createSnapshotCopyConfiguration(
+    args: CreateSnapshotCopyConfigurationCommandInput,
+    cb: (err: any, data?: CreateSnapshotCopyConfigurationCommandOutput) => void
+  ): void;
+  createSnapshotCopyConfiguration(
+    args: CreateSnapshotCopyConfigurationCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: CreateSnapshotCopyConfigurationCommandOutput) => void
+  ): void;
+  createUsageLimit(
+    args: CreateUsageLimitCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<CreateUsageLimitCommandOutput>;
+  createUsageLimit(
+    args: CreateUsageLimitCommandInput,
+    cb: (err: any, data?: CreateUsageLimitCommandOutput) => void
+  ): void;
+  createUsageLimit(
+    args: CreateUsageLimitCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: CreateUsageLimitCommandOutput) => void
+  ): void;
+  createWorkgroup(
+    args: CreateWorkgroupCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<CreateWorkgroupCommandOutput>;
+  createWorkgroup(
+    args: CreateWorkgroupCommandInput,
+    cb: (err: any, data?: CreateWorkgroupCommandOutput) => void
+  ): void;
+  createWorkgroup(
+    args: CreateWorkgroupCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: CreateWorkgroupCommandOutput) => void
+  ): void;
+  deleteCustomDomainAssociation(
+    args: DeleteCustomDomainAssociationCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<DeleteCustomDomainAssociationCommandOutput>;
+  deleteCustomDomainAssociation(
+    args: DeleteCustomDomainAssociationCommandInput,
+    cb: (err: any, data?: DeleteCustomDomainAssociationCommandOutput) => void
+  ): void;
+  deleteCustomDomainAssociation(
+    args: DeleteCustomDomainAssociationCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: DeleteCustomDomainAssociationCommandOutput) => void
+  ): void;
+  deleteEndpointAccess(
+    args: DeleteEndpointAccessCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<DeleteEndpointAccessCommandOutput>;
+  deleteEndpointAccess(
+    args: DeleteEndpointAccessCommandInput,
+    cb: (err: any, data?: DeleteEndpointAccessCommandOutput) => void
+  ): void;
+  deleteEndpointAccess(
+    args: DeleteEndpointAccessCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: DeleteEndpointAccessCommandOutput) => void
+  ): void;
+  deleteNamespace(
+    args: DeleteNamespaceCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<DeleteNamespaceCommandOutput>;
+  deleteNamespace(
+    args: DeleteNamespaceCommandInput,
+    cb: (err: any, data?: DeleteNamespaceCommandOutput) => void
+  ): void;
+  deleteNamespace(
+    args: DeleteNamespaceCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: DeleteNamespaceCommandOutput) => void
+  ): void;
+  deleteResourcePolicy(
+    args: DeleteResourcePolicyCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<DeleteResourcePolicyCommandOutput>;
+  deleteResourcePolicy(
+    args: DeleteResourcePolicyCommandInput,
+    cb: (err: any, data?: DeleteResourcePolicyCommandOutput) => void
+  ): void;
+  deleteResourcePolicy(
+    args: DeleteResourcePolicyCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: DeleteResourcePolicyCommandOutput) => void
+  ): void;
+  deleteScheduledAction(
+    args: DeleteScheduledActionCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<DeleteScheduledActionCommandOutput>;
+  deleteScheduledAction(
+    args: DeleteScheduledActionCommandInput,
+    cb: (err: any, data?: DeleteScheduledActionCommandOutput) => void
+  ): void;
+  deleteScheduledAction(
+    args: DeleteScheduledActionCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: DeleteScheduledActionCommandOutput) => void
+  ): void;
+  deleteSnapshot(
+    args: DeleteSnapshotCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<DeleteSnapshotCommandOutput>;
+  deleteSnapshot(
+    args: DeleteSnapshotCommandInput,
+    cb: (err: any, data?: DeleteSnapshotCommandOutput) => void
+  ): void;
+  deleteSnapshot(
+    args: DeleteSnapshotCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: DeleteSnapshotCommandOutput) => void
+  ): void;
+  deleteSnapshotCopyConfiguration(
+    args: DeleteSnapshotCopyConfigurationCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<DeleteSnapshotCopyConfigurationCommandOutput>;
+  deleteSnapshotCopyConfiguration(
+    args: DeleteSnapshotCopyConfigurationCommandInput,
+    cb: (err: any, data?: DeleteSnapshotCopyConfigurationCommandOutput) => void
+  ): void;
+  deleteSnapshotCopyConfiguration(
+    args: DeleteSnapshotCopyConfigurationCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: DeleteSnapshotCopyConfigurationCommandOutput) => void
+  ): void;
+  deleteUsageLimit(
+    args: DeleteUsageLimitCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<DeleteUsageLimitCommandOutput>;
+  deleteUsageLimit(
+    args: DeleteUsageLimitCommandInput,
+    cb: (err: any, data?: DeleteUsageLimitCommandOutput) => void
+  ): void;
+  deleteUsageLimit(
+    args: DeleteUsageLimitCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: DeleteUsageLimitCommandOutput) => void
+  ): void;
+  deleteWorkgroup(
+    args: DeleteWorkgroupCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<DeleteWorkgroupCommandOutput>;
+  deleteWorkgroup(
+    args: DeleteWorkgroupCommandInput,
+    cb: (err: any, data?: DeleteWorkgroupCommandOutput) => void
+  ): void;
+  deleteWorkgroup(
+    args: DeleteWorkgroupCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: DeleteWorkgroupCommandOutput) => void
+  ): void;
+  getCredentials(): Promise<GetCredentialsCommandOutput>;
+  getCredentials(
+    args: GetCredentialsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetCredentialsCommandOutput>;
+  getCredentials(
+    args: GetCredentialsCommandInput,
+    cb: (err: any, data?: GetCredentialsCommandOutput) => void
+  ): void;
+  getCredentials(
+    args: GetCredentialsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetCredentialsCommandOutput) => void
+  ): void;
+  getCustomDomainAssociation(
+    args: GetCustomDomainAssociationCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetCustomDomainAssociationCommandOutput>;
+  getCustomDomainAssociation(
+    args: GetCustomDomainAssociationCommandInput,
+    cb: (err: any, data?: GetCustomDomainAssociationCommandOutput) => void
+  ): void;
+  getCustomDomainAssociation(
+    args: GetCustomDomainAssociationCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetCustomDomainAssociationCommandOutput) => void
+  ): void;
+  getEndpointAccess(
+    args: GetEndpointAccessCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetEndpointAccessCommandOutput>;
+  getEndpointAccess(
+    args: GetEndpointAccessCommandInput,
+    cb: (err: any, data?: GetEndpointAccessCommandOutput) => void
+  ): void;
+  getEndpointAccess(
+    args: GetEndpointAccessCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetEndpointAccessCommandOutput) => void
+  ): void;
+  getNamespace(
+    args: GetNamespaceCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetNamespaceCommandOutput>;
+  getNamespace(
+    args: GetNamespaceCommandInput,
+    cb: (err: any, data?: GetNamespaceCommandOutput) => void
+  ): void;
+  getNamespace(
+    args: GetNamespaceCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetNamespaceCommandOutput) => void
+  ): void;
+  getRecoveryPoint(
+    args: GetRecoveryPointCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetRecoveryPointCommandOutput>;
+  getRecoveryPoint(
+    args: GetRecoveryPointCommandInput,
+    cb: (err: any, data?: GetRecoveryPointCommandOutput) => void
+  ): void;
+  getRecoveryPoint(
+    args: GetRecoveryPointCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetRecoveryPointCommandOutput) => void
+  ): void;
+  getReservation(
+    args: GetReservationCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetReservationCommandOutput>;
+  getReservation(
+    args: GetReservationCommandInput,
+    cb: (err: any, data?: GetReservationCommandOutput) => void
+  ): void;
+  getReservation(
+    args: GetReservationCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetReservationCommandOutput) => void
+  ): void;
+  getReservationOffering(
+    args: GetReservationOfferingCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetReservationOfferingCommandOutput>;
+  getReservationOffering(
+    args: GetReservationOfferingCommandInput,
+    cb: (err: any, data?: GetReservationOfferingCommandOutput) => void
+  ): void;
+  getReservationOffering(
+    args: GetReservationOfferingCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetReservationOfferingCommandOutput) => void
+  ): void;
+  getResourcePolicy(
+    args: GetResourcePolicyCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetResourcePolicyCommandOutput>;
+  getResourcePolicy(
+    args: GetResourcePolicyCommandInput,
+    cb: (err: any, data?: GetResourcePolicyCommandOutput) => void
+  ): void;
+  getResourcePolicy(
+    args: GetResourcePolicyCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetResourcePolicyCommandOutput) => void
+  ): void;
+  getScheduledAction(
+    args: GetScheduledActionCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetScheduledActionCommandOutput>;
+  getScheduledAction(
+    args: GetScheduledActionCommandInput,
+    cb: (err: any, data?: GetScheduledActionCommandOutput) => void
+  ): void;
+  getScheduledAction(
+    args: GetScheduledActionCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetScheduledActionCommandOutput) => void
+  ): void;
+  getSnapshot(): Promise<GetSnapshotCommandOutput>;
+  getSnapshot(
+    args: GetSnapshotCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetSnapshotCommandOutput>;
+  getSnapshot(
+    args: GetSnapshotCommandInput,
+    cb: (err: any, data?: GetSnapshotCommandOutput) => void
+  ): void;
+  getSnapshot(
+    args: GetSnapshotCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetSnapshotCommandOutput) => void
+  ): void;
+  getTableRestoreStatus(
+    args: GetTableRestoreStatusCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetTableRestoreStatusCommandOutput>;
+  getTableRestoreStatus(
+    args: GetTableRestoreStatusCommandInput,
+    cb: (err: any, data?: GetTableRestoreStatusCommandOutput) => void
+  ): void;
+  getTableRestoreStatus(
+    args: GetTableRestoreStatusCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetTableRestoreStatusCommandOutput) => void
+  ): void;
+  getTrack(
+    args: GetTrackCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetTrackCommandOutput>;
+  getTrack(
+    args: GetTrackCommandInput,
+    cb: (err: any, data?: GetTrackCommandOutput) => void
+  ): void;
+  getTrack(
+    args: GetTrackCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetTrackCommandOutput) => void
+  ): void;
+  getUsageLimit(
+    args: GetUsageLimitCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetUsageLimitCommandOutput>;
+  getUsageLimit(
+    args: GetUsageLimitCommandInput,
+    cb: (err: any, data?: GetUsageLimitCommandOutput) => void
+  ): void;
+  getUsageLimit(
+    args: GetUsageLimitCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetUsageLimitCommandOutput) => void
+  ): void;
+  getWorkgroup(
+    args: GetWorkgroupCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<GetWorkgroupCommandOutput>;
+  getWorkgroup(
+    args: GetWorkgroupCommandInput,
+    cb: (err: any, data?: GetWorkgroupCommandOutput) => void
+  ): void;
+  getWorkgroup(
+    args: GetWorkgroupCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: GetWorkgroupCommandOutput) => void
+  ): void;
+  listCustomDomainAssociations(): Promise<ListCustomDomainAssociationsCommandOutput>;
+  listCustomDomainAssociations(
+    args: ListCustomDomainAssociationsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListCustomDomainAssociationsCommandOutput>;
+  listCustomDomainAssociations(
+    args: ListCustomDomainAssociationsCommandInput,
+    cb: (err: any, data?: ListCustomDomainAssociationsCommandOutput) => void
+  ): void;
+  listCustomDomainAssociations(
+    args: ListCustomDomainAssociationsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListCustomDomainAssociationsCommandOutput) => void
+  ): void;
+  listEndpointAccess(): Promise<ListEndpointAccessCommandOutput>;
+  listEndpointAccess(
+    args: ListEndpointAccessCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListEndpointAccessCommandOutput>;
+  listEndpointAccess(
+    args: ListEndpointAccessCommandInput,
+    cb: (err: any, data?: ListEndpointAccessCommandOutput) => void
+  ): void;
+  listEndpointAccess(
+    args: ListEndpointAccessCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListEndpointAccessCommandOutput) => void
+  ): void;
+  listManagedWorkgroups(): Promise<ListManagedWorkgroupsCommandOutput>;
+  listManagedWorkgroups(
+    args: ListManagedWorkgroupsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListManagedWorkgroupsCommandOutput>;
+  listManagedWorkgroups(
+    args: ListManagedWorkgroupsCommandInput,
+    cb: (err: any, data?: ListManagedWorkgroupsCommandOutput) => void
+  ): void;
+  listManagedWorkgroups(
+    args: ListManagedWorkgroupsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListManagedWorkgroupsCommandOutput) => void
+  ): void;
+  listNamespaces(): Promise<ListNamespacesCommandOutput>;
+  listNamespaces(
+    args: ListNamespacesCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListNamespacesCommandOutput>;
+  listNamespaces(
+    args: ListNamespacesCommandInput,
+    cb: (err: any, data?: ListNamespacesCommandOutput) => void
+  ): void;
+  listNamespaces(
+    args: ListNamespacesCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListNamespacesCommandOutput) => void
+  ): void;
+  listRecoveryPoints(): Promise<ListRecoveryPointsCommandOutput>;
+  listRecoveryPoints(
+    args: ListRecoveryPointsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListRecoveryPointsCommandOutput>;
+  listRecoveryPoints(
+    args: ListRecoveryPointsCommandInput,
+    cb: (err: any, data?: ListRecoveryPointsCommandOutput) => void
+  ): void;
+  listRecoveryPoints(
+    args: ListRecoveryPointsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListRecoveryPointsCommandOutput) => void
+  ): void;
+  listReservationOfferings(): Promise<ListReservationOfferingsCommandOutput>;
+  listReservationOfferings(
+    args: ListReservationOfferingsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListReservationOfferingsCommandOutput>;
+  listReservationOfferings(
+    args: ListReservationOfferingsCommandInput,
+    cb: (err: any, data?: ListReservationOfferingsCommandOutput) => void
+  ): void;
+  listReservationOfferings(
+    args: ListReservationOfferingsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListReservationOfferingsCommandOutput) => void
+  ): void;
+  listReservations(): Promise<ListReservationsCommandOutput>;
+  listReservations(
+    args: ListReservationsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListReservationsCommandOutput>;
+  listReservations(
+    args: ListReservationsCommandInput,
+    cb: (err: any, data?: ListReservationsCommandOutput) => void
+  ): void;
+  listReservations(
+    args: ListReservationsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListReservationsCommandOutput) => void
+  ): void;
+  listScheduledActions(): Promise<ListScheduledActionsCommandOutput>;
+  listScheduledActions(
+    args: ListScheduledActionsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListScheduledActionsCommandOutput>;
+  listScheduledActions(
+    args: ListScheduledActionsCommandInput,
+    cb: (err: any, data?: ListScheduledActionsCommandOutput) => void
+  ): void;
+  listScheduledActions(
+    args: ListScheduledActionsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListScheduledActionsCommandOutput) => void
+  ): void;
+  listSnapshotCopyConfigurations(): Promise<ListSnapshotCopyConfigurationsCommandOutput>;
+  listSnapshotCopyConfigurations(
+    args: ListSnapshotCopyConfigurationsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListSnapshotCopyConfigurationsCommandOutput>;
+  listSnapshotCopyConfigurations(
+    args: ListSnapshotCopyConfigurationsCommandInput,
+    cb: (err: any, data?: ListSnapshotCopyConfigurationsCommandOutput) => void
+  ): void;
+  listSnapshotCopyConfigurations(
+    args: ListSnapshotCopyConfigurationsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListSnapshotCopyConfigurationsCommandOutput) => void
+  ): void;
+  listSnapshots(): Promise<ListSnapshotsCommandOutput>;
+  listSnapshots(
+    args: ListSnapshotsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListSnapshotsCommandOutput>;
+  listSnapshots(
+    args: ListSnapshotsCommandInput,
+    cb: (err: any, data?: ListSnapshotsCommandOutput) => void
+  ): void;
+  listSnapshots(
+    args: ListSnapshotsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListSnapshotsCommandOutput) => void
+  ): void;
+  listTableRestoreStatus(): Promise<ListTableRestoreStatusCommandOutput>;
+  listTableRestoreStatus(
+    args: ListTableRestoreStatusCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListTableRestoreStatusCommandOutput>;
+  listTableRestoreStatus(
+    args: ListTableRestoreStatusCommandInput,
+    cb: (err: any, data?: ListTableRestoreStatusCommandOutput) => void
+  ): void;
+  listTableRestoreStatus(
+    args: ListTableRestoreStatusCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListTableRestoreStatusCommandOutput) => void
+  ): void;
+  listTagsForResource(
+    args: ListTagsForResourceCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListTagsForResourceCommandOutput>;
+  listTagsForResource(
+    args: ListTagsForResourceCommandInput,
+    cb: (err: any, data?: ListTagsForResourceCommandOutput) => void
+  ): void;
+  listTagsForResource(
+    args: ListTagsForResourceCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListTagsForResourceCommandOutput) => void
+  ): void;
+  listTracks(): Promise<ListTracksCommandOutput>;
+  listTracks(
+    args: ListTracksCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListTracksCommandOutput>;
+  listTracks(
+    args: ListTracksCommandInput,
+    cb: (err: any, data?: ListTracksCommandOutput) => void
+  ): void;
+  listTracks(
+    args: ListTracksCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListTracksCommandOutput) => void
+  ): void;
+  listUsageLimits(): Promise<ListUsageLimitsCommandOutput>;
+  listUsageLimits(
+    args: ListUsageLimitsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListUsageLimitsCommandOutput>;
+  listUsageLimits(
+    args: ListUsageLimitsCommandInput,
+    cb: (err: any, data?: ListUsageLimitsCommandOutput) => void
+  ): void;
+  listUsageLimits(
+    args: ListUsageLimitsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListUsageLimitsCommandOutput) => void
+  ): void;
+  listWorkgroups(): Promise<ListWorkgroupsCommandOutput>;
+  listWorkgroups(
+    args: ListWorkgroupsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListWorkgroupsCommandOutput>;
+  listWorkgroups(
+    args: ListWorkgroupsCommandInput,
+    cb: (err: any, data?: ListWorkgroupsCommandOutput) => void
+  ): void;
+  listWorkgroups(
+    args: ListWorkgroupsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListWorkgroupsCommandOutput) => void
+  ): void;
+  putResourcePolicy(
+    args: PutResourcePolicyCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<PutResourcePolicyCommandOutput>;
+  putResourcePolicy(
+    args: PutResourcePolicyCommandInput,
+    cb: (err: any, data?: PutResourcePolicyCommandOutput) => void
+  ): void;
+  putResourcePolicy(
+    args: PutResourcePolicyCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: PutResourcePolicyCommandOutput) => void
+  ): void;
+  restoreFromRecoveryPoint(
+    args: RestoreFromRecoveryPointCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<RestoreFromRecoveryPointCommandOutput>;
+  restoreFromRecoveryPoint(
+    args: RestoreFromRecoveryPointCommandInput,
+    cb: (err: any, data?: RestoreFromRecoveryPointCommandOutput) => void
+  ): void;
+  restoreFromRecoveryPoint(
+    args: RestoreFromRecoveryPointCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: RestoreFromRecoveryPointCommandOutput) => void
+  ): void;
+  restoreFromSnapshot(
+    args: RestoreFromSnapshotCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<RestoreFromSnapshotCommandOutput>;
+  restoreFromSnapshot(
+    args: RestoreFromSnapshotCommandInput,
+    cb: (err: any, data?: RestoreFromSnapshotCommandOutput) => void
+  ): void;
+  restoreFromSnapshot(
+    args: RestoreFromSnapshotCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: RestoreFromSnapshotCommandOutput) => void
+  ): void;
+  restoreTableFromRecoveryPoint(
+    args: RestoreTableFromRecoveryPointCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<RestoreTableFromRecoveryPointCommandOutput>;
+  restoreTableFromRecoveryPoint(
+    args: RestoreTableFromRecoveryPointCommandInput,
+    cb: (err: any, data?: RestoreTableFromRecoveryPointCommandOutput) => void
+  ): void;
+  restoreTableFromRecoveryPoint(
+    args: RestoreTableFromRecoveryPointCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: RestoreTableFromRecoveryPointCommandOutput) => void
+  ): void;
+  restoreTableFromSnapshot(
+    args: RestoreTableFromSnapshotCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<RestoreTableFromSnapshotCommandOutput>;
+  restoreTableFromSnapshot(
+    args: RestoreTableFromSnapshotCommandInput,
+    cb: (err: any, data?: RestoreTableFromSnapshotCommandOutput) => void
+  ): void;
+  restoreTableFromSnapshot(
+    args: RestoreTableFromSnapshotCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: RestoreTableFromSnapshotCommandOutput) => void
+  ): void;
+  tagResource(
+    args: TagResourceCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<TagResourceCommandOutput>;
+  tagResource(
+    args: TagResourceCommandInput,
+    cb: (err: any, data?: TagResourceCommandOutput) => void
+  ): void;
+  tagResource(
+    args: TagResourceCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: TagResourceCommandOutput) => void
+  ): void;
+  untagResource(
+    args: UntagResourceCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<UntagResourceCommandOutput>;
+  untagResource(
+    args: UntagResourceCommandInput,
+    cb: (err: any, data?: UntagResourceCommandOutput) => void
+  ): void;
+  untagResource(
+    args: UntagResourceCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: UntagResourceCommandOutput) => void
+  ): void;
+  updateCustomDomainAssociation(
+    args: UpdateCustomDomainAssociationCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<UpdateCustomDomainAssociationCommandOutput>;
+  updateCustomDomainAssociation(
+    args: UpdateCustomDomainAssociationCommandInput,
+    cb: (err: any, data?: UpdateCustomDomainAssociationCommandOutput) => void
+  ): void;
+  updateCustomDomainAssociation(
+    args: UpdateCustomDomainAssociationCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: UpdateCustomDomainAssociationCommandOutput) => void
+  ): void;
+  updateEndpointAccess(
+    args: UpdateEndpointAccessCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<UpdateEndpointAccessCommandOutput>;
+  updateEndpointAccess(
+    args: UpdateEndpointAccessCommandInput,
+    cb: (err: any, data?: UpdateEndpointAccessCommandOutput) => void
+  ): void;
+  updateEndpointAccess(
+    args: UpdateEndpointAccessCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: UpdateEndpointAccessCommandOutput) => void
+  ): void;
+  updateNamespace(
+    args: UpdateNamespaceCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<UpdateNamespaceCommandOutput>;
+  updateNamespace(
+    args: UpdateNamespaceCommandInput,
+    cb: (err: any, data?: UpdateNamespaceCommandOutput) => void
+  ): void;
+  updateNamespace(
+    args: UpdateNamespaceCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: UpdateNamespaceCommandOutput) => void
+  ): void;
+  updateScheduledAction(
+    args: UpdateScheduledActionCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<UpdateScheduledActionCommandOutput>;
+  updateScheduledAction(
+    args: UpdateScheduledActionCommandInput,
+    cb: (err: any, data?: UpdateScheduledActionCommandOutput) => void
+  ): void;
+  updateScheduledAction(
+    args: UpdateScheduledActionCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: UpdateScheduledActionCommandOutput) => void
+  ): void;
+  updateSnapshot(
+    args: UpdateSnapshotCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<UpdateSnapshotCommandOutput>;
+  updateSnapshot(
+    args: UpdateSnapshotCommandInput,
+    cb: (err: any, data?: UpdateSnapshotCommandOutput) => void
+  ): void;
+  updateSnapshot(
+    args: UpdateSnapshotCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: UpdateSnapshotCommandOutput) => void
+  ): void;
+  updateSnapshotCopyConfiguration(
+    args: UpdateSnapshotCopyConfigurationCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<UpdateSnapshotCopyConfigurationCommandOutput>;
+  updateSnapshotCopyConfiguration(
+    args: UpdateSnapshotCopyConfigurationCommandInput,
+    cb: (err: any, data?: UpdateSnapshotCopyConfigurationCommandOutput) => void
+  ): void;
+  updateSnapshotCopyConfiguration(
+    args: UpdateSnapshotCopyConfigurationCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: UpdateSnapshotCopyConfigurationCommandOutput) => void
+  ): void;
+  updateUsageLimit(
+    args: UpdateUsageLimitCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<UpdateUsageLimitCommandOutput>;
+  updateUsageLimit(
+    args: UpdateUsageLimitCommandInput,
+    cb: (err: any, data?: UpdateUsageLimitCommandOutput) => void
+  ): void;
+  updateUsageLimit(
+    args: UpdateUsageLimitCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: UpdateUsageLimitCommandOutput) => void
+  ): void;
+  updateWorkgroup(
+    args: UpdateWorkgroupCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<UpdateWorkgroupCommandOutput>;
+  updateWorkgroup(
+    args: UpdateWorkgroupCommandInput,
+    cb: (err: any, data?: UpdateWorkgroupCommandOutput) => void
+  ): void;
+  updateWorkgroup(
+    args: UpdateWorkgroupCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: UpdateWorkgroupCommandOutput) => void
+  ): void;
+}
+export declare class RedshiftServerless
+  extends RedshiftServerlessClient
+  implements RedshiftServerless {}

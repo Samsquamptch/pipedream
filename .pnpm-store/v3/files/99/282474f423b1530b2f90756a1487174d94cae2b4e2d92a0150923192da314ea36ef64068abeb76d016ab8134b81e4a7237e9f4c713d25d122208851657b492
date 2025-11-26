@@ -1,0 +1,115 @@
+import { Column, Filter, NebulaRequest, OptionType, RollupType } from '../lib/types';
+export declare const RollupValues: Record<RollupType, number>;
+export declare const rollupValue: (t: RollupType | undefined) => number | undefined;
+export type Field = {
+    column: string;
+    alias: string | undefined;
+};
+export declare const c2f: (c: Column) => Field;
+export declare const s2f: (s: string) => Field;
+export declare const o2f: (o: OptionType) => Field;
+export declare const field: (f: Field, rollup: RollupType | undefined) => OptionType;
+export declare const fieldTime: () => OptionType;
+export declare const fieldAllMetrics: () => OptionType;
+export declare class Nebula {
+    private request;
+    private clientOnly;
+    Type: {
+        INT: number;
+        LONG: number;
+        FLOAT: number;
+        DOUBLE: number;
+        STRING: number;
+    };
+    Sort: {
+        NONE: number;
+        DESC: number;
+        ASC: number;
+    };
+    query(): NebulaRequest;
+    reset: () => void;
+    source: (src: string) => this;
+    sourceIfAbsent: (src: string) => void;
+    time: (start: any, end: any) => this;
+    select: (...args: any[]) => this;
+    pivot: (col: string) => this;
+    map: (f: any) => this;
+    remove: (...cols: any[]) => this;
+    where: (f: Filter) => this;
+    sort: (x: number) => this;
+    top: (l: number) => this;
+    apply: (name: string, type: number, expr: any) => this;
+    run: (timeline?: boolean, window?: number, unit?: number) => this;
+    go: (window: number, unit?: number) => this;
+    setClientOnly: () => void;
+    needQuery: () => boolean;
+    validate: () => string;
+}
+export declare const count: (col: string) => OptionType;
+export declare const sum: (col: string) => OptionType;
+export declare const min: (col: string) => OptionType;
+export declare const max: (col: string) => OptionType;
+export declare const avg: (col: string) => OptionType;
+export declare const p10: (col: string) => OptionType;
+export declare const p25: (col: string) => OptionType;
+export declare const p50: (col: string) => OptionType;
+export declare const p75: (col: string) => OptionType;
+export declare const p90: (col: string) => OptionType;
+export declare const p99: (col: string) => OptionType;
+export declare const p99_9: (col: string) => OptionType;
+export declare const p99_99: (col: string) => OptionType;
+export declare const treemerge: (col: string) => OptionType;
+export declare const cardinality: (col: string) => OptionType;
+export declare const and: (...args: any[]) => {
+    logic: string;
+    rules: any[];
+} | null;
+export declare const or: (...args: any[]) => {
+    logic: string;
+    r: any[];
+} | null;
+export declare const eq: (col: string, ...args: any[]) => Filter;
+export declare const neq: (col: string, ...args: any[]) => Filter;
+export declare const gt: (col: string, val: any) => {
+    logic: string;
+    rules: never[];
+    column: string;
+    op: number;
+    values: string[];
+};
+export declare const lt: (col: string, val: any) => {
+    logic: string;
+    rules: never[];
+    column: string;
+    op: number;
+    values: string[];
+};
+export declare const like: (col: string, val: string) => {
+    logic: string;
+    rules: never[];
+    column: string;
+    op: number;
+    values: string[];
+};
+export declare const ilike: (col: string, val: string) => {
+    logic: string;
+    rules: never[];
+    column: string;
+    op: number;
+    values: string[];
+};
+export declare const unlike: (col: string, val: string) => {
+    logic: string;
+    rules: never[];
+    column: string;
+    op: number;
+    values: string[];
+};
+export declare const iunlike: (col: string, val: string) => {
+    logic: string;
+    rules: never[];
+    column: string;
+    op: number;
+    values: string[];
+};
+export declare const evaluate: (code: string) => Nebula;

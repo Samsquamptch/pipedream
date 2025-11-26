@@ -1,0 +1,27 @@
+# Ignore dependencies everywhere
+node_modules
+**/node_modules
+**/.pnpm-store
+**/.pnpm-cache
+**/.pnpm-state
+
+# Ignore debug and log files
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Ignore devcontainer and IDE configs
+.devcontainer
+.vscode
+.git
+.gitignore
+.gitattributes
+
+# Ignore OS or temp files
+.DS_Store
+Thumbs.db
+.tmp
+.cache
+dist
+build

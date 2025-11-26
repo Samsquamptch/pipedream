@@ -1,0 +1,10 @@
+import * as winston from 'winston';
+declare class Log {
+    logger: winston.Logger;
+    constructor();
+    info(message: string): void;
+    warn(message: string): void;
+    error(message: string): void;
+}
+export declare const LOG: Log;
+export {};

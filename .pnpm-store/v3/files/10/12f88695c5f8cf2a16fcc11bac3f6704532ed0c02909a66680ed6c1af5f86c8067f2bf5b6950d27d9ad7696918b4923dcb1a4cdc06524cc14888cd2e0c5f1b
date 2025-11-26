@@ -1,0 +1,1 @@
+{"version":3,"file":"CancellationToken.d.ts","sourceRoot":"","sources":["../src/CancellationToken.ts"],"names":[],"mappings":"AAAA,qBAAa,iBAAiB;IAC5B,OAAO,CAAC,QAAQ,CAAC,QAAQ,CAAS;IAElC,OAAO;IAIA,OAAO,IAAI,MAAM;WAIV,WAAW,CAAC,OAAO,EAAE,MAAM,GAAG,iBAAiB;WAI/C,WAAW,CAAC,OAAO,EAAE,MAAM,GAAG,iBAAiB;WAI/C,gBAAgB,CAAC,YAAY,EAAE,MAAM,GAAG,iBAAiB;CAGxE"}

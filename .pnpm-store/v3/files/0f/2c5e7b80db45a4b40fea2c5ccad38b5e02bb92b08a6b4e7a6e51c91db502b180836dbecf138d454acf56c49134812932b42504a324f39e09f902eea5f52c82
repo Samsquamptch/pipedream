@@ -1,0 +1,47 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import { GetWorkgroupRequest, GetWorkgroupResponse } from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface GetWorkgroupCommandInput extends GetWorkgroupRequest {}
+export interface GetWorkgroupCommandOutput
+  extends GetWorkgroupResponse,
+    __MetadataBearer {}
+declare const GetWorkgroupCommand_base: {
+  new (
+    input: GetWorkgroupCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetWorkgroupCommandInput,
+    GetWorkgroupCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: GetWorkgroupCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetWorkgroupCommandInput,
+    GetWorkgroupCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class GetWorkgroupCommand extends GetWorkgroupCommand_base {
+  protected static __types: {
+    api: {
+      input: GetWorkgroupRequest;
+      output: GetWorkgroupResponse;
+    };
+    sdk: {
+      input: GetWorkgroupCommandInput;
+      output: GetWorkgroupCommandOutput;
+    };
+  };
+}

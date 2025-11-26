@@ -1,0 +1,4 @@
+import { createPaginator } from "@smithy/core";
+import { ListReservationOfferingsCommand, } from "../commands/ListReservationOfferingsCommand";
+import { RedshiftServerlessClient } from "../RedshiftServerlessClient";
+export const paginateListReservationOfferings = createPaginator(RedshiftServerlessClient, ListReservationOfferingsCommand, "nextToken", "nextToken", "maxResults");

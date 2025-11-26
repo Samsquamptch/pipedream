@@ -1,0 +1,508 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotVimeoStoreInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    credentials: z.ZodOptional<z.ZodString>;
+} & {
+    robot: z.ZodLiteral<"/vimeo/store">;
+    title: z.ZodString;
+    description: z.ZodString;
+    acl: z.ZodDefault<z.ZodEnum<["anybody", "contacts", "disable", "nobody", "password", "unlisted", "users"]>>;
+    password: z.ZodOptional<z.ZodString>;
+    showcases: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    downloadable: z.ZodDefault<z.ZodBoolean>;
+    folder_id: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    folder_uri: z.ZodOptional<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    description: string;
+    title: string;
+    robot: "/vimeo/store";
+    result: boolean;
+    force_accept: boolean;
+    acl: "password" | "anybody" | "contacts" | "disable" | "nobody" | "unlisted" | "users";
+    showcases: string[];
+    downloadable: boolean;
+    folder_id: string | null;
+    password?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    credentials?: string | undefined;
+    folder_uri?: string | undefined;
+}, {
+    description: string;
+    title: string;
+    robot: "/vimeo/store";
+    password?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    credentials?: string | undefined;
+    acl?: "password" | "anybody" | "contacts" | "disable" | "nobody" | "unlisted" | "users" | undefined;
+    showcases?: string[] | undefined;
+    downloadable?: boolean | undefined;
+    folder_id?: string | null | undefined;
+    folder_uri?: string | undefined;
+}>;
+export declare const robotVimeoStoreInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    credentials: z.ZodOptional<z.ZodString>;
+    robot: z.ZodLiteral<"/vimeo/store">;
+    title: z.ZodString;
+    description: z.ZodString;
+    acl: z.ZodDefault<z.ZodEnum<["anybody", "contacts", "disable", "nobody", "password", "unlisted", "users"]>>;
+    password: z.ZodOptional<z.ZodString>;
+    showcases: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    downloadable: z.ZodDefault<z.ZodBoolean>;
+    folder_id: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    folder_uri: z.ZodOptional<z.ZodString>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+    access_token: z.ZodOptional<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    description: string;
+    title: string;
+    robot: "/vimeo/store";
+    force_accept: boolean;
+    acl: "password" | "anybody" | "contacts" | "disable" | "nobody" | "unlisted" | "users";
+    showcases: string[];
+    downloadable: boolean;
+    folder_id: string | null;
+    password?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    credentials?: string | undefined;
+    access_token?: string | undefined;
+    folder_uri?: string | undefined;
+}, {
+    description: string;
+    title: string;
+    robot: "/vimeo/store";
+    password?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    credentials?: string | undefined;
+    acl?: "password" | "anybody" | "contacts" | "disable" | "nobody" | "unlisted" | "users" | undefined;
+    access_token?: string | undefined;
+    showcases?: string[] | undefined;
+    downloadable?: boolean | undefined;
+    folder_id?: string | null | undefined;
+    folder_uri?: string | undefined;
+}>;
+export type RobotVimeoStoreInstructions = z.infer<typeof robotVimeoStoreInstructionsSchema>;
+export type RobotVimeoStoreInstructionsWithHiddenFields = z.infer<typeof robotVimeoStoreInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotVimeoStoreInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    credentials: z.ZodOptional<z.ZodString>;
+    robot: z.ZodLiteral<"/vimeo/store">;
+    title: z.ZodString;
+    description: z.ZodString;
+    acl: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["anybody", "contacts", "disable", "nobody", "password", "unlisted", "users"]>]>>;
+    password: z.ZodOptional<z.ZodString>;
+    showcases: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+    downloadable: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    folder_id: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    folder_uri: z.ZodOptional<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    description: string;
+    title: string;
+    robot: "/vimeo/store";
+    result: string | boolean;
+    force_accept: string | boolean;
+    acl: string;
+    showcases: string | string[];
+    downloadable: string | boolean;
+    folder_id: string | null;
+    password?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    credentials?: string | undefined;
+    folder_uri?: string | undefined;
+}, {
+    description: string;
+    title: string;
+    robot: "/vimeo/store";
+    password?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    credentials?: string | undefined;
+    acl?: string | undefined;
+    showcases?: string | string[] | undefined;
+    downloadable?: string | boolean | undefined;
+    folder_id?: string | null | undefined;
+    folder_uri?: string | undefined;
+}>;
+export type InterpolatableRobotVimeoStoreInstructions = InterpolatableRobotVimeoStoreInstructionsInput;
+export type InterpolatableRobotVimeoStoreInstructionsInput = z.input<typeof interpolatableRobotVimeoStoreInstructionsSchema>;
+export declare const interpolatableRobotVimeoStoreInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    credentials: z.ZodOptional<z.ZodString>;
+    robot: z.ZodLiteral<"/vimeo/store">;
+    title: z.ZodString;
+    description: z.ZodString;
+    acl: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["anybody", "contacts", "disable", "nobody", "password", "unlisted", "users"]>]>>;
+    password: z.ZodOptional<z.ZodString>;
+    showcases: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+    downloadable: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    folder_id: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    folder_uri: z.ZodOptional<z.ZodString>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+    access_token: z.ZodOptional<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    description: string;
+    title: string;
+    robot: "/vimeo/store";
+    force_accept: string | boolean;
+    acl: string;
+    showcases: string | string[];
+    downloadable: string | boolean;
+    folder_id: string | null;
+    password?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    credentials?: string | undefined;
+    access_token?: string | undefined;
+    folder_uri?: string | undefined;
+}, {
+    description: string;
+    title: string;
+    robot: "/vimeo/store";
+    password?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    credentials?: string | undefined;
+    acl?: string | undefined;
+    access_token?: string | undefined;
+    showcases?: string | string[] | undefined;
+    downloadable?: string | boolean | undefined;
+    folder_id?: string | null | undefined;
+    folder_uri?: string | undefined;
+}>;
+export type InterpolatableRobotVimeoStoreInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotVimeoStoreInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotVimeoStoreInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotVimeoStoreInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=vimeo-store.d.ts.map

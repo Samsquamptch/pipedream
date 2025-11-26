@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.camelCasePropertyNameResolver = void 0;
+const utilities_1 = require("../../utilities");
+const camelCasePropertyNameResolver = (contentType, element) => {
+    return utilities_1.textHelper.addUnderscoreWhenStarsWithNumber(utilities_1.textHelper.removeZeroWidthCharacters(toCamelCase(element)));
+};
+exports.camelCasePropertyNameResolver = camelCasePropertyNameResolver;
+function toCamelCase(str) {
+    str = str.replace(utilities_1.textHelper.getPropertyNameRegex(), (_, c) => (c ? c.toUpperCase() : ''));
+    return str.substring(0, 1).toLowerCase() + str.substring(1);
+}
+//# sourceMappingURL=camel-case-property-name-resolver.class.js.map

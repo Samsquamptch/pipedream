@@ -1,0 +1,50 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  UpdateNamespaceRequest,
+  UpdateNamespaceResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface UpdateNamespaceCommandInput extends UpdateNamespaceRequest {}
+export interface UpdateNamespaceCommandOutput
+  extends UpdateNamespaceResponse,
+    __MetadataBearer {}
+declare const UpdateNamespaceCommand_base: {
+  new (
+    input: UpdateNamespaceCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    UpdateNamespaceCommandInput,
+    UpdateNamespaceCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: UpdateNamespaceCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    UpdateNamespaceCommandInput,
+    UpdateNamespaceCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class UpdateNamespaceCommand extends UpdateNamespaceCommand_base {
+  protected static __types: {
+    api: {
+      input: UpdateNamespaceRequest;
+      output: UpdateNamespaceResponse;
+    };
+    sdk: {
+      input: UpdateNamespaceCommandInput;
+      output: UpdateNamespaceCommandOutput;
+    };
+  };
+}

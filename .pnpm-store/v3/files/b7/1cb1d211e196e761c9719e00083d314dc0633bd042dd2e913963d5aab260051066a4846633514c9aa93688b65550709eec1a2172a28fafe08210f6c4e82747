@@ -1,0 +1,1698 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const oneTextSchema: z.ZodObject<{
+    text: z.ZodString;
+    font: z.ZodDefault<z.ZodString>;
+    size: z.ZodDefault<z.ZodNumber>;
+    rotate: z.ZodDefault<z.ZodNumber>;
+    color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+    background_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+    stroke_width: z.ZodDefault<z.ZodNumber>;
+    stroke_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+    align: z.ZodDefault<z.ZodEnum<["center", "left", "right"]>>;
+    valign: z.ZodDefault<z.ZodEnum<["bottom", "center", "top"]>>;
+    x_offset: z.ZodDefault<z.ZodNumber>;
+    y_offset: z.ZodDefault<z.ZodNumber>;
+}, "strip", z.ZodTypeAny, {
+    font: string;
+    text: string;
+    size: number;
+    rotate: number;
+    background_color: string;
+    color: string;
+    stroke_width: number;
+    stroke_color: string;
+    align: "left" | "right" | "center";
+    valign: "bottom" | "center" | "top";
+    x_offset: number;
+    y_offset: number;
+}, {
+    text: string;
+    font?: string | undefined;
+    size?: number | undefined;
+    rotate?: number | undefined;
+    background_color?: string | undefined;
+    color?: string | undefined;
+    stroke_width?: number | undefined;
+    stroke_color?: string | undefined;
+    align?: "left" | "right" | "center" | undefined;
+    valign?: "bottom" | "center" | "top" | undefined;
+    x_offset?: number | undefined;
+    y_offset?: number | undefined;
+}>;
+export declare const robotImageResizeInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    imagemagick_stack: z.ZodDefault<z.ZodUnion<[z.ZodEnum<["v3"]>, z.ZodString]>>;
+} & {
+    robot: z.ZodLiteral<"/image/resize">;
+    format: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    width: z.ZodOptional<z.ZodEffects<z.ZodNumber, number, unknown>>;
+    height: z.ZodOptional<z.ZodEffects<z.ZodNumber, number, unknown>>;
+    resize_strategy: z.ZodDefault<z.ZodUnion<[z.ZodLiteral<"crop">, z.ZodLiteral<"fillcrop">, z.ZodLiteral<"fit">, z.ZodLiteral<"min_fit">, z.ZodLiteral<"pad">, z.ZodLiteral<"stretch">]>>;
+    zoom: z.ZodDefault<z.ZodBoolean>;
+    crop: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+        x1: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+        y1: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+        x2: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+        y2: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+    }, "strict", z.ZodTypeAny, {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    }, {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    }>, z.ZodString]>>;
+    gravity: z.ZodDefault<z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>>;
+    strip: z.ZodDefault<z.ZodBoolean>;
+    alpha: z.ZodOptional<z.ZodEnum<["Activate", "Background", "Copy", "Deactivate", "Extract", "Off", "On", "Opaque", "Remove", "Set", "Shape", "Transparent"]>>;
+    preclip_alpha: z.ZodOptional<z.ZodEnum<["Activate", "Background", "Copy", "Deactivate", "Extract", "Off", "On", "Opaque", "Remove", "Set", "Shape", "Transparent"]>>;
+    flatten: z.ZodDefault<z.ZodBoolean>;
+    correct_gamma: z.ZodDefault<z.ZodBoolean>;
+    quality: z.ZodDefault<z.ZodNumber>;
+    adaptive_filtering: z.ZodDefault<z.ZodBoolean>;
+    background: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+    frame: z.ZodDefault<z.ZodNullable<z.ZodNumber>>;
+    colorspace: z.ZodOptional<z.ZodEnum<["CMY", "CMYK", "Gray", "HCL", "HCLp", "HSB", "HSI", "HSL", "HSV", "HWB", "Jzazbz", "Lab", "LCHab", "LCHuv", "LMS", "Log", "Luv", "OHTA", "OkLab", "OkLCH", "Rec601YCbCr", "Rec709YCbCr", "RGB", "scRGB", "sRGB", "Transparent", "Undefined", "xyY", "XYZ", "YCbCr", "YCC", "YDbDr", "YIQ", "YPbPr", "YUV"]>>;
+    type: z.ZodOptional<z.ZodEnum<["Bilevel", "ColorSeparation", "ColorSeparationAlpha", "Grayscale", "GrayscaleAlpha", "Palette", "PaletteAlpha", "TrueColor", "TrueColorAlpha"]>>;
+    sepia: z.ZodDefault<z.ZodNullable<z.ZodNumber>>;
+    rotation: z.ZodDefault<z.ZodUnion<[z.ZodNumber, z.ZodBoolean, z.ZodLiteral<"auto">]>>;
+    compress: z.ZodDefault<z.ZodNullable<z.ZodEnum<["BZip", "Fax", "Group4", "JPEG", "JPEG2000", "Lossless", "LZW", "None", "RLE", "Zip"]>>>;
+    blur: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    blur_regions: z.ZodDefault<z.ZodNullable<z.ZodArray<z.ZodObject<{
+        x: z.ZodEffects<z.ZodNumber, number, unknown>;
+        y: z.ZodEffects<z.ZodNumber, number, unknown>;
+        width: z.ZodEffects<z.ZodNumber, number, unknown>;
+        height: z.ZodEffects<z.ZodNumber, number, unknown>;
+    }, "strip", z.ZodTypeAny, {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }, {
+        x?: unknown;
+        y?: unknown;
+        width?: unknown;
+        height?: unknown;
+    }>, "many">>>;
+    brightness: z.ZodDefault<z.ZodNumber>;
+    saturation: z.ZodDefault<z.ZodNumber>;
+    hue: z.ZodDefault<z.ZodNumber>;
+    watermark_url: z.ZodOptional<z.ZodString>;
+    watermark_position: z.ZodDefault<z.ZodUnion<[z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>, z.ZodArray<z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>, "many">]>>;
+    watermark_x_offset: z.ZodDefault<z.ZodNumber>;
+    watermark_y_offset: z.ZodDefault<z.ZodNumber>;
+    watermark_size: z.ZodOptional<z.ZodString>;
+    watermark_resize_strategy: z.ZodDefault<z.ZodEnum<["area", "fit", "min_fit", "stretch"]>>;
+    text: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+        text: z.ZodString;
+        font: z.ZodDefault<z.ZodString>;
+        size: z.ZodDefault<z.ZodNumber>;
+        rotate: z.ZodDefault<z.ZodNumber>;
+        color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        background_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        stroke_width: z.ZodDefault<z.ZodNumber>;
+        stroke_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        align: z.ZodDefault<z.ZodEnum<["center", "left", "right"]>>;
+        valign: z.ZodDefault<z.ZodEnum<["bottom", "center", "top"]>>;
+        x_offset: z.ZodDefault<z.ZodNumber>;
+        y_offset: z.ZodDefault<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        font: string;
+        text: string;
+        size: number;
+        rotate: number;
+        background_color: string;
+        color: string;
+        stroke_width: number;
+        stroke_color: string;
+        align: "left" | "right" | "center";
+        valign: "bottom" | "center" | "top";
+        x_offset: number;
+        y_offset: number;
+    }, {
+        text: string;
+        font?: string | undefined;
+        size?: number | undefined;
+        rotate?: number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: number | undefined;
+        stroke_color?: string | undefined;
+        align?: "left" | "right" | "center" | undefined;
+        valign?: "bottom" | "center" | "top" | undefined;
+        x_offset?: number | undefined;
+        y_offset?: number | undefined;
+    }>, z.ZodArray<z.ZodObject<{
+        text: z.ZodString;
+        font: z.ZodDefault<z.ZodString>;
+        size: z.ZodDefault<z.ZodNumber>;
+        rotate: z.ZodDefault<z.ZodNumber>;
+        color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        background_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        stroke_width: z.ZodDefault<z.ZodNumber>;
+        stroke_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        align: z.ZodDefault<z.ZodEnum<["center", "left", "right"]>>;
+        valign: z.ZodDefault<z.ZodEnum<["bottom", "center", "top"]>>;
+        x_offset: z.ZodDefault<z.ZodNumber>;
+        y_offset: z.ZodDefault<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        font: string;
+        text: string;
+        size: number;
+        rotate: number;
+        background_color: string;
+        color: string;
+        stroke_width: number;
+        stroke_color: string;
+        align: "left" | "right" | "center";
+        valign: "bottom" | "center" | "top";
+        x_offset: number;
+        y_offset: number;
+    }, {
+        text: string;
+        font?: string | undefined;
+        size?: number | undefined;
+        rotate?: number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: number | undefined;
+        stroke_color?: string | undefined;
+        align?: "left" | "right" | "center" | undefined;
+        valign?: "bottom" | "center" | "top" | undefined;
+        x_offset?: number | undefined;
+        y_offset?: number | undefined;
+    }>, "many">]>>;
+    progressive: z.ZodDefault<z.ZodBoolean>;
+    transparent: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>, z.ZodString]>>;
+    trim_whitespace: z.ZodDefault<z.ZodBoolean>;
+    clip: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    negate: z.ZodDefault<z.ZodBoolean>;
+    density: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    monochrome: z.ZodDefault<z.ZodBoolean>;
+    shave: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, string, number>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string | null;
+    strip: boolean;
+    compress: "None" | "BZip" | "Fax" | "Group4" | "JPEG" | "JPEG2000" | "Lossless" | "LZW" | "RLE" | "Zip" | null;
+    robot: "/image/resize";
+    result: boolean;
+    force_accept: boolean;
+    imagemagick_stack: string;
+    resize_strategy: "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch";
+    zoom: boolean;
+    background: string;
+    watermark_position: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | ("left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right")[];
+    watermark_x_offset: number;
+    watermark_y_offset: number;
+    watermark_resize_strategy: "fit" | "min_fit" | "stretch" | "area";
+    density: string | null;
+    trim_whitespace: boolean;
+    frame: number | null;
+    adaptive_filtering: boolean;
+    quality: number;
+    progressive: boolean;
+    gravity: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right";
+    flatten: boolean;
+    correct_gamma: boolean;
+    sepia: number | null;
+    rotation: number | boolean | "auto";
+    blur: string | null;
+    blur_regions: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }[] | null;
+    brightness: number;
+    saturation: number;
+    hue: number;
+    clip: string | boolean;
+    negate: boolean;
+    monochrome: boolean;
+    transparent?: string | undefined;
+    type?: "Bilevel" | "ColorSeparation" | "ColorSeparationAlpha" | "Grayscale" | "GrayscaleAlpha" | "Palette" | "PaletteAlpha" | "TrueColor" | "TrueColorAlpha" | undefined;
+    text?: {
+        font: string;
+        text: string;
+        size: number;
+        rotate: number;
+        background_color: string;
+        color: string;
+        stroke_width: number;
+        stroke_color: string;
+        align: "left" | "right" | "center";
+        valign: "bottom" | "center" | "top";
+        x_offset: number;
+        y_offset: number;
+    } | {
+        font: string;
+        text: string;
+        size: number;
+        rotate: number;
+        background_color: string;
+        color: string;
+        stroke_width: number;
+        stroke_color: string;
+        align: "left" | "right" | "center";
+        valign: "bottom" | "center" | "top";
+        x_offset: number;
+        y_offset: number;
+    }[] | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    width?: number | undefined;
+    height?: number | undefined;
+    crop?: string | {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    } | undefined;
+    watermark_url?: string | undefined;
+    watermark_size?: string | undefined;
+    alpha?: "Transparent" | "Remove" | "Set" | "Activate" | "Background" | "Copy" | "Deactivate" | "Extract" | "Off" | "On" | "Opaque" | "Shape" | undefined;
+    colorspace?: "CMY" | "CMYK" | "Gray" | "HCL" | "HCLp" | "HSB" | "HSI" | "HSL" | "HSV" | "HWB" | "Jzazbz" | "Lab" | "LCHab" | "LCHuv" | "LMS" | "Log" | "Luv" | "OHTA" | "OkLab" | "OkLCH" | "Rec601YCbCr" | "Rec709YCbCr" | "RGB" | "scRGB" | "sRGB" | "Transparent" | "Undefined" | "xyY" | "XYZ" | "YCbCr" | "YCC" | "YDbDr" | "YIQ" | "YPbPr" | "YUV" | undefined;
+    preclip_alpha?: "Transparent" | "Remove" | "Set" | "Activate" | "Background" | "Copy" | "Deactivate" | "Extract" | "Off" | "On" | "Opaque" | "Shape" | undefined;
+    shave?: string | undefined;
+}, {
+    robot: "/image/resize";
+    transparent?: string | undefined;
+    format?: string | null | undefined;
+    type?: "Bilevel" | "ColorSeparation" | "ColorSeparationAlpha" | "Grayscale" | "GrayscaleAlpha" | "Palette" | "PaletteAlpha" | "TrueColor" | "TrueColorAlpha" | undefined;
+    strip?: boolean | undefined;
+    text?: {
+        text: string;
+        font?: string | undefined;
+        size?: number | undefined;
+        rotate?: number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: number | undefined;
+        stroke_color?: string | undefined;
+        align?: "left" | "right" | "center" | undefined;
+        valign?: "bottom" | "center" | "top" | undefined;
+        x_offset?: number | undefined;
+        y_offset?: number | undefined;
+    } | {
+        text: string;
+        font?: string | undefined;
+        size?: number | undefined;
+        rotate?: number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: number | undefined;
+        stroke_color?: string | undefined;
+        align?: "left" | "right" | "center" | undefined;
+        valign?: "bottom" | "center" | "top" | undefined;
+        x_offset?: number | undefined;
+        y_offset?: number | undefined;
+    }[] | undefined;
+    compress?: "None" | "BZip" | "Fax" | "Group4" | "JPEG" | "JPEG2000" | "Lossless" | "LZW" | "RLE" | "Zip" | null | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    width?: unknown;
+    height?: unknown;
+    crop?: string | {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    } | undefined;
+    imagemagick_stack?: string | undefined;
+    resize_strategy?: "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch" | undefined;
+    zoom?: boolean | undefined;
+    background?: string | undefined;
+    watermark_url?: string | undefined;
+    watermark_position?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | ("left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right")[] | undefined;
+    watermark_x_offset?: number | undefined;
+    watermark_y_offset?: number | undefined;
+    watermark_size?: string | undefined;
+    watermark_resize_strategy?: "fit" | "min_fit" | "stretch" | "area" | undefined;
+    alpha?: "Transparent" | "Remove" | "Set" | "Activate" | "Background" | "Copy" | "Deactivate" | "Extract" | "Off" | "On" | "Opaque" | "Shape" | undefined;
+    density?: string | null | undefined;
+    colorspace?: "CMY" | "CMYK" | "Gray" | "HCL" | "HCLp" | "HSB" | "HSI" | "HSL" | "HSV" | "HWB" | "Jzazbz" | "Lab" | "LCHab" | "LCHuv" | "LMS" | "Log" | "Luv" | "OHTA" | "OkLab" | "OkLCH" | "Rec601YCbCr" | "Rec709YCbCr" | "RGB" | "scRGB" | "sRGB" | "Transparent" | "Undefined" | "xyY" | "XYZ" | "YCbCr" | "YCC" | "YDbDr" | "YIQ" | "YPbPr" | "YUV" | undefined;
+    trim_whitespace?: boolean | undefined;
+    frame?: number | null | undefined;
+    adaptive_filtering?: boolean | undefined;
+    quality?: number | undefined;
+    progressive?: boolean | undefined;
+    gravity?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | undefined;
+    preclip_alpha?: "Transparent" | "Remove" | "Set" | "Activate" | "Background" | "Copy" | "Deactivate" | "Extract" | "Off" | "On" | "Opaque" | "Shape" | undefined;
+    flatten?: boolean | undefined;
+    correct_gamma?: boolean | undefined;
+    sepia?: number | null | undefined;
+    rotation?: number | boolean | "auto" | undefined;
+    blur?: string | null | undefined;
+    blur_regions?: {
+        x?: unknown;
+        y?: unknown;
+        width?: unknown;
+        height?: unknown;
+    }[] | null | undefined;
+    brightness?: number | undefined;
+    saturation?: number | undefined;
+    hue?: number | undefined;
+    clip?: string | boolean | undefined;
+    negate?: boolean | undefined;
+    monochrome?: boolean | undefined;
+    shave?: string | number | undefined;
+}>;
+export declare const robotImageResizeInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    imagemagick_stack: z.ZodDefault<z.ZodUnion<[z.ZodEnum<["v3"]>, z.ZodString]>>;
+    robot: z.ZodLiteral<"/image/resize">;
+    format: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    width: z.ZodOptional<z.ZodEffects<z.ZodNumber, number, unknown>>;
+    height: z.ZodOptional<z.ZodEffects<z.ZodNumber, number, unknown>>;
+    resize_strategy: z.ZodDefault<z.ZodUnion<[z.ZodLiteral<"crop">, z.ZodLiteral<"fillcrop">, z.ZodLiteral<"fit">, z.ZodLiteral<"min_fit">, z.ZodLiteral<"pad">, z.ZodLiteral<"stretch">]>>;
+    zoom: z.ZodDefault<z.ZodBoolean>;
+    crop: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+        x1: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+        y1: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+        x2: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+        y2: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+    }, "strict", z.ZodTypeAny, {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    }, {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    }>, z.ZodString]>>;
+    gravity: z.ZodDefault<z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>>;
+    strip: z.ZodDefault<z.ZodBoolean>;
+    alpha: z.ZodOptional<z.ZodEnum<["Activate", "Background", "Copy", "Deactivate", "Extract", "Off", "On", "Opaque", "Remove", "Set", "Shape", "Transparent"]>>;
+    preclip_alpha: z.ZodOptional<z.ZodEnum<["Activate", "Background", "Copy", "Deactivate", "Extract", "Off", "On", "Opaque", "Remove", "Set", "Shape", "Transparent"]>>;
+    flatten: z.ZodDefault<z.ZodBoolean>;
+    correct_gamma: z.ZodDefault<z.ZodBoolean>;
+    quality: z.ZodDefault<z.ZodNumber>;
+    adaptive_filtering: z.ZodDefault<z.ZodBoolean>;
+    background: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+    frame: z.ZodDefault<z.ZodNullable<z.ZodNumber>>;
+    colorspace: z.ZodOptional<z.ZodEnum<["CMY", "CMYK", "Gray", "HCL", "HCLp", "HSB", "HSI", "HSL", "HSV", "HWB", "Jzazbz", "Lab", "LCHab", "LCHuv", "LMS", "Log", "Luv", "OHTA", "OkLab", "OkLCH", "Rec601YCbCr", "Rec709YCbCr", "RGB", "scRGB", "sRGB", "Transparent", "Undefined", "xyY", "XYZ", "YCbCr", "YCC", "YDbDr", "YIQ", "YPbPr", "YUV"]>>;
+    type: z.ZodOptional<z.ZodEnum<["Bilevel", "ColorSeparation", "ColorSeparationAlpha", "Grayscale", "GrayscaleAlpha", "Palette", "PaletteAlpha", "TrueColor", "TrueColorAlpha"]>>;
+    sepia: z.ZodDefault<z.ZodNullable<z.ZodNumber>>;
+    rotation: z.ZodDefault<z.ZodUnion<[z.ZodNumber, z.ZodBoolean, z.ZodLiteral<"auto">]>>;
+    compress: z.ZodDefault<z.ZodNullable<z.ZodEnum<["BZip", "Fax", "Group4", "JPEG", "JPEG2000", "Lossless", "LZW", "None", "RLE", "Zip"]>>>;
+    blur: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    blur_regions: z.ZodDefault<z.ZodNullable<z.ZodArray<z.ZodObject<{
+        x: z.ZodEffects<z.ZodNumber, number, unknown>;
+        y: z.ZodEffects<z.ZodNumber, number, unknown>;
+        width: z.ZodEffects<z.ZodNumber, number, unknown>;
+        height: z.ZodEffects<z.ZodNumber, number, unknown>;
+    }, "strip", z.ZodTypeAny, {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }, {
+        x?: unknown;
+        y?: unknown;
+        width?: unknown;
+        height?: unknown;
+    }>, "many">>>;
+    brightness: z.ZodDefault<z.ZodNumber>;
+    saturation: z.ZodDefault<z.ZodNumber>;
+    hue: z.ZodDefault<z.ZodNumber>;
+    watermark_url: z.ZodOptional<z.ZodString>;
+    watermark_position: z.ZodDefault<z.ZodUnion<[z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>, z.ZodArray<z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>, "many">]>>;
+    watermark_x_offset: z.ZodDefault<z.ZodNumber>;
+    watermark_y_offset: z.ZodDefault<z.ZodNumber>;
+    watermark_size: z.ZodOptional<z.ZodString>;
+    watermark_resize_strategy: z.ZodDefault<z.ZodEnum<["area", "fit", "min_fit", "stretch"]>>;
+    progressive: z.ZodDefault<z.ZodBoolean>;
+    transparent: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>, z.ZodString]>>;
+    trim_whitespace: z.ZodDefault<z.ZodBoolean>;
+    clip: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    negate: z.ZodDefault<z.ZodBoolean>;
+    density: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    monochrome: z.ZodDefault<z.ZodBoolean>;
+    shave: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, string, number>]>>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+    stack: z.ZodOptional<z.ZodString>;
+    text: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+        text: z.ZodString;
+        font: z.ZodDefault<z.ZodString>;
+        size: z.ZodDefault<z.ZodNumber>;
+        rotate: z.ZodDefault<z.ZodNumber>;
+        color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        background_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        stroke_width: z.ZodDefault<z.ZodNumber>;
+        stroke_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        align: z.ZodDefault<z.ZodEnum<["center", "left", "right"]>>;
+        valign: z.ZodDefault<z.ZodEnum<["bottom", "center", "top"]>>;
+        x_offset: z.ZodDefault<z.ZodNumber>;
+        y_offset: z.ZodDefault<z.ZodNumber>;
+    } & {
+        gravity: z.ZodOptional<z.ZodDefault<z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>>>;
+    }, "strip", z.ZodTypeAny, {
+        font: string;
+        text: string;
+        size: number;
+        rotate: number;
+        background_color: string;
+        color: string;
+        stroke_width: number;
+        stroke_color: string;
+        align: "left" | "right" | "center";
+        valign: "bottom" | "center" | "top";
+        x_offset: number;
+        y_offset: number;
+        gravity?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | undefined;
+    }, {
+        text: string;
+        font?: string | undefined;
+        size?: number | undefined;
+        rotate?: number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: number | undefined;
+        stroke_color?: string | undefined;
+        align?: "left" | "right" | "center" | undefined;
+        valign?: "bottom" | "center" | "top" | undefined;
+        x_offset?: number | undefined;
+        y_offset?: number | undefined;
+        gravity?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | undefined;
+    }>, z.ZodArray<z.ZodObject<{
+        text: z.ZodString;
+        font: z.ZodDefault<z.ZodString>;
+        size: z.ZodDefault<z.ZodNumber>;
+        rotate: z.ZodDefault<z.ZodNumber>;
+        color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        background_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        stroke_width: z.ZodDefault<z.ZodNumber>;
+        stroke_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>>;
+        align: z.ZodDefault<z.ZodEnum<["center", "left", "right"]>>;
+        valign: z.ZodDefault<z.ZodEnum<["bottom", "center", "top"]>>;
+        x_offset: z.ZodDefault<z.ZodNumber>;
+        y_offset: z.ZodDefault<z.ZodNumber>;
+    } & {
+        gravity: z.ZodOptional<z.ZodDefault<z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>>>;
+    }, "strip", z.ZodTypeAny, {
+        font: string;
+        text: string;
+        size: number;
+        rotate: number;
+        background_color: string;
+        color: string;
+        stroke_width: number;
+        stroke_color: string;
+        align: "left" | "right" | "center";
+        valign: "bottom" | "center" | "top";
+        x_offset: number;
+        y_offset: number;
+        gravity?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | undefined;
+    }, {
+        text: string;
+        font?: string | undefined;
+        size?: number | undefined;
+        rotate?: number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: number | undefined;
+        stroke_color?: string | undefined;
+        align?: "left" | "right" | "center" | undefined;
+        valign?: "bottom" | "center" | "top" | undefined;
+        x_offset?: number | undefined;
+        y_offset?: number | undefined;
+        gravity?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | undefined;
+    }>, "many">]>>;
+    watermark_position_x: z.ZodOptional<z.ZodNumber>;
+    watermark_position_y: z.ZodOptional<z.ZodNumber>;
+}, "strict", z.ZodTypeAny, {
+    format: string | null;
+    strip: boolean;
+    compress: "None" | "BZip" | "Fax" | "Group4" | "JPEG" | "JPEG2000" | "Lossless" | "LZW" | "RLE" | "Zip" | null;
+    robot: "/image/resize";
+    force_accept: boolean;
+    imagemagick_stack: string;
+    resize_strategy: "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch";
+    zoom: boolean;
+    background: string;
+    watermark_position: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | ("left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right")[];
+    watermark_x_offset: number;
+    watermark_y_offset: number;
+    watermark_resize_strategy: "fit" | "min_fit" | "stretch" | "area";
+    density: string | null;
+    trim_whitespace: boolean;
+    frame: number | null;
+    adaptive_filtering: boolean;
+    quality: number;
+    progressive: boolean;
+    gravity: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right";
+    flatten: boolean;
+    correct_gamma: boolean;
+    sepia: number | null;
+    rotation: number | boolean | "auto";
+    blur: string | null;
+    blur_regions: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }[] | null;
+    brightness: number;
+    saturation: number;
+    hue: number;
+    clip: string | boolean;
+    negate: boolean;
+    monochrome: boolean;
+    transparent?: string | undefined;
+    stack?: string | undefined;
+    type?: "Bilevel" | "ColorSeparation" | "ColorSeparationAlpha" | "Grayscale" | "GrayscaleAlpha" | "Palette" | "PaletteAlpha" | "TrueColor" | "TrueColorAlpha" | undefined;
+    text?: {
+        font: string;
+        text: string;
+        size: number;
+        rotate: number;
+        background_color: string;
+        color: string;
+        stroke_width: number;
+        stroke_color: string;
+        align: "left" | "right" | "center";
+        valign: "bottom" | "center" | "top";
+        x_offset: number;
+        y_offset: number;
+        gravity?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | undefined;
+    } | {
+        font: string;
+        text: string;
+        size: number;
+        rotate: number;
+        background_color: string;
+        color: string;
+        stroke_width: number;
+        stroke_color: string;
+        align: "left" | "right" | "center";
+        valign: "bottom" | "center" | "top";
+        x_offset: number;
+        y_offset: number;
+        gravity?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | undefined;
+    }[] | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    width?: number | undefined;
+    height?: number | undefined;
+    crop?: string | {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    } | undefined;
+    watermark_url?: string | undefined;
+    watermark_size?: string | undefined;
+    alpha?: "Transparent" | "Remove" | "Set" | "Activate" | "Background" | "Copy" | "Deactivate" | "Extract" | "Off" | "On" | "Opaque" | "Shape" | undefined;
+    colorspace?: "CMY" | "CMYK" | "Gray" | "HCL" | "HCLp" | "HSB" | "HSI" | "HSL" | "HSV" | "HWB" | "Jzazbz" | "Lab" | "LCHab" | "LCHuv" | "LMS" | "Log" | "Luv" | "OHTA" | "OkLab" | "OkLCH" | "Rec601YCbCr" | "Rec709YCbCr" | "RGB" | "scRGB" | "sRGB" | "Transparent" | "Undefined" | "xyY" | "XYZ" | "YCbCr" | "YCC" | "YDbDr" | "YIQ" | "YPbPr" | "YUV" | undefined;
+    preclip_alpha?: "Transparent" | "Remove" | "Set" | "Activate" | "Background" | "Copy" | "Deactivate" | "Extract" | "Off" | "On" | "Opaque" | "Shape" | undefined;
+    shave?: string | undefined;
+    watermark_position_x?: number | undefined;
+    watermark_position_y?: number | undefined;
+}, {
+    robot: "/image/resize";
+    transparent?: string | undefined;
+    stack?: string | undefined;
+    format?: string | null | undefined;
+    type?: "Bilevel" | "ColorSeparation" | "ColorSeparationAlpha" | "Grayscale" | "GrayscaleAlpha" | "Palette" | "PaletteAlpha" | "TrueColor" | "TrueColorAlpha" | undefined;
+    strip?: boolean | undefined;
+    text?: {
+        text: string;
+        font?: string | undefined;
+        size?: number | undefined;
+        rotate?: number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: number | undefined;
+        stroke_color?: string | undefined;
+        align?: "left" | "right" | "center" | undefined;
+        valign?: "bottom" | "center" | "top" | undefined;
+        x_offset?: number | undefined;
+        y_offset?: number | undefined;
+        gravity?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | undefined;
+    } | {
+        text: string;
+        font?: string | undefined;
+        size?: number | undefined;
+        rotate?: number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: number | undefined;
+        stroke_color?: string | undefined;
+        align?: "left" | "right" | "center" | undefined;
+        valign?: "bottom" | "center" | "top" | undefined;
+        x_offset?: number | undefined;
+        y_offset?: number | undefined;
+        gravity?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | undefined;
+    }[] | undefined;
+    compress?: "None" | "BZip" | "Fax" | "Group4" | "JPEG" | "JPEG2000" | "Lossless" | "LZW" | "RLE" | "Zip" | null | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    width?: unknown;
+    height?: unknown;
+    crop?: string | {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    } | undefined;
+    imagemagick_stack?: string | undefined;
+    resize_strategy?: "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch" | undefined;
+    zoom?: boolean | undefined;
+    background?: string | undefined;
+    watermark_url?: string | undefined;
+    watermark_position?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | ("left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right")[] | undefined;
+    watermark_x_offset?: number | undefined;
+    watermark_y_offset?: number | undefined;
+    watermark_size?: string | undefined;
+    watermark_resize_strategy?: "fit" | "min_fit" | "stretch" | "area" | undefined;
+    alpha?: "Transparent" | "Remove" | "Set" | "Activate" | "Background" | "Copy" | "Deactivate" | "Extract" | "Off" | "On" | "Opaque" | "Shape" | undefined;
+    density?: string | null | undefined;
+    colorspace?: "CMY" | "CMYK" | "Gray" | "HCL" | "HCLp" | "HSB" | "HSI" | "HSL" | "HSV" | "HWB" | "Jzazbz" | "Lab" | "LCHab" | "LCHuv" | "LMS" | "Log" | "Luv" | "OHTA" | "OkLab" | "OkLCH" | "Rec601YCbCr" | "Rec709YCbCr" | "RGB" | "scRGB" | "sRGB" | "Transparent" | "Undefined" | "xyY" | "XYZ" | "YCbCr" | "YCC" | "YDbDr" | "YIQ" | "YPbPr" | "YUV" | undefined;
+    trim_whitespace?: boolean | undefined;
+    frame?: number | null | undefined;
+    adaptive_filtering?: boolean | undefined;
+    quality?: number | undefined;
+    progressive?: boolean | undefined;
+    gravity?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "center" | "top" | "top-left" | "top-right" | undefined;
+    preclip_alpha?: "Transparent" | "Remove" | "Set" | "Activate" | "Background" | "Copy" | "Deactivate" | "Extract" | "Off" | "On" | "Opaque" | "Shape" | undefined;
+    flatten?: boolean | undefined;
+    correct_gamma?: boolean | undefined;
+    sepia?: number | null | undefined;
+    rotation?: number | boolean | "auto" | undefined;
+    blur?: string | null | undefined;
+    blur_regions?: {
+        x?: unknown;
+        y?: unknown;
+        width?: unknown;
+        height?: unknown;
+    }[] | null | undefined;
+    brightness?: number | undefined;
+    saturation?: number | undefined;
+    hue?: number | undefined;
+    clip?: string | boolean | undefined;
+    negate?: boolean | undefined;
+    monochrome?: boolean | undefined;
+    shave?: string | number | undefined;
+    watermark_position_x?: number | undefined;
+    watermark_position_y?: number | undefined;
+}>;
+export type RobotImageResizeInstructions = z.infer<typeof robotImageResizeInstructionsSchema>;
+export type RobotImageResizeInstructionsWithHiddenFields = z.infer<typeof robotImageResizeInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotImageResizeInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    imagemagick_stack: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["v3"]>]>, z.ZodString]>>;
+    robot: z.ZodLiteral<"/image/resize">;
+    format: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    width: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>>;
+    height: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>>;
+    resize_strategy: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"crop">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"fillcrop">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"fit">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"min_fit">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"pad">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"stretch">]>]>>;
+    zoom: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    crop: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+        x1: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>>;
+        y1: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>>;
+        x2: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>>;
+        y2: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>>;
+    }, "strict", z.ZodTypeAny, {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    }, {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    }>]>, z.ZodString]>>;
+    gravity: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>]>>;
+    strip: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    alpha: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["Activate", "Background", "Copy", "Deactivate", "Extract", "Off", "On", "Opaque", "Remove", "Set", "Shape", "Transparent"]>]>>;
+    preclip_alpha: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["Activate", "Background", "Copy", "Deactivate", "Extract", "Off", "On", "Opaque", "Remove", "Set", "Shape", "Transparent"]>]>>;
+    flatten: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    correct_gamma: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    quality: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    adaptive_filtering: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    background: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+    frame: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+    colorspace: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["CMY", "CMYK", "Gray", "HCL", "HCLp", "HSB", "HSI", "HSL", "HSV", "HWB", "Jzazbz", "Lab", "LCHab", "LCHuv", "LMS", "Log", "Luv", "OHTA", "OkLab", "OkLCH", "Rec601YCbCr", "Rec709YCbCr", "RGB", "scRGB", "sRGB", "Transparent", "Undefined", "xyY", "XYZ", "YCbCr", "YCC", "YDbDr", "YIQ", "YPbPr", "YUV"]>]>>;
+    type: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["Bilevel", "ColorSeparation", "ColorSeparationAlpha", "Grayscale", "GrayscaleAlpha", "Palette", "PaletteAlpha", "TrueColor", "TrueColorAlpha"]>]>>;
+    sepia: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+    rotation: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"auto">]>]>>;
+    compress: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodEnum<["BZip", "Fax", "Group4", "JPEG", "JPEG2000", "Lossless", "LZW", "None", "RLE", "Zip"]>]>>>;
+    blur: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    blur_regions: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        x: z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>;
+        y: z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>;
+        width: z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>;
+        height: z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>;
+    }, "strip", z.ZodTypeAny, {
+        x: string | number;
+        y: string | number;
+        width: string | number;
+        height: string | number;
+    }, {
+        x?: unknown;
+        y?: unknown;
+        width?: unknown;
+        height?: unknown;
+    }>]>, "many">]>>>;
+    brightness: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    saturation: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    hue: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    watermark_url: z.ZodOptional<z.ZodString>;
+    watermark_position: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>]>, "many">]>]>>;
+    watermark_x_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    watermark_y_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    watermark_size: z.ZodOptional<z.ZodString>;
+    watermark_resize_strategy: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["area", "fit", "min_fit", "stretch"]>]>>;
+    text: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+        text: z.ZodString;
+        font: z.ZodDefault<z.ZodString>;
+        size: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        rotate: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        background_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        stroke_width: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        stroke_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        align: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["center", "left", "right"]>]>>;
+        valign: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "center", "top"]>]>>;
+        x_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        y_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, "strip", z.ZodTypeAny, {
+        font: string;
+        text: string;
+        size: string | number;
+        rotate: string | number;
+        background_color: string;
+        color: string;
+        stroke_width: string | number;
+        stroke_color: string;
+        align: string;
+        valign: string;
+        x_offset: string | number;
+        y_offset: string | number;
+    }, {
+        text: string;
+        font?: string | undefined;
+        size?: string | number | undefined;
+        rotate?: string | number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: string | number | undefined;
+        stroke_color?: string | undefined;
+        align?: string | undefined;
+        valign?: string | undefined;
+        x_offset?: string | number | undefined;
+        y_offset?: string | number | undefined;
+    }>]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        text: z.ZodString;
+        font: z.ZodDefault<z.ZodString>;
+        size: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        rotate: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        background_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        stroke_width: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        stroke_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        align: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["center", "left", "right"]>]>>;
+        valign: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "center", "top"]>]>>;
+        x_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        y_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, "strip", z.ZodTypeAny, {
+        font: string;
+        text: string;
+        size: string | number;
+        rotate: string | number;
+        background_color: string;
+        color: string;
+        stroke_width: string | number;
+        stroke_color: string;
+        align: string;
+        valign: string;
+        x_offset: string | number;
+        y_offset: string | number;
+    }, {
+        text: string;
+        font?: string | undefined;
+        size?: string | number | undefined;
+        rotate?: string | number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: string | number | undefined;
+        stroke_color?: string | undefined;
+        align?: string | undefined;
+        valign?: string | undefined;
+        x_offset?: string | number | undefined;
+        y_offset?: string | number | undefined;
+    }>]>, "many">]>]>>;
+    progressive: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    transparent: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>, z.ZodString]>>;
+    trim_whitespace: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    clip: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>]>>;
+    negate: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    density: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    monochrome: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    shave: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, string, number>]>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string | null;
+    strip: string | boolean;
+    compress: string | null;
+    robot: "/image/resize";
+    result: string | boolean;
+    force_accept: string | boolean;
+    imagemagick_stack: string;
+    resize_strategy: string;
+    zoom: string | boolean;
+    background: string;
+    watermark_position: string | string[];
+    watermark_x_offset: string | number;
+    watermark_y_offset: string | number;
+    watermark_resize_strategy: string;
+    density: string | null;
+    trim_whitespace: string | boolean;
+    frame: string | number | null;
+    adaptive_filtering: string | boolean;
+    quality: string | number;
+    progressive: string | boolean;
+    gravity: string;
+    flatten: string | boolean;
+    correct_gamma: string | boolean;
+    sepia: string | number | null;
+    rotation: string | number | boolean;
+    blur: string | null;
+    blur_regions: string | (string | {
+        x: string | number;
+        y: string | number;
+        width: string | number;
+        height: string | number;
+    })[] | null;
+    brightness: string | number;
+    saturation: string | number;
+    hue: string | number;
+    clip: string | boolean;
+    negate: string | boolean;
+    monochrome: string | boolean;
+    transparent?: string | undefined;
+    type?: string | undefined;
+    text?: string | {
+        font: string;
+        text: string;
+        size: string | number;
+        rotate: string | number;
+        background_color: string;
+        color: string;
+        stroke_width: string | number;
+        stroke_color: string;
+        align: string;
+        valign: string;
+        x_offset: string | number;
+        y_offset: string | number;
+    } | (string | {
+        font: string;
+        text: string;
+        size: string | number;
+        rotate: string | number;
+        background_color: string;
+        color: string;
+        stroke_width: string | number;
+        stroke_color: string;
+        align: string;
+        valign: string;
+        x_offset: string | number;
+        y_offset: string | number;
+    })[] | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    width?: string | number | undefined;
+    height?: string | number | undefined;
+    crop?: string | {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    } | undefined;
+    watermark_url?: string | undefined;
+    watermark_size?: string | undefined;
+    alpha?: string | undefined;
+    colorspace?: string | undefined;
+    preclip_alpha?: string | undefined;
+    shave?: string | undefined;
+}, {
+    robot: "/image/resize";
+    transparent?: string | undefined;
+    format?: string | null | undefined;
+    type?: string | undefined;
+    strip?: string | boolean | undefined;
+    text?: string | {
+        text: string;
+        font?: string | undefined;
+        size?: string | number | undefined;
+        rotate?: string | number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: string | number | undefined;
+        stroke_color?: string | undefined;
+        align?: string | undefined;
+        valign?: string | undefined;
+        x_offset?: string | number | undefined;
+        y_offset?: string | number | undefined;
+    } | (string | {
+        text: string;
+        font?: string | undefined;
+        size?: string | number | undefined;
+        rotate?: string | number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: string | number | undefined;
+        stroke_color?: string | undefined;
+        align?: string | undefined;
+        valign?: string | undefined;
+        x_offset?: string | number | undefined;
+        y_offset?: string | number | undefined;
+    })[] | undefined;
+    compress?: string | null | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    width?: unknown;
+    height?: unknown;
+    crop?: string | {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    } | undefined;
+    imagemagick_stack?: string | undefined;
+    resize_strategy?: string | undefined;
+    zoom?: string | boolean | undefined;
+    background?: string | undefined;
+    watermark_url?: string | undefined;
+    watermark_position?: string | string[] | undefined;
+    watermark_x_offset?: string | number | undefined;
+    watermark_y_offset?: string | number | undefined;
+    watermark_size?: string | undefined;
+    watermark_resize_strategy?: string | undefined;
+    alpha?: string | undefined;
+    density?: string | null | undefined;
+    colorspace?: string | undefined;
+    trim_whitespace?: string | boolean | undefined;
+    frame?: string | number | null | undefined;
+    adaptive_filtering?: string | boolean | undefined;
+    quality?: string | number | undefined;
+    progressive?: string | boolean | undefined;
+    gravity?: string | undefined;
+    preclip_alpha?: string | undefined;
+    flatten?: string | boolean | undefined;
+    correct_gamma?: string | boolean | undefined;
+    sepia?: string | number | null | undefined;
+    rotation?: string | number | boolean | undefined;
+    blur?: string | null | undefined;
+    blur_regions?: string | (string | {
+        x?: unknown;
+        y?: unknown;
+        width?: unknown;
+        height?: unknown;
+    })[] | null | undefined;
+    brightness?: string | number | undefined;
+    saturation?: string | number | undefined;
+    hue?: string | number | undefined;
+    clip?: string | boolean | undefined;
+    negate?: string | boolean | undefined;
+    monochrome?: string | boolean | undefined;
+    shave?: string | number | undefined;
+}>;
+export type InterpolatableRobotImageResizeInstructions = InterpolatableRobotImageResizeInstructionsInput;
+export type InterpolatableRobotImageResizeInstructionsInput = z.input<typeof interpolatableRobotImageResizeInstructionsSchema>;
+export declare const interpolatableRobotImageResizeInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    imagemagick_stack: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["v3"]>]>, z.ZodString]>>;
+    robot: z.ZodLiteral<"/image/resize">;
+    format: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    width: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>>;
+    height: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>>;
+    resize_strategy: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"crop">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"fillcrop">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"fit">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"min_fit">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"pad">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"stretch">]>]>>;
+    zoom: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    crop: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+        x1: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>>;
+        y1: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>>;
+        x2: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>>;
+        y2: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>>;
+    }, "strict", z.ZodTypeAny, {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    }, {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    }>]>, z.ZodString]>>;
+    gravity: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>]>>;
+    strip: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    alpha: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["Activate", "Background", "Copy", "Deactivate", "Extract", "Off", "On", "Opaque", "Remove", "Set", "Shape", "Transparent"]>]>>;
+    preclip_alpha: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["Activate", "Background", "Copy", "Deactivate", "Extract", "Off", "On", "Opaque", "Remove", "Set", "Shape", "Transparent"]>]>>;
+    flatten: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    correct_gamma: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    quality: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    adaptive_filtering: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    background: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+    frame: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+    colorspace: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["CMY", "CMYK", "Gray", "HCL", "HCLp", "HSB", "HSI", "HSL", "HSV", "HWB", "Jzazbz", "Lab", "LCHab", "LCHuv", "LMS", "Log", "Luv", "OHTA", "OkLab", "OkLCH", "Rec601YCbCr", "Rec709YCbCr", "RGB", "scRGB", "sRGB", "Transparent", "Undefined", "xyY", "XYZ", "YCbCr", "YCC", "YDbDr", "YIQ", "YPbPr", "YUV"]>]>>;
+    type: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["Bilevel", "ColorSeparation", "ColorSeparationAlpha", "Grayscale", "GrayscaleAlpha", "Palette", "PaletteAlpha", "TrueColor", "TrueColorAlpha"]>]>>;
+    sepia: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+    rotation: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"auto">]>]>>;
+    compress: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodEnum<["BZip", "Fax", "Group4", "JPEG", "JPEG2000", "Lossless", "LZW", "None", "RLE", "Zip"]>]>>>;
+    blur: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    blur_regions: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        x: z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>;
+        y: z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>;
+        width: z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>;
+        height: z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>;
+    }, "strip", z.ZodTypeAny, {
+        x: string | number;
+        y: string | number;
+        width: string | number;
+        height: string | number;
+    }, {
+        x?: unknown;
+        y?: unknown;
+        width?: unknown;
+        height?: unknown;
+    }>]>, "many">]>>>;
+    brightness: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    saturation: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    hue: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    watermark_url: z.ZodOptional<z.ZodString>;
+    watermark_position: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>]>, "many">]>]>>;
+    watermark_x_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    watermark_y_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    watermark_size: z.ZodOptional<z.ZodString>;
+    watermark_resize_strategy: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["area", "fit", "min_fit", "stretch"]>]>>;
+    progressive: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    transparent: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>, z.ZodString]>>;
+    trim_whitespace: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    clip: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>]>>;
+    negate: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    density: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    monochrome: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    shave: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, string, number>]>]>>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+    stack: z.ZodOptional<z.ZodString>;
+    text: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+        text: z.ZodString;
+        font: z.ZodDefault<z.ZodString>;
+        size: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        rotate: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        background_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        stroke_width: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        stroke_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        align: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["center", "left", "right"]>]>>;
+        valign: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "center", "top"]>]>>;
+        x_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        y_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        gravity: z.ZodOptional<z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>]>>>;
+    }, "strip", z.ZodTypeAny, {
+        font: string;
+        text: string;
+        size: string | number;
+        rotate: string | number;
+        background_color: string;
+        color: string;
+        stroke_width: string | number;
+        stroke_color: string;
+        align: string;
+        valign: string;
+        x_offset: string | number;
+        y_offset: string | number;
+        gravity?: string | undefined;
+    }, {
+        text: string;
+        font?: string | undefined;
+        size?: string | number | undefined;
+        rotate?: string | number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: string | number | undefined;
+        stroke_color?: string | undefined;
+        align?: string | undefined;
+        valign?: string | undefined;
+        x_offset?: string | number | undefined;
+        y_offset?: string | number | undefined;
+        gravity?: string | undefined;
+    }>]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        text: z.ZodString;
+        font: z.ZodDefault<z.ZodString>;
+        size: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        rotate: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        background_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        stroke_width: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        stroke_color: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["transparent", "none", "black", "white", "red", "green", "blue", "yellow", "cyan", "magenta", "gray", "grey", "opaque"]>]>]>>;
+        align: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["center", "left", "right"]>]>>;
+        valign: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "center", "top"]>]>>;
+        x_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        y_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        gravity: z.ZodOptional<z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["bottom", "bottom-left", "bottom-right", "center", "left", "right", "top", "top-left", "top-right"]>]>>>;
+    }, "strip", z.ZodTypeAny, {
+        font: string;
+        text: string;
+        size: string | number;
+        rotate: string | number;
+        background_color: string;
+        color: string;
+        stroke_width: string | number;
+        stroke_color: string;
+        align: string;
+        valign: string;
+        x_offset: string | number;
+        y_offset: string | number;
+        gravity?: string | undefined;
+    }, {
+        text: string;
+        font?: string | undefined;
+        size?: string | number | undefined;
+        rotate?: string | number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: string | number | undefined;
+        stroke_color?: string | undefined;
+        align?: string | undefined;
+        valign?: string | undefined;
+        x_offset?: string | number | undefined;
+        y_offset?: string | number | undefined;
+        gravity?: string | undefined;
+    }>]>, "many">]>]>>;
+    watermark_position_x: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    watermark_position_y: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string | null;
+    strip: string | boolean;
+    compress: string | null;
+    robot: "/image/resize";
+    force_accept: string | boolean;
+    imagemagick_stack: string;
+    resize_strategy: string;
+    zoom: string | boolean;
+    background: string;
+    watermark_position: string | string[];
+    watermark_x_offset: string | number;
+    watermark_y_offset: string | number;
+    watermark_resize_strategy: string;
+    density: string | null;
+    trim_whitespace: string | boolean;
+    frame: string | number | null;
+    adaptive_filtering: string | boolean;
+    quality: string | number;
+    progressive: string | boolean;
+    gravity: string;
+    flatten: string | boolean;
+    correct_gamma: string | boolean;
+    sepia: string | number | null;
+    rotation: string | number | boolean;
+    blur: string | null;
+    blur_regions: string | (string | {
+        x: string | number;
+        y: string | number;
+        width: string | number;
+        height: string | number;
+    })[] | null;
+    brightness: string | number;
+    saturation: string | number;
+    hue: string | number;
+    clip: string | boolean;
+    negate: string | boolean;
+    monochrome: string | boolean;
+    transparent?: string | undefined;
+    stack?: string | undefined;
+    type?: string | undefined;
+    text?: string | {
+        font: string;
+        text: string;
+        size: string | number;
+        rotate: string | number;
+        background_color: string;
+        color: string;
+        stroke_width: string | number;
+        stroke_color: string;
+        align: string;
+        valign: string;
+        x_offset: string | number;
+        y_offset: string | number;
+        gravity?: string | undefined;
+    } | (string | {
+        font: string;
+        text: string;
+        size: string | number;
+        rotate: string | number;
+        background_color: string;
+        color: string;
+        stroke_width: string | number;
+        stroke_color: string;
+        align: string;
+        valign: string;
+        x_offset: string | number;
+        y_offset: string | number;
+        gravity?: string | undefined;
+    })[] | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    width?: string | number | undefined;
+    height?: string | number | undefined;
+    crop?: string | {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    } | undefined;
+    watermark_url?: string | undefined;
+    watermark_size?: string | undefined;
+    alpha?: string | undefined;
+    colorspace?: string | undefined;
+    preclip_alpha?: string | undefined;
+    shave?: string | undefined;
+    watermark_position_x?: string | number | undefined;
+    watermark_position_y?: string | number | undefined;
+}, {
+    robot: "/image/resize";
+    transparent?: string | undefined;
+    stack?: string | undefined;
+    format?: string | null | undefined;
+    type?: string | undefined;
+    strip?: string | boolean | undefined;
+    text?: string | {
+        text: string;
+        font?: string | undefined;
+        size?: string | number | undefined;
+        rotate?: string | number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: string | number | undefined;
+        stroke_color?: string | undefined;
+        align?: string | undefined;
+        valign?: string | undefined;
+        x_offset?: string | number | undefined;
+        y_offset?: string | number | undefined;
+        gravity?: string | undefined;
+    } | (string | {
+        text: string;
+        font?: string | undefined;
+        size?: string | number | undefined;
+        rotate?: string | number | undefined;
+        background_color?: string | undefined;
+        color?: string | undefined;
+        stroke_width?: string | number | undefined;
+        stroke_color?: string | undefined;
+        align?: string | undefined;
+        valign?: string | undefined;
+        x_offset?: string | number | undefined;
+        y_offset?: string | number | undefined;
+        gravity?: string | undefined;
+    })[] | undefined;
+    compress?: string | null | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    width?: unknown;
+    height?: unknown;
+    crop?: string | {
+        x1?: string | number | null | undefined;
+        y1?: string | number | null | undefined;
+        x2?: string | number | null | undefined;
+        y2?: string | number | null | undefined;
+    } | undefined;
+    imagemagick_stack?: string | undefined;
+    resize_strategy?: string | undefined;
+    zoom?: string | boolean | undefined;
+    background?: string | undefined;
+    watermark_url?: string | undefined;
+    watermark_position?: string | string[] | undefined;
+    watermark_x_offset?: string | number | undefined;
+    watermark_y_offset?: string | number | undefined;
+    watermark_size?: string | undefined;
+    watermark_resize_strategy?: string | undefined;
+    alpha?: string | undefined;
+    density?: string | null | undefined;
+    colorspace?: string | undefined;
+    trim_whitespace?: string | boolean | undefined;
+    frame?: string | number | null | undefined;
+    adaptive_filtering?: string | boolean | undefined;
+    quality?: string | number | undefined;
+    progressive?: string | boolean | undefined;
+    gravity?: string | undefined;
+    preclip_alpha?: string | undefined;
+    flatten?: string | boolean | undefined;
+    correct_gamma?: string | boolean | undefined;
+    sepia?: string | number | null | undefined;
+    rotation?: string | number | boolean | undefined;
+    blur?: string | null | undefined;
+    blur_regions?: string | (string | {
+        x?: unknown;
+        y?: unknown;
+        width?: unknown;
+        height?: unknown;
+    })[] | null | undefined;
+    brightness?: string | number | undefined;
+    saturation?: string | number | undefined;
+    hue?: string | number | undefined;
+    clip?: string | boolean | undefined;
+    negate?: string | boolean | undefined;
+    monochrome?: string | boolean | undefined;
+    shave?: string | number | undefined;
+    watermark_position_x?: string | number | undefined;
+    watermark_position_y?: string | number | undefined;
+}>;
+export type InterpolatableRobotImageResizeInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotImageResizeInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotImageResizeInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotImageResizeInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=image-resize.d.ts.map

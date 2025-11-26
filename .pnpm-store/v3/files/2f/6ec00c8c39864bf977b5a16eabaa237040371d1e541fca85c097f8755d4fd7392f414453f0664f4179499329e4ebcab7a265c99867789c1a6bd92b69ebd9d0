@@ -1,0 +1,11 @@
+import { ValueRange } from '../common';
+export type SpiralType = 'archimedean' | 'rectangular';
+export type WordcloudProps = {
+    rotation: boolean;
+    spiral: SpiralType;
+    font: string;
+    wordbreak: boolean;
+    range: ValueRange;
+    sizes: ValueRange;
+    excludes: string[];
+};

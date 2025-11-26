@@ -1,0 +1,10 @@
+import { IResponse } from '@kontent-ai/core-sdk';
+import { SharedContracts } from '../contracts';
+import { SharedModels } from '../models';
+import { BaseResponses } from '../responses';
+export declare abstract class BaseMapper {
+    mapResponseDebug(baseResponse: IResponse<any>): BaseResponses.IContentManagementResponseDebug;
+    mapPagination(rawPagination: SharedContracts.IPaginationModelContract): SharedModels.Pagination;
+    mapReference(rawReference: SharedContracts.IReferenceObjectContract): SharedModels.ReferenceObject;
+    mapEmptyResponse(response: IResponse<void | any>): BaseResponses.EmptyContentManagementResponse;
+}

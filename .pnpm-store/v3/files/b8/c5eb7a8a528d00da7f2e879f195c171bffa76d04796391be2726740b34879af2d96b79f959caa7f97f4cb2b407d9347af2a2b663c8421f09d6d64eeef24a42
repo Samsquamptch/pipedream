@@ -1,0 +1,417 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotDocumentMergeInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    robot: z.ZodLiteral<"/document/merge">;
+    input_passwords: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    output_password: z.ZodOptional<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/document/merge";
+    result: boolean;
+    force_accept: boolean;
+    input_passwords: string[];
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    output_password?: string | undefined;
+}, {
+    robot: "/document/merge";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    input_passwords?: string[] | undefined;
+    output_password?: string | undefined;
+}>;
+export declare const robotDocumentMergeInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/document/merge">;
+    input_passwords: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    output_password: z.ZodOptional<z.ZodString>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/document/merge";
+    force_accept: boolean;
+    input_passwords: string[];
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    output_password?: string | undefined;
+}, {
+    robot: "/document/merge";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    input_passwords?: string[] | undefined;
+    output_password?: string | undefined;
+}>;
+export type RobotDocumentMergeInstructions = z.infer<typeof robotDocumentMergeInstructionsSchema>;
+export type RobotDocumentMergeInstructionsWithHiddenFields = z.infer<typeof robotDocumentMergeInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotDocumentMergeInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/document/merge">;
+    input_passwords: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+    output_password: z.ZodOptional<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/document/merge";
+    result: string | boolean;
+    force_accept: string | boolean;
+    input_passwords: string | string[];
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    output_password?: string | undefined;
+}, {
+    robot: "/document/merge";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    input_passwords?: string | string[] | undefined;
+    output_password?: string | undefined;
+}>;
+export type InterpolatableRobotDocumentMergeInstructions = InterpolatableRobotDocumentMergeInstructionsInput;
+export type InterpolatableRobotDocumentMergeInstructionsInput = z.input<typeof interpolatableRobotDocumentMergeInstructionsSchema>;
+export declare const interpolatableRobotDocumentMergeInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/document/merge">;
+    input_passwords: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+    output_password: z.ZodOptional<z.ZodString>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/document/merge";
+    force_accept: string | boolean;
+    input_passwords: string | string[];
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    output_password?: string | undefined;
+}, {
+    robot: "/document/merge";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    input_passwords?: string | string[] | undefined;
+    output_password?: string | undefined;
+}>;
+export type InterpolatableRobotDocumentMergeInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotDocumentMergeInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotDocumentMergeInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotDocumentMergeInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=document-merge.d.ts.map

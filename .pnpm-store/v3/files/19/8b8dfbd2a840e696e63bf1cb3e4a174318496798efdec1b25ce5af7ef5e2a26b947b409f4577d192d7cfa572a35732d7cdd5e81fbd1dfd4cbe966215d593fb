@@ -1,0 +1,30 @@
+{
+    "name": "columns-graph-model",
+    "version": "1.1.4",
+    "description": "columns graph data model definition",
+    "main": "dist/index.js",
+    "scripts": {
+        "prepare": "npm run build",
+        "build": "npx tsc -b",
+        "test": "yarn test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/varchar-io/columns.git"
+    },
+    "keywords": [
+        "columns",
+        "graph",
+        "visualization",
+        "model"
+    ],
+    "author": "cao@columns.ai",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/varchar-io/columns/issues"
+    },
+    "homepage": "https://github.com/varchar-io/columns#readme",
+    "dependencies": {
+        "date-fns": "^3.6.0"
+    }
+}

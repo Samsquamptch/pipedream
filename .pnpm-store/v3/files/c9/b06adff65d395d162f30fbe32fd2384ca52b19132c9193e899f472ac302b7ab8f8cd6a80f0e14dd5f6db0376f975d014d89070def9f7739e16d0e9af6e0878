@@ -1,0 +1,15 @@
+export type ColumnProps = {
+    column: string;
+    header?: string;
+    align?: string;
+    formatter?: (value: string) => string;
+    link?: (value: string) => string;
+    color?: (value: string) => string;
+    background?: (value: string) => string;
+    s_color?: string;
+    s_bg_p?: string[];
+};
+export type TableProps = {
+    columns: ColumnProps[];
+    showRowId: boolean;
+};

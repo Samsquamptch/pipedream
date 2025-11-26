@@ -1,0 +1,18 @@
+import { BaseQuery } from '../base-query';
+export class ChangeWorkflowStepOfLanguageOrVariantQuery extends BaseQuery {
+    constructor(config, queryService, contentItemIdentifier, languageIdentifier, workflowIdentifier) {
+        super(config, queryService);
+        this.config = config;
+        this.queryService = queryService;
+        this.contentItemIdentifier = contentItemIdentifier;
+        this.languageIdentifier = languageIdentifier;
+        this.workflowIdentifier = workflowIdentifier;
+    }
+    toPromise() {
+        return this.queryService.changeWorkflowStepOfLanguageVariantAsync(this.getUrl(), this.queryConfig);
+    }
+    getAction() {
+        return this.apiEndpoints.changeWorkflowStepOfLanguageVariant(this.contentItemIdentifier, this.languageIdentifier, this.workflowIdentifier);
+    }
+}
+//# sourceMappingURL=change-workflow-step-of-language-variant-query.class.js.map

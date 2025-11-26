@@ -1,0 +1,24 @@
+import { PaletteInput } from '../common';
+import { FontProps } from '../font';
+export type RaceKeyProps = {
+    color: string;
+    logo: string;
+};
+export type ValueDisplayPosition = 'in' | 'out';
+export type BarRaceProps = {
+    loopField: string;
+    keyField: string;
+    colorField: string;
+    fps: number;
+    items: number;
+    steps: number;
+    valuePos: ValueDisplayPosition;
+    font: FontProps;
+    tickFont: FontProps;
+    hideKey: boolean;
+    lookup: boolean;
+    radius: number;
+    counter: boolean;
+    palette?: PaletteInput;
+    bars: Record<string, RaceKeyProps>;
+};

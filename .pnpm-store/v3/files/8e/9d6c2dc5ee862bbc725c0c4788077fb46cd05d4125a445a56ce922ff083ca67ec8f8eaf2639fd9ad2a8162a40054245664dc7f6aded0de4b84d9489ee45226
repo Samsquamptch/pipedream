@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  ListReservationOfferingsRequest,
+  ListReservationOfferingsResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface ListReservationOfferingsCommandInput
+  extends ListReservationOfferingsRequest {}
+export interface ListReservationOfferingsCommandOutput
+  extends ListReservationOfferingsResponse,
+    __MetadataBearer {}
+declare const ListReservationOfferingsCommand_base: {
+  new (
+    input: ListReservationOfferingsCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListReservationOfferingsCommandInput,
+    ListReservationOfferingsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    ...[input]: [] | [ListReservationOfferingsCommandInput]
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListReservationOfferingsCommandInput,
+    ListReservationOfferingsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class ListReservationOfferingsCommand extends ListReservationOfferingsCommand_base {
+  protected static __types: {
+    api: {
+      input: ListReservationOfferingsRequest;
+      output: ListReservationOfferingsResponse;
+    };
+    sdk: {
+      input: ListReservationOfferingsCommandInput;
+      output: ListReservationOfferingsCommandOutput;
+    };
+  };
+}

@@ -1,0 +1,12 @@
+import { FontProps } from '../font';
+export type RadarProps = {
+    gridColor: string;
+    pointColor: string;
+    pointSize: number;
+    showKey: boolean;
+    keyFont: FontProps;
+    lineOnly: boolean;
+    roundWeb: boolean;
+    levelValue: boolean;
+    numLevels: number;
+};

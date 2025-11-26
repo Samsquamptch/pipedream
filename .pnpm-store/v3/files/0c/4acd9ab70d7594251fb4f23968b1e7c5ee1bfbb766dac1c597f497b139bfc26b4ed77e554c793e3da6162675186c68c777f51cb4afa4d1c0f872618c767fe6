@@ -1,0 +1,231 @@
+import type { Readable } from 'node:stream';
+import { type RetryOptions } from 'got';
+import { type Input as IntoStreamInput } from 'into-stream';
+import { ApiError } from './ApiError.ts';
+import { type AssemblyIndexItem, type AssemblyStatus } from './alphalib/types/assemblyStatus.ts';
+import type { BaseResponse, BillResponse, CreateAssemblyParams, CreateTemplateCredentialParams, CreateTemplateParams, EditTemplateParams, ListAssembliesParams, ListedTemplate, ListTemplateCredentialsParams, ListTemplatesParams, OptionalAuthParams, PaginationListWithCount, ReplayAssemblyNotificationParams, ReplayAssemblyNotificationResponse, ReplayAssemblyParams, ReplayAssemblyResponse, TemplateCredentialResponse, TemplateCredentialsResponse, TemplateResponse } from './apiTypes.ts';
+import InconsistentResponseError from './InconsistentResponseError.ts';
+import PaginationStream from './PaginationStream.ts';
+export { HTTPError, MaxRedirectsError, ParseError, ReadError, RequestError, TimeoutError, UploadError, } from 'got';
+export type { AssemblyStatus, AssemblyStatusMeta, AssemblyStatusResult, AssemblyStatusResults, AssemblyStatusUpload, AssemblyStatusUploads, } from './alphalib/types/assemblyStatus.ts';
+export * from './apiTypes.ts';
+export { InconsistentResponseError, ApiError };
+export interface UploadProgress {
+    uploadedBytes?: number | undefined;
+    totalBytes?: number | undefined;
+}
+export type AssemblyProgress = (assembly: AssemblyStatus) => void;
+export interface CreateAssemblyOptions {
+    params?: CreateAssemblyParams;
+    files?: {
+        [name: string]: string;
+    };
+    uploads?: {
+        [name: string]: Readable | IntoStreamInput;
+    };
+    waitForCompletion?: boolean;
+    chunkSize?: number;
+    uploadConcurrency?: number;
+    timeout?: number;
+    onUploadProgress?: (uploadProgress: UploadProgress) => void;
+    onAssemblyProgress?: AssemblyProgress;
+    assemblyId?: string;
+}
+export interface AwaitAssemblyCompletionOptions {
+    onAssemblyProgress?: AssemblyProgress;
+    timeout?: number;
+    interval?: number;
+    startTimeMs?: number;
+}
+export interface SmartCDNUrlOptions {
+    /**
+     * Workspace slug
+     */
+    workspace: string;
+    /**
+     * Template slug or template ID
+     */
+    template: string;
+    /**
+     * Input value that is provided as `${fields.input}` in the template
+     */
+    input: string;
+    /**
+     * Additional parameters for the URL query string
+     */
+    urlParams?: Record<string, boolean | number | string | (boolean | number | string)[]>;
+    /**
+     * Expiration timestamp of the signature in milliseconds since UNIX epoch.
+     * Defaults to 1 hour from now.
+     */
+    expiresAt?: number;
+}
+export type Fields = Record<string, string | number>;
+interface CreateAssemblyPromise extends Promise<AssemblyStatus> {
+    assemblyId: string;
+}
+export interface Options {
+    authKey: string;
+    authSecret: string;
+    endpoint?: string;
+    maxRetries?: number;
+    timeout?: number;
+    gotRetry?: Partial<RetryOptions>;
+    validateResponses?: boolean;
+}
+export declare class Transloadit {
+    private _authKey;
+    private _authSecret;
+    private _endpoint;
+    private _maxRetries;
+    private _defaultTimeout;
+    private _gotRetry;
+    private _lastUsedAssemblyUrl;
+    private _validateResponses;
+    constructor(opts: Options);
+    getLastUsedAssemblyUrl(): string;
+    setDefaultTimeout(timeout: number): void;
+    /**
+     * Create an Assembly
+     *
+     * @param opts assembly options
+     */
+    createAssembly(opts?: CreateAssemblyOptions): CreateAssemblyPromise;
+    awaitAssemblyCompletion(assemblyId: string, { onAssemblyProgress, timeout, startTimeMs, interval, }?: AwaitAssemblyCompletionOptions): Promise<AssemblyStatus>;
+    maybeThrowInconsistentResponseError(message: string): void;
+    /**
+     * Cancel the assembly
+     *
+     * @param assemblyId assembly ID
+     * @returns after the assembly is deleted
+     */
+    cancelAssembly(assemblyId: string): Promise<AssemblyStatus>;
+    /**
+     * Replay an Assembly
+     *
+     * @param assemblyId of the assembly to replay
+     * @param optional params
+     * @returns after the replay is started
+     */
+    replayAssembly(assemblyId: string, params?: ReplayAssemblyParams): Promise<ReplayAssemblyResponse>;
+    /**
+     * Replay an Assembly notification
+     *
+     * @param assemblyId of the assembly whose notification to replay
+     * @param optional params
+     * @returns after the replay is started
+     */
+    replayAssemblyNotification(assemblyId: string, params?: ReplayAssemblyNotificationParams): Promise<ReplayAssemblyNotificationResponse>;
+    /**
+     * List all assemblies
+     *
+     * @param params optional request options
+     * @returns list of Assemblies
+     */
+    listAssemblies(params?: ListAssembliesParams): Promise<PaginationListWithCount<AssemblyIndexItem>>;
+    streamAssemblies(params: ListAssembliesParams): Readable;
+    /**
+     * Get an Assembly
+     *
+     * @param assemblyId the Assembly Id
+     * @returns the retrieved Assembly
+     */
+    getAssembly(assemblyId: string): Promise<AssemblyStatus>;
+    /**
+     * Create a Credential
+     *
+     * @param params optional request options
+     * @returns when the Credential is created
+     */
+    createTemplateCredential(params: CreateTemplateCredentialParams): Promise<TemplateCredentialResponse>;
+    /**
+     * Edit a Credential
+     *
+     * @param credentialId the Credential ID
+     * @param params optional request options
+     * @returns when the Credential is edited
+     */
+    editTemplateCredential(credentialId: string, params: CreateTemplateCredentialParams): Promise<TemplateCredentialResponse>;
+    /**
+     * Delete a Credential
+     *
+     * @param credentialId the Credential ID
+     * @returns when the Credential is deleted
+     */
+    deleteTemplateCredential(credentialId: string): Promise<BaseResponse>;
+    /**
+     * Get a Credential
+     *
+     * @param credentialId the Credential ID
+     * @returns when the Credential is retrieved
+     */
+    getTemplateCredential(credentialId: string): Promise<TemplateCredentialResponse>;
+    /**
+     * List all TemplateCredentials
+     *
+     * @param params optional request options
+     * @returns the list of templates
+     */
+    listTemplateCredentials(params?: ListTemplateCredentialsParams): Promise<TemplateCredentialsResponse>;
+    streamTemplateCredentials(params: ListTemplateCredentialsParams): PaginationStream<import("./apiTypes.ts").TemplateCredential>;
+    /**
+     * Create an Assembly Template
+     *
+     * @param params optional request options
+     * @returns when the template is created
+     */
+    createTemplate(params: CreateTemplateParams): Promise<TemplateResponse>;
+    /**
+     * Edit an Assembly Template
+     *
+     * @param templateId the template ID
+     * @param params optional request options
+     * @returns when the template is edited
+     */
+    editTemplate(templateId: string, params: EditTemplateParams): Promise<TemplateResponse>;
+    /**
+     * Delete an Assembly Template
+     *
+     * @param templateId the template ID
+     * @returns when the template is deleted
+     */
+    deleteTemplate(templateId: string): Promise<BaseResponse>;
+    /**
+     * Get an Assembly Template
+     *
+     * @param templateId the template ID
+     * @returns when the template is retrieved
+     */
+    getTemplate(templateId: string): Promise<TemplateResponse>;
+    /**
+     * List all Assembly Templates
+     *
+     * @param params optional request options
+     * @returns the list of templates
+     */
+    listTemplates(params?: ListTemplatesParams): Promise<PaginationListWithCount<ListedTemplate>>;
+    streamTemplates(params?: ListTemplatesParams): PaginationStream<ListedTemplate>;
+    /**
+     * Get account Billing details for a specific month
+     *
+     * @param month the date for the required billing in the format yyyy-mm
+     * @returns with billing data
+     * @see https://transloadit.com/docs/api/bill-date-get/
+     */
+    getBill(month: string): Promise<BillResponse>;
+    calcSignature(params: OptionalAuthParams): {
+        signature: string;
+        params: string;
+    };
+    /**
+     * Construct a signed Smart CDN URL. See https://transloadit.com/docs/topics/signature-authentication/#smart-cdn.
+     */
+    getSignedSmartCDNUrl(opts: SmartCDNUrlOptions): string;
+    private _calcSignature;
+    private _appendForm;
+    private _appendParamsToUrl;
+    private _prepareParams;
+    private _getExpiresDate;
+    private _remoteJson;
+}
+//# sourceMappingURL=Transloadit.d.ts.map

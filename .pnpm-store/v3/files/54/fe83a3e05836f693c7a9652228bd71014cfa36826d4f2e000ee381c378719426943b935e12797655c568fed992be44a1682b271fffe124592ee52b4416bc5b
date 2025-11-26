@@ -1,0 +1,3514 @@
+import dotenv from "dotenv";
+import nodeFetch from "node-fetch";
+import winston from "winston";
+import "winston-daily-rotate-file";
+import * as path$2 from "path";
+import path from "path";
+import * as fs$2 from "fs";
+import fs from "fs";
+import fs$1 from "node:fs";
+import FormData$1 from "form-data";
+import path$1 from "node:path";
+import { v4 } from "uuid";
+import puppeteer from "puppeteer-core";
+import { chromium } from "playwright-core";
+
+//#region src/utils/utils.ts
+/**
+* Base utility functions collection
+*/
+/**
+* Sleep for specified milliseconds
+* @param ms Milliseconds
+*/
+const sleep = (ms) => {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+};
+/**
+* Retry a specified function until success or maximum attempts reached
+* @param fn Async function to retry
+* @param options Retry options
+*/
+const retry = async (fn, options = {}) => {
+	const { maxAttempts = 3, delay = 1e3, backoff = true, onRetry = () => {} } = options;
+	let attempt = 0;
+	let lastError = new Error("Retry failed");
+	while (attempt < maxAttempts) try {
+		return await fn();
+	} catch (error) {
+		lastError = error;
+		attempt++;
+		if (attempt >= maxAttempts) break;
+		onRetry(attempt, lastError);
+		const waitTime = backoff ? delay * Math.pow(2, attempt - 1) : delay;
+		await sleep(waitTime);
+	}
+	throw lastError;
+};
+/**
+* Parse URL, extract domain and path
+* @param url URL string
+*/
+const parseUrl = (url) => {
+	try {
+		const parsedUrl = new URL(url);
+		const query = {};
+		parsedUrl.searchParams.forEach((value, key) => {
+			query[key] = value;
+		});
+		return {
+			protocol: parsedUrl.protocol.replace(":", ""),
+			hostname: parsedUrl.hostname,
+			path: parsedUrl.pathname,
+			query,
+			fragment: parsedUrl.hash.replace("#", "")
+		};
+	} catch {
+		throw new Error(`Invalid URL: ${url}`);
+	}
+};
+/**
+* Generate random string
+* @param length String length
+*/
+const randomString = (length = 10) => {
+	const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	let result = "";
+	for (let i = 0; i < length; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
+	return result;
+};
+/**
+* Detect browser environment
+*/
+const isBrowser = () => {
+	return typeof window !== "undefined" && typeof document !== "undefined";
+};
+/**
+* Format date
+* @param date Date object or timestamp
+* @param format Format string
+*/
+const formatDate = (date, format = "YYYY-MM-DD HH:mm:ss") => {
+	const d = new Date(date);
+	const replacements = {
+		YYYY: d.getFullYear().toString(),
+		MM: (d.getMonth() + 1).toString().padStart(2, "0"),
+		DD: d.getDate().toString().padStart(2, "0"),
+		HH: d.getHours().toString().padStart(2, "0"),
+		mm: d.getMinutes().toString().padStart(2, "0"),
+		ss: d.getSeconds().toString().padStart(2, "0")
+	};
+	return format.replace(/YYYY|MM|DD|HH|mm|ss/g, (match) => replacements[match]);
+};
+
+//#endregion
+//#region src/utils/logger.ts
+let LogLevel = /* @__PURE__ */ function(LogLevel$1) {
+	LogLevel$1["TRACE"] = "trace";
+	LogLevel$1["DEBUG"] = "debug";
+	LogLevel$1["INFO"] = "info";
+	LogLevel$1["WARN"] = "warn";
+	LogLevel$1["ERROR"] = "error";
+	return LogLevel$1;
+}({});
+const LOG_LEVELS = {
+	[LogLevel.ERROR]: 0,
+	[LogLevel.WARN]: 1,
+	[LogLevel.INFO]: 2,
+	[LogLevel.TRACE]: 3,
+	[LogLevel.DEBUG]: 4
+};
+const LEVEL_COLORS = {
+	[LogLevel.TRACE]: "gray",
+	[LogLevel.DEBUG]: "cyan",
+	[LogLevel.INFO]: "green",
+	[LogLevel.WARN]: "yellow",
+	[LogLevel.ERROR]: "red"
+};
+const PREFIX_COLORS = [
+	"cyan",
+	"magenta",
+	"blue",
+	"yellow",
+	"green"
+];
+const getDefaultLogDir = () => {
+	return "./logs";
+};
+const LOG_MAX_SIZE = process.env.SCRAPELESS_LOG_MAX_SIZE || "100m";
+const LOG_MAX_BACKUPS = parseInt(process.env.SCRAPELESS_LOG_MAX_BACKUPS || "5", 10);
+const LOG_MAX_AGE = parseInt(process.env.SCRAPELESS_LOG_MAX_AGE || "7", 10);
+const LOG_ROOT_DIR = process.env.SCRAPELESS_LOG_ROOT_DIR || getDefaultLogDir();
+try {
+	if (!fs$2.existsSync(LOG_ROOT_DIR)) fs$2.mkdirSync(LOG_ROOT_DIR, { recursive: true });
+} catch (err) {
+	console.error(`Failed to create log directory ${LOG_ROOT_DIR}:`, err);
+}
+const colorize = (text, color) => {
+	const colors = {
+		gray: "\x1B[90m",
+		red: "\x1B[31m",
+		green: "\x1B[32m",
+		yellow: "\x1B[33m",
+		blue: "\x1B[34m",
+		magenta: "\x1B[35m",
+		cyan: "\x1B[36m",
+		white: "\x1B[37m",
+		reset: "\x1B[0m"
+	};
+	return colors[color] ? `${colors[color]}${text}${colors.reset}` : text;
+};
+const customFormat = winston.format.printf(({ level, message, timestamp, prefix }) => {
+	const prefixStr = prefix ? `${prefix}: ` : "";
+	return `${timestamp} ${level} ${prefixStr}${message}`;
+});
+const consoleFormat = winston.format.printf(({ level, message, timestamp, prefix }) => {
+	const prefixStr = prefix ? `${colorizePrefix(prefix)}: ` : "";
+	return `${timestamp} ${level} ${prefixStr}${message}`;
+});
+const colorizePrefix = (prefix) => {
+	if (!prefix) return "";
+	const hash = prefix.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+	const colorIndex = hash % PREFIX_COLORS.length;
+	return colorize(prefix, "blue");
+};
+const transports = [new winston.transports.Console({
+	level: process.env.SCRAPELESS_LOG_LEVEL || LogLevel.INFO,
+	format: winston.format.combine(winston.format.colorize({ colors: LEVEL_COLORS }), winston.format.timestamp({ format: "YYYY-MM-DDTHH:mm:ssZ" }), consoleFormat)
+})];
+try {
+	fs$2.accessSync(LOG_ROOT_DIR, fs$2.constants.W_OK);
+	const fileTransport = new winston.transports.DailyRotateFile({
+		level: process.env.SCRAPELESS_LOG_LEVEL || LogLevel.INFO,
+		filename: path$2.join(LOG_ROOT_DIR, "scrapeless-%DATE%.log"),
+		datePattern: "YYYY-MM-DD",
+		zippedArchive: true,
+		maxSize: LOG_MAX_SIZE,
+		maxFiles: LOG_MAX_BACKUPS,
+		createSymlink: true,
+		symlinkName: "scrapeless.log"
+	});
+	transports.push(fileTransport);
+} catch (err) {
+	console.warn(`Cannot write to log directory ${LOG_ROOT_DIR}, file logging disabled:`, err);
+}
+const formatWithPrefix = winston.format.combine(winston.format.timestamp({ format: "YYYY-MM-DDTHH:mm:ssZ" }), customFormat);
+const logger$2 = winston.createLogger({
+	levels: LOG_LEVELS,
+	level: process.env.SCRAPELESS_LOG_LEVEL || LogLevel.INFO,
+	format: formatWithPrefix,
+	transports
+});
+const loggerInstances = new Map();
+const getLoggerWithPrefix = (prefix) => {
+	if (!prefix) return logger$2;
+	if (loggerInstances.has(prefix)) return loggerInstances.get(prefix);
+	const prefixLogger = logger$2.child({ prefix });
+	loggerInstances.set(prefix, prefixLogger);
+	return prefixLogger;
+};
+var log = class log {
+	static _prefix = "";
+	static setPrefix(prefix) {
+		this._prefix = prefix;
+	}
+	static getPrefix() {
+		return this._prefix;
+	}
+	static withPrefix(prefix) {
+		const newLog = new log();
+		newLog._prefix = prefix;
+		return newLog;
+	}
+	static getLogger() {
+		return getLoggerWithPrefix(this._prefix);
+	}
+	_prefix = "";
+	getLogger() {
+		return getLoggerWithPrefix(this._prefix);
+	}
+	static trace(format, ...args) {
+		this.getLogger().log(LogLevel.TRACE, this.formatString(format, args));
+	}
+	trace(format, ...args) {
+		this.getLogger().log(LogLevel.TRACE, log.formatString(format, args));
+	}
+	static debug(format, ...args) {
+		this.getLogger().debug(this.formatString(format, args));
+	}
+	debug(format, ...args) {
+		this.getLogger().debug(log.formatString(format, args));
+	}
+	static info(format, ...args) {
+		this.getLogger().info(this.formatString(format, args));
+	}
+	info(format, ...args) {
+		this.getLogger().info(log.formatString(format, args));
+	}
+	static log(format, ...args) {
+		this.getLogger().info(this.formatString(format, args));
+	}
+	log(format, ...args) {
+		this.getLogger().info(log.formatString(format, args));
+	}
+	static print(format, ...args) {
+		this.getLogger().info(this.formatString(format, args));
+	}
+	print(format, ...args) {
+		this.getLogger().info(log.formatString(format, args));
+	}
+	static warn(format, ...args) {
+		this.getLogger().log(LogLevel.WARN, this.formatString(format, args));
+	}
+	warn(format, ...args) {
+		this.getLogger().log(LogLevel.WARN, log.formatString(format, args));
+	}
+	static error(format, ...args) {
+		this.getLogger().log(LogLevel.ERROR, this.formatString(format, args));
+	}
+	error(format, ...args) {
+		this.getLogger().log(LogLevel.ERROR, log.formatString(format, args));
+	}
+	static formatMessage(message, args) {
+		if (args.length === 0) return typeof message === "string" ? message : JSON.stringify(message);
+		return [message, ...args].map((arg) => {
+			if (typeof arg === "string") return arg;
+			try {
+				return JSON.stringify(arg);
+			} catch (e) {
+				return `[Circular or Non-Serializable Object]`;
+			}
+		}).join(" ");
+	}
+	static formatString(format, args) {
+		if (typeof format !== "string") return String(format) + args.map((arg) => ` ${arg}`).join("");
+		const usedIndices = new Set();
+		let result = args.reduce((msg, arg, i) => {
+			const placeholder = `{${i}}`;
+			if (msg.includes(placeholder)) {
+				usedIndices.add(i);
+				return msg.split(placeholder).join(typeof arg === "object" ? JSON.stringify(arg) : String(arg));
+			}
+			return msg;
+		}, format);
+		if (usedIndices.size < args.length) {
+			const unusedArgs = args.filter((_, i) => !usedIndices.has(i));
+			if (unusedArgs.length <= 0) return result;
+			result += unusedArgs.map((arg) => {
+				if (typeof arg === "object") try {
+					return ` ${JSON.stringify(arg)}`;
+				} catch (e) {
+					return ` ${arg}`;
+				}
+				return ` ${arg}`;
+			}).join("");
+		}
+		return result;
+	}
+};
+
+//#endregion
+//#region src/services/base.ts
+const log$2 = log.withPrefix("BaseService.request");
+var BaseService = class {
+	constructor(apiKey, baseUrl, timeout = 3e4, handleResponse) {
+		this.apiKey = apiKey;
+		this.baseUrl = baseUrl;
+		this.timeout = timeout;
+		this.handleResponse = handleResponse;
+	}
+	async request(endpoint, method = "GET", body, additionalHeaders = {}, responseWithStatus = false) {
+		const headers = {
+			"Content-Type": "application/json",
+			"X-API-Key": this.apiKey,
+			...additionalHeaders
+		};
+		const options = {
+			method,
+			headers,
+			timeout: this.timeout
+		};
+		if (body) options.body = JSON.stringify(body);
+		if (body && additionalHeaders["content-type"]?.startsWith("multipart/form-data;")) {
+			options.headers = {
+				...additionalHeaders,
+				"X-API-Key": this.apiKey
+			};
+			options.body = body;
+		}
+		const response = await nodeFetch(`${this.baseUrl}${endpoint}`, options);
+		let data;
+		const contentType = response.headers.get("content-type");
+		if (contentType?.includes("application/json")) data = await response.json();
+		else data = await response.text();
+		if (!response.ok) {
+			let errorMessage = "";
+			let errorCode = response.status;
+			if (typeof data === "object") {
+				if (data.error) errorMessage = data.error;
+				if (data.msg) errorMessage = data.msg;
+				if (data.code) errorCode = data.code;
+				if (data.traceId) if (errorMessage) errorMessage += ` (TraceID: ${data.traceId})`;
+				else errorMessage = `failed with status ${response.status} (TraceID: ${data.traceId})`;
+			}
+			if (!errorMessage) errorMessage = `failed with status ${response.status}`;
+			errorMessage = `Request ${method} ${this.baseUrl}${endpoint} ${errorMessage}`;
+			log$2.error(errorMessage);
+			throw new ScrapelessError(errorMessage, errorCode);
+		}
+		if (this.handleResponse) return this.handleResponse(data);
+		return responseWithStatus ? {
+			data,
+			status: response.status
+		} : data.data;
+	}
+};
+
+//#endregion
+//#region src/services/extension.ts
+var ExtensionService = class extends BaseService {
+	constructor(apiKey, baseUrl, timeout) {
+		super(apiKey, baseUrl, timeout);
+	}
+	/**
+	* Validates the file path and extracts the file name.
+	* @param filePath The path to the file.
+	* @returns The extracted file name.
+	* @throws Error if the file suffix is not valid.
+	*/
+	getFileName(filePath) {
+		const validSuffixes = [".zip"];
+		const fileSuffix = filePath.slice(filePath.lastIndexOf(".")).toLowerCase();
+		if (!validSuffixes.includes(fileSuffix)) throw new Error(`Invalid file suffix: ${fileSuffix}. Supported suffixes: ${validSuffixes.join(", ")}`);
+		return filePath.slice(filePath.lastIndexOf("/") + 1);
+	}
+	async upload(filePath, name) {
+		const fileName = this.getFileName(filePath);
+		const fileStream = fs$1.createReadStream(filePath);
+		const formData = new FormData$1();
+		formData.append("file", fileStream, fileName);
+		formData.append("name", name);
+		const res = await this.request("/browser/extensions/upload", "POST", formData, formData.getHeaders(), true);
+		return res.data;
+	}
+	async update(extensionId, filePath, name) {
+		const fileName = this.getFileName(filePath);
+		const fileStream = fs$1.createReadStream(filePath);
+		const formData = new FormData$1();
+		formData.append("file", fileStream, fileName);
+		if (name) formData.append("name", name);
+		const res = await this.request(`/browser/extensions/${extensionId}`, "PUT", formData, formData.getHeaders(), true);
+		return res.data;
+	}
+	async get(extensionId) {
+		const res = await this.request(`/browser/extensions/${extensionId}`, "GET", void 0, {}, true);
+		return res.data;
+	}
+	async list() {
+		const res = await this.request("/browser/extensions/list", "GET", void 0, {}, true);
+		return res.data;
+	}
+	async delete(extensionId) {
+		const res = await this.request(`/browser/extensions/${extensionId}`, "DELETE", void 0, {}, true);
+		return res.data;
+	}
+};
+
+//#endregion
+//#region src/env.ts
+const log$1 = log.withPrefix("Environment");
+/**
+* Scrapeless Actor environment variables
+*
+* This module provides access to environment variables used by the Scrapeless
+* Actor runtime. It defines all supported environment variables and provides
+* utility functions to retrieve them.
+*
+*/
+let ActorEnv = /* @__PURE__ */ function(ActorEnv$1) {
+	ActorEnv$1["SCRAPELESS_BASE_API_URL"] = "SCRAPELESS_BASE_API_URL";
+	ActorEnv$1["SCRAPELESS_ACTOR_API_URL"] = "SCRAPELESS_ACTOR_API_URL";
+	ActorEnv$1["SCRAPELESS_STORAGE_API_URL"] = "SCRAPELESS_STORAGE_API_URL";
+	ActorEnv$1["SCRAPELESS_BROWSER_API_URL"] = "SCRAPELESS_BROWSER_API_URL";
+	ActorEnv$1["SCRAPELESS_CRAWL_API_URL"] = "SCRAPELESS_CRAWL_API_URL";
+	ActorEnv$1["SCRAPELESS_API_KEY"] = "SCRAPELESS_API_KEY";
+	ActorEnv$1["SCRAPELESS_TEAM_ID"] = "SCRAPELESS_TEAM_ID";
+	ActorEnv$1["SCRAPELESS_ACTOR_ID"] = "SCRAPELESS_ACTOR_ID";
+	ActorEnv$1["SCRAPELESS_RUN_ID"] = "SCRAPELESS_RUN_ID";
+	ActorEnv$1["SCRAPELESS_INPUT"] = "SCRAPELESS_INPUT";
+	ActorEnv$1["SCRAPELESS_DATASET_ID"] = "SCRAPELESS_DATASET_ID";
+	ActorEnv$1["SCRAPELESS_KV_NAMESPACE_ID"] = "SCRAPELESS_KV_NAMESPACE_ID";
+	ActorEnv$1["SCRAPELESS_BUCKET_ID"] = "SCRAPELESS_BUCKET_ID";
+	ActorEnv$1["SCRAPELESS_QUEUE_ID"] = "SCRAPELESS_QUEUE_ID";
+	ActorEnv$1["SCRAPELESS_IS_ONLINE"] = "SCRAPELESS_IS_ONLINE";
+	return ActorEnv$1;
+}({});
+/**
+* Get environment variable
+* @param key Environment variable key
+* @returns Value of the environment variable
+* @throws Error if the environment variable is not defined
+*/
+function getEnv(key) {
+	const env$1 = process.env[ActorEnv[key]];
+	if (env$1 === void 0) throw new Error(`Environment variable ${key} is not defined`);
+	return env$1;
+}
+/**
+* Get environment variable with default value
+* @param key Environment variable key
+* @param defaultValue Default value to return if env variable is not defined
+* @returns Value of the environment variable or default value
+*/
+function getEnvWithDefault(key, defaultValue) {
+	const env$1 = process.env[ActorEnv[key]];
+	return env$1 === void 0 ? defaultValue : env$1;
+}
+function PrintEnv() {
+	for (const key in ActorEnv) {
+		const value = process.env[key];
+		log$1.trace(`{0}: {1}`, key, value);
+	}
+}
+
+//#endregion
+//#region src/services/browser.ts
+const DEFAULT_BROWSER_OPTIONS = {
+	session_name: "",
+	session_ttl: 180,
+	proxy_country: "ANY"
+};
+var BrowserService = class extends BaseService {
+	extension;
+	constructor(apiKey, baseUrl, timeout = 3e4) {
+		super(apiKey, baseUrl, timeout);
+		const baseApiURL = getEnvWithDefault("SCRAPELESS_BASE_API_URL", "https://api.scrapeless.com");
+		this.extension = new ExtensionService(apiKey, baseApiURL, timeout);
+	}
+	/**
+	* Create a browser session
+	* @param options Browser session configuration
+	* @returns Response containing devtoolsUrl
+	*/
+	create(options = {}) {
+		const data = {
+			...DEFAULT_BROWSER_OPTIONS,
+			...options
+		};
+		const params = {
+			token: this.apiKey,
+			session_name: data.session_name,
+			session_ttl: data.session_ttl?.toString(),
+			session_recording: data.session_recording?.toString(),
+			proxy_country: data.proxy_country,
+			proxy_url: data.proxy_url,
+			fingerprint: data.fingerprint ? JSON.stringify(data.fingerprint) : void 0,
+			extension_ids: data.extension_ids
+		};
+		if (data.proxy_url) delete params.proxy_country;
+		const filteredParams = Object.entries(params).filter(([_, value]) => value !== void 0 && value !== "").reduce((acc, [key, value]) => ({
+			...acc,
+			[key]: value
+		}), {});
+		const search = new URLSearchParams(filteredParams);
+		let protocol = "wss";
+		if (this.baseUrl.startsWith("http://")) protocol = "ws";
+		return { browserWSEndpoint: `${protocol}://${this.baseUrl.replace(/^(.*?):\/\//, "")}/browser?${search.toString()}` };
+	}
+	/**
+	* Async version of create method (maintains compatibility but calls the sync method directly)
+	*/
+	async createAsync(options = {}) {
+		return this.create(options);
+	}
+};
+
+//#endregion
+//#region src/services/scraping.ts
+var ScrapingService = class extends BaseService {
+	basePath = "/api/v1/scraper";
+	constructor(apiKey, baseUrl, timeout) {
+		super(apiKey, baseUrl, timeout);
+	}
+	/**
+	* Create a scraping request to extract data from websites
+	* @param request Scraping request parameters including actor, input, and proxy settings
+	* @returns Task ID and status information for the scraping task
+	*/
+	async createTask(request) {
+		const requestWithSync = {
+			...request,
+			async: true
+		};
+		return await this.request(`${this.basePath}/request`, "POST", requestWithSync, {}, true);
+	}
+	/**
+	* Get the result of a scraping task
+	* @param taskId The ID of the scraping task
+	* @returns The scraped data and task status
+	*/
+	async getTaskResult(taskId) {
+		return this.request(`${this.basePath}/result/${taskId}`, "GET", void 0, {}, true);
+	}
+	/**
+	* Perform a scraping operation and wait for the result
+	* @param request Scraping request parameters
+	* @returns The scraped data result
+	*/
+	async scrape(request) {
+		const requestWithSync = {
+			...request,
+			async: false
+		};
+		const response = await this.createTask(requestWithSync);
+		if (response.status === 200) return response.data;
+		while (true) {
+			await sleep(1e3);
+			const result = await this.getTaskResult(response.data.taskId);
+			if (result.status === 200) return result.data;
+		}
+	}
+};
+
+//#endregion
+//#region src/services/deepserp.ts
+var DeepSerpService = class extends ScrapingService {
+	constructor(apiKey, baseUrl, timeout) {
+		super(apiKey, baseUrl, timeout);
+	}
+};
+
+//#endregion
+//#region src/services/universal.ts
+var UniversalService = class extends BaseService {
+	basePath = "/api/v1/unlocker";
+	constructor(apiKey, baseUrl, timeout) {
+		super(apiKey, baseUrl, timeout);
+	}
+	/**
+	* Scrape any website using the Universal Scraping API
+	* @param request Scraping request
+	*/
+	async scrape(request) {
+		return this.request(`${this.basePath}/request`, "POST", request);
+	}
+};
+
+//#endregion
+//#region src/services/captcha.ts
+var CaptchaService = class extends BaseService {
+	basePath = "/api/v1";
+	constructor(apiKey, baseUrl, timeout) {
+		super(apiKey, baseUrl, timeout);
+	}
+	/**
+	* Create a captcha solving task
+	* @param data Captcha request data
+	*/
+	async captchaCreate(data) {
+		return this.request(`${this.basePath}/createTask`, "POST", data, {}, true);
+	}
+	/**
+	* Get captcha solving result
+	* @param taskId Task ID
+	*/
+	async captchaResultGet(taskId) {
+		return this.request(`${this.basePath}/getTaskResult/${taskId}`, "GET", void 0, {}, true);
+	}
+	/**
+	* Create captcha task and wait for result
+	* @param data Captcha request data
+	*/
+	async captchaSolver(data) {
+		const task = await this.captchaCreate(data);
+		const result = await this.captchaResultGet(task.data.taskId);
+		if (result.data.success) return result.data;
+		while (true) {
+			await sleep(1e3);
+			const result$1 = await this.captchaResultGet(task.data.taskId);
+			if (result$1.data.success) return result$1.data;
+		}
+	}
+};
+
+//#endregion
+//#region src/services/proxies.ts
+/**
+* ProxiesService provides functionality for working with residential proxies
+*/
+var ProxiesService = class extends BaseService {
+	constructor(apiKey, baseUrl, timeout) {
+		super(apiKey, baseUrl, timeout);
+	}
+	/**
+	* Generate a proxy URL string based on the provided configuration
+	* @param proxy Proxy configuration
+	* @returns Formatted proxy URL string
+	*/
+	proxy(proxy) {
+		const token = this.apiKey;
+		const baseURL = "http://CHANNEL-proxy.residential-country_";
+		return `${baseURL}${proxy.country}-r_${proxy.sessionDuration}m-s_${proxy.sessionId}:${token}@${proxy.gateway}`;
+	}
+	/**
+	* Create a new residential proxy with the specified configuration
+	* @param options Proxy configuration options
+	* @returns Formatted proxy URL string
+	*/
+	createProxy(options) {
+		return this.proxy(options);
+	}
+	/**
+	* Generate a random session ID for use with proxies
+	* @returns A random string suitable for use as a session ID
+	*/
+	generateSessionId() {
+		const timestamp = Date.now().toString(36);
+		const randomStr = Math.random().toString(36).substring(2, 10);
+		return `${timestamp}-${randomStr}`;
+	}
+};
+
+//#endregion
+//#region src/services/actor.ts
+/**
+* Actor service class for interacting with the Scrapeless Actor API
+*/
+var ActorService = class extends BaseService {
+	basePath = "/api/v1/actors";
+	constructor(apiKey, baseUrl, timeout) {
+		super(apiKey, baseUrl, timeout);
+	}
+	/**
+	* Run an Actor
+	* @param actorId Actor ID
+	* @param data Run request data
+	*/
+	async run(actorId, data) {
+		return this.request(`${this.basePath}/${actorId}/runs`, "POST", data);
+	}
+	/**
+	* Get Actor run info
+	* @param runId Run ID
+	*/
+	async getRunInfo(runId) {
+		return this.request(`${this.basePath}/runs/${runId}`);
+	}
+	/**
+	* Abort a running Actor
+	* @param actorId Actor ID
+	* @param runId Run ID
+	*/
+	async abortRun(actorId, runId) {
+		return this.request(`${this.basePath}/${actorId}/runs/${runId}`, "DELETE");
+	}
+	/**
+	* Trigger a build for an Actor
+	* @param actorId Actor ID
+	*/
+	async build(actorId) {
+		return this.request(`${this.basePath}/${actorId}/builds`, "POST");
+	}
+	/**
+	* Get Actor build status
+	* @param actorId Actor ID
+	* @param buildId Build ID
+	*/
+	async getBuildStatus(actorId, buildId) {
+		return this.request(`${this.basePath}/${actorId}/builds/${buildId}`);
+	}
+	/**
+	* Abort an Actor build
+	* @param actorId Actor ID
+	* @param buildId Build ID
+	*/
+	async abortBuild(actorId, buildId) {
+		return this.request(`${this.basePath}/${actorId}/builds/${buildId}`, "DELETE");
+	}
+	/**
+	* Get a list of all Actor runs
+	* @param params Pagination parameters
+	*/
+	async getRunList(params) {
+		const queryParams = new URLSearchParams();
+		queryParams.append("page", params.page.toString());
+		queryParams.append("pageSize", params.pageSize.toString());
+		if (params.desc !== void 0) queryParams.append("desc", params.desc ? "1" : "0");
+		return this.request(`${this.basePath}/runs?${queryParams.toString()}`);
+	}
+};
+
+//#endregion
+//#region src/services/storage/http/dataset.ts
+/**
+* Dataset storage service implementation
+*/
+var DatasetStorage = class extends BaseService {
+	basePath = "/api/v1/dataset";
+	/**
+	* List all available datasets
+	* @param params Pagination and filtering parameters
+	* @returns List of datasets
+	*/
+	async listDatasets(params) {
+		const queryParams = new URLSearchParams();
+		queryParams.append("page", params.page.toString());
+		queryParams.append("pageSize", params.pageSize.toString());
+		if (params.desc !== void 0) queryParams.append("desc", params.desc ? "1" : "0");
+		if (params.actorId) queryParams.append("actorId", params.actorId);
+		if (params.runId) queryParams.append("runId", params.runId);
+		return this.request(`${this.basePath}?${queryParams.toString()}`);
+	}
+	/**
+	* Create a new dataset
+	* @param name Name of the dataset
+	* @returns The created dataset info
+	*/
+	async createDataset(name) {
+		return this.request(`${this.basePath}`, "POST", { name });
+	}
+	/**
+	* Update an existing dataset
+	* @param datasetId ID of the dataset to update
+	* @param name New name for the dataset
+	* @returns The updated dataset info
+	*/
+	async updateDataset(datasetId, name) {
+		return this.request(`${this.basePath}/${datasetId}`, "PUT", { name });
+	}
+	/**
+	* Delete a dataset
+	* @param datasetId ID of the dataset to delete
+	* @returns Operation result
+	*/
+	async delDataset(datasetId) {
+		return this.request(`${this.basePath}/${datasetId}`, "DELETE");
+	}
+	/**
+	* Add items to a dataset
+	* @param datasetId ID of the dataset to add items to
+	* @param items Array of objects to add
+	* @returns Operation result
+	*/
+	async addItems(datasetId, items) {
+		return this.request(`${this.basePath}/${datasetId}/items`, "POST", { items });
+	}
+	/**
+	* Get items from a dataset
+	* @param datasetId ID of the dataset to get items from
+	* @param params Pagination parameters
+	* @returns Paginated list of items
+	*/
+	async getItems(datasetId, params) {
+		const queryParams = new URLSearchParams();
+		queryParams.append("page", params.page.toString());
+		queryParams.append("pageSize", params.pageSize.toString());
+		if (params.desc !== void 0) queryParams.append("desc", params.desc ? "1" : "0");
+		return this.request(`${this.basePath}/${datasetId}/items?${queryParams.toString()}`);
+	}
+	/**
+	* Get dataset
+	* @param datasetId ID of the dataset
+	* @returns Dataset info
+	*/
+	async getDataset(datasetId) {
+		return this.request(`${this.basePath}/${datasetId}`);
+	}
+};
+
+//#endregion
+//#region src/services/storage/http/kv.ts
+/**
+* Key-Value storage service implementation
+*/
+var KVStorage = class extends BaseService {
+	basePath = "/api/v1/kv";
+	/**
+	* List all available namespaces
+	* @param params Pagination parameters
+	* @returns List of namespaces
+	*/
+	async listNamespaces(params) {
+		const queryParams = new URLSearchParams();
+		queryParams.append("page", params.page.toString());
+		queryParams.append("pageSize", params.pageSize.toString());
+		if (params.desc !== void 0) queryParams.append("desc", params.desc ? "1" : "0");
+		return this.request(`${this.basePath}/namespaces?${queryParams.toString()}`);
+	}
+	/**
+	* Create a new namespace
+	* @param name Name of the namespace
+	* @returns The created namespace
+	*/
+	async createNamespace(name) {
+		return this.request(`${this.basePath}/namespaces`, "POST", { name });
+	}
+	/**
+	* Get a namespace by ID
+	* @param namespaceId ID of the namespace
+	* @returns Namespace information
+	*/
+	async getNamespace(namespaceId) {
+		return this.request(`${this.basePath}/${namespaceId}`);
+	}
+	/**
+	* Delete a namespace
+	* @param namespaceId ID of the namespace to delete
+	* @returns Operation result
+	*/
+	async delNamespace(namespaceId) {
+		return this.request(`${this.basePath}/${namespaceId}`, "DELETE");
+	}
+	/**
+	* Rename a namespace
+	* @param namespaceId ID of the namespace to rename
+	* @param name New name for the namespace
+	* @returns Updated namespace
+	*/
+	async renameNamespace(namespaceId, name) {
+		return this.request(`${this.basePath}/${namespaceId}/rename`, "PUT", { name });
+	}
+	/**
+	* List keys in a namespace
+	* @param namespaceId ID of the namespace to list keys from
+	* @param params Pagination parameters
+	* @returns List of keys
+	*/
+	async listKeys(namespaceId, params) {
+		const queryParams = new URLSearchParams();
+		queryParams.append("page", params.page.toString());
+		queryParams.append("pageSize", params.pageSize.toString());
+		return this.request(`${this.basePath}/${namespaceId}/keys?${queryParams.toString()}`);
+	}
+	/**
+	* Delete a value from a namespace
+	* @param namespaceId ID of the namespace
+	* @param key Key to delete
+	* @returns Operation result
+	*/
+	async delValue(namespaceId, key) {
+		return this.request(`${this.basePath}/${namespaceId}/${key}`, "DELETE");
+	}
+	/**
+	* Bulk set multiple key-value pairs in a namespace
+	* @param namespaceId ID of the namespace
+	* @param data Array of key-value data
+	* @returns Operation result
+	*/
+	async bulkSetValue(namespaceId, data) {
+		return this.request(`${this.basePath}/${namespaceId}/bulk`, "POST", { Items: data });
+	}
+	/**
+	* Bulk delete multiple keys from a namespace
+	* @param namespaceId ID of the namespace
+	* @param keys Array of keys to delete
+	* @returns Operation result
+	*/
+	async bulkDelValue(namespaceId, keys) {
+		return this.request(`${this.basePath}/${namespaceId}/bulk`, "POST", { keys });
+	}
+	/**
+	* Set a key-value pair in a namespace
+	* @param namespaceId ID of the namespace
+	* @param data Key-value data
+	* @returns Operation result
+	*/
+	async setValue(namespaceId, data) {
+		return this.request(`${this.basePath}/${namespaceId}/key`, "PUT", {
+			key: data.key,
+			value: data.value,
+			expiration: data.expiration
+		});
+	}
+	/**
+	* Get a value by key from a namespace
+	* @param namespaceId ID of the namespace
+	* @param key Key to retrieve
+	* @returns The value as a string
+	*/
+	async getValue(namespaceId, key) {
+		return this.request(`${this.basePath}/${namespaceId}/${key}`);
+	}
+};
+
+//#endregion
+//#region src/services/storage/http/object.ts
+/**
+* Object storage service implementation
+*/
+var ObjectStorage = class extends BaseService {
+	basePath = "/api/v1/object";
+	/**
+	* List all available buckets
+	* @param params Pagination and filtering parameters
+	* @returns List of buckets
+	*/
+	async listBuckets(params) {
+		const queryParams = new URLSearchParams();
+		queryParams.append("page", params.page.toString());
+		queryParams.append("pageSize", params.pageSize.toString());
+		if (params.desc !== void 0) queryParams.append("desc", params.desc ? "1" : "0");
+		if (params.actor) queryParams.append("actor", params.actor);
+		if (params.runId) queryParams.append("runId", params.runId);
+		return this.request(`${this.basePath}/buckets?${queryParams.toString()}`);
+	}
+	/**
+	* Create a new bucket
+	* @param data Bucket creation parameters
+	* @returns The created bucket
+	*/
+	async createBucket(data) {
+		return this.request(`${this.basePath}/buckets`, "POST", data);
+	}
+	/**
+	* Delete a bucket
+	* @param bucketId ID of the bucket to delete
+	* @returns Operation result
+	*/
+	async deleteBucket(bucketId) {
+		return this.request(`${this.basePath}/buckets/${bucketId}`, "DELETE");
+	}
+	/**
+	* Get information about a bucket
+	* @param bucketId ID of the bucket
+	* @returns Bucket information
+	*/
+	async getBucket(bucketId) {
+		return this.request(`${this.basePath}/buckets/${bucketId}`);
+	}
+	/**
+	* List objects in a bucket
+	* @param bucketId ID of the bucket
+	* @param params Pagination and search parameters
+	* @returns List of objects
+	*/
+	async list(bucketId, params) {
+		const queryParams = new URLSearchParams();
+		queryParams.append("page", params.page.toString());
+		queryParams.append("pageSize", params.pageSize.toString());
+		if (params.search !== void 0) queryParams.append("search", params.search);
+		return this.request(`${this.basePath}/buckets/${bucketId}/objects?${queryParams.toString()}`);
+	}
+	/**
+	* Get an object by ID
+	* @param bucketId ID of the bucket
+	* @param objectId ID of the object to retrieve
+	* @returns The object data as a Blob
+	*/
+	async get(bucketId, objectId) {
+		return this.request(`${this.basePath}/buckets/${bucketId}/${objectId}`);
+	}
+	/**
+	* Upload an object to a bucket
+	* @param bucketId ID of the bucket
+	* @param data Upload parameters
+	* @returns Upload response
+	*/
+	async put(bucketId, data) {
+		const formData = new FormData();
+		formData.append("file", data.file);
+		if (data.actorId) formData.append("actorId", data.actorId);
+		if (data.runId) formData.append("runId", data.runId);
+		return this.request(`${this.basePath}/buckets/${bucketId}/object`, "POST", formData, { "Content-Type": void 0 });
+	}
+	/**
+	* Delete an object from a bucket
+	* @param bucketId ID of the bucket
+	* @param objectId ID of the object to delete
+	* @returns Operation result
+	*/
+	async delete(bucketId, objectId) {
+		return this.request(`${this.basePath}/buckets/${bucketId}/${objectId}`, "DELETE");
+	}
+};
+
+//#endregion
+//#region src/services/storage/http/queue.ts
+/**
+* Queue storage service implementation
+*/
+var QueueStorage = class extends BaseService {
+	basePath = "/api/v1/queue";
+	/**
+	* List all available queues
+	* @param params Pagination parameters
+	* @returns List of queues
+	*/
+	async list(params) {
+		const queryParams = new URLSearchParams();
+		queryParams.append("page", params.page.toString());
+		queryParams.append("pageSize", params.pageSize.toString());
+		if (params.desc !== void 0) queryParams.append("desc", params.desc ? "1" : "0");
+		return this.request(`${this.basePath}/queues?${queryParams.toString()}`);
+	}
+	/**
+	* Create a new queue
+	* @param data Queue creation parameters
+	* @returns The created queue info
+	*/
+	async create(data) {
+		return this.request(`${this.basePath}`, "POST", data);
+	}
+	/**
+	* Get a queue by name
+	* @param name Name of the queue
+	* @returns Queue information
+	*/
+	async get(name, queueId) {
+		const queryParams = new URLSearchParams();
+		queryParams.append("name", name);
+		queryParams.append("id", queueId || "");
+		return this.request(`${this.basePath}?${queryParams.toString()}`);
+	}
+	/**
+	* Update a queue
+	* @param queueId ID of the queue to update
+	* @param data Queue update parameters
+	*/
+	async update(queueId, data) {
+		return await this.request(`${this.basePath}/${queueId}`, "PUT", data);
+	}
+	/**
+	* Delete a queue
+	* @param queueId ID of the queue to delete
+	* @returns Operation result
+	*/
+	async delete(queueId) {
+		return this.request(`${this.basePath}/${queueId}`, "DELETE");
+	}
+	/**
+	* Push a message to a queue
+	* @param queueId ID of the queue
+	* @param params Message parameters
+	* @returns Push response with message ID
+	*/
+	async push(queueId, params) {
+		return this.request(`${this.basePath}/${queueId}/push`, "POST", params);
+	}
+	/**
+	* Pull messages from a queue
+	* @param queueId ID of the queue
+	* @param limit The maximum number of records to be returned， max 100, min 1
+	* @returns Array of queue messages
+	*/
+	async pull(queueId, limit) {
+		if (limit) {
+			const queryParams = new URLSearchParams();
+			queryParams.append("limit", limit.toString());
+			return this.request(`${this.basePath}/${queueId}/pull?${queryParams.toString()}`);
+		}
+		return this.request(`${this.basePath}/${queueId}/pull`);
+	}
+	/**
+	* Acknowledge a message in a queue
+	* @param queueId ID of the queue
+	* @param msgId ID of the message to acknowledge
+	* @returns Operation result
+	*/
+	async ack(queueId, msgId) {
+		return this.request(`${this.basePath}/${queueId}/ack/${msgId}`, "POST");
+	}
+};
+
+//#endregion
+//#region src/services/storage/http/index.ts
+/**
+* StorageService provides access to all Actor storage services
+*/
+var HttpStorageService = class extends BaseService {
+	/**
+	* Dataset storage service for structured data
+	*/
+	dataset;
+	/**
+	* Key-Value storage service for files and data records
+	*/
+	kv;
+	/**
+	* Object storage service for files and binary data
+	*/
+	object;
+	/**
+	* Queue storage service for task queues
+	*/
+	queue;
+	/**
+	* Create a new StorageService instance
+	* @param apiKey API key for authentication
+	* @param baseUrl Base URL for the API
+	* @param timeout Request timeout in milliseconds
+	*/
+	constructor(apiKey, baseUrl, timeout) {
+		super(apiKey, baseUrl, timeout);
+		this.dataset = new DatasetStorage(apiKey, baseUrl, timeout);
+		this.kv = new KVStorage(apiKey, baseUrl, timeout);
+		this.object = new ObjectStorage(apiKey, baseUrl, timeout);
+		this.queue = new QueueStorage(apiKey, baseUrl, timeout);
+	}
+};
+
+//#endregion
+//#region src/services/memory.ts
+var MemoryService = class {
+	storagePath = "storage";
+	basePath = path.resolve(this.storagePath);
+	getStoragePath(subPath) {
+		return path.join(this.basePath, subPath);
+	}
+	paginateArray(items, page = 1, pageSize = 10) {
+		const total = items.length;
+		const start = (page - 1) * pageSize;
+		const end = Math.min(start + pageSize, total);
+		const pagedItems = items.slice(start, end);
+		return {
+			items: pagedItems,
+			total,
+			page,
+			pageSize,
+			totalPage: Math.ceil(total / pageSize)
+		};
+	}
+	async mkdir(dirPath) {
+		await fs.promises.mkdir(dirPath, { recursive: true });
+	}
+	async writeJsonFile(filePath, data) {
+		await fs.promises.writeFile(filePath, JSON.stringify(data), "utf-8");
+	}
+	async readFile(metaPath) {
+		return fs.promises.readFile(metaPath, "utf-8");
+	}
+	async rm(path$3, options) {
+		return fs.promises.rm(path$3, options);
+	}
+	async rmDir(path$3, options) {
+		return fs.promises.rmdir(path$3, options);
+	}
+	async isNameExists(dirPath, name) {
+		const skipDirs = new Set([
+			"queues_stores",
+			"datasets",
+			"kv_stores",
+			"objects_stores",
+			"metadata.json"
+		]);
+		const entries = await fs.promises.readdir(dirPath, { withFileTypes: true });
+		for (const entry of entries) {
+			if (!entry.isDirectory()) continue;
+			if (skipDirs.has(entry.name)) continue;
+			const metaDataPath = path.join(dirPath, entry.name, "metadata.json");
+			try {
+				const file = await fs.promises.readFile(metaDataPath, "utf-8");
+				const metaData = JSON.parse(file);
+				if (metaData.name === name) return true;
+			} catch {
+				continue;
+			}
+		}
+		return false;
+	}
+};
+
+//#endregion
+//#region src/utils/memory.ts
+const metadataStore = {
+	datasets: {
+		id: "default",
+		name: "default",
+		actorId: "default",
+		runId: "default",
+		stats: {}
+	},
+	kv_stores: {
+		id: "default",
+		name: "default",
+		actorId: "default",
+		runId: "default"
+	},
+	objects_stores: {
+		id: "default",
+		name: "default",
+		description: "default",
+		actorId: "default",
+		runId: "default",
+		size: 0
+	},
+	queues_stores: {
+		id: "default",
+		name: "default",
+		teamId: "default",
+		actorId: "default",
+		runId: "default",
+		description: "default",
+		stats: {}
+	}
+};
+async function createRoot() {
+	const rootDir = "storage";
+	const rootPath = path$1.resolve(rootDir);
+	if (!fs$1.existsSync(rootPath)) await fs$1.promises.mkdir(rootPath);
+}
+async function createDir(dir) {
+	const storagePath = path$1.resolve(`storage/${dir}`);
+	if (!fs$1.existsSync(storagePath)) {
+		await fs$1.promises.mkdir(storagePath, { recursive: true });
+		await fs$1.promises.mkdir(path$1.join(storagePath, "default"));
+		const metadata = metadataStore[dir];
+		await fs$1.promises.writeFile(path$1.join(storagePath, "default", "metadata.json"), JSON.stringify({
+			...metadata,
+			createdAt: new Date().toISOString(),
+			updatedAt: new Date().toISOString()
+		}));
+		if (dir === "kv_stores") await fs$1.promises.writeFile(path$1.join(storagePath, "default", "INPUT.json"), "");
+	}
+}
+
+//#endregion
+//#region src/services/storage/memory/dataset.ts
+/**
+* Dataset storage service implementation (local file system)
+*/
+var LocalDatasetStorage = class extends MemoryService {
+	datasetDir = "datasets";
+	/**
+	* Constructor: ensure dataset directory exists
+	*/
+	constructor() {
+		super();
+		createDir(this.datasetDir);
+	}
+	/**
+	* List all datasets with pagination and optional sorting
+	* @param params Pagination and sorting parameters
+	*/
+	async listDatasets(params) {
+		const dirPath = this.getStoragePath(this.datasetDir);
+		let entries;
+		try {
+			entries = await fs.promises.readdir(dirPath, { withFileTypes: true });
+		} catch {
+			return {
+				items: [],
+				total: 0,
+				page: params.page || 1,
+				pageSize: params.pageSize || 10,
+				totalPage: 0
+			};
+		}
+		const allDatasets = [];
+		for (const entry of entries) {
+			if (!entry.isDirectory()) continue;
+			const name = entry.name;
+			const metaPath = path.join(dirPath, name, "metadata.json");
+			try {
+				const file = await this.readFile(metaPath);
+				const meta = JSON.parse(file);
+				allDatasets.push(meta);
+			} catch {
+				continue;
+			}
+		}
+		if (!params.desc) allDatasets.sort((a, b) => {
+			if (!a.createdAt && !b.createdAt) return 0;
+			if (!a.createdAt) return 1;
+			if (!b.createdAt) return -1;
+			return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+		});
+		return this.paginateArray(allDatasets, params.page, params.pageSize);
+	}
+	/**
+	* Get dataset metadata by datasetId
+	* @param datasetId Dataset unique identifier
+	*/
+	async getDataset(datasetId) {
+		if (!datasetId) throw new Error("datasetId must not be empty");
+		const dirPath = this.getStoragePath(path.join(this.datasetDir, datasetId));
+		const metaPath = path.join(dirPath, "metadata.json");
+		try {
+			const file = await this.readFile(metaPath);
+			return JSON.parse(file);
+		} catch {
+			throw new Error("Dataset not found");
+		}
+	}
+	/**
+	* Create a new dataset with a unique name
+	* @param name Dataset name
+	*/
+	async createDataset(name) {
+		if (!name) throw new Error("name must not be empty");
+		const exist = await this.isNameExists(this.getStoragePath(this.datasetDir), name);
+		if (exist) throw new Error("The name of the dataset already exists");
+		const id = v4();
+		const dirPath = this.getStoragePath(path.join(this.datasetDir, id));
+		await this.mkdir(dirPath);
+		const now = new Date();
+		const meta = {
+			id,
+			name,
+			createdAt: now,
+			updatedAt: now,
+			fields: [],
+			stats: {
+				count: 0,
+				size: 0
+			}
+		};
+		const metaPath = path.join(dirPath, "metadata.json");
+		await this.writeJsonFile(metaPath, meta);
+		return meta;
+	}
+	/**
+	* Update dataset name by datasetId
+	* @param datasetId Dataset unique identifier
+	* @param name New dataset name
+	*/
+	async updateDataset(datasetId, name) {
+		if (!datasetId) throw new Error("datasetId must not be empty");
+		if (!name) throw new Error("name must not be empty");
+		const dirPath = this.getStoragePath(path.join(this.datasetDir, datasetId));
+		const metaPath = path.join(dirPath, "metadata.json");
+		let meta;
+		try {
+			const file = await this.readFile(metaPath);
+			meta = JSON.parse(file);
+		} catch {
+			throw new Error("Dataset not found");
+		}
+		meta.name = name;
+		meta.updatedAt = new Date();
+		await this.writeJsonFile(metaPath, meta);
+		return meta;
+	}
+	/**
+	* Delete a dataset by datasetId
+	* @param datasetId Dataset unique identifier
+	*/
+	async delDataset(datasetId) {
+		if (!datasetId) throw new Error("datasetId must not be empty");
+		const dirPath = this.getStoragePath(path.join(this.datasetDir, datasetId));
+		try {
+			await this.rm(dirPath, {
+				recursive: true,
+				force: true
+			});
+			return {
+				success: true,
+				message: "dataset deleted successfully"
+			};
+		} catch (e) {
+			return {
+				success: false,
+				message: String(e)
+			};
+		}
+	}
+	/**
+	* Add items to a dataset, auto-increment file names, update fields (deduplicated)
+	* @param datasetId Dataset unique identifier
+	* @param items Array of items to add
+	*/
+	async addItems(datasetId, items) {
+		if (!datasetId) throw new Error("datasetId must not be empty");
+		const dirPath = this.getStoragePath(path.join(this.datasetDir, datasetId));
+		const metaPath = path.join(dirPath, "metadata.json");
+		let meta;
+		try {
+			const file = await this.readFile(metaPath);
+			meta = JSON.parse(file);
+		} catch {
+			return {
+				success: false,
+				message: "Dataset not found"
+			};
+		}
+		const files = await fs.promises.readdir(dirPath);
+		let maxIndex = 0;
+		files.forEach((f) => {
+			if (/^\d{8}\.json$/.test(f)) {
+				const idx = parseInt(f.slice(0, 8), 10);
+				if (idx > maxIndex) maxIndex = idx;
+			}
+		});
+		const fieldsSet = new Set(meta.fields || []);
+		for (let i = 0; i < items.length; i++) {
+			const item = items[i];
+			Object.keys(item).forEach((key) => fieldsSet.add(key));
+			const index = maxIndex + i + 1;
+			const fileName = `${index.toString().padStart(8, "0")}.json`;
+			const filePath = path.join(dirPath, fileName);
+			await this.writeJsonFile(filePath, item);
+		}
+		meta.fields = Array.from(fieldsSet);
+		meta.updatedAt = new Date();
+		meta.stats = meta.stats || {
+			count: 0,
+			size: 0
+		};
+		meta.stats.count += items.length;
+		await this.writeJsonFile(metaPath, meta);
+		return {
+			success: true,
+			message: "Items added"
+		};
+	}
+	/**
+	* Get items from a dataset with pagination
+	* @param datasetId Dataset unique identifier
+	* @param params Pagination parameters
+	*/
+	async getItems(datasetId, params) {
+		if (!datasetId) throw new Error("datasetId must not be empty");
+		const dirPath = this.getStoragePath(path.join(this.datasetDir, datasetId));
+		let files;
+		try {
+			files = await fs.promises.readdir(dirPath);
+		} catch {
+			return {
+				items: [],
+				total: 0,
+				page: params.page || 1,
+				pageSize: params.pageSize || 10,
+				totalPage: 0
+			};
+		}
+		files = files.filter((f) => /^\d{8}\.json$/.test(f));
+		files.sort();
+		const items = [];
+		for (const file of files) {
+			const filePath = path.join(dirPath, file);
+			const data = await this.readFile(filePath);
+			items.push(JSON.parse(data));
+		}
+		return this.paginateArray(items, params.page, params.pageSize);
+	}
+};
+
+//#endregion
+//#region src/services/storage/memory/kv.ts
+/**
+* Key-Value storage service implementation (local file system)
+*/
+var LocalKVStorage = class extends MemoryService {
+	kvDir = "kv_stores";
+	/**
+	* Constructor: ensure kv directory exists
+	*/
+	constructor() {
+		super();
+		createDir(this.kvDir);
+	}
+	/**
+	* List all available namespaces
+	* @param params Pagination parameters
+	*/
+	async listNamespaces(params) {
+		const dirPath = this.getStoragePath(this.kvDir);
+		let entries;
+		try {
+			entries = await fs.promises.readdir(dirPath, { withFileTypes: true });
+		} catch {
+			return {
+				items: [],
+				total: 0,
+				page: params.page || 1,
+				pageSize: params.pageSize || 10,
+				totalPage: 0
+			};
+		}
+		const allNamespaces = [];
+		for (const entry of entries) {
+			if (!entry.isDirectory()) continue;
+			const nsPath = path.join(dirPath, entry.name);
+			const metaPath = path.join(nsPath, "metadata.json");
+			try {
+				const file = await this.readFile(metaPath);
+				const meta = JSON.parse(file);
+				allNamespaces.push({
+					id: meta.id,
+					name: meta.name,
+					createdAt: meta.createdAt,
+					updatedAt: meta.updatedAt,
+					actorId: meta.actorId || "",
+					runId: meta.runId || "",
+					stats: {
+						count: 0,
+						size: 0
+					}
+				});
+			} catch {
+				continue;
+			}
+		}
+		if (!params.desc) allNamespaces.sort((a, b) => {
+			if (!a.createdAt && !b.createdAt) return 0;
+			if (!a.createdAt) return 1;
+			if (!b.createdAt) return -1;
+			return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+		});
+		const paged = this.paginateArray(allNamespaces, params.page, params.pageSize);
+		for (const ns of paged.items) {
+			const nsPath = path.join(dirPath, ns.id);
+			try {
+				const files = await fs.promises.readdir(nsPath);
+				let count = 0;
+				let size = 0;
+				for (const f of files) {
+					if (f === "metadata.json" || !f.endsWith(".json")) continue;
+					count++;
+					const keyInfo = await this.readFile(path.join(nsPath, f));
+					size += JSON.parse(keyInfo).size;
+				}
+				ns.stats = {
+					count,
+					size
+				};
+			} catch {}
+		}
+		return paged;
+	}
+	/**
+	* Create a new namespace
+	* @param name Name of the namespace
+	*/
+	async createNamespace(name) {
+		if (!name) throw new Error("Namespace name must not be empty");
+		const exist = await this.isNameExists(this.getStoragePath(this.kvDir), name);
+		if (exist) throw new Error("The name of the namespace already exists");
+		const id = v4();
+		const dirPath = this.getStoragePath(path.join(this.kvDir, id));
+		await this.mkdir(dirPath);
+		const now = new Date();
+		const meta = {
+			id,
+			name,
+			createdAt: now,
+			updatedAt: now,
+			actorId: "",
+			runId: ""
+		};
+		const metaPath = path.join(dirPath, "metadata.json");
+		await this.writeJsonFile(metaPath, meta);
+		return {
+			...meta,
+			stats: {
+				size: 0,
+				count: 0
+			}
+		};
+	}
+	/**
+	* Get a namespace by ID
+	* @param namespaceId ID of the namespace
+	*/
+	async getNamespace(namespaceId) {
+		if (!namespaceId) throw new Error("namespaceId must not be empty");
+		const dirPath = this.getStoragePath(path.join(this.kvDir, namespaceId));
+		const metaPath = path.join(dirPath, "metadata.json");
+		try {
+			const file = await this.readFile(metaPath);
+			const meta = JSON.parse(file);
+			const files = await fs.promises.readdir(dirPath);
+			let count = 0;
+			let size = 0;
+			for (const f of files) {
+				if (f === "metadata.json" || !f.endsWith(".json")) continue;
+				count++;
+				const keyInfo = await this.readFile(path.join(dirPath, f));
+				size += JSON.parse(keyInfo).size;
+			}
+			return {
+				id: meta.id,
+				name: meta.name,
+				createdAt: meta.createdAt,
+				updatedAt: meta.updatedAt,
+				actorId: meta.actorId || "",
+				runId: meta.runId || "",
+				stats: {
+					count,
+					size
+				}
+			};
+		} catch {
+			throw new Error("Namespace not found");
+		}
+	}
+	/**
+	* Delete a namespace
+	* @param namespaceId ID of the namespace to delete
+	*/
+	async delNamespace(namespaceId) {
+		if (!namespaceId) return { success: false };
+		const dirPath = this.getStoragePath(path.join(this.kvDir, namespaceId));
+		try {
+			await this.rm(dirPath, {
+				recursive: true,
+				force: true
+			});
+			return { success: true };
+		} catch {
+			return { success: false };
+		}
+	}
+	/**
+	* Rename a namespace
+	* @param namespaceId ID of the namespace to rename
+	* @param name New name for the namespace
+	*/
+	async renameNamespace(namespaceId, name) {
+		if (!namespaceId || !name) return { success: false };
+		const dirPath = this.getStoragePath(path.join(this.kvDir, namespaceId));
+		const metaPath = path.join(dirPath, "metadata.json");
+		let meta;
+		try {
+			const file = await this.readFile(metaPath);
+			meta = JSON.parse(file);
+		} catch {
+			return { success: false };
+		}
+		meta.name = name;
+		meta.updatedAt = new Date();
+		await this.writeJsonFile(metaPath, meta);
+		return { success: true };
+	}
+	/**
+	* List keys in a namespace
+	* @param namespaceId ID of the namespace to list keys from
+	* @param params Pagination parameters
+	*/
+	async listKeys(namespaceId, params) {
+		if (!namespaceId) throw new Error("namespaceId must not be empty");
+		const dirPath = this.getStoragePath(path.join(this.kvDir, namespaceId));
+		let files;
+		try {
+			files = await fs.promises.readdir(dirPath);
+		} catch {
+			return {
+				items: [],
+				total: 0,
+				page: params.page || 1,
+				pageSize: params.pageSize || 10,
+				totalPage: 0
+			};
+		}
+		files = files.filter((f) => f.endsWith(".json") && f !== "metadata.json");
+		files.sort();
+		const items = [];
+		for (const file of files) {
+			const filePath = path.join(dirPath, file);
+			const data = await this.readFile(filePath);
+			const kv = JSON.parse(data);
+			if (kv.expireAt && new Date(kv.expireAt) < new Date()) continue;
+			items.push({
+				key: kv.key,
+				size: kv.size
+			});
+		}
+		return this.paginateArray(items, params.page, params.pageSize);
+	}
+	/**
+	* Delete a value from a namespace
+	* @param namespaceId ID of the namespace
+	* @param key Key to delete
+	*/
+	async delValue(namespaceId, key) {
+		if (!namespaceId) throw new Error("namespaceId must not be empty");
+		const file = `${key}.json`;
+		if (file === "metadata.json") return { success: false };
+		const filePath = this.getStoragePath(path.join(this.kvDir, namespaceId, file));
+		try {
+			await this.rm(filePath);
+			return { success: true };
+		} catch {
+			return { success: false };
+		}
+	}
+	/**
+	* Bulk set multiple key-value pairs in a namespace
+	* @param namespaceId ID of the namespace
+	* @param data Array of key-value data
+	*/
+	async bulkSetValue(namespaceId, data) {
+		if (!namespaceId) throw new Error("namespaceId must not be empty");
+		if (!Array.isArray(data) || data.length === 0) return {
+			successfulKeyCount: 0,
+			unsuccessfulKeys: []
+		};
+		let successfulKeyCount = 0;
+		const unsuccessfulKeys = [];
+		for (const item of data) {
+			const res = await this.setValue(namespaceId, item);
+			if (res.success) successfulKeyCount++;
+			else unsuccessfulKeys.push(item.key);
+		}
+		return {
+			successfulKeyCount,
+			unsuccessfulKeys
+		};
+	}
+	/**
+	* Bulk delete multiple keys from a namespace
+	* @param namespaceId ID of the namespace
+	* @param keys Array of keys to delete
+	*/
+	async bulkDelValue(namespaceId, keys) {
+		if (!namespaceId) throw new Error("namespaceId must not be empty");
+		if (!Array.isArray(keys) || keys.length === 0) return { success: false };
+		for (const key of keys) await this.delValue(namespaceId, key);
+		return { success: true };
+	}
+	/**
+	* Set a key-value pair in a namespace
+	* @param namespaceId ID of the namespace
+	* @param data Key-value data
+	*/
+	async setValue(namespaceId, data) {
+		if (!namespaceId) throw new Error("namespaceId must not be empty");
+		if (!data.key || !data.value) return { success: false };
+		if (data.key === "metadata") return { success: false };
+		if (data.key === "INPUT" && namespaceId === "default") return { success: false };
+		const filePath = this.getStoragePath(path.join(this.kvDir, namespaceId, `${data.key}.json`));
+		const now = new Date();
+		const expiration = data.expiration ?? 0;
+		const expireAt = new Date(now.getTime() + expiration * 1e3);
+		const kv = {
+			namespaceId,
+			key: data.key,
+			value: data.value,
+			expiration,
+			expireAt,
+			size: Buffer.byteLength(data.value)
+		};
+		await this.writeJsonFile(filePath, kv);
+		return { success: true };
+	}
+	/**
+	* Get a value by key from a namespace
+	* @param namespaceId ID of the namespace
+	* @param key Key to retrieve
+	*/
+	async getValue(namespaceId, key) {
+		if (!key) throw new Error("key must not be empty");
+		const filePath = this.getStoragePath(path.join(this.kvDir, namespaceId, `${key}.json`));
+		try {
+			const data = await this.readFile(filePath);
+			if (namespaceId === "default" && key === "INPUT") return data;
+			const kv = JSON.parse(data);
+			if (kv.expireAt && new Date(kv.expireAt) < new Date()) return "";
+			return kv.value;
+		} catch {
+			return "";
+		}
+	}
+};
+
+//#endregion
+//#region src/services/storage/memory/queue.ts
+/**
+* Queue storage service implementation (local file system)
+*/
+var LocalQueueStorage = class extends MemoryService {
+	queueDir = "queues_stores";
+	/**
+	* Constructor: ensure queue directory exists
+	*/
+	constructor() {
+		super();
+		createDir(this.queueDir);
+	}
+	/**
+	* List all available queues with pagination and optional sorting
+	* @param params Pagination parameters
+	*/
+	async list(params) {
+		const dirPath = this.getStoragePath(this.queueDir);
+		let entries;
+		try {
+			entries = await fs.promises.readdir(dirPath, { withFileTypes: true });
+		} catch {
+			return {
+				items: [],
+				total: 0,
+				page: params.page || 1,
+				pageSize: params.pageSize || 10,
+				totalPage: 0
+			};
+		}
+		const allQueues = [];
+		for (const entry of entries) {
+			if (!entry.isDirectory()) continue;
+			const metaPath = path.join(dirPath, entry.name, "metadata.json");
+			try {
+				const file = await this.readFile(metaPath);
+				const meta = JSON.parse(file);
+				allQueues.push(meta);
+			} catch {
+				continue;
+			}
+		}
+		if (!params.desc) allQueues.sort((a, b) => {
+			if (!a.createdAt && !b.createdAt) return 0;
+			if (!a.createdAt) return 1;
+			if (!b.createdAt) return -1;
+			return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+		});
+		return this.paginateArray(allQueues, params.page, params.pageSize);
+	}
+	/**
+	* Create a new queue
+	* @param data Queue creation parameters
+	*/
+	async create(data) {
+		if (!data.name) throw new Error("Queue name must not be empty");
+		const exist = await this.isNameExists(this.getStoragePath(this.queueDir), data.name);
+		if (exist) throw new Error("The name of the queue already exists");
+		const id = v4();
+		const dirPath = this.getStoragePath(path.join(this.queueDir, id));
+		await this.mkdir(dirPath);
+		const now = new Date();
+		const meta = {
+			id,
+			name: data.name,
+			description: data.description || "",
+			createdAt: now,
+			updatedAt: now,
+			actorId: data.actorId || "",
+			runId: data.runId || "",
+			stats: {
+				failed: 0,
+				pending: 0,
+				running: 0,
+				success: 0
+			}
+		};
+		const metaPath = path.join(dirPath, "metadata.json");
+		await this.writeJsonFile(metaPath, meta);
+		return {
+			id,
+			name: data.name
+		};
+	}
+	/**
+	* Get a queue by name
+	* @param name Name of the queue
+	*/
+	async get(name) {
+		if (!name) throw new Error("Queue name must not be empty");
+		const dirPath = this.getStoragePath(this.queueDir);
+		let entries;
+		try {
+			entries = await fs.promises.readdir(dirPath, { withFileTypes: true });
+		} catch {
+			throw new Error("Queue not found");
+		}
+		for (const entry of entries) {
+			if (!entry.isDirectory()) continue;
+			const metaPath = path.join(dirPath, entry.name, "metadata.json");
+			try {
+				const file = await this.readFile(metaPath);
+				const meta = JSON.parse(file);
+				if (meta.name === name) return meta;
+			} catch {
+				continue;
+			}
+		}
+		throw new Error("Queue not found");
+	}
+	/**
+	* Update a queue
+	* @param queueId ID of the queue to update
+	* @param data Queue update parameters
+	*/
+	async update(queueId, data) {
+		if (!queueId) throw new Error("Queue id must not be empty");
+		const dirPath = this.getStoragePath(path.join(this.queueDir, queueId));
+		const metaPath = path.join(dirPath, "metadata.json");
+		let meta;
+		try {
+			const file = await this.readFile(metaPath);
+			meta = JSON.parse(file);
+		} catch {
+			throw new Error("Queue not found");
+		}
+		if (data.name) meta.name = data.name;
+		if (data.description) meta.description = data.description;
+		meta.updatedAt = new Date();
+		await this.writeJsonFile(metaPath, meta);
+		return null;
+	}
+	/**
+	* Delete a queue
+	* @param queueId ID of the queue to delete
+	*/
+	async delete(queueId) {
+		if (!queueId) throw new Error("Queue id must not be empty");
+		const dirPath = this.getStoragePath(path.join(this.queueDir, queueId));
+		try {
+			await this.rm(dirPath, {
+				recursive: true,
+				force: true
+			});
+			return { success: true };
+		} catch {
+			return { success: false };
+		}
+	}
+	/**
+	* Push a message to a queue
+	* @param queueId ID of the queue
+	* @param params Message parameters
+	*/
+	async push(queueId, params) {
+		if (!queueId) throw new Error("Queue id must not be empty");
+		const dirPath = this.getStoragePath(path.join(this.queueDir, queueId));
+		const id = v4();
+		const now = new Date();
+		const retry$1 = params.retry < 3 ? 3 : params.retry;
+		const timeout = params.timeout < 60 ? 60 : params.timeout;
+		const deadline = params.deadline || Math.floor(Date.now() / 1e3) + 300;
+		if (deadline < Math.floor(Date.now() / 1e3) + 300) throw new Error("Deadline must be after now + 300s");
+		const msg = {
+			id,
+			queueId,
+			name: params.name || "",
+			payload: params.payload,
+			deadline,
+			retry: retry$1,
+			timeout,
+			retried: 0,
+			successAt: 0,
+			failedAt: 0,
+			updateTime: now,
+			reenterTime: ""
+		};
+		const msgPath = path.join(dirPath, `${id}.json`);
+		await this.writeJsonFile(msgPath, msg);
+		return { msgId: id };
+	}
+	/**
+	* Pull messages from a queue
+	* @param queueId ID of the queue
+	* @param limit Maximum number of messages to pull
+	*/
+	async pull(queueId, limit = 1) {
+		if (!queueId) throw new Error("Queue id must not be empty");
+		const dirPath = this.getStoragePath(path.join(this.queueDir, queueId));
+		let files;
+		try {
+			files = await fs.promises.readdir(dirPath);
+		} catch {
+			return [];
+		}
+		files = files.filter((f) => f.endsWith(".json") && f !== "metadata.json");
+		const now = new Date();
+		const msgs = [];
+		for (const file of files) {
+			const filePath = path.join(dirPath, file);
+			let msg;
+			try {
+				const data = await this.readFile(filePath);
+				msg = JSON.parse(data);
+			} catch {
+				continue;
+			}
+			if (msg.successAt > 0 || msg.failedAt > 0 || msg.deadline < Math.floor(now.getTime() / 1e3) || msg.reenterTime && new Date(msg.reenterTime) > now || msg.retried >= msg.retry) {
+				await this.rm(filePath);
+				continue;
+			}
+			msg.reenterTime = new Date(now.getTime() + (msg.timeout || 0) * 1e3);
+			msg.retried = (msg.retried || 0) + 1;
+			await this.writeJsonFile(filePath, msg);
+			msgs.push(msg);
+		}
+		if (msgs.length > 0 && "updateTime" in msgs[0]) msgs.sort((a, b) => new Date(a.updateTime).getTime() - new Date(b.updateTime).getTime());
+		return msgs.slice(0, limit);
+	}
+	/**
+	* Acknowledge a message in a queue
+	* @param queueId ID of the queue
+	* @param msgId ID of the message to acknowledge
+	*/
+	async ack(queueId, msgId) {
+		if (!queueId) throw new Error("Queue id must not be empty");
+		try {
+			const filePath = this.getStoragePath(path.join(this.queueDir, queueId, `${msgId}.json`));
+			const msg = JSON.parse(await this.readFile(filePath));
+			if (msg.reenterTime && new Date(msg.reenterTime).getTime() > Date.now()) {
+				await this.rm(filePath);
+				return { success: true };
+			}
+			return { success: false };
+		} catch {
+			return { success: false };
+		}
+	}
+};
+
+//#endregion
+//#region src/services/storage/memory/object.ts
+/**
+* Object storage service implementation (local file system)
+*/
+var LocalObjectStorage = class extends MemoryService {
+	objectDir = "objects_stores";
+	constructor() {
+		super();
+		createDir(this.objectDir);
+	}
+	listBuckets(params) {
+		throw new Error("local storage unimplemented");
+	}
+	createBucket(data) {
+		throw new Error("local storage unimplemented");
+	}
+	deleteBucket(bucketId) {
+		throw new Error("local storage unimplemented");
+	}
+	getBucket(bucketId) {
+		throw new Error("local storage unimplemented");
+	}
+	list(bucketId, params) {
+		throw new Error("local storage unimplemented");
+	}
+	get(bucketId, objectId) {
+		throw new Error("local storage unimplemented");
+	}
+	put(bucketId, data) {
+		throw new Error("local storage unimplemented");
+	}
+	delete(bucketId, objectId) {
+		throw new Error("local storage unimplemented");
+	}
+};
+
+//#endregion
+//#region src/services/storage/memory/index.ts
+/**
+* StorageService provides access to all Actor storage services
+*/
+var LocalStorageService = class {
+	/**
+	* Dataset storage service for structured data
+	*/
+	dataset;
+	/**
+	* KV storage service for structured data
+	*/
+	kv;
+	/**
+	* Queue storage service for structured data
+	*/
+	queue;
+	/**
+	* Object storage service for structured data
+	*/
+	object;
+	constructor() {
+		this.dataset = new LocalDatasetStorage();
+		this.kv = new LocalKVStorage();
+		this.queue = new LocalQueueStorage();
+		this.object = new LocalObjectStorage();
+	}
+};
+
+//#endregion
+//#region src/services/crawl/base.ts
+var ScrapingCrawlBaseService = class extends BaseService {
+	constructor(apiKey, baseUrl, timeout) {
+		super(apiKey, baseUrl, timeout, (res) => res);
+	}
+	/**
+	* Monitor the status of a job with polling.
+	* @param id Job ID
+	* @param pollInterval Polling interval in milliseconds
+	* @returns Job info
+	*/
+	async monitorJobStatus(id, pollInterval) {
+		try {
+			while (true) {
+				let statusResponse = await this.request(`/api/v1/crawler/crawl/${id}`, "GET");
+				if (statusResponse.status === "completed") if ("data" in statusResponse) {
+					let data = statusResponse.data;
+					while (typeof statusResponse === "object" && "next" in statusResponse) {
+						if (data.length === 0) break;
+						statusResponse = await this.request(statusResponse.next, "GET");
+						data = data.concat(statusResponse.data);
+					}
+					statusResponse.data = data;
+					return statusResponse;
+				} else throw new ScrapelessError("Crawl job completed but no data was returned", 500);
+				else if ([
+					"active",
+					"paused",
+					"pending",
+					"queued",
+					"waiting",
+					"scraping"
+				].includes(statusResponse.status)) {
+					pollInterval = Math.max(pollInterval, 2);
+					await new Promise((resolve) => setTimeout(resolve, pollInterval * 1e3));
+				} else throw new ScrapelessError(`Crawl job failed or was stopped. Status: ${statusResponse.status}`, 500);
+			}
+		} catch (error) {
+			throw new ScrapelessError(error.message, error.statusCode || 500);
+		}
+	}
+};
+
+//#endregion
+//#region src/services/crawl/crawl.ts
+var CrawlService = class extends ScrapingCrawlBaseService {
+	constructor(apiKey, baseUrl, timeout) {
+		super(apiKey, baseUrl, timeout);
+	}
+	/**
+	* Crawl a single URL and follow links according to crawl parameters.
+	* @param url Target URL to crawl
+	* @param params Optional crawl parameters
+	* @param pollInterval Optional polling interval for job status (s)
+	* @returns Crawl result
+	*/
+	async crawlUrl(url, params, pollInterval = 2) {
+		const jsonData = {
+			url,
+			...params
+		};
+		try {
+			const response = await this.request("/api/v1/crawler/crawl", "POST", jsonData);
+			if (response.id) return this.monitorJobStatus(response.id, pollInterval);
+			else throw new ScrapelessError("Failed to start a crawl job", 400);
+		} catch (error) {
+			throw new ScrapelessError(error.message, error.statusCode || 500);
+		}
+	}
+	/**
+	* Start an asynchronous crawl job for a single URL.
+	* @param url Target URL to crawl
+	* @param params Optional crawl parameters
+	* @returns Job info
+	*/
+	async asyncCrawlUrl(url, params) {
+		const jsonData = {
+			url,
+			...params
+		};
+		try {
+			const response = await this.request("/api/v1/crawler/crawl", "POST", jsonData);
+			return response;
+		} catch (error) {
+			throw new ScrapelessError(error.message, error.statusCode || 500);
+		}
+	}
+	/**
+	* Check the status of a crawl job.
+	* @param id Job ID
+	* @returns Crawl job status and data
+	*/
+	async checkCrawlStatus(id) {
+		if (!id) throw new ScrapelessError("No crawl ID provided", 400);
+		const url = `/api/v1/crawler/crawl/${id}`;
+		try {
+			const response = await this.request(url, "GET");
+			let allData = response.data;
+			if (response.status === "completed") {
+				let statusData = response;
+				if ("data" in statusData) {
+					let data = statusData.data;
+					while (typeof statusData === "object" && "next" in statusData) {
+						if (data.length === 0) break;
+						statusData = await this.request(statusData.next, "GET");
+						data = data.concat(statusData.data);
+					}
+					allData = data;
+				}
+			}
+			let resp = {
+				success: response.success,
+				status: response.status,
+				total: response.total,
+				completed: response.completed,
+				data: allData
+			};
+			if (!response.success && response.error) resp = {
+				...resp,
+				success: false,
+				error: response.error
+			};
+			return resp;
+		} catch (error) {
+			throw new ScrapelessError(error.message, error.statusCode || 500);
+		}
+	}
+	/**
+	* Get crawl errors for a specific job.
+	* @param id Job ID
+	* @returns List of crawl errors
+	*/
+	async checkCrawlErrors(id) {
+		try {
+			const response = await this.request(`/api/v1/crawler/crawl/${id}/errors`, "DELETE");
+			return response;
+		} catch (error) {
+			throw new ScrapelessError(error.message, error.statusCode || 500);
+		}
+	}
+	/**
+	* Cancel an ongoing crawl job.
+	* @param id Job ID
+	* @returns Operation result
+	*/
+	async cancelCrawl(id) {
+		try {
+			const response = await this.request(`/api/v1/crawler/crawl/${id}`, "DELETE");
+			return response;
+		} catch (error) {
+			throw new ScrapelessError(error.message, error.statusCode || 500);
+		}
+	}
+};
+
+//#endregion
+//#region src/services/crawl/scrape.ts
+var ScrapeService = class extends ScrapingCrawlBaseService {
+	constructor(apiKey, baseUrl, timeout) {
+		super(apiKey, baseUrl, timeout);
+	}
+	/**
+	* Scrape a single URL
+	* @param url Target URL to scrape
+	* @param params Optional scraping parameters
+	* * @param pollInterval Optional polling interval for job status (s)
+	* @returns Scraped data result
+	*/
+	async scrapeUrl(url, params, pollInterval = 2) {
+		const jsonData = {
+			url,
+			...params
+		};
+		try {
+			const response = await this.request("/api/v1/crawler/scrape", "POST", jsonData, {});
+			if (!response.id) throw new ScrapelessError("Failed to start a scrape job", 400);
+			while (true) {
+				const statusResponse = await this.checkScrapeStatus(response.id);
+				if (statusResponse.status !== "scraping") return statusResponse;
+				pollInterval = Math.max(pollInterval, 2);
+				await new Promise((resolve) => setTimeout(resolve, pollInterval * 1e3));
+			}
+		} catch (error) {
+			throw new ScrapelessError(error.message, error.statusCode || 500);
+		}
+	}
+	/**
+	* Scrape a single URL
+	* @param url Target URL to scrape
+	* @param params Optional scraping parameters
+	* @returns Job info
+	*/
+	async asyncScrapeUrl(url, params) {
+		const jsonData = {
+			url,
+			...params
+		};
+		try {
+			const response = await this.request("/api/v1/crawler/scrape", "POST", jsonData, {});
+			return response;
+		} catch (err) {
+			throw new ScrapelessError(err.message, err.statusCode || 500);
+		}
+	}
+	/**
+	* Check the status of a crawl job.
+	* @param id Job ID
+	* @returns Scraped data result
+	*/
+	async checkScrapeStatus(id) {
+		if (!id) throw new ScrapelessError("No scrape ID provided", 400);
+		const url = `/api/v1/crawler/scrape/${id}`;
+		try {
+			const response = await this.request(url, "GET");
+			return response;
+		} catch (error) {
+			throw new ScrapelessError(error.message, error.statusCode || 500);
+		}
+	}
+	/**
+	* Batch scrape multiple URLs synchronously.
+	* @param urls Array of URLs to scrape
+	* @param params Optional scraping parameters
+	* @param pollInterval Optional polling interval for job status (ms)
+	* @param ignoreInvalidURLs Whether to skip invalid URLs
+	* @returns Batch scrape result
+	*/
+	async batchScrapeUrls(urls, params, pollInterval = 2, ignoreInvalidURLs) {
+		const jsonData = {
+			urls,
+			ignoreInvalidURLs,
+			...params
+		};
+		try {
+			const response = await this.request("/api/v1/crawler/scrape/batch", "POST", jsonData);
+			if (!response.id) throw new ScrapelessError("Failed to start a batch scrape job", 400);
+			while (true) {
+				const statusResponse = await this.checkBatchScrapeStatus(response.id);
+				if (statusResponse.status !== "scraping") return statusResponse;
+				pollInterval = Math.max(pollInterval, 2);
+				await new Promise((resolve) => setTimeout(resolve, pollInterval * 1e3));
+			}
+		} catch (error) {
+			throw new ScrapelessError(error.message, error.statusCode || 500);
+		}
+	}
+	/**
+	* Batch scrape multiple URLs asynchronously (fire-and-forget).
+	* @param urls Array of URLs to scrape
+	* @param params Optional scraping parameters
+	* @param ignoreInvalidURLs Whether to skip invalid URLs
+	* @returns Job info
+	*/
+	async asyncBatchScrapeUrls(urls, params, ignoreInvalidURLs) {
+		const jsonData = {
+			urls,
+			ignoreInvalidURLs,
+			...params
+		};
+		try {
+			const response = await this.request("/api/v1/crawler/scrape/batch", "POST", jsonData);
+			return response;
+		} catch (error) {
+			throw new ScrapelessError(error.message, error.statusCode || 500);
+		}
+	}
+	/**
+	* Check the status of a batch crawl job.
+	* @param id Job ID
+	* @returns Scraped data result
+	*/
+	async checkBatchScrapeStatus(id) {
+		if (!id) throw new ScrapelessError("No scrape ID provided", 400);
+		const url = `/api/v1/crawler/scrape/batch/${id}`;
+		try {
+			const response = await this.request(url, "GET");
+			return response;
+		} catch (error) {
+			throw new ScrapelessError(error.message, error.statusCode || 500);
+		}
+	}
+};
+
+//#endregion
+//#region src/services/crawl/index.ts
+var ScrapingCrawlService = class {
+	scrape;
+	crawl;
+	/**
+	* Create a new StorageService instance
+	* @param apiKey API key for authentication
+	* @param baseUrl Base URL for the API
+	* @param timeout Request timeout in milliseconds
+	*/
+	constructor(apiKey, baseUrl, timeout) {
+		this.scrape = new ScrapeService(apiKey, baseUrl, timeout);
+		this.crawl = new CrawlService(apiKey, baseUrl, timeout);
+	}
+};
+
+//#endregion
+//#region src/client.ts
+var ScrapelessError = class extends Error {
+	constructor(message, statusCode) {
+		super(`[Scrapeless]: ${message}`);
+		this.statusCode = statusCode;
+		this.name = "ScrapelessError";
+	}
+};
+var ScrapelessClient = class {
+	browser;
+	scraping;
+	deepserp;
+	universal;
+	proxies;
+	actor;
+	storage;
+	scrapingCrawl;
+	constructor(config = {}) {
+		const apiKey = config.apiKey || getEnv("SCRAPELESS_API_KEY");
+		const timeout = config.timeout || 3e4;
+		const baseApiURL = config.baseApiUrl || getEnvWithDefault("SCRAPELESS_BASE_API_URL", "https://api.scrapeless.com");
+		const actorURL = config.actorApiUrl || getEnvWithDefault("SCRAPELESS_ACTOR_API_URL", "https://actor.scrapeless.com");
+		const storageURL = config.storageApiUrl || getEnvWithDefault("SCRAPELESS_STORAGE_API_URL", "https://storage.scrapeless.com");
+		const browserURL = config.browserApiUrl || getEnvWithDefault("SCRAPELESS_BROWSER_API_URL", "https://browser.scrapeless.com");
+		const scrapingCrawlURL = config.scrapingCrawlApiUrl || getEnvWithDefault("SCRAPELESS_CRAWL_API_URL", "https://api.scrapeless.com");
+		const isOnline = getEnvWithDefault("SCRAPELESS_IS_ONLINE", "false");
+		if (!apiKey) throw new ScrapelessError("API key is required - either pass it in config or set SCRAPELESS_API_KEY environment variable");
+		if (isOnline === "false") {
+			createRoot();
+			this.storage = new LocalStorageService();
+		} else this.storage = new HttpStorageService(apiKey, storageURL, timeout);
+		this.actor = new ActorService(apiKey, actorURL, timeout);
+		this.browser = new BrowserService(apiKey, browserURL, timeout);
+		this.scraping = new ScrapingService(apiKey, baseApiURL, timeout);
+		this.deepserp = new DeepSerpService(apiKey, baseApiURL, timeout);
+		this.universal = new UniversalService(apiKey, baseApiURL, timeout);
+		this.proxies = new ProxiesService(apiKey, baseApiURL, timeout);
+		this.scrapingCrawl = new ScrapingCrawlService(apiKey, scrapingCrawlURL, config.timeout || 0);
+	}
+};
+
+//#endregion
+//#region src/scraping-browser/base.ts
+const createLogger = (prefix) => log.withPrefix(prefix);
+/**
+* Base browser service configuration
+*/
+var BaseBrowser = class {
+	browserService;
+	/**
+	* Base constructor for browser implementations
+	*/
+	constructor() {}
+	/**
+	* Initialize browser service with Scrapeless configuration
+	* @param config Optional Scrapeless configuration
+	*/
+	initBrowserService(config) {
+		const apiKey = config?.apiKey || getEnv("SCRAPELESS_API_KEY");
+		const browserURL = config?.baseApiUrl || getEnvWithDefault("SCRAPELESS_BROWSER_API_URL", "https://browser.scrapeless.com");
+		this.browserService = new BrowserService(apiKey, browserURL, config?.timeout);
+	}
+};
+
+//#endregion
+//#region src/scraping-browser/puppeteer.ts
+const logger$1 = createLogger("Puppeteer");
+/**
+* Create a Scrapeless-enhanced CDP session with custom automation methods
+*
+* This function can be used independently to wrap any CDP session with Scrapeless custom methods.
+* It uses the Proxy pattern to seamlessly extend the original CDP session functionality.
+*
+* @example
+* ```typescript
+* import { createPuppeteerCDPSession } from '@scrapeless-ai/sdk';
+*
+* // With regular Puppeteer
+* const page = await browser.newPage();
+* const scrapelessCDP = createPuppeteerCDPSession(page);
+*
+* // Now you can use enhanced methods
+* await scrapelessCDP.realFill('#email', 'user@example.com');
+* await scrapelessCDP.realClick('#submit');
+* const captchaResult = await scrapelessCDP.solveCaptcha({ timeout: 30000 });
+* ```
+*
+* @param page - Page instance for selector operations (waitForSelector, etc.)
+* @returns Enhanced CDP session with custom Scrapeless methods
+*/
+async function createPuppeteerCDPSession(page) {
+	const cdpSession = await page.createCDPSession();
+	const customMethods = {
+		liveURL: async () => {
+			try {
+				const { error, liveURL } = await cdpSession.send("Agent.liveURL");
+				return {
+					error: error || null,
+					liveURL: liveURL || null
+				};
+			} catch (error) {
+				logger$1.error("Error in liveURL", { error });
+				return {
+					error: error instanceof Error ? error.message : String(error),
+					liveURL: null
+				};
+			}
+		},
+		realClick: async (selector) => {
+			try {
+				await page.waitForSelector(selector);
+				await cdpSession.send("Agent.click", { selector });
+				logger$1.debug("Successfully clicked element", { selector });
+			} catch (error) {
+				logger$1.error("Error in realClick", {
+					selector,
+					error
+				});
+				throw new Error(`Failed to click element "${selector}": ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		realFill: async (selector, text) => {
+			try {
+				await page.waitForSelector(selector);
+				await cdpSession.send("Agent.type", {
+					selector,
+					content: text
+				});
+				logger$1.debug("Successfully filled element", {
+					selector,
+					textLength: text.length
+				});
+			} catch (error) {
+				logger$1.error("Error in realFill", {
+					selector,
+					error
+				});
+				throw new Error(`Failed to type text into "${selector}": ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		setAutoSolve: async (options) => {
+			try {
+				await cdpSession.send("Captcha.setAutoSolve", {
+					autoSolve: options.autoSolve ?? true,
+					options: JSON.stringify(options.options)
+				});
+				logger$1.debug("Auto-solve configured", { options });
+			} catch (error) {
+				logger$1.error("Error in setAutoSolve", {
+					options,
+					error
+				});
+				throw new Error(`Failed to set auto solve: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		disableCaptchaAutoSolve: async () => {
+			try {
+				await cdpSession.send("Captcha.setAutoSolve", { autoSolve: false });
+				logger$1.debug("Auto-solve disabled");
+			} catch (error) {
+				logger$1.error("Error in disableCaptchaAutoSolve", { error });
+				throw new Error(`Failed to disable captcha auto solve: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		solveCaptcha: async (options = {}) => {
+			const solveOptions = { detectTimeout: options.timeout || 3e4 };
+			if (options.options) solveOptions.options = JSON.stringify(options.options);
+			try {
+				const result = await cdpSession.send("Captcha.solve", solveOptions);
+				logger$1.debug("Captcha solve attempt completed", { result });
+				return result;
+			} catch (error) {
+				logger$1.error("Error in solveCaptcha", {
+					options,
+					error
+				});
+				throw new Error(`Failed to solve captcha: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		waitCaptchaDetected: async (options = {}) => {
+			const { timeout = 3e4 } = options;
+			logger$1.debug(`Waiting for captcha detected with timeout: ${timeout}ms`);
+			try {
+				return Promise.race([new Promise((resolve) => {
+					setTimeout(() => {
+						resolve({
+							success: false,
+							message: "Timeout waiting for captcha detected"
+						});
+					}, timeout);
+				}), new Promise((resolve) => {
+					cdpSession.on("Captcha.detected", (response) => {
+						logger$1.debug("Captcha detected event received", { response });
+						resolve(response);
+					});
+				})]);
+			} catch (error) {
+				logger$1.error("Error in waitCaptchaDetected", { error });
+				throw new Error(`Failed to wait for captcha detected: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		waitCaptchaSolved: async (options = {}) => {
+			const { timeout = 3e4 } = options;
+			logger$1.debug(`Waiting for captcha solved with timeout: ${timeout}ms`);
+			try {
+				return Promise.race([
+					new Promise((resolve) => {
+						cdpSession.on("Captcha.solveFinished", (response) => {
+							logger$1.debug("Captcha solve finished event received", { response });
+							resolve(response);
+						});
+					}),
+					new Promise((resolve) => {
+						cdpSession.on("Captcha.solveFailed", (response) => {
+							logger$1.debug("Captcha solve failed event received", { response });
+							resolve(response);
+						});
+					}),
+					new Promise((resolve) => {
+						setTimeout(() => {
+							resolve({
+								success: false,
+								message: "Timeout waiting for captcha solved"
+							});
+						}, timeout);
+					})
+				]);
+			} catch (error) {
+				logger$1.error("Error in waitCaptchaSolved", { error });
+				throw new Error(`Failed to wait for captcha solved: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		imageToText: async (params) => {
+			const { timeout = 3e4 } = params;
+			logger$1.debug(`Waiting for captcha solved with timeout: ${timeout}ms`);
+			try {
+				await cdpSession.send("Captcha.imageToText", params);
+			} catch (error) {
+				logger$1.error("Error in imageToText", {
+					params,
+					error
+				});
+				throw new Error(`Failed to solve image captcha: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		setConfig: async (options) => {
+			try {
+				await cdpSession.send("Captcha.setConfig", { config: JSON.stringify(options) });
+				logger$1.debug("Set config success", { options });
+			} catch (error) {
+				logger$1.error("Error in setConfig", {
+					options,
+					error
+				});
+				throw new Error(`Failed to set auto solve: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		}
+	};
+	return new Proxy(cdpSession, { get(target, prop, receiver) {
+		if (prop in customMethods) return customMethods[prop];
+		return Reflect.get(target, prop, receiver);
+	} });
+}
+/**
+* Enhanced Scrapeless Puppeteer browser implementation using Scrapeless API
+*
+* This class provides a high-level interface for creating browser sessions
+* with automatic Scrapeless enhancements. It extends BaseBrowser to inherit
+* browser service functionality.
+*
+* @example
+* ```typescript
+* import { Puppeteer } from '@scrapeless-ai/sdk';
+*
+* const browser = await Puppeteer.connect({
+*   session_name: 'my-session',
+*   proxy_country: 'US',
+*   session_ttl: 300
+* });
+*
+* const page = await browser.newPage();
+* const cdpSession = await page.createCDPSession();
+* await cdpSession.realFill('#email', 'user@example.com');
+* ```
+*/
+var ScrapelessPuppeteer = class extends BaseBrowser {
+	/**
+	* Constructor for ScrapelessPuppeteer
+	* Initializes the base browser functionality
+	*/
+	constructor() {
+		super();
+	}
+	/**
+	* Create and connect to a Scrapeless-enhanced Puppeteer browser instance
+	*
+	* This method creates a browser session via Scrapeless API and connects
+	* to it using Puppeteer, then enhances it with Scrapeless functionality.
+	*
+	* @param config - Browser session configuration and Scrapeless options
+	* @returns Promise resolving to enhanced Puppeteer browser instance
+	* @throws Error if browser service initialization or connection fails
+	*/
+	async connect(config = {}) {
+		super.initBrowserService(config);
+		if (!this.browserService) throw new Error("Browser service not initialized");
+		try {
+			const { browserWSEndpoint } = this.browserService.create(config);
+			logger$1.debug("Connecting to browser via Scrapeless API", {
+				browserWSEndpoint,
+				sessionName: config.session_name,
+				proxyCountry: config.proxy_country
+			});
+			const browser = await puppeteer.connect({
+				browserWSEndpoint,
+				defaultViewport: config.defaultViewport ?? null
+			});
+			logger$1.info("Successfully connected to Scrapeless browser", { sessionName: config.session_name });
+			return browser;
+		} catch (error) {
+			logger$1.error("Failed to connect to Scrapeless browser", {
+				error,
+				config: {
+					sessionName: config.session_name,
+					proxyCountry: config.proxy_country
+				}
+			});
+			throw new Error(`Failed to connect to browser: ${error instanceof Error ? error.message : String(error)}`);
+		}
+	}
+};
+/**
+* Singleton instance of ScrapelessPuppeteer for convenient access
+*
+* @example
+* ```typescript
+* import { Puppeteer } from '@scrapeless-ai/sdk';
+*
+* const browser = await Puppeteer.connect({
+*   session_name: 'my-session',
+*   proxy_country: 'US'
+* });
+* ```
+*/
+const Puppeteer = new ScrapelessPuppeteer();
+
+//#endregion
+//#region src/scraping-browser/playwright.ts
+const logger = createLogger("Playwright");
+/**
+* Create a Scrapeless-enhanced CDP session with custom automation methods
+*
+* This function can be used independently to wrap any CDP session with Scrapeless custom methods.
+* It uses the Proxy pattern to seamlessly extend the original CDP session functionality.
+*
+* @example
+* ```typescript
+* import { createPlaywrightCDPSession } from '@scrapeless-ai/sdk';
+*
+* // With regular Playwright
+* const browser = await chromium.connectOverCDP(webSocketDebuggerUrl);
+* const context = await browser.newContext();
+* const page = await context.newPage();
+* const scrapelessCDP = createPlaywrightCDPSession(context, page);
+*
+* // Now you can use enhanced methods
+* await scrapelessCDP.realFill('#email', 'user@example.com');
+* await scrapelessCDP.realClick('#submit');
+* const captchaResult = await scrapelessCDP.solveCaptcha({ timeout: 30000 });
+* ```
+*
+* @param page - Page instance for selector operations (waitForSelector, etc.)
+* @returns Enhanced CDP session with custom Scrapeless methods
+*/
+async function createPlaywrightCDPSession(page) {
+	const cdpSession = await page.context().newCDPSession(page);
+	const customMethods = {
+		liveURL: async () => {
+			try {
+				const { error, liveURL } = await cdpSession.send("Agent.liveURL");
+				return {
+					error: error || null,
+					liveURL: liveURL || null
+				};
+			} catch (error) {
+				logger.error("Error in liveURL", { error });
+				return {
+					error: error instanceof Error ? error.message : String(error),
+					liveURL: null
+				};
+			}
+		},
+		realClick: async (selector) => {
+			try {
+				await page.waitForSelector(selector);
+				await cdpSession.send("Agent.click", { selector });
+				logger.debug("Successfully clicked element", { selector });
+			} catch (error) {
+				logger.error("Error in realClick", {
+					selector,
+					error
+				});
+				throw new Error(`Failed to click element "${selector}": ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		realFill: async (selector, text) => {
+			try {
+				await page.waitForSelector(selector);
+				await cdpSession.send("Agent.type", {
+					selector,
+					content: text
+				});
+				logger.debug("Successfully filled element", {
+					selector,
+					textLength: text.length
+				});
+			} catch (error) {
+				logger.error("Error in realFill", {
+					selector,
+					error
+				});
+				throw new Error(`Failed to type text into "${selector}": ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		setAutoSolve: async (options) => {
+			try {
+				await cdpSession.send("Captcha.setAutoSolve", {
+					autoSolve: options.autoSolve ?? true,
+					options: JSON.stringify(options.options)
+				});
+				logger.debug("Auto-solve configured", { options });
+			} catch (error) {
+				logger.error("Error in setAutoSolve", {
+					options,
+					error
+				});
+				throw new Error(`Failed to set auto solve: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		disableCaptchaAutoSolve: async () => {
+			try {
+				await cdpSession.send("Captcha.setAutoSolve", { autoSolve: false });
+				logger.debug("Auto-solve disabled");
+			} catch (error) {
+				logger.error("Error in disableCaptchaAutoSolve", { error });
+				throw new Error(`Failed to disable captcha auto solve: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		solveCaptcha: async (options = {}) => {
+			const solveOptions = { detectTimeout: options.timeout || 3e4 };
+			if (options.options) solveOptions.options = JSON.stringify(options.options);
+			try {
+				const result = await cdpSession.send("Captcha.solve", solveOptions);
+				logger.debug("Captcha solve attempt completed", { result });
+				return result;
+			} catch (error) {
+				logger.error("Error in solveCaptcha", {
+					options,
+					error
+				});
+				throw new Error(`Failed to solve captcha: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		waitCaptchaDetected: async (options = {}) => {
+			const { timeout = 3e4 } = options;
+			logger.debug(`Waiting for captcha detected with timeout: ${timeout}ms`);
+			try {
+				return Promise.race([new Promise((resolve) => {
+					setTimeout(() => {
+						resolve({
+							success: false,
+							message: "Timeout waiting for captcha detected"
+						});
+					}, timeout);
+				}), new Promise((resolve) => {
+					cdpSession.on("Captcha.detected", (response) => {
+						logger.debug("Captcha detected event received", { response });
+						resolve(response);
+					});
+				})]);
+			} catch (error) {
+				logger.error("Error in waitCaptchaDetected", { error });
+				throw new Error(`Failed to wait for captcha detected: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		waitCaptchaSolved: async (options = {}) => {
+			const { timeout = 3e4 } = options;
+			logger.debug(`Waiting for captcha solved with timeout: ${timeout}ms`);
+			try {
+				return Promise.race([
+					new Promise((resolve) => {
+						cdpSession.on("Captcha.solveFinished", (response) => {
+							logger.debug("Captcha solve finished event received", { response });
+							resolve(response);
+						});
+					}),
+					new Promise((resolve) => {
+						cdpSession.on("Captcha.solveFailed", (response) => {
+							logger.debug("Captcha solve failed event received", { response });
+							resolve(response);
+						});
+					}),
+					new Promise((resolve) => {
+						setTimeout(() => {
+							resolve({
+								success: false,
+								message: "Timeout waiting for captcha solved"
+							});
+						}, timeout);
+					})
+				]);
+			} catch (error) {
+				logger.error("Error in waitCaptchaSolved", { error });
+				throw new Error(`Failed to wait for captcha solved: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		imageToText: async (params) => {
+			const { timeout = 3e4 } = params;
+			logger.debug(`Waiting for captcha solved with timeout: ${timeout}ms`);
+			try {
+				await cdpSession.send("Captcha.imageToText", params);
+			} catch (error) {
+				logger.error("Error in imageToText", {
+					params,
+					error
+				});
+				throw new Error(`Failed to solve image captcha: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		},
+		setConfig: async (options) => {
+			try {
+				await cdpSession.send("Captcha.setConfig", { config: JSON.stringify(options) });
+				logger.debug("Set config success", { options });
+			} catch (error) {
+				logger.error("Error in setConfig", {
+					options,
+					error
+				});
+				throw new Error(`Failed to set auto solve: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		}
+	};
+	return new Proxy(cdpSession, { get(target, prop, receiver) {
+		if (prop in customMethods) return customMethods[prop];
+		return Reflect.get(target, prop, receiver);
+	} });
+}
+/**
+* Enhanced Playwright browser implementation using Scrapeless API
+* Provides additional automation capabilities and browser control
+*/
+var ScrapelessPlaywright = class extends BaseBrowser {
+	/**
+	* constructor - use static connect method instead
+	*/
+	constructor() {
+		super();
+	}
+	/**
+	* Create and connect to a Playwright browser instance
+	* @param config Optional Scrapeless configuration
+	* @returns Connected Playwright instance
+	* @throws Error if connection fails
+	*/
+	async connect(config = {}) {
+		super.initBrowserService(config);
+		if (!this.browserService) throw new Error("Browser service not initialized");
+		try {
+			const { browserWSEndpoint } = this.browserService.create(config);
+			logger.debug("Connecting to browser via Scrapeless API", {
+				browserWSEndpoint,
+				sessionName: config.session_name,
+				proxyCountry: config.proxy_country
+			});
+			const browser = await chromium.connectOverCDP(browserWSEndpoint);
+			logger.info("Successfully connected to Scrapeless browser", { sessionName: config.session_name });
+			return browser;
+		} catch (error) {
+			logger.error("Failed to connect to Scrapeless browser", {
+				error,
+				config: {
+					sessionName: config.session_name,
+					proxyCountry: config.proxy_country
+				}
+			});
+			throw new Error(`Failed to connect to browser: ${error instanceof Error ? error.message : String(error)}`);
+		}
+	}
+};
+/**
+* Singleton instance of ScrapelessPlaywright for convenient access
+*
+* @example
+* ```typescript
+* import { Playwright } from '@scrapeless-ai/sdk';
+*
+* const browser = await Playwright.connect({
+*   session_name: 'my-session',
+*   proxy_country: 'US'
+* });
+* ```
+*/
+const Playwright = new ScrapelessPlaywright();
+
+//#endregion
+//#region src/actor/index.ts
+/**
+* High-level Actor class that integrates various Scrapeless services
+*/
+var Actor = class {
+	/**
+	* Storage service for datasets, key-value stores, objects, and queues
+	*/
+	storage;
+	/**
+	* Captcha service for solving captchas
+	*/
+	captcha;
+	/**
+	* Browser service for web automation
+	*/
+	browser;
+	/**
+	* Proxies service for proxy management
+	*/
+	proxy;
+	datasetId;
+	namespaceId;
+	bucketId;
+	queueId;
+	constructor() {
+		const timeout = 3e4;
+		const apiKey = getEnv("SCRAPELESS_API_KEY");
+		const baseApiURL = getEnvWithDefault("SCRAPELESS_BASE_API_URL", "https://api.scrapeless.com");
+		const storageURL = getEnvWithDefault("SCRAPELESS_STORAGE_API_URL", "https://storage.scrapeless.com");
+		const browserURL = getEnvWithDefault("SCRAPELESS_BROWSER_API_URL", "https://browser.scrapeless.com");
+		this.datasetId = getEnv("SCRAPELESS_DATASET_ID");
+		this.namespaceId = getEnv("SCRAPELESS_KV_NAMESPACE_ID");
+		this.bucketId = getEnv("SCRAPELESS_BUCKET_ID");
+		this.queueId = getEnv("SCRAPELESS_QUEUE_ID");
+		const isOnline = getEnvWithDefault("SCRAPELESS_IS_ONLINE", "false");
+		if (isOnline === "false") {
+			createRoot();
+			this.datasetId = this.namespaceId = this.bucketId = this.queueId = "default";
+			this.storage = new LocalStorageService();
+		} else this.storage = new HttpStorageService(apiKey, storageURL, timeout);
+		this.browser = new BrowserService(apiKey, browserURL, timeout);
+		this.captcha = new CaptchaService(apiKey, baseApiURL, timeout);
+		this.proxy = new ProxiesService(apiKey, baseApiURL, timeout);
+	}
+	/**
+	* Get actor input data from environment variable
+	* @returns Actor input data parsed from environment variable
+	*/
+	async input() {
+		const inputStr = await this.getValue("INPUT");
+		return JSON.parse(inputStr);
+	}
+	/**
+	* Dataset convenience methods with environment variables
+	*/
+	/**
+	* List all available datasets
+	* @param params Pagination and filtering parameters
+	* @returns List of datasets
+	*/
+	async listDatasets(params) {
+		return await this.storage.dataset.listDatasets(params);
+	}
+	/**
+	* Add items to the default dataset (from environment variable)
+	* @param items Array of objects to add
+	* @returns Operation result
+	*/
+	async addItems(items) {
+		return await this.storage.dataset.addItems(this.datasetId, items);
+	}
+	/**
+	* Get items from the default dataset (from environment variable)
+	* @param params Pagination parameters
+	* @returns Paginated list of items
+	*/
+	async getItems(params) {
+		return await this.storage.dataset.getItems(this.datasetId, params);
+	}
+	/**
+	* Update an existing dataset
+	* @param name New name for the dataset
+	* @returns The updated dataset info
+	*/
+	async updateDateset(name) {
+		return await this.storage.dataset.updateDataset(this.datasetId, name);
+	}
+	/**
+	* Delete a dataset
+	* @returns Operation result
+	*/
+	async deleteDataset() {
+		return await this.storage.dataset.delDataset(this.datasetId);
+	}
+	/**
+	* Get dataset info
+	* @returns Dataset info
+	*/
+	async getDataset() {
+		return await this.storage.dataset.getDataset(this.datasetId);
+	}
+	/**
+	* Create a new dataset
+	* @returns Dataset info
+	*/
+	async createDataset(name) {
+		return await this.storage.dataset.createDataset(name);
+	}
+	/**
+	* KV store convenience methods with environment variables
+	*/
+	/**
+	* List all available namespaces
+	* @param params Pagination parameters
+	* @returns List of namespaces
+	*/
+	async listNamespaces(params) {
+		return await this.storage.kv.listNamespaces(params);
+	}
+	/**
+	* Create a new namespace
+	* @param name Name of the namespace
+	* @returns The created namespace
+	*/
+	async createNamespace(name) {
+		return await this.storage.kv.createNamespace(name);
+	}
+	/**
+	* Get a namespace by ID
+	* @returns Namespace information
+	*/
+	async getNamespace() {
+		return await this.storage.kv.getNamespace(this.namespaceId);
+	}
+	/**
+	* Delete a namespace
+	* @returns Operation result
+	*/
+	async deleteNamespace() {
+		return await this.storage.kv.delNamespace(this.namespaceId);
+	}
+	/**
+	* Rename a namespace
+	* @param name New name for the namespace
+	* @returns Updated namespace
+	*/
+	async renameNamespace(name) {
+		return await this.storage.kv.renameNamespace(this.namespaceId, name);
+	}
+	/**
+	* List keys in a namespace
+	* @param params Pagination parameters
+	* @returns List of keys
+	*/
+	async listKeys(params) {
+		return await this.storage.kv.listKeys(this.namespaceId, params);
+	}
+	/**
+	* Delete a value from a namespace
+	* @param key Key to delete
+	* @returns Operation result
+	*/
+	async deleteValue(key) {
+		return await this.storage.kv.delValue(this.namespaceId, key);
+	}
+	/**
+	* Bulk set multiple key-value pairs in a namespace
+	* @param data Array of key-value data
+	* @returns Operation result
+	*/
+	async bulkSetValue(data) {
+		return await this.storage.kv.bulkSetValue(this.namespaceId, data);
+	}
+	/**
+	* Bulk delete multiple keys from a namespace
+	* @param keys Array of keys to delete
+	* @returns Operation result
+	*/
+	async bulkDelValue(keys) {
+		return await this.storage.kv.bulkDelValue(this.namespaceId, keys);
+	}
+	/**
+	* Set a key-value pair in the default namespace (from environment variable)
+	* @param data Key-value data
+	* @returns Operation result
+	*/
+	async setValue(data) {
+		return await this.storage.kv.setValue(this.namespaceId, data);
+	}
+	/**
+	* Get a value by key from the default namespace (from environment variable)
+	* @param key Key to get value for
+	* @returns The value
+	*/
+	async getValue(key) {
+		return await this.storage.kv.getValue(this.namespaceId, key);
+	}
+	/**
+	* Object storage convenience methods with environment variables
+	*/
+	/**
+	* List all available buckets
+	* @param params Pagination and filtering parameters
+	* @returns List of buckets
+	*/
+	async listBuckets(params) {
+		return await this.storage.object.listBuckets(params);
+	}
+	/**
+	* Create a new bucket
+	* @param data Bucket creation parameters
+	* @returns The created bucket
+	*/
+	async createBucket(data) {
+		return await this.storage.object.createBucket(data);
+	}
+	/**
+	* Delete a bucket
+	* @returns Operation result
+	*/
+	async deleteBucket() {
+		return await this.storage.object.deleteBucket(this.bucketId);
+	}
+	/**
+	* Get information about a bucket
+	* @returns Bucket information
+	*/
+	async getBucket() {
+		return await this.storage.object.getBucket(this.bucketId);
+	}
+	/**
+	* List objects in a bucket
+	* @param params Pagination and search parameters
+	* @returns List of objects
+	*/
+	async list(params) {
+		return await this.storage.object.list(this.bucketId, params);
+	}
+	/**
+	* Get an object from the default bucket (from environment variable)
+	* @param objectId ID of the object to get
+	* @returns The object data
+	*/
+	async getObject(objectId) {
+		return await this.storage.object.get(this.bucketId, objectId);
+	}
+	/**
+	* Upload an object to the default bucket (from environment variable)
+	* @param data Upload parameters
+	* @returns Upload result
+	*/
+	async putObject(data) {
+		return await this.storage.object.put(this.bucketId, data);
+	}
+	/**
+	* Delete an object from a bucket
+	* @param objectId ID of the object to delete
+	* @returns Operation result
+	*/
+	async deleteObject(objectId) {
+		return await this.storage.object.delete(this.bucketId, objectId);
+	}
+	/**
+	* Queue convenience methods with environment variables
+	*/
+	/**
+	* List all available queues
+	* @param params Pagination parameters
+	* @returns List of queues
+	*/
+	async listQueues(params) {
+		return await this.storage.queue.list(params);
+	}
+	/**
+	* Create a new queue
+	* @param data Queue creation parameters
+	* @returns The created queue info
+	*/
+	async createQueue(data) {
+		return await this.storage.queue.create(data);
+	}
+	/**
+	* Get a queue by name
+	* @param name Name of the queue
+	* @returns Queue information
+	*/
+	async getQueue(name) {
+		return await this.storage.queue.get(name, this.queueId);
+	}
+	/**
+	* Update a queue
+	* @param data Queue update parameters
+	*/
+	async updateQueue(data) {
+		return await this.storage.queue.update(this.queueId, data);
+	}
+	/**
+	* Delete a queue
+	* @returns Operation result
+	*/
+	async deleteQueue() {
+		return await this.storage.queue.delete(this.queueId);
+	}
+	/**
+	* Push a message to the default queue (from environment variable)
+	* @param data Message data
+	* @returns Push result
+	*/
+	async pushMessage(data) {
+		return await this.storage.queue.push(this.queueId, data);
+	}
+	/**
+	* Pull a message from the default queue (from environment variable)
+	* @returns The pulled message
+	*/
+	async pullMessage(limit) {
+		return await this.storage.queue.pull(this.queueId, limit);
+	}
+	/**
+	* Acknowledge a message in the default queue (from environment variable)
+	* @param msgId ID of the message to acknowledge
+	* @returns Operation result
+	*/
+	async ackMessage(msgId) {
+		return await this.storage.queue.ack(this.queueId, msgId);
+	}
+};
+
+//#endregion
+//#region src/universal/index.ts
+var Universal = class {
+	universalService;
+	timeout;
+	apiKey;
+	baseApiURL;
+	constructor(config) {
+		this.apiKey = config?.apiKey || getEnv("SCRAPELESS_API_KEY");
+		this.baseApiURL = getEnvWithDefault("SCRAPELESS_BASE_API_URL", "https://api.scrapeless.com");
+		this.timeout = config?.timeout || 3e4;
+		this.universalService = new UniversalService(this.apiKey, this.baseApiURL, this.timeout);
+	}
+	async jsRender(data) {
+		return this.universalService.scrape(data);
+	}
+	async webUnlocker(data) {
+		return this.universalService.scrape(data);
+	}
+	async akamaiwebCookie(data) {
+		return this.universalService.scrape(data);
+	}
+	async akamaiwebSensor(data) {
+		return this.universalService.scrape(data);
+	}
+};
+
+//#endregion
+//#region src/scraping-crawl/index.ts
+/**
+* High-level ScrapingCrawl SDK class that provides unified access to scraping, crawling services.
+*/
+var ScrapingCrawl = class {
+	/**
+	* Underlying service aggregator for scraping, crawling.
+	*/
+	service;
+	/**
+	* Create a new ScrapingCrawl SDK instance.
+	* @param config Configuration for API key, base URL, and timeout.
+	*/
+	constructor(config) {
+		const apiKey = config.apiKey || getEnv("SCRAPELESS_API_KEY");
+		const baseUrl = config.baseUrl || getEnvWithDefault("SCRAPELESS_CRAWL_API_URL", "https://api.scrapeless.com");
+		const timeout = config.timeout || 0;
+		this.service = new ScrapingCrawlService(apiKey, baseUrl, timeout);
+	}
+	/**
+	* Scrape a single URL.
+	* @param url Target URL to scrape
+	* @param params Optional scraping parameters
+	* @returns Scraped data result
+	*/
+	scrapeUrl(url, params) {
+		return this.service.scrape.scrapeUrl(url, params);
+	}
+	/**
+	* Asynchronously scrape a single URL (fire-and-forget).
+	* @param url Target URL to scrape
+	* @param params Optional scraping parameters
+	* @returns Job info or error response
+	*/
+	asyncScrapeUrl(url, params) {
+		return this.service.scrape.asyncScrapeUrl(url, params);
+	}
+	/**
+	* Check the status of an asynchronous scrape job.
+	* @param id Job ID
+	* @returns Scrape job status and data or error response
+	*/
+	checkScrapeStatus(id) {
+		return this.service.scrape.checkScrapeStatus(id);
+	}
+	/**
+	* Batch scrape multiple URLs synchronously.
+	* @param urls Array of URLs to scrape
+	* @param params Optional scraping parameters
+	* @param pollInterval Optional polling interval for job status (ms)
+	* @param ignoreInvalidURLs Whether to skip invalid URLs
+	* @returns Batch scrape result
+	*/
+	batchScrapeUrls(urls, params, pollInterval, ignoreInvalidURLs) {
+		return this.service.scrape.batchScrapeUrls(urls, params, pollInterval, ignoreInvalidURLs);
+	}
+	/**
+	* Batch scrape multiple URLs asynchronously (fire-and-forget).
+	* @param urls Array of URLs to scrape
+	* @param params Optional scraping parameters
+	* @param ignoreInvalidURLs Whether to skip invalid URLs
+	* @returns Job info
+	*/
+	asyncBatchScrapeUrls(urls, params, ignoreInvalidURLs) {
+		return this.service.scrape.asyncBatchScrapeUrls(urls, params, ignoreInvalidURLs);
+	}
+	/**
+	* Check the status of a batch scrape job.
+	* @param id Batch job ID
+	* @returns Batch scrape status or error response
+	*/
+	checkBatchScrapeStatus(id) {
+		return this.service.scrape.checkBatchScrapeStatus(id);
+	}
+	/**
+	* Crawl a single URL and follow links according to crawl parameters.
+	* @param url Target URL to crawl
+	* @param params Optional crawl parameters
+	* @param pollInterval Optional polling interval for job status (ms)
+	* @returns Crawl result
+	*/
+	crawlUrl(url, params, pollInterval) {
+		return this.service.crawl.crawlUrl(url, params, pollInterval);
+	}
+	/**
+	* Start an asynchronous crawl job for a single URL.
+	* @param url Target URL to crawl
+	* @param params Optional crawl parameters
+	* @returns Job info
+	*/
+	asyncCrawlUrl(url, params) {
+		return this.service.crawl.asyncCrawlUrl(url, params);
+	}
+	/**
+	* Check the status of a crawl job.
+	* @param id Job ID
+	* @returns Crawl job status and data
+	*/
+	checkCrawlStatus(id) {
+		return this.service.crawl.checkCrawlStatus(id);
+	}
+	/**
+	* Get crawl errors for a specific job.
+	* @param id Job ID
+	* @returns List of crawl errors
+	*/
+	checkCrawlErrors(id) {
+		return this.service.crawl.checkCrawlErrors(id);
+	}
+	/**
+	* Cancel an ongoing crawl job.
+	* @param id Job ID
+	* @returns Operation result
+	*/
+	cancelCrawl(id) {
+		return this.service.crawl.cancelCrawl(id);
+	}
+	/**
+	* Monitor the status of a job with polling.
+	* @param id Job ID
+	* @param pollInterval Polling interval in milliseconds
+	* @returns Job info
+	*/
+	monitorJobStatus(id, pollInterval) {
+		return this.service.crawl.monitorJobStatus(id, pollInterval);
+	}
+};
+
+//#endregion
+//#region src/index.ts
+const env = process.env.NODE_ENV || "development";
+dotenv.config();
+dotenv.config({ path: `.env.${env}` });
+dotenv.config({ path: `.env.${env}.local` });
+const Scrapeless = ScrapelessClient;
+
+//#endregion
+export { Actor, ActorEnv, BaseBrowser, LogLevel, Playwright, PrintEnv, Puppeteer, Scrapeless, ScrapelessClient, ScrapelessError, ScrapelessPlaywright, ScrapingCrawl, Universal, createLogger, createPlaywrightCDPSession, createPuppeteerCDPSession, formatDate, getEnv, getEnvWithDefault, isBrowser, log, parseUrl, randomString, retry, sleep };

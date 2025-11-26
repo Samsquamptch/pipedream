@@ -1,0 +1,11 @@
+export type BoxplotKeys = {
+    minKey: string;
+    maxKey: string;
+    medianKey: string;
+    q1Key: string;
+    q3Key: string;
+};
+export type BoxplotProps = {
+    keys: BoxplotKeys;
+    stroke: string;
+};

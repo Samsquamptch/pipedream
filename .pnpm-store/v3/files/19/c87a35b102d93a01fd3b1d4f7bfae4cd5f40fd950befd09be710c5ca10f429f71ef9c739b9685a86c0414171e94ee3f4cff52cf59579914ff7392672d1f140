@@ -1,0 +1,50 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  ListUsageLimitsRequest,
+  ListUsageLimitsResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface ListUsageLimitsCommandInput extends ListUsageLimitsRequest {}
+export interface ListUsageLimitsCommandOutput
+  extends ListUsageLimitsResponse,
+    __MetadataBearer {}
+declare const ListUsageLimitsCommand_base: {
+  new (
+    input: ListUsageLimitsCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListUsageLimitsCommandInput,
+    ListUsageLimitsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    ...[input]: [] | [ListUsageLimitsCommandInput]
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListUsageLimitsCommandInput,
+    ListUsageLimitsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class ListUsageLimitsCommand extends ListUsageLimitsCommand_base {
+  protected static __types: {
+    api: {
+      input: ListUsageLimitsRequest;
+      output: ListUsageLimitsResponse;
+    };
+    sdk: {
+      input: ListUsageLimitsCommandInput;
+      output: ListUsageLimitsCommandOutput;
+    };
+  };
+}

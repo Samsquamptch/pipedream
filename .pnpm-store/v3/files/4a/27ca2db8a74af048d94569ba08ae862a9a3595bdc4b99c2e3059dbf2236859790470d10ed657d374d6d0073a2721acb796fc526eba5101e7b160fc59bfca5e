@@ -1,0 +1,99 @@
+import { NebulaRequest } from 'nebula-js-lib';
+export declare const ColumnsVersion = 1;
+export declare const TITLE_ANNOTATION_ID = "g_auto_title";
+export type Currency = {
+    currency: string;
+    code: string;
+    symbol: string;
+};
+export type Affixes = {
+    prefix: string;
+    suffix: string;
+};
+export interface Position {
+    x: number;
+    y: number;
+    f?: boolean;
+}
+export interface Size {
+    w: number;
+    h: number;
+}
+export type ValueRange = {
+    start: number;
+    end: number;
+};
+export type DataPointQuery = {
+    window: number;
+    start: number;
+    query: NebulaRequest;
+};
+export interface SimpleData {
+    data: any[];
+    keys: string[];
+    metrics: string[];
+    timestamp: number;
+    continuation?: DataPointQuery;
+}
+export declare enum ChartType {
+    BAR = 0,
+    COLUMN = 1,
+    LINE = 2,
+    PIE = 3,
+    DOUGHNUT = 4,
+    TIMELINE = 5,
+    TIMELINE_AREA = 6,
+    TIMELINE_BAR = 7,
+    BAR_RACE = 8,
+    AREA = 9,
+    TABLE = 10,
+    MAP = 11,
+    SCATTER = 12,
+    TREE = 13,
+    RADAR = 14,
+    DOT = 15,
+    BOXPLOT = 16,
+    WORDCLOUD = 17,
+    SUMMARY = 18,
+    GAUGE = 19
+}
+export type PaletteInput = {
+    begin: string;
+    end: string;
+    steps: number;
+};
+export type AnchorType = 'start' | 'middle' | 'end' | 'inherit';
+export declare const Baselines: readonly ["Raw", "Mean", "First", "Last", "Prev", "Flip"];
+export type Baseline = typeof Baselines[number];
+export type MissingPolicy = 'Fill-Zero' | 'Fill-Null' | 'Remove-Row';
+export type ValueOption = 'auto' | 'full' | 'sk' | 'sm' | 'sb' | 'percent';
+export interface Margin {
+    top: number;
+    left: number;
+    bottom: number;
+    right: number;
+    f?: boolean;
+}
+export type GradientColor = {
+    degree: number;
+    colors: string[];
+};
+export declare const shortId: () => string;
+export declare const MINUTE_MS = 60000;
+export declare const FIVE_MINUTE_MS: number;
+export declare const TEN_MINUTE_MS: number;
+export declare const HOUR_MS = 3600000;
+export declare const SIX_HOUR_MS: number;
+export declare const DAY_MS: number;
+export declare const WEEK_MS: number;
+export declare const MONTH_MS: number;
+export declare enum TimeUnit {
+    NONE = 0,
+    HOUR = 1,
+    DAY = 2,
+    WEEK = 3,
+    MONTH = 4,
+    QUARTER = 5,
+    YEAR = 6
+}
+export declare const timeWindowMs: (offset: number, unit: TimeUnit) => number;

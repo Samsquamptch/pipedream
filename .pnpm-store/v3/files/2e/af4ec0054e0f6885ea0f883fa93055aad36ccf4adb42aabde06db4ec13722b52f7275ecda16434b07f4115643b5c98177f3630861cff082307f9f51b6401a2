@@ -1,0 +1,227 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.transformSimple = exports.percentize = exports.accumulate = exports.rebase = exports.pivot = exports.isTimeline = exports.precise = exports.noPivot = exports.KEY_WINDOW = exports.NONE = void 0;
+const common_1 = require("./common");
+const time_1 = require("./time");
+exports.NONE = 'None';
+exports.KEY_WINDOW = '_window_';
+const NonPivotCharts = [
+    common_1.ChartType.BAR_RACE,
+    common_1.ChartType.BOXPLOT,
+    common_1.ChartType.SCATTER,
+    common_1.ChartType.TABLE,
+    common_1.ChartType.TREE,
+    common_1.ChartType.WORDCLOUD,
+];
+const noPivot = (chart) => NonPivotCharts.includes(chart);
+exports.noPivot = noPivot;
+const precise = (value, precision) => +(+value).toFixed(precision);
+exports.precise = precise;
+const isTimeline = (keys, numMetrics) => {
+    return (keys.includes(exports.KEY_WINDOW) && numMetrics > 0);
+};
+exports.isTimeline = isTimeline;
+const pivot = (data, pivot, unit, type, policy = 'Fill-Null') => {
+    if ((0, exports.noPivot)(type)) {
+        return Object.assign({}, data);
+    }
+    let getKey = (row) => '';
+    let getMetrics = (row) => [];
+    let getValue = (row, metric) => (+row[metric] || 0);
+    const hasPivot = pivot && pivot != exports.NONE;
+    const keyName = hasPivot ? pivot : data.keys.join('-');
+    if (hasPivot) {
+        const nonPivotKeys = data.keys.filter(e => e != pivot);
+        getKey = (row) => row[keyName];
+        getMetrics = (row) => [nonPivotKeys.map(k => {
+                let mv = row[k];
+                if (k == exports.KEY_WINDOW) {
+                    mv = (0, time_1.tfmt)(+mv, null, unit);
+                }
+                return mv;
+            }).join('-')] || [];
+        getValue = (row, metric) => (+row[data.metrics[0]] || 0);
+    }
+    else {
+        getKey = (row) => data.keys.map(k => row[k]).join('-');
+        getMetrics = (row) => data.metrics;
+    }
+    const rows = [];
+    const newMetrics = {};
+    data.data.map(r => {
+        let row = {};
+        let existing = null;
+        if (keyName) {
+            const keyValue = getKey(r);
+            existing = rows.find(e => e[keyName] === keyValue);
+            row = existing || {};
+            row[keyName] = keyValue;
+        }
+        getMetrics(r).map(e => {
+            newMetrics[e] = 1;
+            row[e] = (row[e] || 0) + getValue(r, e);
+        });
+        if (!existing) {
+            rows.push(row);
+        }
+    });
+    const frame = {
+        data: rows,
+        keys: keyName ? [keyName] : [],
+        metrics: Object.keys(newMetrics),
+        timestamp: data.timestamp,
+        continuation: data.continuation,
+    };
+    const numMetrics = frame.metrics.length + 1;
+    for (let i = rows.length - 1; i >= 0; --i) {
+        const row = rows[i];
+        const keys = Object.keys(row);
+        if (keys.length < numMetrics) {
+            if (policy == 'Remove-Row') {
+                rows.splice(i, 1);
+            }
+            else if (policy == 'Fill-Zero' || policy == 'Fill-Null') {
+                frame.metrics.forEach(m => {
+                    if (!keys.includes(m)) {
+                        row[m] = (policy == 'Fill-Null') ? null : 0;
+                    }
+                });
+            }
+        }
+    }
+    return frame;
+};
+exports.pivot = pivot;
+const pivotBack = (sd, chart, mprops) => {
+    const { data, keys, metrics } = sd;
+    const shouldPivotBack = data.length == 1 && metrics.length > 1 && !(0, exports.noPivot)(chart);
+    if (!shouldPivotBack) {
+        return sd;
+    }
+    const row = data[0];
+    const keyCol = keys.map(k => row[k]).join('-') || 'Key';
+    const rows = metrics.map(m => {
+        const alias = mprops.aliases[m] || m;
+        return { [keyCol]: alias, value: row[m] };
+    });
+    return Object.assign(Object.assign({}, sd), { data: rows, keys: [keyCol], metrics: ['value'] });
+};
+const rebase = (data, settings) => {
+    const baseline = settings === null || settings === void 0 ? void 0 : settings.baseline;
+    if (!baseline || baseline === 'Raw') {
+        return data;
+    }
+    const { data: rows, metrics } = data;
+    if (baseline === 'Flip') {
+        for (let i = rows.length - 1; i >= 0; --i) {
+            const row = rows[i];
+            metrics.forEach((metric) => {
+                const current = (+row[metric] || 0);
+                row[metric] = -current;
+            });
+        }
+        return data;
+    }
+    const metricMeans = {};
+    let getBase = null;
+    switch (baseline) {
+        case 'First':
+            getBase = (m) => rows[0][m];
+            break;
+        case 'Last':
+            getBase = (m) => rows[rows.length - 1][m];
+            break;
+        case 'Mean':
+            metrics.forEach((m) => {
+                const [count, sum] = rows.reduce((prev, row) => {
+                    prev[0]++;
+                    prev[1] += +row[m];
+                    return prev;
+                }, [0, 0]);
+                metricMeans[m] = count == 0 ? 0 : (sum / count);
+            });
+            getBase = (m) => metricMeans[m];
+            break;
+        case 'Prev':
+            getBase = (m, i) => i == 0 ? 0 : rows[i - 1][m];
+            break;
+        default: getBase = (m) => 0;
+    }
+    for (let i = rows.length - 1; i >= 0; --i) {
+        const row = rows[i];
+        metrics.forEach((metric) => {
+            const current = (+row[metric] || 0);
+            const base = getBase(metric, i);
+            row[metric] = current - base;
+        });
+    }
+    return data;
+};
+exports.rebase = rebase;
+const accumulate = (data, settings) => {
+    if (!settings || !settings.accumulated) {
+        return data;
+    }
+    const newSd = Object.assign({}, data);
+    const metrics = data.metrics;
+    for (let i = 1; i < newSd.data.length; i++) {
+        const prev = newSd.data[i - 1];
+        const curr = newSd.data[i];
+        metrics.forEach(metric => {
+            curr[metric] = (+curr[metric] || 0) + (+prev[metric] || 0);
+        });
+    }
+    return newSd;
+};
+exports.accumulate = accumulate;
+const percentize = (data, general) => {
+    if (!general || !general.percentage) {
+        return {};
+    }
+    const { data: rows, metrics } = data;
+    const opts = {};
+    const byKey = general.distribute === 'key';
+    if (byKey) {
+        rows.forEach((row) => {
+            const sum = metrics.reduce((p, m) => p + (+row[m] || 0), 0);
+            metrics.forEach((m) => {
+                const v = +row[m] || 0;
+                row[m] = 100.0 * (sum == 0 ? 1 : v / sum);
+                opts[m] = { isPct: true };
+            });
+        });
+    }
+    else {
+        metrics.forEach(m => {
+            const sum = rows.reduce((p, r) => p + (+r[m] || 0), 0);
+            rows.forEach(r => {
+                const v = +r[m] || 0;
+                r[m] = 100.0 * v / sum;
+            });
+            opts[m] = { isPct: true };
+        });
+    }
+    return opts;
+};
+exports.percentize = percentize;
+const transformSimple = (qr, pivotKey, timeline, chart, settings) => {
+    const { general, metrics: mprops } = settings;
+    const { keys, metrics } = qr;
+    const etching = (0, exports.isTimeline)(keys, metrics.length) &&
+        (!timeline || timeline.unit == common_1.TimeUnit.NONE);
+    if (etching) {
+        if (keys.length > 1) {
+            pivotKey = exports.KEY_WINDOW;
+        }
+    }
+    if (!pivotKey) {
+        qr = pivotBack(qr, chart, mprops);
+    }
+    let data = (0, exports.pivot)(qr, pivotKey, timeline === null || timeline === void 0 ? void 0 : timeline.unit, chart, general === null || general === void 0 ? void 0 : general.policy);
+    data = (0, exports.rebase)(data, general);
+    const opts = (0, exports.percentize)(data, general);
+    data = (0, exports.accumulate)(data, general);
+    return { data, opts, pivotKey };
+};
+exports.transformSimple = transformSimple;
+//# sourceMappingURL=utils.js.map

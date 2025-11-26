@@ -1,0 +1,47 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import { ListTracksRequest, ListTracksResponse } from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface ListTracksCommandInput extends ListTracksRequest {}
+export interface ListTracksCommandOutput
+  extends ListTracksResponse,
+    __MetadataBearer {}
+declare const ListTracksCommand_base: {
+  new (
+    input: ListTracksCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListTracksCommandInput,
+    ListTracksCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    ...[input]: [] | [ListTracksCommandInput]
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListTracksCommandInput,
+    ListTracksCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class ListTracksCommand extends ListTracksCommand_base {
+  protected static __types: {
+    api: {
+      input: ListTracksRequest;
+      output: ListTracksResponse;
+    };
+    sdk: {
+      input: ListTracksCommandInput;
+      output: ListTracksCommandOutput;
+    };
+  };
+}

@@ -1,0 +1,9 @@
+"use strict";
+/*
+ * Copyright 2020-present columns.ai
+ *
+ * The code belongs to https://columns.ai
+ * Terms & conditions to be found at `LICENSE.txt`.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+;

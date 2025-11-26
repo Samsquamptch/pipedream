@@ -1,0 +1,396 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Vaas = exports.VAAS_URL = void 0;
+const isomorphic_ws_1 = __importDefault(require("@d-fischer/isomorphic-ws"));
+const sha256 = __importStar(require("fast-sha256"));
+const message_1 = require("./messages/message");
+const authentication_response_1 = require("./messages/authentication_response");
+const authentication_request_1 = require("./messages/authentication_request");
+const typescript_json_serializer_1 = require("typescript-json-serializer");
+const verdict_response_1 = require("./messages/verdict_response");
+const websocket_error_1 = require("./messages/websocket_error");
+const verdict_request_1 = require("./messages/verdict_request");
+const uuid_1 = require("uuid");
+const Verdict_1 = require("./Verdict");
+const axios = __importStar(require("axios"));
+const CancellationToken_1 = require("./CancellationToken");
+const VaasErrors_1 = require("./VaasErrors");
+const vaas_verdict_1 = require("./messages/vaas_verdict");
+const verdict_request_for_url_1 = require("./messages/verdict_request_for_url");
+const verdict_request_for_stream_1 = require("./messages/verdict_request_for_stream");
+const http_1 = __importDefault(require("http"));
+const https_1 = __importDefault(require("https"));
+const VAAS_URL = "wss://gateway.production.vaas.gdatasecurity.de";
+exports.VAAS_URL = VAAS_URL;
+const defaultSerializer = new typescript_json_serializer_1.JsonSerializer();
+// See https://advancedweb.hu/how-to-add-timeout-to-a-promise-in-javascript/
+const timeout = (promise, timeoutInMs) => {
+    let timer;
+    return Promise.race([
+        promise,
+        new Promise((_resolve, reject) => (timer = setTimeout(reject, timeoutInMs, new VaasErrors_1.VaasTimeoutError()))),
+    ]).finally(() => clearTimeout(timer));
+};
+class Vaas {
+    constructor(webSocketFactory = (url) => new isomorphic_ws_1.default.WebSocket(url)) {
+        this.webSocketFactory = webSocketFactory;
+        this.connection = null;
+        this.defaultTimeoutHashReq = 2000;
+        this.defaultTimeoutFileReq = 600000;
+        this.defaultTimeoutUrlReq = 600000;
+        this.defaultTimeoutStreamReq = 100000;
+        this.debug = false;
+        this.verdictPromises = new Map();
+    }
+    static toHexString(byteArray) {
+        return Array.from(byteArray, function (byte) {
+            return ("0" + (byte & 0xff).toString(16)).slice(-2);
+        }).join("");
+    }
+    /** Get verdict for Readable Stream
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     * @throws {VaasServerError} Stream could not be read properly in VaaS clouds
+     */
+    forStream(stream_1) {
+        return __awaiter(this, arguments, void 0, function* (stream, ct = CancellationToken_1.CancellationToken.fromMilliseconds(this.defaultTimeoutStreamReq)) {
+            const request = this.forStreamRequest(stream).then((response) => response);
+            return timeout(request, ct.timeout());
+        });
+    }
+    /** Get verdict for URL
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     */
+    forUrl(url_1) {
+        return __awaiter(this, arguments, void 0, function* (url, ct = CancellationToken_1.CancellationToken.fromMilliseconds(this.defaultTimeoutUrlReq)) {
+            const request = this.forUrlRequest(url).then((response) => response);
+            return timeout(request, ct.timeout());
+        });
+    }
+    /** Get verdict for a SHA256
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     */
+    forSha256(sha256_1) {
+        return __awaiter(this, arguments, void 0, function* (sha256, ct = CancellationToken_1.CancellationToken.fromMilliseconds(this.defaultTimeoutHashReq)) {
+            const request = this.forRequest(sha256).then((response) => response);
+            return timeout(request, ct.timeout());
+        });
+    }
+    /** Get verdict for list of SHA256
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     */
+    forSha256List(sha256List_1) {
+        return __awaiter(this, arguments, void 0, function* (sha256List, ct = CancellationToken_1.CancellationToken.fromMilliseconds(this.defaultTimeoutHashReq)) {
+            const promises = sha256List.map((sha256) => this.forSha256(sha256, ct));
+            return Promise.all(promises);
+        });
+    }
+    /** Get verdict for a file
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     */
+    forFile(fileBuffer_1) {
+        return __awaiter(this, arguments, void 0, function* (fileBuffer, ct = CancellationToken_1.CancellationToken.fromMilliseconds(this.defaultTimeoutFileReq)) {
+            const request = this.forRequest(fileBuffer).then((response) => response);
+            return timeout(request, ct.timeout());
+        });
+    }
+    /** Get verdict for a list of files
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     */
+    forFileList(fileBuffers_1) {
+        return __awaiter(this, arguments, void 0, function* (fileBuffers, ct = CancellationToken_1.CancellationToken.fromMilliseconds(this.defaultTimeoutFileReq)) {
+            const promises = fileBuffers.map((f) => this.forFile(f, ct));
+            return Promise.all(promises);
+        });
+    }
+    forRequest(sample) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const ws = this.getAuthenticatedWebSocket();
+            return new Promise((resolve, reject) => {
+                const guid = (0, uuid_1.v4)();
+                if (this.debug)
+                    console.debug("uuid", guid);
+                this.verdictPromises.set(guid, {
+                    resolve: (verdictResponse) => __awaiter(this, void 0, void 0, function* () {
+                        if (verdictResponse.verdict === Verdict_1.Verdict.UNKNOWN &&
+                            typeof sample !== "string") {
+                            yield this.upload(verdictResponse, sample);
+                            return;
+                        }
+                        this.verdictPromises.delete(guid);
+                        resolve(new vaas_verdict_1.VaasVerdict(verdictResponse.sha256, verdictResponse.verdict, verdictResponse.detection, verdictResponse.file_type, verdictResponse.mime_type));
+                    }),
+                    reject: (reason) => reject(reason),
+                });
+                let hash = typeof sample === "string"
+                    ? sample
+                    : Vaas.toHexString(sha256.hash(sample));
+                const verdictReq = JSON.stringify(defaultSerializer.serialize(new verdict_request_1.VerdictRequest(hash, guid, this.connection.sessionId)));
+                ws.send(verdictReq);
+            });
+        });
+    }
+    forUrlRequest(url) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const ws = this.getAuthenticatedWebSocket();
+            return new Promise((resolve, reject) => {
+                const guid = (0, uuid_1.v4)();
+                if (this.debug)
+                    console.debug("uuid", guid);
+                this.verdictPromises.set(guid, {
+                    resolve: (verdictResponse) => __awaiter(this, void 0, void 0, function* () {
+                        this.verdictPromises.delete(guid);
+                        resolve(new vaas_verdict_1.VaasVerdict(verdictResponse.sha256, verdictResponse.verdict, verdictResponse.detection, verdictResponse.file_type, verdictResponse.mime_type));
+                    }),
+                    reject: (reason) => reject(reason),
+                });
+                const verdictReq = JSON.stringify(defaultSerializer.serialize(new verdict_request_for_url_1.VerdictRequestForUrl(url, guid, this.connection.sessionId)));
+                ws.send(verdictReq);
+            });
+        });
+    }
+    forStreamRequest(stream) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const ws = this.getAuthenticatedWebSocket();
+            return new Promise((resolve, reject) => {
+                const guid = (0, uuid_1.v4)();
+                if (this.debug)
+                    console.debug("uuid", guid);
+                let contentLength = 0;
+                this.verdictPromises.set(guid, {
+                    resolve: (verdictResponse) => __awaiter(this, void 0, void 0, function* () {
+                        if (verdictResponse.verdict !== Verdict_1.Verdict.UNKNOWN) {
+                            throw new VaasErrors_1.VaasServerError("Server returned verdict without receiving content");
+                        }
+                        if (verdictResponse.upload_token === undefined || verdictResponse.upload_token == "") {
+                            throw new VaasErrors_1.VaasServerError("No upload token set in response");
+                        }
+                        if (verdictResponse.url === undefined || verdictResponse.url == "") {
+                            throw new VaasErrors_1.VaasServerError("No upload url set in response");
+                        }
+                        this.verdictPromises.delete(guid);
+                        this.verdictPromises.set(guid, {
+                            resolve: (verdictResponse) => __awaiter(this, void 0, void 0, function* () {
+                                this.verdictPromises.delete(guid);
+                                resolve(new vaas_verdict_1.VaasVerdict(verdictResponse.sha256, verdictResponse.verdict, verdictResponse.detection, verdictResponse.file_type, verdictResponse.mime_type));
+                            }),
+                            reject: (reason) => reject(reason),
+                        });
+                        contentLength = stream.readableLength;
+                        yield this.upload(verdictResponse, stream, contentLength);
+                        return;
+                    }),
+                    reject: (reason) => reject(reason),
+                });
+                const verdictReq = JSON.stringify(defaultSerializer.serialize(new verdict_request_for_stream_1.VerdictRequestForStream(guid, this.connection.sessionId)));
+                ws.send(verdictReq);
+            });
+        });
+    }
+    /** Connect to VaaS
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     */
+    connect(token, url = VAAS_URL) {
+        return new Promise((resolve, reject) => {
+            const ws = this.webSocketFactory(url);
+            this.connection = { ws: ws };
+            this.closeEvent = undefined;
+            this.authenticationError = undefined;
+            this.pingTimeout = undefined;
+            // ws library does not have auto-keepalive
+            // https://github.com/websockets/ws/issues/767
+            if (ws.on !== undefined) {
+                ws.on("ping", (payload) => {
+                    ws.pong(payload);
+                });
+                ws.on("pong", () => {
+                    this.pingTimeout = setTimeout(() => ws.ping(), 10000);
+                });
+            }
+            ws.onopen = () => {
+                try {
+                    this.authenticate(token);
+                }
+                catch (error) {
+                    reject(error);
+                }
+            };
+            ws.onclose = (event) => {
+                if (this.pingTimeout) {
+                    clearTimeout(this.pingTimeout);
+                    this.pingTimeout = undefined;
+                }
+                if (!event.wasClean) {
+                    this.closeEvent = event;
+                }
+                const reason = new VaasErrors_1.VaasConnectionClosedError(event);
+                if (this.verdictPromises.size > 0) {
+                    this.verdictPromises.forEach((c) => c.reject(reason));
+                    this.verdictPromises.clear();
+                }
+                reject(reason);
+            };
+            ws.onmessage = (event) => __awaiter(this, void 0, void 0, function* () {
+                const message = defaultSerializer.deserializeObject(event.data, message_1.Message);
+                switch (message.kind) {
+                    case message_1.Kind.AuthResponse:
+                        const authResponse = defaultSerializer.deserializeObject(event.data, authentication_response_1.AuthenticationResponse);
+                        if (authResponse.success) {
+                            this.connection.sessionId = authResponse.session_id;
+                            resolve();
+                            return;
+                        }
+                        this.authenticationError = authResponse;
+                        reject(new VaasErrors_1.VaasAuthenticationError());
+                        break;
+                    case message_1.Kind.Error:
+                        reject(defaultSerializer.deserialize(event.data, websocket_error_1.WebsocketError).text);
+                        break;
+                    case message_1.Kind.VerdictResponse:
+                        const verdictResponse = defaultSerializer.deserialize(event.data, verdict_response_1.VerdictResponse);
+                        const promise = this.verdictPromises.get(verdictResponse.guid);
+                        if (promise) {
+                            yield promise.resolve(verdictResponse);
+                        }
+                        break;
+                    default:
+                        console.log(event.data);
+                        reject(new Error("Unknown message kind"));
+                        break;
+                }
+            });
+        });
+    }
+    upload(verdictResponse_1, input_1) {
+        return __awaiter(this, arguments, void 0, function* (verdictResponse, input, contentLength = Infinity) {
+            return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+                const instance = axios.default.create({
+                    baseURL: verdictResponse.url,
+                    // the maximum allowed time for the request
+                    timeout: 10 * 60 * 1000,
+                    headers: {
+                        Authorization: verdictResponse.upload_token,
+                        "Content-Type": "application/octet-stream",
+                    },
+                    maxBodyLength: contentLength,
+                });
+                instance.defaults.httpAgent = new http_1.default.Agent({ keepAlive: true });
+                instance.defaults.httpsAgent = new https_1.default.Agent({ keepAlive: true });
+                yield instance
+                    .put("/", input)
+                    .then((response) => resolve(response))
+                    .catch((error) => {
+                    if (error instanceof axios.AxiosError && error.response) {
+                        reject(new Error(`Upload failed with ${error.response.status} - Error ${error.response.data.message}`));
+                    }
+                    else {
+                        throw error;
+                    }
+                });
+            }));
+        });
+    }
+    close() {
+        if (this.connection) {
+            this.connection.ws.close();
+            this.authenticationError = undefined;
+        }
+    }
+    authenticate(token) {
+        const authReq = JSON.stringify(defaultSerializer.serialize(new authentication_request_1.AuthenticationRequest(token)));
+        const ws = this.getConnectedWebSocket();
+        ws.send(authReq);
+        if (ws.ping !== undefined) {
+            ws.ping();
+        }
+    }
+    getConnectedWebSocket() {
+        var _a;
+        const ws = (_a = this.connection) === null || _a === void 0 ? void 0 : _a.ws;
+        if (!ws) {
+            throw new VaasErrors_1.VaasInvalidStateError("connect() was not called");
+        }
+        if (ws.readyState === isomorphic_ws_1.default.WebSocket.CONNECTING) {
+            throw new VaasErrors_1.VaasInvalidStateError("connect() was not awaited");
+        }
+        if (ws.readyState !== isomorphic_ws_1.default.WebSocket.OPEN) {
+            throw new VaasErrors_1.VaasConnectionClosedError(this.closeEvent);
+        }
+        return ws;
+    }
+    getAuthenticatedWebSocket() {
+        var _a;
+        const ws = this.getConnectedWebSocket();
+        if (!((_a = this.connection) === null || _a === void 0 ? void 0 : _a.sessionId)) {
+            if (this.authenticationError)
+                throw new VaasErrors_1.VaasAuthenticationError();
+            throw new VaasErrors_1.VaasInvalidStateError("Not yet authenticated - connect() was not awaited");
+        }
+        return ws;
+    }
+}
+exports.Vaas = Vaas;
+//# sourceMappingURL=Vaas.js.map

@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  DeleteCustomDomainAssociationRequest,
+  DeleteCustomDomainAssociationResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface DeleteCustomDomainAssociationCommandInput
+  extends DeleteCustomDomainAssociationRequest {}
+export interface DeleteCustomDomainAssociationCommandOutput
+  extends DeleteCustomDomainAssociationResponse,
+    __MetadataBearer {}
+declare const DeleteCustomDomainAssociationCommand_base: {
+  new (
+    input: DeleteCustomDomainAssociationCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    DeleteCustomDomainAssociationCommandInput,
+    DeleteCustomDomainAssociationCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: DeleteCustomDomainAssociationCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    DeleteCustomDomainAssociationCommandInput,
+    DeleteCustomDomainAssociationCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class DeleteCustomDomainAssociationCommand extends DeleteCustomDomainAssociationCommand_base {
+  protected static __types: {
+    api: {
+      input: DeleteCustomDomainAssociationRequest;
+      output: {};
+    };
+    sdk: {
+      input: DeleteCustomDomainAssociationCommandInput;
+      output: DeleteCustomDomainAssociationCommandOutput;
+    };
+  };
+}

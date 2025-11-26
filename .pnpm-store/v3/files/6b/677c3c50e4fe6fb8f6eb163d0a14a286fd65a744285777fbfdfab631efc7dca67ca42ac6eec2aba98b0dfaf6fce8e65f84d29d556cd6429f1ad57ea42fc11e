@@ -1,0 +1,88 @@
+import { z } from 'zod';
+import { type RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotEdglyDeliverInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    robot: z.ZodLiteral<"/edgly/deliver">;
+}, "strict", z.ZodTypeAny, {
+    robot: "/edgly/deliver";
+    result: boolean;
+    force_accept: boolean;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+}, {
+    robot: "/edgly/deliver";
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+}>;
+export declare const robotEdglyDeliverInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    robot: z.ZodLiteral<"/edgly/deliver">;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/edgly/deliver";
+    force_accept: boolean;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+}, {
+    robot: "/edgly/deliver";
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+}>;
+export type RobotEdglyDeliverInstructions = z.infer<typeof robotEdglyDeliverInstructionsSchema>;
+export type RobotEdglyDeliverInstructionsWithHiddenFields = z.infer<typeof robotEdglyDeliverInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotEdglyDeliverInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    robot: z.ZodLiteral<"/edgly/deliver">;
+}, "strict", z.ZodTypeAny, {
+    robot: "/edgly/deliver";
+    result: string | boolean;
+    force_accept: string | boolean;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+}, {
+    robot: "/edgly/deliver";
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+}>;
+export type InterpolatableRobotEdglyDeliverInstructions = InterpolatableRobotEdglyDeliverInstructionsInput;
+export type InterpolatableRobotEdglyDeliverInstructionsInput = z.input<typeof interpolatableRobotEdglyDeliverInstructionsSchema>;
+export declare const interpolatableRobotEdglyDeliverInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    robot: z.ZodLiteral<"/edgly/deliver">;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/edgly/deliver";
+    force_accept: string | boolean;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+}, {
+    robot: "/edgly/deliver";
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+}>;
+export type InterpolatableRobotEdglyDeliverInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotEdglyDeliverInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotEdglyDeliverInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotEdglyDeliverInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=edgly-deliver.d.ts.map

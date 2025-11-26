@@ -1,0 +1,8 @@
+import { Message } from "./message";
+export declare class VerdictRequest extends Message {
+    constructor(sha256: string, guid: string, session_id: string);
+    sha256: string;
+    guid: string;
+    session_id: string;
+}
+//# sourceMappingURL=verdict_request.d.ts.map

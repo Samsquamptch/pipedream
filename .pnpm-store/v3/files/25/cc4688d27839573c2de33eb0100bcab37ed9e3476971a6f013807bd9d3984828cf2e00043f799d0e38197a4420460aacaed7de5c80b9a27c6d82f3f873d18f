@@ -1,0 +1,27 @@
+import { dirname, resolve } from 'node:path';
+import { unixify } from '../util.mjs';
+import { patchRefs } from 'depseek';
+export const fixModuleReferences = (ctx) => {
+    const { contents, filename, filenames, options: { cwd }, ignore } = ctx;
+    const _contents = patchRefs(contents, (value) => {
+        const v = value.endsWith('/') ? value.slice(0, -1) : value;
+        return (v.includes('/') || v === '.' || v === '..') && !ignore.includes(v)
+            ? resolveDependency(filename, v, filenames, cwd)
+            : value;
+    });
+    return Object.assign(Object.assign({}, ctx), { contents: _contents });
+};
+export const resolveDependency = (parent, nested, files, cwd) => {
+    const dir = dirname(parent);
+    const nmdir = resolve(cwd, 'node_modules');
+    const bases = /^\..+\.[^./\\]+$/.test(nested)
+        ? [nested, nested.replace(/\.[^./\\]+$/, '')]
+        : [nested];
+    const variants = ['.js', '.cjs', '.mjs'].reduce((m, e) => {
+        bases.forEach((v) => m.push(`${v}${e}`, `${v}/index${e}`));
+        return m;
+    }, []);
+    return (variants.find((f) => files.includes(unixify(resolve(dir, f)))) ||
+        variants.find((f) => files.includes(unixify(resolve(nmdir, f)))) ||
+        nested);
+};

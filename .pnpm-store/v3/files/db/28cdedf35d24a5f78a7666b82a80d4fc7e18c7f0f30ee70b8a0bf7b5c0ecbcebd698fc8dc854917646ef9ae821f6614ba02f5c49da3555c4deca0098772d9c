@@ -1,0 +1,7 @@
+import { Paginator } from "@smithy/types";
+import { ListTableRestoreStatusCommandInput, ListTableRestoreStatusCommandOutput } from "../commands/ListTableRestoreStatusCommand";
+import { RedshiftServerlessPaginationConfiguration } from "./Interfaces";
+/**
+ * @public
+ */
+export declare const paginateListTableRestoreStatus: (config: RedshiftServerlessPaginationConfiguration, input: ListTableRestoreStatusCommandInput, ...rest: any[]) => Paginator<ListTableRestoreStatusCommandOutput>;

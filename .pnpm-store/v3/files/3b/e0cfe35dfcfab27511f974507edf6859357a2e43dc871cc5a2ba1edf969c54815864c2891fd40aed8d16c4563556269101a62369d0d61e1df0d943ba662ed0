@@ -1,0 +1,842 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotFilePreviewInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    robot: z.ZodLiteral<"/file/preview">;
+    format: z.ZodDefault<z.ZodEnum<["gif", "jpg", "png"]>>;
+    width: z.ZodDefault<z.ZodEffects<z.ZodNumber, number, unknown>>;
+    height: z.ZodDefault<z.ZodEffects<z.ZodNumber, number, unknown>>;
+    resize_strategy: z.ZodDefault<z.ZodEnum<["crop", "fit", "fillcrop", "min_fit", "pad", "stretch"]>>;
+    background: z.ZodDefault<z.ZodString>;
+    strategy: z.ZodOptional<z.ZodObject<{
+        archive: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        audio: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        document: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        image: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        unknown: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        video: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        webpage: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    }, "strip", z.ZodTypeAny, {
+        audio: string[];
+        document: string[];
+        image: string[];
+        video: string[];
+        unknown: string[];
+        webpage: string[];
+        archive: string[];
+    }, {
+        audio?: string[] | undefined;
+        document?: string[] | undefined;
+        image?: string[] | undefined;
+        video?: string[] | undefined;
+        unknown?: string[] | undefined;
+        webpage?: string[] | undefined;
+        archive?: string[] | undefined;
+    }>>;
+    artwork_outer_color: z.ZodOptional<z.ZodString>;
+    artwork_center_color: z.ZodOptional<z.ZodString>;
+    waveform_center_color: z.ZodDefault<z.ZodString>;
+    waveform_outer_color: z.ZodDefault<z.ZodString>;
+    waveform_height: z.ZodDefault<z.ZodNumber>;
+    waveform_width: z.ZodDefault<z.ZodNumber>;
+    icon_style: z.ZodDefault<z.ZodEnum<["square", "with-text"]>>;
+    icon_text_color: z.ZodDefault<z.ZodString>;
+    icon_text_font: z.ZodDefault<z.ZodString>;
+    icon_text_content: z.ZodDefault<z.ZodEnum<["extension", "none"]>>;
+    optimize: z.ZodDefault<z.ZodBoolean>;
+    optimize_priority: z.ZodDefault<z.ZodEnum<["compression-ratio", "conversion-speed"]>>;
+    optimize_progressive: z.ZodDefault<z.ZodBoolean>;
+    clip_format: z.ZodDefault<z.ZodEnum<["apng", "avif", "gif", "webp"]>>;
+    clip_offset: z.ZodDefault<z.ZodNumber>;
+    clip_duration: z.ZodDefault<z.ZodNumber>;
+    clip_framerate: z.ZodDefault<z.ZodNumber>;
+    clip_loop: z.ZodDefault<z.ZodBoolean>;
+}, "strict", z.ZodTypeAny, {
+    format: "gif" | "jpg" | "png";
+    optimize: boolean;
+    robot: "/file/preview";
+    result: boolean;
+    force_accept: boolean;
+    width: number;
+    height: number;
+    resize_strategy: "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch";
+    background: string;
+    waveform_center_color: string;
+    waveform_outer_color: string;
+    waveform_height: number;
+    waveform_width: number;
+    icon_style: "square" | "with-text";
+    icon_text_color: string;
+    icon_text_font: string;
+    icon_text_content: "none" | "extension";
+    optimize_priority: "compression-ratio" | "conversion-speed";
+    optimize_progressive: boolean;
+    clip_format: "gif" | "apng" | "avif" | "webp";
+    clip_offset: number;
+    clip_duration: number;
+    clip_framerate: number;
+    clip_loop: boolean;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    strategy?: {
+        audio: string[];
+        document: string[];
+        image: string[];
+        video: string[];
+        unknown: string[];
+        webpage: string[];
+        archive: string[];
+    } | undefined;
+    artwork_outer_color?: string | undefined;
+    artwork_center_color?: string | undefined;
+}, {
+    robot: "/file/preview";
+    format?: "gif" | "jpg" | "png" | undefined;
+    optimize?: boolean | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    width?: unknown;
+    height?: unknown;
+    resize_strategy?: "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch" | undefined;
+    background?: string | undefined;
+    strategy?: {
+        audio?: string[] | undefined;
+        document?: string[] | undefined;
+        image?: string[] | undefined;
+        video?: string[] | undefined;
+        unknown?: string[] | undefined;
+        webpage?: string[] | undefined;
+        archive?: string[] | undefined;
+    } | undefined;
+    artwork_outer_color?: string | undefined;
+    artwork_center_color?: string | undefined;
+    waveform_center_color?: string | undefined;
+    waveform_outer_color?: string | undefined;
+    waveform_height?: number | undefined;
+    waveform_width?: number | undefined;
+    icon_style?: "square" | "with-text" | undefined;
+    icon_text_color?: string | undefined;
+    icon_text_font?: string | undefined;
+    icon_text_content?: "none" | "extension" | undefined;
+    optimize_priority?: "compression-ratio" | "conversion-speed" | undefined;
+    optimize_progressive?: boolean | undefined;
+    clip_format?: "gif" | "apng" | "avif" | "webp" | undefined;
+    clip_offset?: number | undefined;
+    clip_duration?: number | undefined;
+    clip_framerate?: number | undefined;
+    clip_loop?: boolean | undefined;
+}>;
+export declare const robotFilePreviewInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/file/preview">;
+    format: z.ZodDefault<z.ZodEnum<["gif", "jpg", "png"]>>;
+    width: z.ZodDefault<z.ZodEffects<z.ZodNumber, number, unknown>>;
+    height: z.ZodDefault<z.ZodEffects<z.ZodNumber, number, unknown>>;
+    resize_strategy: z.ZodDefault<z.ZodEnum<["crop", "fit", "fillcrop", "min_fit", "pad", "stretch"]>>;
+    background: z.ZodDefault<z.ZodString>;
+    strategy: z.ZodOptional<z.ZodObject<{
+        archive: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        audio: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        document: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        image: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        unknown: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        video: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        webpage: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    }, "strip", z.ZodTypeAny, {
+        audio: string[];
+        document: string[];
+        image: string[];
+        video: string[];
+        unknown: string[];
+        webpage: string[];
+        archive: string[];
+    }, {
+        audio?: string[] | undefined;
+        document?: string[] | undefined;
+        image?: string[] | undefined;
+        video?: string[] | undefined;
+        unknown?: string[] | undefined;
+        webpage?: string[] | undefined;
+        archive?: string[] | undefined;
+    }>>;
+    artwork_outer_color: z.ZodOptional<z.ZodString>;
+    artwork_center_color: z.ZodOptional<z.ZodString>;
+    waveform_center_color: z.ZodDefault<z.ZodString>;
+    waveform_outer_color: z.ZodDefault<z.ZodString>;
+    waveform_height: z.ZodDefault<z.ZodNumber>;
+    waveform_width: z.ZodDefault<z.ZodNumber>;
+    icon_style: z.ZodDefault<z.ZodEnum<["square", "with-text"]>>;
+    icon_text_color: z.ZodDefault<z.ZodString>;
+    icon_text_font: z.ZodDefault<z.ZodString>;
+    icon_text_content: z.ZodDefault<z.ZodEnum<["extension", "none"]>>;
+    optimize: z.ZodDefault<z.ZodBoolean>;
+    optimize_priority: z.ZodDefault<z.ZodEnum<["compression-ratio", "conversion-speed"]>>;
+    optimize_progressive: z.ZodDefault<z.ZodBoolean>;
+    clip_format: z.ZodDefault<z.ZodEnum<["apng", "avif", "gif", "webp"]>>;
+    clip_offset: z.ZodDefault<z.ZodNumber>;
+    clip_duration: z.ZodDefault<z.ZodNumber>;
+    clip_framerate: z.ZodDefault<z.ZodNumber>;
+    clip_loop: z.ZodDefault<z.ZodBoolean>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: "gif" | "jpg" | "png";
+    optimize: boolean;
+    robot: "/file/preview";
+    force_accept: boolean;
+    width: number;
+    height: number;
+    resize_strategy: "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch";
+    background: string;
+    waveform_center_color: string;
+    waveform_outer_color: string;
+    waveform_height: number;
+    waveform_width: number;
+    icon_style: "square" | "with-text";
+    icon_text_color: string;
+    icon_text_font: string;
+    icon_text_content: "none" | "extension";
+    optimize_priority: "compression-ratio" | "conversion-speed";
+    optimize_progressive: boolean;
+    clip_format: "gif" | "apng" | "avif" | "webp";
+    clip_offset: number;
+    clip_duration: number;
+    clip_framerate: number;
+    clip_loop: boolean;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    strategy?: {
+        audio: string[];
+        document: string[];
+        image: string[];
+        video: string[];
+        unknown: string[];
+        webpage: string[];
+        archive: string[];
+    } | undefined;
+    artwork_outer_color?: string | undefined;
+    artwork_center_color?: string | undefined;
+}, {
+    robot: "/file/preview";
+    format?: "gif" | "jpg" | "png" | undefined;
+    optimize?: boolean | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    width?: unknown;
+    height?: unknown;
+    resize_strategy?: "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch" | undefined;
+    background?: string | undefined;
+    strategy?: {
+        audio?: string[] | undefined;
+        document?: string[] | undefined;
+        image?: string[] | undefined;
+        video?: string[] | undefined;
+        unknown?: string[] | undefined;
+        webpage?: string[] | undefined;
+        archive?: string[] | undefined;
+    } | undefined;
+    artwork_outer_color?: string | undefined;
+    artwork_center_color?: string | undefined;
+    waveform_center_color?: string | undefined;
+    waveform_outer_color?: string | undefined;
+    waveform_height?: number | undefined;
+    waveform_width?: number | undefined;
+    icon_style?: "square" | "with-text" | undefined;
+    icon_text_color?: string | undefined;
+    icon_text_font?: string | undefined;
+    icon_text_content?: "none" | "extension" | undefined;
+    optimize_priority?: "compression-ratio" | "conversion-speed" | undefined;
+    optimize_progressive?: boolean | undefined;
+    clip_format?: "gif" | "apng" | "avif" | "webp" | undefined;
+    clip_offset?: number | undefined;
+    clip_duration?: number | undefined;
+    clip_framerate?: number | undefined;
+    clip_loop?: boolean | undefined;
+}>;
+export type RobotFilePreviewInstructions = z.infer<typeof robotFilePreviewInstructionsSchema>;
+export type RobotFilePreviewInstructionsInput = z.input<typeof robotFilePreviewInstructionsSchema>;
+export type RobotFilePreviewInstructionsWithHiddenFields = z.infer<typeof robotFilePreviewInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotFilePreviewInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/file/preview">;
+    format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["gif", "jpg", "png"]>]>>;
+    width: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>>;
+    height: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>>;
+    resize_strategy: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["crop", "fit", "fillcrop", "min_fit", "pad", "stretch"]>]>>;
+    background: z.ZodDefault<z.ZodString>;
+    strategy: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        archive: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        audio: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        document: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        image: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        unknown: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        video: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        webpage: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+    }, "strip", z.ZodTypeAny, {
+        audio: string | string[];
+        document: string | string[];
+        image: string | string[];
+        video: string | string[];
+        unknown: string | string[];
+        webpage: string | string[];
+        archive: string | string[];
+    }, {
+        audio?: string | string[] | undefined;
+        document?: string | string[] | undefined;
+        image?: string | string[] | undefined;
+        video?: string | string[] | undefined;
+        unknown?: string | string[] | undefined;
+        webpage?: string | string[] | undefined;
+        archive?: string | string[] | undefined;
+    }>]>>;
+    artwork_outer_color: z.ZodOptional<z.ZodString>;
+    artwork_center_color: z.ZodOptional<z.ZodString>;
+    waveform_center_color: z.ZodDefault<z.ZodString>;
+    waveform_outer_color: z.ZodDefault<z.ZodString>;
+    waveform_height: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    waveform_width: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    icon_style: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["square", "with-text"]>]>>;
+    icon_text_color: z.ZodDefault<z.ZodString>;
+    icon_text_font: z.ZodDefault<z.ZodString>;
+    icon_text_content: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["extension", "none"]>]>>;
+    optimize: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    optimize_priority: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["compression-ratio", "conversion-speed"]>]>>;
+    optimize_progressive: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    clip_format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["apng", "avif", "gif", "webp"]>]>>;
+    clip_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    clip_duration: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    clip_framerate: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    clip_loop: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string;
+    optimize: string | boolean;
+    robot: "/file/preview";
+    result: string | boolean;
+    force_accept: string | boolean;
+    width: string | number;
+    height: string | number;
+    resize_strategy: string;
+    background: string;
+    waveform_center_color: string;
+    waveform_outer_color: string;
+    waveform_height: string | number;
+    waveform_width: string | number;
+    icon_style: string;
+    icon_text_color: string;
+    icon_text_font: string;
+    icon_text_content: string;
+    optimize_priority: string;
+    optimize_progressive: string | boolean;
+    clip_format: string;
+    clip_offset: string | number;
+    clip_duration: string | number;
+    clip_framerate: string | number;
+    clip_loop: string | boolean;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    strategy?: string | {
+        audio: string | string[];
+        document: string | string[];
+        image: string | string[];
+        video: string | string[];
+        unknown: string | string[];
+        webpage: string | string[];
+        archive: string | string[];
+    } | undefined;
+    artwork_outer_color?: string | undefined;
+    artwork_center_color?: string | undefined;
+}, {
+    robot: "/file/preview";
+    format?: string | undefined;
+    optimize?: string | boolean | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    width?: unknown;
+    height?: unknown;
+    resize_strategy?: string | undefined;
+    background?: string | undefined;
+    strategy?: string | {
+        audio?: string | string[] | undefined;
+        document?: string | string[] | undefined;
+        image?: string | string[] | undefined;
+        video?: string | string[] | undefined;
+        unknown?: string | string[] | undefined;
+        webpage?: string | string[] | undefined;
+        archive?: string | string[] | undefined;
+    } | undefined;
+    artwork_outer_color?: string | undefined;
+    artwork_center_color?: string | undefined;
+    waveform_center_color?: string | undefined;
+    waveform_outer_color?: string | undefined;
+    waveform_height?: string | number | undefined;
+    waveform_width?: string | number | undefined;
+    icon_style?: string | undefined;
+    icon_text_color?: string | undefined;
+    icon_text_font?: string | undefined;
+    icon_text_content?: string | undefined;
+    optimize_priority?: string | undefined;
+    optimize_progressive?: string | boolean | undefined;
+    clip_format?: string | undefined;
+    clip_offset?: string | number | undefined;
+    clip_duration?: string | number | undefined;
+    clip_framerate?: string | number | undefined;
+    clip_loop?: string | boolean | undefined;
+}>;
+export type InterpolatableRobotFilePreviewInstructions = InterpolatableRobotFilePreviewInstructionsInput;
+export type InterpolatableRobotFilePreviewInstructionsInput = z.input<typeof interpolatableRobotFilePreviewInstructionsSchema>;
+export declare const interpolatableRobotFilePreviewInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/file/preview">;
+    format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["gif", "jpg", "png"]>]>>;
+    width: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>>;
+    height: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodNumber, number, unknown>]>>;
+    resize_strategy: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["crop", "fit", "fillcrop", "min_fit", "pad", "stretch"]>]>>;
+    background: z.ZodDefault<z.ZodString>;
+    strategy: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        archive: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        audio: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        document: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        image: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        unknown: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        video: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        webpage: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+    }, "strip", z.ZodTypeAny, {
+        audio: string | string[];
+        document: string | string[];
+        image: string | string[];
+        video: string | string[];
+        unknown: string | string[];
+        webpage: string | string[];
+        archive: string | string[];
+    }, {
+        audio?: string | string[] | undefined;
+        document?: string | string[] | undefined;
+        image?: string | string[] | undefined;
+        video?: string | string[] | undefined;
+        unknown?: string | string[] | undefined;
+        webpage?: string | string[] | undefined;
+        archive?: string | string[] | undefined;
+    }>]>>;
+    artwork_outer_color: z.ZodOptional<z.ZodString>;
+    artwork_center_color: z.ZodOptional<z.ZodString>;
+    waveform_center_color: z.ZodDefault<z.ZodString>;
+    waveform_outer_color: z.ZodDefault<z.ZodString>;
+    waveform_height: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    waveform_width: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    icon_style: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["square", "with-text"]>]>>;
+    icon_text_color: z.ZodDefault<z.ZodString>;
+    icon_text_font: z.ZodDefault<z.ZodString>;
+    icon_text_content: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["extension", "none"]>]>>;
+    optimize: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    optimize_priority: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["compression-ratio", "conversion-speed"]>]>>;
+    optimize_progressive: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    clip_format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["apng", "avif", "gif", "webp"]>]>>;
+    clip_offset: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    clip_duration: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    clip_framerate: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    clip_loop: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string;
+    optimize: string | boolean;
+    robot: "/file/preview";
+    force_accept: string | boolean;
+    width: string | number;
+    height: string | number;
+    resize_strategy: string;
+    background: string;
+    waveform_center_color: string;
+    waveform_outer_color: string;
+    waveform_height: string | number;
+    waveform_width: string | number;
+    icon_style: string;
+    icon_text_color: string;
+    icon_text_font: string;
+    icon_text_content: string;
+    optimize_priority: string;
+    optimize_progressive: string | boolean;
+    clip_format: string;
+    clip_offset: string | number;
+    clip_duration: string | number;
+    clip_framerate: string | number;
+    clip_loop: string | boolean;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    strategy?: string | {
+        audio: string | string[];
+        document: string | string[];
+        image: string | string[];
+        video: string | string[];
+        unknown: string | string[];
+        webpage: string | string[];
+        archive: string | string[];
+    } | undefined;
+    artwork_outer_color?: string | undefined;
+    artwork_center_color?: string | undefined;
+}, {
+    robot: "/file/preview";
+    format?: string | undefined;
+    optimize?: string | boolean | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    width?: unknown;
+    height?: unknown;
+    resize_strategy?: string | undefined;
+    background?: string | undefined;
+    strategy?: string | {
+        audio?: string | string[] | undefined;
+        document?: string | string[] | undefined;
+        image?: string | string[] | undefined;
+        video?: string | string[] | undefined;
+        unknown?: string | string[] | undefined;
+        webpage?: string | string[] | undefined;
+        archive?: string | string[] | undefined;
+    } | undefined;
+    artwork_outer_color?: string | undefined;
+    artwork_center_color?: string | undefined;
+    waveform_center_color?: string | undefined;
+    waveform_outer_color?: string | undefined;
+    waveform_height?: string | number | undefined;
+    waveform_width?: string | number | undefined;
+    icon_style?: string | undefined;
+    icon_text_color?: string | undefined;
+    icon_text_font?: string | undefined;
+    icon_text_content?: string | undefined;
+    optimize_priority?: string | undefined;
+    optimize_progressive?: string | boolean | undefined;
+    clip_format?: string | undefined;
+    clip_offset?: string | number | undefined;
+    clip_duration?: string | number | undefined;
+    clip_framerate?: string | number | undefined;
+    clip_loop?: string | boolean | undefined;
+}>;
+export type InterpolatableRobotFilePreviewInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotFilePreviewInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotFilePreviewInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotFilePreviewInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=file-preview.d.ts.map

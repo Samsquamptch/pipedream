@@ -1,0 +1,14 @@
+import { Message } from "./message";
+import { Verdict } from "../Verdict";
+export declare class VerdictResponse extends Message {
+    sha256: string;
+    guid: string;
+    verdict: Verdict;
+    upload_token: string | undefined;
+    url: string | undefined;
+    detection: string | undefined;
+    file_type: string | undefined;
+    mime_type: string | undefined;
+    constructor(sha256: string, guid: string, verdict: Verdict, upload_token: string | undefined, url: string | undefined, detection: string | undefined, file_type: string | undefined, mime_type: string | undefined);
+}
+//# sourceMappingURL=verdict_response.d.ts.map

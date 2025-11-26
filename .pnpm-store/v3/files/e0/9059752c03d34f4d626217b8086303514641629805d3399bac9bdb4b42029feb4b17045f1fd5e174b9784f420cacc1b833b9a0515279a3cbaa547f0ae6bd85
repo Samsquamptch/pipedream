@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  GetStatementResultV2Request,
+  GetStatementResultV2Response,
+} from "../models/models_0";
+import {
+  RedshiftDataClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftDataClient";
+export { __MetadataBearer };
+export { $Command };
+export interface GetStatementResultV2CommandInput
+  extends GetStatementResultV2Request {}
+export interface GetStatementResultV2CommandOutput
+  extends GetStatementResultV2Response,
+    __MetadataBearer {}
+declare const GetStatementResultV2Command_base: {
+  new (
+    input: GetStatementResultV2CommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetStatementResultV2CommandInput,
+    GetStatementResultV2CommandOutput,
+    RedshiftDataClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: GetStatementResultV2CommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetStatementResultV2CommandInput,
+    GetStatementResultV2CommandOutput,
+    RedshiftDataClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class GetStatementResultV2Command extends GetStatementResultV2Command_base {
+  protected static __types: {
+    api: {
+      input: GetStatementResultV2Request;
+      output: GetStatementResultV2Response;
+    };
+    sdk: {
+      input: GetStatementResultV2CommandInput;
+      output: GetStatementResultV2CommandOutput;
+    };
+  };
+}

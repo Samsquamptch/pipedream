@@ -1,0 +1,7 @@
+import { TFixer } from '../interface.js';
+export { fixBlankFiles } from './fix-blank-files.js';
+export { fixFilenameVar, fixDirnameVar } from './fix-dirname-var.js';
+export { fixModuleReferences } from './fix-module-ref.js';
+export { fixSourceMapRef } from './fix-sourcemap-ref.js';
+export { fixDefaultExport } from './fix-default-export.js';
+export declare const fixContents: TFixer;

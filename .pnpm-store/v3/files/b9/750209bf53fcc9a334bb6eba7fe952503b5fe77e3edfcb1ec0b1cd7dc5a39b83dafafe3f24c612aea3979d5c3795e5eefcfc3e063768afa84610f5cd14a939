@@ -1,0 +1,19 @@
+import { IDeliveryClientConfig } from '../../config';
+import { IGroupedNetworkResponse, IKontentListAllResponse, IKontentListResponse, IDeliveryNetworkResponse, IListAllQueryConfig, IQueryConfig, IContentItem } from '../../models';
+import { QueryService } from '../../services';
+import { BaseQuery } from './base-query.class';
+export declare abstract class BaseListingQuery<TResponse extends IKontentListResponse, TAllResponse extends IKontentListAllResponse, TQueryConfig extends IQueryConfig, TContract> extends BaseQuery<TResponse, TQueryConfig, TContract> {
+    protected config: IDeliveryClientConfig;
+    protected queryService: QueryService;
+    constructor(config: IDeliveryClientConfig, queryService: QueryService);
+    /**
+     * Sets continuation token header
+     */
+    withContinuationToken(token: string): this;
+    /**
+     * Query to get all items. Uses paging data and may execute multiple HTTP requests depending on number of items
+     */
+    toAllPromise(queryAllConfig?: IListAllQueryConfig<TResponse, TContract>): Promise<IGroupedNetworkResponse<TAllResponse>>;
+    protected abstract allResponseFactory(items: IContentItem[], responses: IDeliveryNetworkResponse<TResponse, TContract>[]): TAllResponse;
+    protected linkItemsInRte(allContentItems: IContentItem[]): void;
+}

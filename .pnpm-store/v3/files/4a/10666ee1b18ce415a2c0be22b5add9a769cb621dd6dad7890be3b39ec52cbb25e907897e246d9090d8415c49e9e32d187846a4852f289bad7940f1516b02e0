@@ -1,0 +1,18 @@
+import { AxiosInstance } from "axios";
+import { GetAgentRunRequest, GetAgentRunResponse, PostAgentRunRequestInput, PostAgentRunResponse } from "../../types";
+export declare class AgentRunsEndpoints {
+    private client;
+    constructor(client: AxiosInstance);
+    /**
+     * Get an agent run by ID
+     * @param params Request parameters including run ID
+     * @returns The agent run details
+     */
+    get(params: GetAgentRunRequest): Promise<GetAgentRunResponse>;
+    /**
+     * Create a new agent run
+     * @param data Request data for creating a new agent run
+     * @returns The created agent run
+     */
+    create(data: PostAgentRunRequestInput): Promise<Omit<PostAgentRunResponse, "_status">>;
+}

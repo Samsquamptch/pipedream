@@ -1,0 +1,11 @@
+export declare const getTsconfigTargets: (tsconfig: string | string[], cwd: string) => string[];
+export declare const getLocalModules: (sources: string[], targets: string[], cwd: string) => Promise<string[]>;
+export declare const getExternalModules: (cwd: string) => Promise<{
+    cjsModules: string[];
+    esmModules: string[];
+    allPackages: string[];
+}>;
+type Entry = string | string[] | Record<string, string | string[] | Record<string, string | string[]>>;
+export declare const parseConditional: (e: Entry) => string[];
+export declare const getExportsEntries: (exports: string | Entry) => [string, string[]][];
+export {};

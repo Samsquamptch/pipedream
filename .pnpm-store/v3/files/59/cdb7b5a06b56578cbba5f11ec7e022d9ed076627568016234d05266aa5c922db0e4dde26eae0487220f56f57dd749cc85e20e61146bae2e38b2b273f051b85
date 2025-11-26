@@ -1,0 +1,80 @@
+{
+  "name": "google-docs-mustaches",
+  "version": "1.2.2",
+  "description": "📝Interpolate Google Docs files using mustaches and formatters",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc",
+    "test": "jest --coverage --coverage-reporters=text",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "prettier \"src/**/*.ts\"",
+    "prettier:write": "npm run prettier -- --write",
+    "prettier:check": "npm run prettier -- --check",
+    "token": "node dev/token.js",
+    "playground": "node dev/playground.js"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/errorname/google-docs-mustaches.git"
+  },
+  "keywords": [
+    "google-doc",
+    "pdf",
+    "template"
+  ],
+  "author": {
+    "name": "Thibaud Courtoison",
+    "email": "do.not.press.enter@gmail.com",
+    "url": "https://errorna.me"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/errorname/google-docs-mustaches/issues"
+  },
+  "homepage": "https://github.com/errorname/google-docs-mustaches#readme",
+  "dependencies": {
+    "cross-fetch": "^3.0.4",
+    "fetch-blob": "^1.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/node": "^13.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "googleapis": "^47.0.0",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.5"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/src/polyfills"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  }
+}

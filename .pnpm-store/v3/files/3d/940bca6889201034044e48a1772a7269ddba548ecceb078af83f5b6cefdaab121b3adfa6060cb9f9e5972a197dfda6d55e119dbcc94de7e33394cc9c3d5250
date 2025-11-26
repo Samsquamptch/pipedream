@@ -1,0 +1,15 @@
+export declare enum SDKErrorType {
+    Unauthorized = "unauthorized",
+    NotFound = "not_found",
+    BadRequest = "bad_request",
+    ApiError = "api_error",
+    Unknown = "unknown",
+    RateLimitExceeded = "rate_limit_exceeded",
+    PaymentRequired = "payment_required",
+    ValidationError = "validation_error"
+}
+export declare class SDKError extends Error {
+    type: SDKErrorType;
+    constructor(type: SDKErrorType, message?: string);
+    static isSDKError(error: any): error is SDKError;
+}

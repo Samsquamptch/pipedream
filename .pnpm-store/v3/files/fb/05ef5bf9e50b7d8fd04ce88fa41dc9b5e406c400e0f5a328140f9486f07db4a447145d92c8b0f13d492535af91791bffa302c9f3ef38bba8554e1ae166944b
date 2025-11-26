@@ -1,0 +1,20 @@
+import { FontProps } from './font';
+export type WidgetCompute = 'sum' | 'avg' | 'avg_pct' | 'diff_sum' | 'diff_avg' | 'diff_avg_pct';
+export declare const WidgetComputeNames: Record<WidgetCompute, string>;
+export type TagData = {
+    value: number;
+    compute: WidgetCompute;
+    display: string;
+    color: string;
+    goal: number;
+};
+export type WidgetType = 'sum' | 'avg' | 'pct';
+export type WidgetData = {
+    id: string;
+    type: WidgetType;
+    tags: Record<string, TagData>;
+    filters: string[];
+    font: FontProps;
+    transpose: boolean;
+    displayType: boolean;
+};

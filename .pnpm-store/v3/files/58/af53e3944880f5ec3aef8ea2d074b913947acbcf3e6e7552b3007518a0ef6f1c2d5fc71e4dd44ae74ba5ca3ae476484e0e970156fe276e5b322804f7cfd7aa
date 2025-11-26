@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getBaseUrl = void 0;
+/**
+ * Returns the base URL for the Pipedream API based on the provided environment.
+ * It replaces any placeholders in the environment string with corresponding
+ * environment variables.
+ *
+ * @param environment - The Pipedream environment string.
+ * @returns The base URL for the Pipedream API.
+ */
+const getBaseUrl = (environment) => environment.replace(/\$\{(\w+)\}/g, (_, name) => { var _a; return (_a = process.env[name]) !== null && _a !== void 0 ? _a : ""; });
+exports.getBaseUrl = getBaseUrl;

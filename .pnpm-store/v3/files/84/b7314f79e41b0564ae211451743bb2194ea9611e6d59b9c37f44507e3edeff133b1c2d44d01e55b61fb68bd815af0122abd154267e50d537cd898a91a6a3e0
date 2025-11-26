@@ -1,0 +1,2 @@
+import { TFixer } from '../interface.js';
+export declare const fixDefaultExport: TFixer;

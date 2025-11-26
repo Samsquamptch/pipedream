@@ -1,0 +1,45 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VerdictResponse = void 0;
+const typescript_json_serializer_1 = require("typescript-json-serializer");
+const message_1 = require("./message");
+const Verdict_1 = require("../Verdict");
+let VerdictResponse = class VerdictResponse extends message_1.Message {
+    constructor(sha256, guid, verdict, upload_token, url, detection, file_type, mime_type) {
+        super(message_1.Kind.VerdictResponse);
+        this.sha256 = sha256;
+        this.guid = guid;
+        this.verdict = verdict;
+        this.upload_token = upload_token;
+        this.url = url;
+        this.detection = detection;
+        this.file_type = file_type;
+        this.mime_type = mime_type;
+    }
+};
+exports.VerdictResponse = VerdictResponse;
+exports.VerdictResponse = VerdictResponse = __decorate([
+    (0, typescript_json_serializer_1.JsonObject)(),
+    __param(0, (0, typescript_json_serializer_1.JsonProperty)()),
+    __param(1, (0, typescript_json_serializer_1.JsonProperty)()),
+    __param(2, (0, typescript_json_serializer_1.JsonProperty)()),
+    __param(3, (0, typescript_json_serializer_1.JsonProperty)()),
+    __param(4, (0, typescript_json_serializer_1.JsonProperty)()),
+    __param(5, (0, typescript_json_serializer_1.JsonProperty)()),
+    __param(6, (0, typescript_json_serializer_1.JsonProperty)()),
+    __param(7, (0, typescript_json_serializer_1.JsonProperty)()),
+    __metadata("design:paramtypes", [String, String, String, Object, Object, Object, Object, Object])
+], VerdictResponse);
+//# sourceMappingURL=verdict_response.js.map

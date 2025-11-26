@@ -1,0 +1,7 @@
+import { Paginator } from "@smithy/types";
+import { ListTracksCommandInput, ListTracksCommandOutput } from "../commands/ListTracksCommand";
+import { RedshiftServerlessPaginationConfiguration } from "./Interfaces";
+/**
+ * @public
+ */
+export declare const paginateListTracks: (config: RedshiftServerlessPaginationConfiguration, input: ListTracksCommandInput, ...rest: any[]) => Paginator<ListTracksCommandOutput>;

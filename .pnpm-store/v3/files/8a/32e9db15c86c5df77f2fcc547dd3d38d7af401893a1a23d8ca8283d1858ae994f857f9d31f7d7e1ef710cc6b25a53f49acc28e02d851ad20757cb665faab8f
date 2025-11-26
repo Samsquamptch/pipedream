@@ -1,0 +1,7 @@
+import { Paginator } from "@smithy/types";
+import { ListWorkgroupsCommandInput, ListWorkgroupsCommandOutput } from "../commands/ListWorkgroupsCommand";
+import { RedshiftServerlessPaginationConfiguration } from "./Interfaces";
+/**
+ * @public
+ */
+export declare const paginateListWorkgroups: (config: RedshiftServerlessPaginationConfiguration, input: ListWorkgroupsCommandInput, ...rest: any[]) => Paginator<ListWorkgroupsCommandOutput>;

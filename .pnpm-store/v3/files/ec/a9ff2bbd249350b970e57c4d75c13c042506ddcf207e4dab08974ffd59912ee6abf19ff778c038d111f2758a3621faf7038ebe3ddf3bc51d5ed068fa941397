@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  ConvertRecoveryPointToSnapshotRequest,
+  ConvertRecoveryPointToSnapshotResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface ConvertRecoveryPointToSnapshotCommandInput
+  extends ConvertRecoveryPointToSnapshotRequest {}
+export interface ConvertRecoveryPointToSnapshotCommandOutput
+  extends ConvertRecoveryPointToSnapshotResponse,
+    __MetadataBearer {}
+declare const ConvertRecoveryPointToSnapshotCommand_base: {
+  new (
+    input: ConvertRecoveryPointToSnapshotCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    ConvertRecoveryPointToSnapshotCommandInput,
+    ConvertRecoveryPointToSnapshotCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: ConvertRecoveryPointToSnapshotCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    ConvertRecoveryPointToSnapshotCommandInput,
+    ConvertRecoveryPointToSnapshotCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class ConvertRecoveryPointToSnapshotCommand extends ConvertRecoveryPointToSnapshotCommand_base {
+  protected static __types: {
+    api: {
+      input: ConvertRecoveryPointToSnapshotRequest;
+      output: ConvertRecoveryPointToSnapshotResponse;
+    };
+    sdk: {
+      input: ConvertRecoveryPointToSnapshotCommandInput;
+      output: ConvertRecoveryPointToSnapshotCommandOutput;
+    };
+  };
+}

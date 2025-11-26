@@ -1,0 +1,1956 @@
+import { awsExpectUnion as __expectUnion, loadRestJsonErrorCode, parseJsonBody as parseBody, parseJsonErrorBody as parseErrorBody, } from "@aws-sdk/core";
+import { HttpRequest as __HttpRequest } from "@smithy/protocol-http";
+import { _json, collectBody, decorateServiceException as __decorateServiceException, expectBoolean as __expectBoolean, expectInt32 as __expectInt32, expectLong as __expectLong, expectNonNull as __expectNonNull, expectNumber as __expectNumber, expectString as __expectString, limitedParseDouble as __limitedParseDouble, parseEpochTimestamp as __parseEpochTimestamp, parseRfc3339DateTimeWithOffset as __parseRfc3339DateTimeWithOffset, take, withBaseException, } from "@smithy/smithy-client";
+import { v4 as generateIdempotencyToken } from "uuid";
+import { AccessDeniedException, ConflictException, InsufficientCapacityException, InternalServerException, InvalidPaginationException, Ipv6CidrBlockNotFoundException, ResourceNotFoundException, Schedule, ServiceQuotaExceededException, ThrottlingException, TooManyTagsException, ValidationException, } from "../models/models_0";
+import { RedshiftServerlessServiceException as __BaseException } from "../models/RedshiftServerlessServiceException";
+export const se_ConvertRecoveryPointToSnapshotCommand = async (input, context) => {
+    const headers = sharedHeaders("ConvertRecoveryPointToSnapshot");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_CreateCustomDomainAssociationCommand = async (input, context) => {
+    const headers = sharedHeaders("CreateCustomDomainAssociation");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_CreateEndpointAccessCommand = async (input, context) => {
+    const headers = sharedHeaders("CreateEndpointAccess");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_CreateNamespaceCommand = async (input, context) => {
+    const headers = sharedHeaders("CreateNamespace");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_CreateReservationCommand = async (input, context) => {
+    const headers = sharedHeaders("CreateReservation");
+    let body;
+    body = JSON.stringify(se_CreateReservationRequest(input, context));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_CreateScheduledActionCommand = async (input, context) => {
+    const headers = sharedHeaders("CreateScheduledAction");
+    let body;
+    body = JSON.stringify(se_CreateScheduledActionRequest(input, context));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_CreateSnapshotCommand = async (input, context) => {
+    const headers = sharedHeaders("CreateSnapshot");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_CreateSnapshotCopyConfigurationCommand = async (input, context) => {
+    const headers = sharedHeaders("CreateSnapshotCopyConfiguration");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_CreateUsageLimitCommand = async (input, context) => {
+    const headers = sharedHeaders("CreateUsageLimit");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_CreateWorkgroupCommand = async (input, context) => {
+    const headers = sharedHeaders("CreateWorkgroup");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_DeleteCustomDomainAssociationCommand = async (input, context) => {
+    const headers = sharedHeaders("DeleteCustomDomainAssociation");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_DeleteEndpointAccessCommand = async (input, context) => {
+    const headers = sharedHeaders("DeleteEndpointAccess");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_DeleteNamespaceCommand = async (input, context) => {
+    const headers = sharedHeaders("DeleteNamespace");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_DeleteResourcePolicyCommand = async (input, context) => {
+    const headers = sharedHeaders("DeleteResourcePolicy");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_DeleteScheduledActionCommand = async (input, context) => {
+    const headers = sharedHeaders("DeleteScheduledAction");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_DeleteSnapshotCommand = async (input, context) => {
+    const headers = sharedHeaders("DeleteSnapshot");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_DeleteSnapshotCopyConfigurationCommand = async (input, context) => {
+    const headers = sharedHeaders("DeleteSnapshotCopyConfiguration");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_DeleteUsageLimitCommand = async (input, context) => {
+    const headers = sharedHeaders("DeleteUsageLimit");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_DeleteWorkgroupCommand = async (input, context) => {
+    const headers = sharedHeaders("DeleteWorkgroup");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetCredentialsCommand = async (input, context) => {
+    const headers = sharedHeaders("GetCredentials");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetCustomDomainAssociationCommand = async (input, context) => {
+    const headers = sharedHeaders("GetCustomDomainAssociation");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetEndpointAccessCommand = async (input, context) => {
+    const headers = sharedHeaders("GetEndpointAccess");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetNamespaceCommand = async (input, context) => {
+    const headers = sharedHeaders("GetNamespace");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetRecoveryPointCommand = async (input, context) => {
+    const headers = sharedHeaders("GetRecoveryPoint");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetReservationCommand = async (input, context) => {
+    const headers = sharedHeaders("GetReservation");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetReservationOfferingCommand = async (input, context) => {
+    const headers = sharedHeaders("GetReservationOffering");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetResourcePolicyCommand = async (input, context) => {
+    const headers = sharedHeaders("GetResourcePolicy");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetScheduledActionCommand = async (input, context) => {
+    const headers = sharedHeaders("GetScheduledAction");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetSnapshotCommand = async (input, context) => {
+    const headers = sharedHeaders("GetSnapshot");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetTableRestoreStatusCommand = async (input, context) => {
+    const headers = sharedHeaders("GetTableRestoreStatus");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetTrackCommand = async (input, context) => {
+    const headers = sharedHeaders("GetTrack");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetUsageLimitCommand = async (input, context) => {
+    const headers = sharedHeaders("GetUsageLimit");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_GetWorkgroupCommand = async (input, context) => {
+    const headers = sharedHeaders("GetWorkgroup");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListCustomDomainAssociationsCommand = async (input, context) => {
+    const headers = sharedHeaders("ListCustomDomainAssociations");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListEndpointAccessCommand = async (input, context) => {
+    const headers = sharedHeaders("ListEndpointAccess");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListManagedWorkgroupsCommand = async (input, context) => {
+    const headers = sharedHeaders("ListManagedWorkgroups");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListNamespacesCommand = async (input, context) => {
+    const headers = sharedHeaders("ListNamespaces");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListRecoveryPointsCommand = async (input, context) => {
+    const headers = sharedHeaders("ListRecoveryPoints");
+    let body;
+    body = JSON.stringify(se_ListRecoveryPointsRequest(input, context));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListReservationOfferingsCommand = async (input, context) => {
+    const headers = sharedHeaders("ListReservationOfferings");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListReservationsCommand = async (input, context) => {
+    const headers = sharedHeaders("ListReservations");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListScheduledActionsCommand = async (input, context) => {
+    const headers = sharedHeaders("ListScheduledActions");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListSnapshotCopyConfigurationsCommand = async (input, context) => {
+    const headers = sharedHeaders("ListSnapshotCopyConfigurations");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListSnapshotsCommand = async (input, context) => {
+    const headers = sharedHeaders("ListSnapshots");
+    let body;
+    body = JSON.stringify(se_ListSnapshotsRequest(input, context));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListTableRestoreStatusCommand = async (input, context) => {
+    const headers = sharedHeaders("ListTableRestoreStatus");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListTagsForResourceCommand = async (input, context) => {
+    const headers = sharedHeaders("ListTagsForResource");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListTracksCommand = async (input, context) => {
+    const headers = sharedHeaders("ListTracks");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListUsageLimitsCommand = async (input, context) => {
+    const headers = sharedHeaders("ListUsageLimits");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_ListWorkgroupsCommand = async (input, context) => {
+    const headers = sharedHeaders("ListWorkgroups");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_PutResourcePolicyCommand = async (input, context) => {
+    const headers = sharedHeaders("PutResourcePolicy");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_RestoreFromRecoveryPointCommand = async (input, context) => {
+    const headers = sharedHeaders("RestoreFromRecoveryPoint");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_RestoreFromSnapshotCommand = async (input, context) => {
+    const headers = sharedHeaders("RestoreFromSnapshot");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_RestoreTableFromRecoveryPointCommand = async (input, context) => {
+    const headers = sharedHeaders("RestoreTableFromRecoveryPoint");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_RestoreTableFromSnapshotCommand = async (input, context) => {
+    const headers = sharedHeaders("RestoreTableFromSnapshot");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_TagResourceCommand = async (input, context) => {
+    const headers = sharedHeaders("TagResource");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_UntagResourceCommand = async (input, context) => {
+    const headers = sharedHeaders("UntagResource");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_UpdateCustomDomainAssociationCommand = async (input, context) => {
+    const headers = sharedHeaders("UpdateCustomDomainAssociation");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_UpdateEndpointAccessCommand = async (input, context) => {
+    const headers = sharedHeaders("UpdateEndpointAccess");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_UpdateNamespaceCommand = async (input, context) => {
+    const headers = sharedHeaders("UpdateNamespace");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_UpdateScheduledActionCommand = async (input, context) => {
+    const headers = sharedHeaders("UpdateScheduledAction");
+    let body;
+    body = JSON.stringify(se_UpdateScheduledActionRequest(input, context));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_UpdateSnapshotCommand = async (input, context) => {
+    const headers = sharedHeaders("UpdateSnapshot");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_UpdateSnapshotCopyConfigurationCommand = async (input, context) => {
+    const headers = sharedHeaders("UpdateSnapshotCopyConfiguration");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_UpdateUsageLimitCommand = async (input, context) => {
+    const headers = sharedHeaders("UpdateUsageLimit");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const se_UpdateWorkgroupCommand = async (input, context) => {
+    const headers = sharedHeaders("UpdateWorkgroup");
+    let body;
+    body = JSON.stringify(_json(input));
+    return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+export const de_ConvertRecoveryPointToSnapshotCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_ConvertRecoveryPointToSnapshotResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_CreateCustomDomainAssociationCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_CreateCustomDomainAssociationResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_CreateEndpointAccessCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_CreateEndpointAccessResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_CreateNamespaceCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_CreateNamespaceResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_CreateReservationCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_CreateReservationResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_CreateScheduledActionCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_CreateScheduledActionResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_CreateSnapshotCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_CreateSnapshotResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_CreateSnapshotCopyConfigurationCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_CreateUsageLimitCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_CreateWorkgroupCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_CreateWorkgroupResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_DeleteCustomDomainAssociationCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_DeleteEndpointAccessCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_DeleteEndpointAccessResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_DeleteNamespaceCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_DeleteNamespaceResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_DeleteResourcePolicyCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_DeleteScheduledActionCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_DeleteScheduledActionResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_DeleteSnapshotCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_DeleteSnapshotResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_DeleteSnapshotCopyConfigurationCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_DeleteUsageLimitCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_DeleteWorkgroupCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_DeleteWorkgroupResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetCredentialsCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_GetCredentialsResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetCustomDomainAssociationCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_GetCustomDomainAssociationResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetEndpointAccessCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_GetEndpointAccessResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetNamespaceCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_GetNamespaceResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetRecoveryPointCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_GetRecoveryPointResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetReservationCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_GetReservationResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetReservationOfferingCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_GetReservationOfferingResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetResourcePolicyCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetScheduledActionCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_GetScheduledActionResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetSnapshotCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_GetSnapshotResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetTableRestoreStatusCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_GetTableRestoreStatusResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetTrackCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetUsageLimitCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_GetWorkgroupCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_GetWorkgroupResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListCustomDomainAssociationsCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_ListCustomDomainAssociationsResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListEndpointAccessCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_ListEndpointAccessResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListManagedWorkgroupsCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_ListManagedWorkgroupsResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListNamespacesCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_ListNamespacesResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListRecoveryPointsCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_ListRecoveryPointsResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListReservationOfferingsCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_ListReservationOfferingsResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListReservationsCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_ListReservationsResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListScheduledActionsCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListSnapshotCopyConfigurationsCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListSnapshotsCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_ListSnapshotsResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListTableRestoreStatusCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_ListTableRestoreStatusResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListTagsForResourceCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListTracksCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListUsageLimitsCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_ListWorkgroupsCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_ListWorkgroupsResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_PutResourcePolicyCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_RestoreFromRecoveryPointCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_RestoreFromRecoveryPointResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_RestoreFromSnapshotCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_RestoreFromSnapshotResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_RestoreTableFromRecoveryPointCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_RestoreTableFromRecoveryPointResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_RestoreTableFromSnapshotCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_RestoreTableFromSnapshotResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_TagResourceCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_UntagResourceCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_UpdateCustomDomainAssociationCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_UpdateCustomDomainAssociationResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_UpdateEndpointAccessCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_UpdateEndpointAccessResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_UpdateNamespaceCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_UpdateNamespaceResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_UpdateScheduledActionCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_UpdateScheduledActionResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_UpdateSnapshotCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_UpdateSnapshotResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_UpdateSnapshotCopyConfigurationCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_UpdateUsageLimitCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = _json(data);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+export const de_UpdateWorkgroupCommand = async (output, context) => {
+    if (output.statusCode >= 300) {
+        return de_CommandError(output, context);
+    }
+    const data = await parseBody(output.body, context);
+    let contents = {};
+    contents = de_UpdateWorkgroupResponse(data, context);
+    const response = {
+        $metadata: deserializeMetadata(output),
+        ...contents,
+    };
+    return response;
+};
+const de_CommandError = async (output, context) => {
+    const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context),
+    };
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    switch (errorCode) {
+        case "ConflictException":
+        case "com.amazonaws.redshiftserverless#ConflictException":
+            throw await de_ConflictExceptionRes(parsedOutput, context);
+        case "InternalServerException":
+        case "com.amazonaws.redshiftserverless#InternalServerException":
+            throw await de_InternalServerExceptionRes(parsedOutput, context);
+        case "ResourceNotFoundException":
+        case "com.amazonaws.redshiftserverless#ResourceNotFoundException":
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
+        case "ServiceQuotaExceededException":
+        case "com.amazonaws.redshiftserverless#ServiceQuotaExceededException":
+            throw await de_ServiceQuotaExceededExceptionRes(parsedOutput, context);
+        case "TooManyTagsException":
+        case "com.amazonaws.redshiftserverless#TooManyTagsException":
+            throw await de_TooManyTagsExceptionRes(parsedOutput, context);
+        case "ValidationException":
+        case "com.amazonaws.redshiftserverless#ValidationException":
+            throw await de_ValidationExceptionRes(parsedOutput, context);
+        case "AccessDeniedException":
+        case "com.amazonaws.redshiftserverless#AccessDeniedException":
+            throw await de_AccessDeniedExceptionRes(parsedOutput, context);
+        case "ThrottlingException":
+        case "com.amazonaws.redshiftserverless#ThrottlingException":
+            throw await de_ThrottlingExceptionRes(parsedOutput, context);
+        case "InsufficientCapacityException":
+        case "com.amazonaws.redshiftserverless#InsufficientCapacityException":
+            throw await de_InsufficientCapacityExceptionRes(parsedOutput, context);
+        case "Ipv6CidrBlockNotFoundException":
+        case "com.amazonaws.redshiftserverless#Ipv6CidrBlockNotFoundException":
+            throw await de_Ipv6CidrBlockNotFoundExceptionRes(parsedOutput, context);
+        case "InvalidPaginationException":
+        case "com.amazonaws.redshiftserverless#InvalidPaginationException":
+            throw await de_InvalidPaginationExceptionRes(parsedOutput, context);
+        default:
+            const parsedBody = parsedOutput.body;
+            return throwDefaultError({
+                output,
+                parsedBody,
+                errorCode,
+            });
+    }
+};
+const de_AccessDeniedExceptionRes = async (parsedOutput, context) => {
+    const body = parsedOutput.body;
+    const deserialized = _json(body);
+    const exception = new AccessDeniedException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...deserialized,
+    });
+    return __decorateServiceException(exception, body);
+};
+const de_ConflictExceptionRes = async (parsedOutput, context) => {
+    const body = parsedOutput.body;
+    const deserialized = _json(body);
+    const exception = new ConflictException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...deserialized,
+    });
+    return __decorateServiceException(exception, body);
+};
+const de_InsufficientCapacityExceptionRes = async (parsedOutput, context) => {
+    const body = parsedOutput.body;
+    const deserialized = _json(body);
+    const exception = new InsufficientCapacityException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...deserialized,
+    });
+    return __decorateServiceException(exception, body);
+};
+const de_InternalServerExceptionRes = async (parsedOutput, context) => {
+    const body = parsedOutput.body;
+    const deserialized = _json(body);
+    const exception = new InternalServerException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...deserialized,
+    });
+    return __decorateServiceException(exception, body);
+};
+const de_InvalidPaginationExceptionRes = async (parsedOutput, context) => {
+    const body = parsedOutput.body;
+    const deserialized = _json(body);
+    const exception = new InvalidPaginationException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...deserialized,
+    });
+    return __decorateServiceException(exception, body);
+};
+const de_Ipv6CidrBlockNotFoundExceptionRes = async (parsedOutput, context) => {
+    const body = parsedOutput.body;
+    const deserialized = _json(body);
+    const exception = new Ipv6CidrBlockNotFoundException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...deserialized,
+    });
+    return __decorateServiceException(exception, body);
+};
+const de_ResourceNotFoundExceptionRes = async (parsedOutput, context) => {
+    const body = parsedOutput.body;
+    const deserialized = _json(body);
+    const exception = new ResourceNotFoundException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...deserialized,
+    });
+    return __decorateServiceException(exception, body);
+};
+const de_ServiceQuotaExceededExceptionRes = async (parsedOutput, context) => {
+    const body = parsedOutput.body;
+    const deserialized = _json(body);
+    const exception = new ServiceQuotaExceededException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...deserialized,
+    });
+    return __decorateServiceException(exception, body);
+};
+const de_ThrottlingExceptionRes = async (parsedOutput, context) => {
+    const body = parsedOutput.body;
+    const deserialized = _json(body);
+    const exception = new ThrottlingException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...deserialized,
+    });
+    return __decorateServiceException(exception, body);
+};
+const de_TooManyTagsExceptionRes = async (parsedOutput, context) => {
+    const body = parsedOutput.body;
+    const deserialized = _json(body);
+    const exception = new TooManyTagsException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...deserialized,
+    });
+    return __decorateServiceException(exception, body);
+};
+const de_ValidationExceptionRes = async (parsedOutput, context) => {
+    const body = parsedOutput.body;
+    const deserialized = _json(body);
+    const exception = new ValidationException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...deserialized,
+    });
+    return __decorateServiceException(exception, body);
+};
+const se_CreateReservationRequest = (input, context) => {
+    return take(input, {
+        capacity: [],
+        clientToken: [true, (_) => _ ?? generateIdempotencyToken()],
+        offeringId: [],
+    });
+};
+const se_CreateScheduledActionRequest = (input, context) => {
+    return take(input, {
+        enabled: [],
+        endTime: (_) => _.getTime() / 1_000,
+        namespaceName: [],
+        roleArn: [],
+        schedule: (_) => se_Schedule(_, context),
+        scheduledActionDescription: [],
+        scheduledActionName: [],
+        startTime: (_) => _.getTime() / 1_000,
+        targetAction: _json,
+    });
+};
+const se_ListRecoveryPointsRequest = (input, context) => {
+    return take(input, {
+        endTime: (_) => _.getTime() / 1_000,
+        maxResults: [],
+        namespaceArn: [],
+        namespaceName: [],
+        nextToken: [],
+        startTime: (_) => _.getTime() / 1_000,
+    });
+};
+const se_ListSnapshotsRequest = (input, context) => {
+    return take(input, {
+        endTime: (_) => _.getTime() / 1_000,
+        maxResults: [],
+        namespaceArn: [],
+        namespaceName: [],
+        nextToken: [],
+        ownerAccount: [],
+        startTime: (_) => _.getTime() / 1_000,
+    });
+};
+const se_Schedule = (input, context) => {
+    return Schedule.visit(input, {
+        at: (value) => ({ at: value.getTime() / 1_000 }),
+        cron: (value) => ({ cron: value }),
+        _: (name, value) => ({ [name]: value }),
+    });
+};
+const se_UpdateScheduledActionRequest = (input, context) => {
+    return take(input, {
+        enabled: [],
+        endTime: (_) => _.getTime() / 1_000,
+        roleArn: [],
+        schedule: (_) => se_Schedule(_, context),
+        scheduledActionDescription: [],
+        scheduledActionName: [],
+        startTime: (_) => _.getTime() / 1_000,
+        targetAction: _json,
+    });
+};
+const de_Association = (output, context) => {
+    return take(output, {
+        customDomainCertificateArn: __expectString,
+        customDomainCertificateExpiryTime: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        customDomainName: __expectString,
+        workgroupName: __expectString,
+    });
+};
+const de_AssociationList = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return de_Association(entry, context);
+    });
+    return retVal;
+};
+const de_ConvertRecoveryPointToSnapshotResponse = (output, context) => {
+    return take(output, {
+        snapshot: (_) => de_Snapshot(_, context),
+    });
+};
+const de_CreateCustomDomainAssociationResponse = (output, context) => {
+    return take(output, {
+        customDomainCertificateArn: __expectString,
+        customDomainCertificateExpiryTime: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        customDomainName: __expectString,
+        workgroupName: __expectString,
+    });
+};
+const de_CreateEndpointAccessResponse = (output, context) => {
+    return take(output, {
+        endpoint: (_) => de_EndpointAccess(_, context),
+    });
+};
+const de_CreateNamespaceResponse = (output, context) => {
+    return take(output, {
+        namespace: (_) => de_Namespace(_, context),
+    });
+};
+const de_CreateReservationResponse = (output, context) => {
+    return take(output, {
+        reservation: (_) => de_Reservation(_, context),
+    });
+};
+const de_CreateScheduledActionResponse = (output, context) => {
+    return take(output, {
+        scheduledAction: (_) => de_ScheduledActionResponse(_, context),
+    });
+};
+const de_CreateSnapshotResponse = (output, context) => {
+    return take(output, {
+        snapshot: (_) => de_Snapshot(_, context),
+    });
+};
+const de_CreateWorkgroupResponse = (output, context) => {
+    return take(output, {
+        workgroup: (_) => de_Workgroup(_, context),
+    });
+};
+const de_DeleteEndpointAccessResponse = (output, context) => {
+    return take(output, {
+        endpoint: (_) => de_EndpointAccess(_, context),
+    });
+};
+const de_DeleteNamespaceResponse = (output, context) => {
+    return take(output, {
+        namespace: (_) => de_Namespace(_, context),
+    });
+};
+const de_DeleteScheduledActionResponse = (output, context) => {
+    return take(output, {
+        scheduledAction: (_) => de_ScheduledActionResponse(_, context),
+    });
+};
+const de_DeleteSnapshotResponse = (output, context) => {
+    return take(output, {
+        snapshot: (_) => de_Snapshot(_, context),
+    });
+};
+const de_DeleteWorkgroupResponse = (output, context) => {
+    return take(output, {
+        workgroup: (_) => de_Workgroup(_, context),
+    });
+};
+const de_EndpointAccess = (output, context) => {
+    return take(output, {
+        address: __expectString,
+        endpointArn: __expectString,
+        endpointCreateTime: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        endpointName: __expectString,
+        endpointStatus: __expectString,
+        port: __expectInt32,
+        subnetIds: _json,
+        vpcEndpoint: _json,
+        vpcSecurityGroups: _json,
+        workgroupName: __expectString,
+    });
+};
+const de_EndpointAccessList = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return de_EndpointAccess(entry, context);
+    });
+    return retVal;
+};
+const de_GetCredentialsResponse = (output, context) => {
+    return take(output, {
+        dbPassword: __expectString,
+        dbUser: __expectString,
+        expiration: (_) => __expectNonNull(__parseEpochTimestamp(__expectNumber(_))),
+        nextRefreshTime: (_) => __expectNonNull(__parseEpochTimestamp(__expectNumber(_))),
+    });
+};
+const de_GetCustomDomainAssociationResponse = (output, context) => {
+    return take(output, {
+        customDomainCertificateArn: __expectString,
+        customDomainCertificateExpiryTime: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        customDomainName: __expectString,
+        workgroupName: __expectString,
+    });
+};
+const de_GetEndpointAccessResponse = (output, context) => {
+    return take(output, {
+        endpoint: (_) => de_EndpointAccess(_, context),
+    });
+};
+const de_GetNamespaceResponse = (output, context) => {
+    return take(output, {
+        namespace: (_) => de_Namespace(_, context),
+    });
+};
+const de_GetRecoveryPointResponse = (output, context) => {
+    return take(output, {
+        recoveryPoint: (_) => de_RecoveryPoint(_, context),
+    });
+};
+const de_GetReservationOfferingResponse = (output, context) => {
+    return take(output, {
+        reservationOffering: (_) => de_ReservationOffering(_, context),
+    });
+};
+const de_GetReservationResponse = (output, context) => {
+    return take(output, {
+        reservation: (_) => de_Reservation(_, context),
+    });
+};
+const de_GetScheduledActionResponse = (output, context) => {
+    return take(output, {
+        scheduledAction: (_) => de_ScheduledActionResponse(_, context),
+    });
+};
+const de_GetSnapshotResponse = (output, context) => {
+    return take(output, {
+        snapshot: (_) => de_Snapshot(_, context),
+    });
+};
+const de_GetTableRestoreStatusResponse = (output, context) => {
+    return take(output, {
+        tableRestoreStatus: (_) => de_TableRestoreStatus(_, context),
+    });
+};
+const de_GetWorkgroupResponse = (output, context) => {
+    return take(output, {
+        workgroup: (_) => de_Workgroup(_, context),
+    });
+};
+const de_ListCustomDomainAssociationsResponse = (output, context) => {
+    return take(output, {
+        associations: (_) => de_AssociationList(_, context),
+        nextToken: __expectString,
+    });
+};
+const de_ListEndpointAccessResponse = (output, context) => {
+    return take(output, {
+        endpoints: (_) => de_EndpointAccessList(_, context),
+        nextToken: __expectString,
+    });
+};
+const de_ListManagedWorkgroupsResponse = (output, context) => {
+    return take(output, {
+        managedWorkgroups: (_) => de_ManagedWorkgroups(_, context),
+        nextToken: __expectString,
+    });
+};
+const de_ListNamespacesResponse = (output, context) => {
+    return take(output, {
+        namespaces: (_) => de_NamespaceList(_, context),
+        nextToken: __expectString,
+    });
+};
+const de_ListRecoveryPointsResponse = (output, context) => {
+    return take(output, {
+        nextToken: __expectString,
+        recoveryPoints: (_) => de_RecoveryPointList(_, context),
+    });
+};
+const de_ListReservationOfferingsResponse = (output, context) => {
+    return take(output, {
+        nextToken: __expectString,
+        reservationOfferingsList: (_) => de_ReservationOfferingsList(_, context),
+    });
+};
+const de_ListReservationsResponse = (output, context) => {
+    return take(output, {
+        nextToken: __expectString,
+        reservationsList: (_) => de_ReservationsList(_, context),
+    });
+};
+const de_ListSnapshotsResponse = (output, context) => {
+    return take(output, {
+        nextToken: __expectString,
+        snapshots: (_) => de_SnapshotList(_, context),
+    });
+};
+const de_ListTableRestoreStatusResponse = (output, context) => {
+    return take(output, {
+        nextToken: __expectString,
+        tableRestoreStatuses: (_) => de_TableRestoreStatusList(_, context),
+    });
+};
+const de_ListWorkgroupsResponse = (output, context) => {
+    return take(output, {
+        nextToken: __expectString,
+        workgroups: (_) => de_WorkgroupList(_, context),
+    });
+};
+const de_ManagedWorkgroupListItem = (output, context) => {
+    return take(output, {
+        creationDate: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        managedWorkgroupId: __expectString,
+        managedWorkgroupName: __expectString,
+        sourceArn: __expectString,
+        status: __expectString,
+    });
+};
+const de_ManagedWorkgroups = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return de_ManagedWorkgroupListItem(entry, context);
+    });
+    return retVal;
+};
+const de_Namespace = (output, context) => {
+    return take(output, {
+        adminPasswordSecretArn: __expectString,
+        adminPasswordSecretKmsKeyId: __expectString,
+        adminUsername: __expectString,
+        creationDate: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        dbName: __expectString,
+        defaultIamRoleArn: __expectString,
+        iamRoles: _json,
+        kmsKeyId: __expectString,
+        logExports: _json,
+        namespaceArn: __expectString,
+        namespaceId: __expectString,
+        namespaceName: __expectString,
+        status: __expectString,
+    });
+};
+const de_NamespaceList = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return de_Namespace(entry, context);
+    });
+    return retVal;
+};
+const de_NextInvocationsList = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return __expectNonNull(__parseEpochTimestamp(__expectNumber(entry)));
+    });
+    return retVal;
+};
+const de_RecoveryPoint = (output, context) => {
+    return take(output, {
+        namespaceArn: __expectString,
+        namespaceName: __expectString,
+        recoveryPointCreateTime: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        recoveryPointId: __expectString,
+        totalSizeInMegaBytes: __limitedParseDouble,
+        workgroupName: __expectString,
+    });
+};
+const de_RecoveryPointList = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return de_RecoveryPoint(entry, context);
+    });
+    return retVal;
+};
+const de_Reservation = (output, context) => {
+    return take(output, {
+        capacity: __expectInt32,
+        endDate: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        offering: (_) => de_ReservationOffering(_, context),
+        reservationArn: __expectString,
+        reservationId: __expectString,
+        startDate: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        status: __expectString,
+    });
+};
+const de_ReservationOffering = (output, context) => {
+    return take(output, {
+        currencyCode: __expectString,
+        duration: __expectInt32,
+        hourlyCharge: __limitedParseDouble,
+        offeringId: __expectString,
+        offeringType: __expectString,
+        upfrontCharge: __limitedParseDouble,
+    });
+};
+const de_ReservationOfferingsList = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return de_ReservationOffering(entry, context);
+    });
+    return retVal;
+};
+const de_ReservationsList = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return de_Reservation(entry, context);
+    });
+    return retVal;
+};
+const de_RestoreFromRecoveryPointResponse = (output, context) => {
+    return take(output, {
+        namespace: (_) => de_Namespace(_, context),
+        recoveryPointId: __expectString,
+    });
+};
+const de_RestoreFromSnapshotResponse = (output, context) => {
+    return take(output, {
+        namespace: (_) => de_Namespace(_, context),
+        ownerAccount: __expectString,
+        snapshotName: __expectString,
+    });
+};
+const de_RestoreTableFromRecoveryPointResponse = (output, context) => {
+    return take(output, {
+        tableRestoreStatus: (_) => de_TableRestoreStatus(_, context),
+    });
+};
+const de_RestoreTableFromSnapshotResponse = (output, context) => {
+    return take(output, {
+        tableRestoreStatus: (_) => de_TableRestoreStatus(_, context),
+    });
+};
+const de_Schedule = (output, context) => {
+    if (output.at != null) {
+        return {
+            at: __expectNonNull(__parseEpochTimestamp(__expectNumber(output.at))),
+        };
+    }
+    if (__expectString(output.cron) !== undefined) {
+        return { cron: __expectString(output.cron) };
+    }
+    return { $unknown: Object.entries(output)[0] };
+};
+const de_ScheduledActionResponse = (output, context) => {
+    return take(output, {
+        endTime: (_) => __expectNonNull(__parseEpochTimestamp(__expectNumber(_))),
+        namespaceName: __expectString,
+        nextInvocations: (_) => de_NextInvocationsList(_, context),
+        roleArn: __expectString,
+        schedule: (_) => de_Schedule(__expectUnion(_), context),
+        scheduledActionDescription: __expectString,
+        scheduledActionName: __expectString,
+        scheduledActionUuid: __expectString,
+        startTime: (_) => __expectNonNull(__parseEpochTimestamp(__expectNumber(_))),
+        state: __expectString,
+        targetAction: (_) => _json(__expectUnion(_)),
+    });
+};
+const de_Snapshot = (output, context) => {
+    return take(output, {
+        accountsWithProvisionedRestoreAccess: _json,
+        accountsWithRestoreAccess: _json,
+        actualIncrementalBackupSizeInMegaBytes: __limitedParseDouble,
+        adminPasswordSecretArn: __expectString,
+        adminPasswordSecretKmsKeyId: __expectString,
+        adminUsername: __expectString,
+        backupProgressInMegaBytes: __limitedParseDouble,
+        currentBackupRateInMegaBytesPerSecond: __limitedParseDouble,
+        elapsedTimeInSeconds: __expectLong,
+        estimatedSecondsToCompletion: __expectLong,
+        kmsKeyId: __expectString,
+        namespaceArn: __expectString,
+        namespaceName: __expectString,
+        ownerAccount: __expectString,
+        snapshotArn: __expectString,
+        snapshotCreateTime: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        snapshotName: __expectString,
+        snapshotRemainingDays: __expectInt32,
+        snapshotRetentionPeriod: __expectInt32,
+        snapshotRetentionStartTime: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        status: __expectString,
+        totalBackupSizeInMegaBytes: __limitedParseDouble,
+    });
+};
+const de_SnapshotList = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return de_Snapshot(entry, context);
+    });
+    return retVal;
+};
+const de_TableRestoreStatus = (output, context) => {
+    return take(output, {
+        message: __expectString,
+        namespaceName: __expectString,
+        newTableName: __expectString,
+        progressInMegaBytes: __expectLong,
+        recoveryPointId: __expectString,
+        requestTime: (_) => __expectNonNull(__parseEpochTimestamp(__expectNumber(_))),
+        snapshotName: __expectString,
+        sourceDatabaseName: __expectString,
+        sourceSchemaName: __expectString,
+        sourceTableName: __expectString,
+        status: __expectString,
+        tableRestoreRequestId: __expectString,
+        targetDatabaseName: __expectString,
+        targetSchemaName: __expectString,
+        totalDataInMegaBytes: __expectLong,
+        workgroupName: __expectString,
+    });
+};
+const de_TableRestoreStatusList = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return de_TableRestoreStatus(entry, context);
+    });
+    return retVal;
+};
+const de_UpdateCustomDomainAssociationResponse = (output, context) => {
+    return take(output, {
+        customDomainCertificateArn: __expectString,
+        customDomainCertificateExpiryTime: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        customDomainName: __expectString,
+        workgroupName: __expectString,
+    });
+};
+const de_UpdateEndpointAccessResponse = (output, context) => {
+    return take(output, {
+        endpoint: (_) => de_EndpointAccess(_, context),
+    });
+};
+const de_UpdateNamespaceResponse = (output, context) => {
+    return take(output, {
+        namespace: (_) => de_Namespace(_, context),
+    });
+};
+const de_UpdateScheduledActionResponse = (output, context) => {
+    return take(output, {
+        scheduledAction: (_) => de_ScheduledActionResponse(_, context),
+    });
+};
+const de_UpdateSnapshotResponse = (output, context) => {
+    return take(output, {
+        snapshot: (_) => de_Snapshot(_, context),
+    });
+};
+const de_UpdateWorkgroupResponse = (output, context) => {
+    return take(output, {
+        workgroup: (_) => de_Workgroup(_, context),
+    });
+};
+const de_Workgroup = (output, context) => {
+    return take(output, {
+        baseCapacity: __expectInt32,
+        configParameters: _json,
+        creationDate: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        crossAccountVpcs: _json,
+        customDomainCertificateArn: __expectString,
+        customDomainCertificateExpiryTime: (_) => __expectNonNull(__parseRfc3339DateTimeWithOffset(_)),
+        customDomainName: __expectString,
+        endpoint: _json,
+        enhancedVpcRouting: __expectBoolean,
+        ipAddressType: __expectString,
+        maxCapacity: __expectInt32,
+        namespaceName: __expectString,
+        patchVersion: __expectString,
+        pendingTrackName: __expectString,
+        port: __expectInt32,
+        pricePerformanceTarget: _json,
+        publiclyAccessible: __expectBoolean,
+        securityGroupIds: _json,
+        status: __expectString,
+        subnetIds: _json,
+        trackName: __expectString,
+        workgroupArn: __expectString,
+        workgroupId: __expectString,
+        workgroupName: __expectString,
+        workgroupVersion: __expectString,
+    });
+};
+const de_WorkgroupList = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return de_Workgroup(entry, context);
+    });
+    return retVal;
+};
+const deserializeMetadata = (output) => ({
+    httpStatusCode: output.statusCode,
+    requestId: output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ?? output.headers["x-amz-request-id"],
+    extendedRequestId: output.headers["x-amz-id-2"],
+    cfId: output.headers["x-amz-cf-id"],
+});
+const collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+const throwDefaultError = withBaseException(__BaseException);
+const buildHttpRpcRequest = async (context, headers, path, resolvedHostname, body) => {
+    const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+    const contents = {
+        protocol,
+        hostname,
+        port,
+        method: "POST",
+        path: basePath.endsWith("/") ? basePath.slice(0, -1) + path : basePath + path,
+        headers,
+    };
+    if (resolvedHostname !== undefined) {
+        contents.hostname = resolvedHostname;
+    }
+    if (body !== undefined) {
+        contents.body = body;
+    }
+    return new __HttpRequest(contents);
+};
+function sharedHeaders(operation) {
+    return {
+        "content-type": "application/x-amz-json-1.1",
+        "x-amz-target": `RedshiftServerless.${operation}`,
+    };
+}

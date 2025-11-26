@@ -1,0 +1,30 @@
+import { ContentItemContracts } from '../../contracts';
+import { SharedModels } from '../shared/shared-models';
+export declare namespace ContentItemModels {
+    class ContentItem implements SharedModels.IBaseModel<ContentItemContracts.IContentItemModelContract> {
+        id: string;
+        name: string;
+        codename: string;
+        type: {
+            id: string;
+        };
+        externalId?: string;
+        lastModified: Date;
+        collection: SharedModels.ReferenceObject;
+        _raw: ContentItemContracts.IContentItemModelContract;
+        constructor(data: {
+            id: string;
+            name: string;
+            codename: string;
+            type: {
+                id?: string;
+                codename?: string;
+                external_id?: string;
+            };
+            externalId?: string;
+            lastModified: Date;
+            collection: SharedModels.ReferenceObject;
+            _raw: ContentItemContracts.IContentItemModelContract;
+        });
+    }
+}

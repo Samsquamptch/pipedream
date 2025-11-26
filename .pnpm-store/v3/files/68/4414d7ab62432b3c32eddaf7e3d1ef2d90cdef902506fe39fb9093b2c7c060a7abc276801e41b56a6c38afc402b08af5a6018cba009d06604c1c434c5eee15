@@ -1,0 +1,42 @@
+import { AssetFolderContracts } from '../../contracts';
+import { SharedModels } from '../shared/shared-models';
+export declare namespace AssetFolderModels {
+    class AssetFolder implements SharedModels.IBaseModel<AssetFolderContracts.IAssetFolderContract> {
+        id: string;
+        name: string;
+        externalId?: string;
+        folders: AssetFolder[];
+        _raw: AssetFolderContracts.IAssetFolderContract;
+        constructor(data: {
+            id: string;
+            name: string;
+            externalId?: string;
+            folders: AssetFolder[];
+            _raw: AssetFolderContracts.IAssetFolderContract;
+        });
+    }
+    interface IAddOrModifyAssetFolderData {
+        name: string;
+        folders: IAddOrModifyAssetFolderData[];
+        external_id?: string;
+    }
+    interface IAddAssetFoldersData {
+        folders: IAddOrModifyAssetFolderData[];
+    }
+    interface IModifyAssetFoldersData {
+        op: 'addInto' | 'remove' | 'rename';
+        value?: IAddOrModifyAssetFolderData;
+        after?: {
+            external_id?: string;
+            id?: string;
+        };
+        before?: {
+            external_id?: string;
+            id?: string;
+        };
+        reference?: {
+            external_id?: string;
+            id?: string;
+        };
+    }
+}

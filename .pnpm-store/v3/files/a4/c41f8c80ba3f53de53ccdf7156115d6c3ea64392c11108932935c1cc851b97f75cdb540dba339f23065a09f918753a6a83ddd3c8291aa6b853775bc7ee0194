@@ -1,0 +1,23 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.axis = void 0;
+const font_1 = require("../font");
+const axis = (numTicks, color) => ({
+    numTicks,
+    tickHidden: false,
+    tickProps: {
+        fill: color,
+        font: (0, font_1.defaultFont)(color),
+        textAnchor: null,
+        scaleToFit: true,
+    },
+    modByUser: false,
+    range: null,
+    hidden: false,
+    format: {
+        option: 'auto',
+        precision: 0,
+    },
+});
+exports.axis = axis;
+//# sourceMappingURL=axis.js.map

@@ -1,0 +1,1 @@
+export declare const tfmt: (unix_ms: number, range_ms?: number, unit?: number) => string;

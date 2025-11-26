@@ -1,0 +1,465 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotImageFacedetectInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    robot: z.ZodLiteral<"/image/facedetect">;
+    provider: z.ZodOptional<z.ZodEnum<["aws", "gcp", "replicate", "fal", "transloadit"]>>;
+    crop: z.ZodDefault<z.ZodBoolean>;
+    crop_padding: z.ZodDefault<z.ZodString>;
+    format: z.ZodDefault<z.ZodEnum<["jpg", "png", "preserve", "tiff"]>>;
+    min_confidence: z.ZodDefault<z.ZodNumber>;
+    faces: z.ZodDefault<z.ZodUnion<[z.ZodEnum<["each", "group", "max-confidence", "max-size"]>, z.ZodNumber]>>;
+}, "strict", z.ZodTypeAny, {
+    format: "preserve" | "jpg" | "png" | "tiff";
+    robot: "/image/facedetect";
+    result: boolean;
+    force_accept: boolean;
+    crop: boolean;
+    crop_padding: string;
+    min_confidence: number;
+    faces: number | "each" | "group" | "max-confidence" | "max-size";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    provider?: "aws" | "gcp" | "replicate" | "fal" | "transloadit" | undefined;
+}, {
+    robot: "/image/facedetect";
+    format?: "preserve" | "jpg" | "png" | "tiff" | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    crop?: boolean | undefined;
+    provider?: "aws" | "gcp" | "replicate" | "fal" | "transloadit" | undefined;
+    crop_padding?: string | undefined;
+    min_confidence?: number | undefined;
+    faces?: number | "each" | "group" | "max-confidence" | "max-size" | undefined;
+}>;
+export declare const robotImageFacedetectInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/image/facedetect">;
+    provider: z.ZodOptional<z.ZodEnum<["aws", "gcp", "replicate", "fal", "transloadit"]>>;
+    crop: z.ZodDefault<z.ZodBoolean>;
+    crop_padding: z.ZodDefault<z.ZodString>;
+    format: z.ZodDefault<z.ZodEnum<["jpg", "png", "preserve", "tiff"]>>;
+    min_confidence: z.ZodDefault<z.ZodNumber>;
+    faces: z.ZodDefault<z.ZodUnion<[z.ZodEnum<["each", "group", "max-confidence", "max-size"]>, z.ZodNumber]>>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: "preserve" | "jpg" | "png" | "tiff";
+    robot: "/image/facedetect";
+    force_accept: boolean;
+    crop: boolean;
+    crop_padding: string;
+    min_confidence: number;
+    faces: number | "each" | "group" | "max-confidence" | "max-size";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    provider?: "aws" | "gcp" | "replicate" | "fal" | "transloadit" | undefined;
+}, {
+    robot: "/image/facedetect";
+    format?: "preserve" | "jpg" | "png" | "tiff" | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    crop?: boolean | undefined;
+    provider?: "aws" | "gcp" | "replicate" | "fal" | "transloadit" | undefined;
+    crop_padding?: string | undefined;
+    min_confidence?: number | undefined;
+    faces?: number | "each" | "group" | "max-confidence" | "max-size" | undefined;
+}>;
+export type RobotImageFacedetectInstructions = z.infer<typeof robotImageFacedetectInstructionsSchema>;
+export type RobotImageFacedetectInstructionsWithHiddenFields = z.infer<typeof robotImageFacedetectInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotImageFacedetectInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/image/facedetect">;
+    provider: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["aws", "gcp", "replicate", "fal", "transloadit"]>]>>;
+    crop: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    crop_padding: z.ZodDefault<z.ZodString>;
+    format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["jpg", "png", "preserve", "tiff"]>]>>;
+    min_confidence: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    faces: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["each", "group", "max-confidence", "max-size"]>]>, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string;
+    robot: "/image/facedetect";
+    result: string | boolean;
+    force_accept: string | boolean;
+    crop: string | boolean;
+    crop_padding: string;
+    min_confidence: string | number;
+    faces: string | number;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    provider?: string | undefined;
+}, {
+    robot: "/image/facedetect";
+    format?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    crop?: string | boolean | undefined;
+    provider?: string | undefined;
+    crop_padding?: string | undefined;
+    min_confidence?: string | number | undefined;
+    faces?: string | number | undefined;
+}>;
+export type InterpolatableRobotImageFacedetectInstructions = InterpolatableRobotImageFacedetectInstructionsInput;
+export type InterpolatableRobotImageFacedetectInstructionsInput = z.input<typeof interpolatableRobotImageFacedetectInstructionsSchema>;
+export declare const interpolatableRobotImageFacedetectInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/image/facedetect">;
+    provider: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["aws", "gcp", "replicate", "fal", "transloadit"]>]>>;
+    crop: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    crop_padding: z.ZodDefault<z.ZodString>;
+    format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["jpg", "png", "preserve", "tiff"]>]>>;
+    min_confidence: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    faces: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["each", "group", "max-confidence", "max-size"]>]>, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string;
+    robot: "/image/facedetect";
+    force_accept: string | boolean;
+    crop: string | boolean;
+    crop_padding: string;
+    min_confidence: string | number;
+    faces: string | number;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    provider?: string | undefined;
+}, {
+    robot: "/image/facedetect";
+    format?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    crop?: string | boolean | undefined;
+    provider?: string | undefined;
+    crop_padding?: string | undefined;
+    min_confidence?: string | number | undefined;
+    faces?: string | number | undefined;
+}>;
+export type InterpolatableRobotImageFacedetectInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotImageFacedetectInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotImageFacedetectInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotImageFacedetectInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=image-facedetect.d.ts.map

@@ -1,0 +1,22 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CancellationToken = void 0;
+class CancellationToken {
+    constructor(timeout) {
+        this._timeout = timeout;
+    }
+    timeout() {
+        return this._timeout;
+    }
+    static fromSeconds(seconds) {
+        return new CancellationToken(seconds * 1000);
+    }
+    static fromMinutes(minutes) {
+        return new CancellationToken(minutes * 60 * 1000);
+    }
+    static fromMilliseconds(milliseconds) {
+        return new CancellationToken(milliseconds);
+    }
+}
+exports.CancellationToken = CancellationToken;
+//# sourceMappingURL=CancellationToken.js.map

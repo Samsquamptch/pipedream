@@ -1,0 +1,18 @@
+export declare enum Kind {
+    Error = "Error",
+    AuthRequest = "AuthRequest",
+    AuthResponse = "AuthResponse",
+    VerdictRequest = "VerdictRequest",
+    VerdictResponse = "VerdictResponse",
+    DetectionRequest = "DetectionRequest",
+    DetectionResponse = "DetectionResponse",
+    PersistedRequest = "PersistedRequest",
+    SampleProcessingResponse = "SampleProcessingResponse",
+    VerdictRequestForUrl = "VerdictRequestForUrl",
+    VerdictRequestForStream = "VerdictRequestForStream"
+}
+export declare class Message {
+    kind: Kind;
+    constructor(kind: Kind);
+}
+//# sourceMappingURL=message.d.ts.map

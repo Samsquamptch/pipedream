@@ -1,0 +1,8 @@
+export interface JsonObjectMetadata {
+    baseClassNames: Array<string>;
+    constructorParams: Array<unknown>;
+}
+export interface JsonObjectOptions {
+    constructorParams?: Array<unknown>;
+}
+export declare const JsonObject: (options?: JsonObjectOptions | undefined) => Function;

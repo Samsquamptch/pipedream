@@ -1,0 +1,44 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VaasServerError = exports.VaasTimeoutError = exports.VaasInvalidStateError = exports.VaasAuthenticationError = exports.VaasConnectionClosedError = void 0;
+/** Connection was closed with error. */
+class VaasConnectionClosedError extends Error {
+    constructor(closeEvent) {
+        super("Connection was closed");
+        this.closeEvent = closeEvent;
+    }
+}
+exports.VaasConnectionClosedError = VaasConnectionClosedError;
+/** Vaas authentication failed. */
+class VaasAuthenticationError extends Error {
+    constructor() {
+        super("Vaas authentication failed");
+    }
+}
+exports.VaasAuthenticationError = VaasAuthenticationError;
+/** Vaas invalid state error.
+ * @description These are coding errors and be prevented by the developer.
+ */
+class VaasInvalidStateError extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+exports.VaasInvalidStateError = VaasInvalidStateError;
+/** Vaas timeout. */
+class VaasTimeoutError extends Error {
+    constructor() {
+        super("Timeout");
+    }
+}
+exports.VaasTimeoutError = VaasTimeoutError;
+/** Vaas server error.
+ * @description These are coding errors and be prevented by the developer.
+ */
+class VaasServerError extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+exports.VaasServerError = VaasServerError;
+//# sourceMappingURL=VaasErrors.js.map

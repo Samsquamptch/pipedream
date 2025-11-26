@@ -1,0 +1,7 @@
+import { Paginator } from "@smithy/types";
+import { ListSnapshotCopyConfigurationsCommandInput, ListSnapshotCopyConfigurationsCommandOutput } from "../commands/ListSnapshotCopyConfigurationsCommand";
+import { RedshiftServerlessPaginationConfiguration } from "./Interfaces";
+/**
+ * @public
+ */
+export declare const paginateListSnapshotCopyConfigurations: (config: RedshiftServerlessPaginationConfiguration, input: ListSnapshotCopyConfigurationsCommandInput, ...rest: any[]) => Paginator<ListSnapshotCopyConfigurationsCommandOutput>;

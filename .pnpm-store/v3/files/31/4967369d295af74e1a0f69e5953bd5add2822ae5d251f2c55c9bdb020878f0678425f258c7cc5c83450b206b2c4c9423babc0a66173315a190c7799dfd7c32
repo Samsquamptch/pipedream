@@ -1,0 +1,27 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const dot_1 = require("./dot");
+const pipe_1 = require("./pipe");
+exports.default = (data, interpolation, options) => {
+    const [path, ...transformations] = interpolation.split('|').map(s => s.trim());
+    let value = '';
+    try {
+        value = dot_1.default(path, data);
+    }
+    catch (err) {
+        if ((options && options.fallback) === undefined) {
+            return value;
+        }
+        else {
+            value = options && options.fallback;
+        }
+    }
+    let transformedValue = value;
+    transformations.forEach(transformation => {
+        try {
+            transformedValue = pipe_1.default(value, transformation, data, options);
+        }
+        catch (err) { }
+    });
+    return transformedValue;
+};

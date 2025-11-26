@@ -1,0 +1,29 @@
+import { Position } from './common';
+import { FontProps } from './font';
+export type HeadStyle = 'none' | 'left' | 'right' | 'both';
+export type HeadShape = 'triangle' | 'circle';
+export type Marker = {
+    title: string;
+    text: string;
+    background: string;
+    color: string;
+    anchorColor: string;
+    width: number;
+    nobg: boolean;
+};
+export type ArrowData = {
+    id: string;
+    dots: number;
+    color: string;
+    thickness: number;
+    head: HeadStyle;
+    shape: HeadShape;
+    target: boolean;
+    text?: string;
+    textPos?: Position;
+    textFont?: FontProps;
+    shadow?: boolean;
+    elbow?: boolean;
+    label?: Marker;
+    autodata?: boolean;
+};

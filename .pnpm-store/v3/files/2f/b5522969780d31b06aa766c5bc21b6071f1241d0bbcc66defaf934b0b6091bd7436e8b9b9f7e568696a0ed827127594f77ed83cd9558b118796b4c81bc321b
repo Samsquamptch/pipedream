@@ -1,0 +1,47 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import { GetTrackRequest, GetTrackResponse } from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface GetTrackCommandInput extends GetTrackRequest {}
+export interface GetTrackCommandOutput
+  extends GetTrackResponse,
+    __MetadataBearer {}
+declare const GetTrackCommand_base: {
+  new (
+    input: GetTrackCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetTrackCommandInput,
+    GetTrackCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: GetTrackCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetTrackCommandInput,
+    GetTrackCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class GetTrackCommand extends GetTrackCommand_base {
+  protected static __types: {
+    api: {
+      input: GetTrackRequest;
+      output: GetTrackResponse;
+    };
+    sdk: {
+      input: GetTrackCommandInput;
+      output: GetTrackCommandOutput;
+    };
+  };
+}

@@ -1,0 +1,7 @@
+import { Paginator } from "@smithy/types";
+import { ListEndpointAccessCommandInput, ListEndpointAccessCommandOutput } from "../commands/ListEndpointAccessCommand";
+import { RedshiftServerlessPaginationConfiguration } from "./Interfaces";
+/**
+ * @public
+ */
+export declare const paginateListEndpointAccess: (config: RedshiftServerlessPaginationConfiguration, input: ListEndpointAccessCommandInput, ...rest: any[]) => Paginator<ListEndpointAccessCommandOutput>;

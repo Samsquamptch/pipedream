@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  DeleteSnapshotCopyConfigurationRequest,
+  DeleteSnapshotCopyConfigurationResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface DeleteSnapshotCopyConfigurationCommandInput
+  extends DeleteSnapshotCopyConfigurationRequest {}
+export interface DeleteSnapshotCopyConfigurationCommandOutput
+  extends DeleteSnapshotCopyConfigurationResponse,
+    __MetadataBearer {}
+declare const DeleteSnapshotCopyConfigurationCommand_base: {
+  new (
+    input: DeleteSnapshotCopyConfigurationCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    DeleteSnapshotCopyConfigurationCommandInput,
+    DeleteSnapshotCopyConfigurationCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: DeleteSnapshotCopyConfigurationCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    DeleteSnapshotCopyConfigurationCommandInput,
+    DeleteSnapshotCopyConfigurationCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class DeleteSnapshotCopyConfigurationCommand extends DeleteSnapshotCopyConfigurationCommand_base {
+  protected static __types: {
+    api: {
+      input: DeleteSnapshotCopyConfigurationRequest;
+      output: DeleteSnapshotCopyConfigurationResponse;
+    };
+    sdk: {
+      input: DeleteSnapshotCopyConfigurationCommandInput;
+      output: DeleteSnapshotCopyConfigurationCommandOutput;
+    };
+  };
+}

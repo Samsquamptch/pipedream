@@ -1,0 +1,1 @@
+{"version":3,"file":"ClientCredentialsGrantAuthenticator.d.ts","sourceRoot":"","sources":["../src/ClientCredentialsGrantAuthenticator.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,OAAO,OAAO,mCAAmC;IAEpD,OAAO,CAAC,QAAQ;IAChB,OAAO,CAAC,YAAY;IACpB,OAAO,CAAC,aAAa;gBAFb,QAAQ,EAAE,MAAM,EAChB,YAAY,EAAE,MAAM,EACpB,aAAa,EAAE,MAAM;IAG/B,QAAQ;CAOT"}

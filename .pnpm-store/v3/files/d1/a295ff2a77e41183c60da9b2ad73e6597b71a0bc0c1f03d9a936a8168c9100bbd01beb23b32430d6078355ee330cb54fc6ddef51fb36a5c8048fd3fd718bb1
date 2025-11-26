@@ -1,0 +1,10 @@
+import { FontProps } from './font';
+export type ConditionElement = 'Key' | 'Op' | 'Value';
+export type Condition = {
+    id: string;
+    text: string;
+    prefix: string;
+    font: FontProps;
+    elements: ConditionElement[];
+    byUser: boolean;
+};

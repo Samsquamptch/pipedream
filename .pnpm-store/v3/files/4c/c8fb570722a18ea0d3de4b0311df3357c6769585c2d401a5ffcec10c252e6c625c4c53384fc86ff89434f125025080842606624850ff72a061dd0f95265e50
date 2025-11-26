@@ -1,0 +1,569 @@
+import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@smithy/protocol-http";
+import { SerdeContext as __SerdeContext } from "@smithy/types";
+import { ConvertRecoveryPointToSnapshotCommandInput, ConvertRecoveryPointToSnapshotCommandOutput } from "../commands/ConvertRecoveryPointToSnapshotCommand";
+import { CreateCustomDomainAssociationCommandInput, CreateCustomDomainAssociationCommandOutput } from "../commands/CreateCustomDomainAssociationCommand";
+import { CreateEndpointAccessCommandInput, CreateEndpointAccessCommandOutput } from "../commands/CreateEndpointAccessCommand";
+import { CreateNamespaceCommandInput, CreateNamespaceCommandOutput } from "../commands/CreateNamespaceCommand";
+import { CreateReservationCommandInput, CreateReservationCommandOutput } from "../commands/CreateReservationCommand";
+import { CreateScheduledActionCommandInput, CreateScheduledActionCommandOutput } from "../commands/CreateScheduledActionCommand";
+import { CreateSnapshotCommandInput, CreateSnapshotCommandOutput } from "../commands/CreateSnapshotCommand";
+import { CreateSnapshotCopyConfigurationCommandInput, CreateSnapshotCopyConfigurationCommandOutput } from "../commands/CreateSnapshotCopyConfigurationCommand";
+import { CreateUsageLimitCommandInput, CreateUsageLimitCommandOutput } from "../commands/CreateUsageLimitCommand";
+import { CreateWorkgroupCommandInput, CreateWorkgroupCommandOutput } from "../commands/CreateWorkgroupCommand";
+import { DeleteCustomDomainAssociationCommandInput, DeleteCustomDomainAssociationCommandOutput } from "../commands/DeleteCustomDomainAssociationCommand";
+import { DeleteEndpointAccessCommandInput, DeleteEndpointAccessCommandOutput } from "../commands/DeleteEndpointAccessCommand";
+import { DeleteNamespaceCommandInput, DeleteNamespaceCommandOutput } from "../commands/DeleteNamespaceCommand";
+import { DeleteResourcePolicyCommandInput, DeleteResourcePolicyCommandOutput } from "../commands/DeleteResourcePolicyCommand";
+import { DeleteScheduledActionCommandInput, DeleteScheduledActionCommandOutput } from "../commands/DeleteScheduledActionCommand";
+import { DeleteSnapshotCommandInput, DeleteSnapshotCommandOutput } from "../commands/DeleteSnapshotCommand";
+import { DeleteSnapshotCopyConfigurationCommandInput, DeleteSnapshotCopyConfigurationCommandOutput } from "../commands/DeleteSnapshotCopyConfigurationCommand";
+import { DeleteUsageLimitCommandInput, DeleteUsageLimitCommandOutput } from "../commands/DeleteUsageLimitCommand";
+import { DeleteWorkgroupCommandInput, DeleteWorkgroupCommandOutput } from "../commands/DeleteWorkgroupCommand";
+import { GetCredentialsCommandInput, GetCredentialsCommandOutput } from "../commands/GetCredentialsCommand";
+import { GetCustomDomainAssociationCommandInput, GetCustomDomainAssociationCommandOutput } from "../commands/GetCustomDomainAssociationCommand";
+import { GetEndpointAccessCommandInput, GetEndpointAccessCommandOutput } from "../commands/GetEndpointAccessCommand";
+import { GetNamespaceCommandInput, GetNamespaceCommandOutput } from "../commands/GetNamespaceCommand";
+import { GetRecoveryPointCommandInput, GetRecoveryPointCommandOutput } from "../commands/GetRecoveryPointCommand";
+import { GetReservationCommandInput, GetReservationCommandOutput } from "../commands/GetReservationCommand";
+import { GetReservationOfferingCommandInput, GetReservationOfferingCommandOutput } from "../commands/GetReservationOfferingCommand";
+import { GetResourcePolicyCommandInput, GetResourcePolicyCommandOutput } from "../commands/GetResourcePolicyCommand";
+import { GetScheduledActionCommandInput, GetScheduledActionCommandOutput } from "../commands/GetScheduledActionCommand";
+import { GetSnapshotCommandInput, GetSnapshotCommandOutput } from "../commands/GetSnapshotCommand";
+import { GetTableRestoreStatusCommandInput, GetTableRestoreStatusCommandOutput } from "../commands/GetTableRestoreStatusCommand";
+import { GetTrackCommandInput, GetTrackCommandOutput } from "../commands/GetTrackCommand";
+import { GetUsageLimitCommandInput, GetUsageLimitCommandOutput } from "../commands/GetUsageLimitCommand";
+import { GetWorkgroupCommandInput, GetWorkgroupCommandOutput } from "../commands/GetWorkgroupCommand";
+import { ListCustomDomainAssociationsCommandInput, ListCustomDomainAssociationsCommandOutput } from "../commands/ListCustomDomainAssociationsCommand";
+import { ListEndpointAccessCommandInput, ListEndpointAccessCommandOutput } from "../commands/ListEndpointAccessCommand";
+import { ListManagedWorkgroupsCommandInput, ListManagedWorkgroupsCommandOutput } from "../commands/ListManagedWorkgroupsCommand";
+import { ListNamespacesCommandInput, ListNamespacesCommandOutput } from "../commands/ListNamespacesCommand";
+import { ListRecoveryPointsCommandInput, ListRecoveryPointsCommandOutput } from "../commands/ListRecoveryPointsCommand";
+import { ListReservationOfferingsCommandInput, ListReservationOfferingsCommandOutput } from "../commands/ListReservationOfferingsCommand";
+import { ListReservationsCommandInput, ListReservationsCommandOutput } from "../commands/ListReservationsCommand";
+import { ListScheduledActionsCommandInput, ListScheduledActionsCommandOutput } from "../commands/ListScheduledActionsCommand";
+import { ListSnapshotCopyConfigurationsCommandInput, ListSnapshotCopyConfigurationsCommandOutput } from "../commands/ListSnapshotCopyConfigurationsCommand";
+import { ListSnapshotsCommandInput, ListSnapshotsCommandOutput } from "../commands/ListSnapshotsCommand";
+import { ListTableRestoreStatusCommandInput, ListTableRestoreStatusCommandOutput } from "../commands/ListTableRestoreStatusCommand";
+import { ListTagsForResourceCommandInput, ListTagsForResourceCommandOutput } from "../commands/ListTagsForResourceCommand";
+import { ListTracksCommandInput, ListTracksCommandOutput } from "../commands/ListTracksCommand";
+import { ListUsageLimitsCommandInput, ListUsageLimitsCommandOutput } from "../commands/ListUsageLimitsCommand";
+import { ListWorkgroupsCommandInput, ListWorkgroupsCommandOutput } from "../commands/ListWorkgroupsCommand";
+import { PutResourcePolicyCommandInput, PutResourcePolicyCommandOutput } from "../commands/PutResourcePolicyCommand";
+import { RestoreFromRecoveryPointCommandInput, RestoreFromRecoveryPointCommandOutput } from "../commands/RestoreFromRecoveryPointCommand";
+import { RestoreFromSnapshotCommandInput, RestoreFromSnapshotCommandOutput } from "../commands/RestoreFromSnapshotCommand";
+import { RestoreTableFromRecoveryPointCommandInput, RestoreTableFromRecoveryPointCommandOutput } from "../commands/RestoreTableFromRecoveryPointCommand";
+import { RestoreTableFromSnapshotCommandInput, RestoreTableFromSnapshotCommandOutput } from "../commands/RestoreTableFromSnapshotCommand";
+import { TagResourceCommandInput, TagResourceCommandOutput } from "../commands/TagResourceCommand";
+import { UntagResourceCommandInput, UntagResourceCommandOutput } from "../commands/UntagResourceCommand";
+import { UpdateCustomDomainAssociationCommandInput, UpdateCustomDomainAssociationCommandOutput } from "../commands/UpdateCustomDomainAssociationCommand";
+import { UpdateEndpointAccessCommandInput, UpdateEndpointAccessCommandOutput } from "../commands/UpdateEndpointAccessCommand";
+import { UpdateNamespaceCommandInput, UpdateNamespaceCommandOutput } from "../commands/UpdateNamespaceCommand";
+import { UpdateScheduledActionCommandInput, UpdateScheduledActionCommandOutput } from "../commands/UpdateScheduledActionCommand";
+import { UpdateSnapshotCommandInput, UpdateSnapshotCommandOutput } from "../commands/UpdateSnapshotCommand";
+import { UpdateSnapshotCopyConfigurationCommandInput, UpdateSnapshotCopyConfigurationCommandOutput } from "../commands/UpdateSnapshotCopyConfigurationCommand";
+import { UpdateUsageLimitCommandInput, UpdateUsageLimitCommandOutput } from "../commands/UpdateUsageLimitCommand";
+import { UpdateWorkgroupCommandInput, UpdateWorkgroupCommandOutput } from "../commands/UpdateWorkgroupCommand";
+/**
+ * serializeAws_json1_1ConvertRecoveryPointToSnapshotCommand
+ */
+export declare const se_ConvertRecoveryPointToSnapshotCommand: (input: ConvertRecoveryPointToSnapshotCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1CreateCustomDomainAssociationCommand
+ */
+export declare const se_CreateCustomDomainAssociationCommand: (input: CreateCustomDomainAssociationCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1CreateEndpointAccessCommand
+ */
+export declare const se_CreateEndpointAccessCommand: (input: CreateEndpointAccessCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1CreateNamespaceCommand
+ */
+export declare const se_CreateNamespaceCommand: (input: CreateNamespaceCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1CreateReservationCommand
+ */
+export declare const se_CreateReservationCommand: (input: CreateReservationCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1CreateScheduledActionCommand
+ */
+export declare const se_CreateScheduledActionCommand: (input: CreateScheduledActionCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1CreateSnapshotCommand
+ */
+export declare const se_CreateSnapshotCommand: (input: CreateSnapshotCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1CreateSnapshotCopyConfigurationCommand
+ */
+export declare const se_CreateSnapshotCopyConfigurationCommand: (input: CreateSnapshotCopyConfigurationCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1CreateUsageLimitCommand
+ */
+export declare const se_CreateUsageLimitCommand: (input: CreateUsageLimitCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1CreateWorkgroupCommand
+ */
+export declare const se_CreateWorkgroupCommand: (input: CreateWorkgroupCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1DeleteCustomDomainAssociationCommand
+ */
+export declare const se_DeleteCustomDomainAssociationCommand: (input: DeleteCustomDomainAssociationCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1DeleteEndpointAccessCommand
+ */
+export declare const se_DeleteEndpointAccessCommand: (input: DeleteEndpointAccessCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1DeleteNamespaceCommand
+ */
+export declare const se_DeleteNamespaceCommand: (input: DeleteNamespaceCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1DeleteResourcePolicyCommand
+ */
+export declare const se_DeleteResourcePolicyCommand: (input: DeleteResourcePolicyCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1DeleteScheduledActionCommand
+ */
+export declare const se_DeleteScheduledActionCommand: (input: DeleteScheduledActionCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1DeleteSnapshotCommand
+ */
+export declare const se_DeleteSnapshotCommand: (input: DeleteSnapshotCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1DeleteSnapshotCopyConfigurationCommand
+ */
+export declare const se_DeleteSnapshotCopyConfigurationCommand: (input: DeleteSnapshotCopyConfigurationCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1DeleteUsageLimitCommand
+ */
+export declare const se_DeleteUsageLimitCommand: (input: DeleteUsageLimitCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1DeleteWorkgroupCommand
+ */
+export declare const se_DeleteWorkgroupCommand: (input: DeleteWorkgroupCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetCredentialsCommand
+ */
+export declare const se_GetCredentialsCommand: (input: GetCredentialsCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetCustomDomainAssociationCommand
+ */
+export declare const se_GetCustomDomainAssociationCommand: (input: GetCustomDomainAssociationCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetEndpointAccessCommand
+ */
+export declare const se_GetEndpointAccessCommand: (input: GetEndpointAccessCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetNamespaceCommand
+ */
+export declare const se_GetNamespaceCommand: (input: GetNamespaceCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetRecoveryPointCommand
+ */
+export declare const se_GetRecoveryPointCommand: (input: GetRecoveryPointCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetReservationCommand
+ */
+export declare const se_GetReservationCommand: (input: GetReservationCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetReservationOfferingCommand
+ */
+export declare const se_GetReservationOfferingCommand: (input: GetReservationOfferingCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetResourcePolicyCommand
+ */
+export declare const se_GetResourcePolicyCommand: (input: GetResourcePolicyCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetScheduledActionCommand
+ */
+export declare const se_GetScheduledActionCommand: (input: GetScheduledActionCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetSnapshotCommand
+ */
+export declare const se_GetSnapshotCommand: (input: GetSnapshotCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetTableRestoreStatusCommand
+ */
+export declare const se_GetTableRestoreStatusCommand: (input: GetTableRestoreStatusCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetTrackCommand
+ */
+export declare const se_GetTrackCommand: (input: GetTrackCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetUsageLimitCommand
+ */
+export declare const se_GetUsageLimitCommand: (input: GetUsageLimitCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1GetWorkgroupCommand
+ */
+export declare const se_GetWorkgroupCommand: (input: GetWorkgroupCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListCustomDomainAssociationsCommand
+ */
+export declare const se_ListCustomDomainAssociationsCommand: (input: ListCustomDomainAssociationsCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListEndpointAccessCommand
+ */
+export declare const se_ListEndpointAccessCommand: (input: ListEndpointAccessCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListManagedWorkgroupsCommand
+ */
+export declare const se_ListManagedWorkgroupsCommand: (input: ListManagedWorkgroupsCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListNamespacesCommand
+ */
+export declare const se_ListNamespacesCommand: (input: ListNamespacesCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListRecoveryPointsCommand
+ */
+export declare const se_ListRecoveryPointsCommand: (input: ListRecoveryPointsCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListReservationOfferingsCommand
+ */
+export declare const se_ListReservationOfferingsCommand: (input: ListReservationOfferingsCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListReservationsCommand
+ */
+export declare const se_ListReservationsCommand: (input: ListReservationsCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListScheduledActionsCommand
+ */
+export declare const se_ListScheduledActionsCommand: (input: ListScheduledActionsCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListSnapshotCopyConfigurationsCommand
+ */
+export declare const se_ListSnapshotCopyConfigurationsCommand: (input: ListSnapshotCopyConfigurationsCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListSnapshotsCommand
+ */
+export declare const se_ListSnapshotsCommand: (input: ListSnapshotsCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListTableRestoreStatusCommand
+ */
+export declare const se_ListTableRestoreStatusCommand: (input: ListTableRestoreStatusCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListTagsForResourceCommand
+ */
+export declare const se_ListTagsForResourceCommand: (input: ListTagsForResourceCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListTracksCommand
+ */
+export declare const se_ListTracksCommand: (input: ListTracksCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListUsageLimitsCommand
+ */
+export declare const se_ListUsageLimitsCommand: (input: ListUsageLimitsCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1ListWorkgroupsCommand
+ */
+export declare const se_ListWorkgroupsCommand: (input: ListWorkgroupsCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1PutResourcePolicyCommand
+ */
+export declare const se_PutResourcePolicyCommand: (input: PutResourcePolicyCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1RestoreFromRecoveryPointCommand
+ */
+export declare const se_RestoreFromRecoveryPointCommand: (input: RestoreFromRecoveryPointCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1RestoreFromSnapshotCommand
+ */
+export declare const se_RestoreFromSnapshotCommand: (input: RestoreFromSnapshotCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1RestoreTableFromRecoveryPointCommand
+ */
+export declare const se_RestoreTableFromRecoveryPointCommand: (input: RestoreTableFromRecoveryPointCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1RestoreTableFromSnapshotCommand
+ */
+export declare const se_RestoreTableFromSnapshotCommand: (input: RestoreTableFromSnapshotCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1TagResourceCommand
+ */
+export declare const se_TagResourceCommand: (input: TagResourceCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1UntagResourceCommand
+ */
+export declare const se_UntagResourceCommand: (input: UntagResourceCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1UpdateCustomDomainAssociationCommand
+ */
+export declare const se_UpdateCustomDomainAssociationCommand: (input: UpdateCustomDomainAssociationCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1UpdateEndpointAccessCommand
+ */
+export declare const se_UpdateEndpointAccessCommand: (input: UpdateEndpointAccessCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1UpdateNamespaceCommand
+ */
+export declare const se_UpdateNamespaceCommand: (input: UpdateNamespaceCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1UpdateScheduledActionCommand
+ */
+export declare const se_UpdateScheduledActionCommand: (input: UpdateScheduledActionCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1UpdateSnapshotCommand
+ */
+export declare const se_UpdateSnapshotCommand: (input: UpdateSnapshotCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1UpdateSnapshotCopyConfigurationCommand
+ */
+export declare const se_UpdateSnapshotCopyConfigurationCommand: (input: UpdateSnapshotCopyConfigurationCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1UpdateUsageLimitCommand
+ */
+export declare const se_UpdateUsageLimitCommand: (input: UpdateUsageLimitCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * serializeAws_json1_1UpdateWorkgroupCommand
+ */
+export declare const se_UpdateWorkgroupCommand: (input: UpdateWorkgroupCommandInput, context: __SerdeContext) => Promise<__HttpRequest>;
+/**
+ * deserializeAws_json1_1ConvertRecoveryPointToSnapshotCommand
+ */
+export declare const de_ConvertRecoveryPointToSnapshotCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ConvertRecoveryPointToSnapshotCommandOutput>;
+/**
+ * deserializeAws_json1_1CreateCustomDomainAssociationCommand
+ */
+export declare const de_CreateCustomDomainAssociationCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<CreateCustomDomainAssociationCommandOutput>;
+/**
+ * deserializeAws_json1_1CreateEndpointAccessCommand
+ */
+export declare const de_CreateEndpointAccessCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<CreateEndpointAccessCommandOutput>;
+/**
+ * deserializeAws_json1_1CreateNamespaceCommand
+ */
+export declare const de_CreateNamespaceCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<CreateNamespaceCommandOutput>;
+/**
+ * deserializeAws_json1_1CreateReservationCommand
+ */
+export declare const de_CreateReservationCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<CreateReservationCommandOutput>;
+/**
+ * deserializeAws_json1_1CreateScheduledActionCommand
+ */
+export declare const de_CreateScheduledActionCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<CreateScheduledActionCommandOutput>;
+/**
+ * deserializeAws_json1_1CreateSnapshotCommand
+ */
+export declare const de_CreateSnapshotCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<CreateSnapshotCommandOutput>;
+/**
+ * deserializeAws_json1_1CreateSnapshotCopyConfigurationCommand
+ */
+export declare const de_CreateSnapshotCopyConfigurationCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<CreateSnapshotCopyConfigurationCommandOutput>;
+/**
+ * deserializeAws_json1_1CreateUsageLimitCommand
+ */
+export declare const de_CreateUsageLimitCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<CreateUsageLimitCommandOutput>;
+/**
+ * deserializeAws_json1_1CreateWorkgroupCommand
+ */
+export declare const de_CreateWorkgroupCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<CreateWorkgroupCommandOutput>;
+/**
+ * deserializeAws_json1_1DeleteCustomDomainAssociationCommand
+ */
+export declare const de_DeleteCustomDomainAssociationCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<DeleteCustomDomainAssociationCommandOutput>;
+/**
+ * deserializeAws_json1_1DeleteEndpointAccessCommand
+ */
+export declare const de_DeleteEndpointAccessCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<DeleteEndpointAccessCommandOutput>;
+/**
+ * deserializeAws_json1_1DeleteNamespaceCommand
+ */
+export declare const de_DeleteNamespaceCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<DeleteNamespaceCommandOutput>;
+/**
+ * deserializeAws_json1_1DeleteResourcePolicyCommand
+ */
+export declare const de_DeleteResourcePolicyCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<DeleteResourcePolicyCommandOutput>;
+/**
+ * deserializeAws_json1_1DeleteScheduledActionCommand
+ */
+export declare const de_DeleteScheduledActionCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<DeleteScheduledActionCommandOutput>;
+/**
+ * deserializeAws_json1_1DeleteSnapshotCommand
+ */
+export declare const de_DeleteSnapshotCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<DeleteSnapshotCommandOutput>;
+/**
+ * deserializeAws_json1_1DeleteSnapshotCopyConfigurationCommand
+ */
+export declare const de_DeleteSnapshotCopyConfigurationCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<DeleteSnapshotCopyConfigurationCommandOutput>;
+/**
+ * deserializeAws_json1_1DeleteUsageLimitCommand
+ */
+export declare const de_DeleteUsageLimitCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<DeleteUsageLimitCommandOutput>;
+/**
+ * deserializeAws_json1_1DeleteWorkgroupCommand
+ */
+export declare const de_DeleteWorkgroupCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<DeleteWorkgroupCommandOutput>;
+/**
+ * deserializeAws_json1_1GetCredentialsCommand
+ */
+export declare const de_GetCredentialsCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetCredentialsCommandOutput>;
+/**
+ * deserializeAws_json1_1GetCustomDomainAssociationCommand
+ */
+export declare const de_GetCustomDomainAssociationCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetCustomDomainAssociationCommandOutput>;
+/**
+ * deserializeAws_json1_1GetEndpointAccessCommand
+ */
+export declare const de_GetEndpointAccessCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetEndpointAccessCommandOutput>;
+/**
+ * deserializeAws_json1_1GetNamespaceCommand
+ */
+export declare const de_GetNamespaceCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetNamespaceCommandOutput>;
+/**
+ * deserializeAws_json1_1GetRecoveryPointCommand
+ */
+export declare const de_GetRecoveryPointCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetRecoveryPointCommandOutput>;
+/**
+ * deserializeAws_json1_1GetReservationCommand
+ */
+export declare const de_GetReservationCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetReservationCommandOutput>;
+/**
+ * deserializeAws_json1_1GetReservationOfferingCommand
+ */
+export declare const de_GetReservationOfferingCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetReservationOfferingCommandOutput>;
+/**
+ * deserializeAws_json1_1GetResourcePolicyCommand
+ */
+export declare const de_GetResourcePolicyCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetResourcePolicyCommandOutput>;
+/**
+ * deserializeAws_json1_1GetScheduledActionCommand
+ */
+export declare const de_GetScheduledActionCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetScheduledActionCommandOutput>;
+/**
+ * deserializeAws_json1_1GetSnapshotCommand
+ */
+export declare const de_GetSnapshotCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetSnapshotCommandOutput>;
+/**
+ * deserializeAws_json1_1GetTableRestoreStatusCommand
+ */
+export declare const de_GetTableRestoreStatusCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetTableRestoreStatusCommandOutput>;
+/**
+ * deserializeAws_json1_1GetTrackCommand
+ */
+export declare const de_GetTrackCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetTrackCommandOutput>;
+/**
+ * deserializeAws_json1_1GetUsageLimitCommand
+ */
+export declare const de_GetUsageLimitCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetUsageLimitCommandOutput>;
+/**
+ * deserializeAws_json1_1GetWorkgroupCommand
+ */
+export declare const de_GetWorkgroupCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<GetWorkgroupCommandOutput>;
+/**
+ * deserializeAws_json1_1ListCustomDomainAssociationsCommand
+ */
+export declare const de_ListCustomDomainAssociationsCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListCustomDomainAssociationsCommandOutput>;
+/**
+ * deserializeAws_json1_1ListEndpointAccessCommand
+ */
+export declare const de_ListEndpointAccessCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListEndpointAccessCommandOutput>;
+/**
+ * deserializeAws_json1_1ListManagedWorkgroupsCommand
+ */
+export declare const de_ListManagedWorkgroupsCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListManagedWorkgroupsCommandOutput>;
+/**
+ * deserializeAws_json1_1ListNamespacesCommand
+ */
+export declare const de_ListNamespacesCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListNamespacesCommandOutput>;
+/**
+ * deserializeAws_json1_1ListRecoveryPointsCommand
+ */
+export declare const de_ListRecoveryPointsCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListRecoveryPointsCommandOutput>;
+/**
+ * deserializeAws_json1_1ListReservationOfferingsCommand
+ */
+export declare const de_ListReservationOfferingsCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListReservationOfferingsCommandOutput>;
+/**
+ * deserializeAws_json1_1ListReservationsCommand
+ */
+export declare const de_ListReservationsCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListReservationsCommandOutput>;
+/**
+ * deserializeAws_json1_1ListScheduledActionsCommand
+ */
+export declare const de_ListScheduledActionsCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListScheduledActionsCommandOutput>;
+/**
+ * deserializeAws_json1_1ListSnapshotCopyConfigurationsCommand
+ */
+export declare const de_ListSnapshotCopyConfigurationsCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListSnapshotCopyConfigurationsCommandOutput>;
+/**
+ * deserializeAws_json1_1ListSnapshotsCommand
+ */
+export declare const de_ListSnapshotsCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListSnapshotsCommandOutput>;
+/**
+ * deserializeAws_json1_1ListTableRestoreStatusCommand
+ */
+export declare const de_ListTableRestoreStatusCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListTableRestoreStatusCommandOutput>;
+/**
+ * deserializeAws_json1_1ListTagsForResourceCommand
+ */
+export declare const de_ListTagsForResourceCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListTagsForResourceCommandOutput>;
+/**
+ * deserializeAws_json1_1ListTracksCommand
+ */
+export declare const de_ListTracksCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListTracksCommandOutput>;
+/**
+ * deserializeAws_json1_1ListUsageLimitsCommand
+ */
+export declare const de_ListUsageLimitsCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListUsageLimitsCommandOutput>;
+/**
+ * deserializeAws_json1_1ListWorkgroupsCommand
+ */
+export declare const de_ListWorkgroupsCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<ListWorkgroupsCommandOutput>;
+/**
+ * deserializeAws_json1_1PutResourcePolicyCommand
+ */
+export declare const de_PutResourcePolicyCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<PutResourcePolicyCommandOutput>;
+/**
+ * deserializeAws_json1_1RestoreFromRecoveryPointCommand
+ */
+export declare const de_RestoreFromRecoveryPointCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<RestoreFromRecoveryPointCommandOutput>;
+/**
+ * deserializeAws_json1_1RestoreFromSnapshotCommand
+ */
+export declare const de_RestoreFromSnapshotCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<RestoreFromSnapshotCommandOutput>;
+/**
+ * deserializeAws_json1_1RestoreTableFromRecoveryPointCommand
+ */
+export declare const de_RestoreTableFromRecoveryPointCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<RestoreTableFromRecoveryPointCommandOutput>;
+/**
+ * deserializeAws_json1_1RestoreTableFromSnapshotCommand
+ */
+export declare const de_RestoreTableFromSnapshotCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<RestoreTableFromSnapshotCommandOutput>;
+/**
+ * deserializeAws_json1_1TagResourceCommand
+ */
+export declare const de_TagResourceCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<TagResourceCommandOutput>;
+/**
+ * deserializeAws_json1_1UntagResourceCommand
+ */
+export declare const de_UntagResourceCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<UntagResourceCommandOutput>;
+/**
+ * deserializeAws_json1_1UpdateCustomDomainAssociationCommand
+ */
+export declare const de_UpdateCustomDomainAssociationCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<UpdateCustomDomainAssociationCommandOutput>;
+/**
+ * deserializeAws_json1_1UpdateEndpointAccessCommand
+ */
+export declare const de_UpdateEndpointAccessCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<UpdateEndpointAccessCommandOutput>;
+/**
+ * deserializeAws_json1_1UpdateNamespaceCommand
+ */
+export declare const de_UpdateNamespaceCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<UpdateNamespaceCommandOutput>;
+/**
+ * deserializeAws_json1_1UpdateScheduledActionCommand
+ */
+export declare const de_UpdateScheduledActionCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<UpdateScheduledActionCommandOutput>;
+/**
+ * deserializeAws_json1_1UpdateSnapshotCommand
+ */
+export declare const de_UpdateSnapshotCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<UpdateSnapshotCommandOutput>;
+/**
+ * deserializeAws_json1_1UpdateSnapshotCopyConfigurationCommand
+ */
+export declare const de_UpdateSnapshotCopyConfigurationCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<UpdateSnapshotCopyConfigurationCommandOutput>;
+/**
+ * deserializeAws_json1_1UpdateUsageLimitCommand
+ */
+export declare const de_UpdateUsageLimitCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<UpdateUsageLimitCommandOutput>;
+/**
+ * deserializeAws_json1_1UpdateWorkgroupCommand
+ */
+export declare const de_UpdateWorkgroupCommand: (output: __HttpResponse, context: __SerdeContext) => Promise<UpdateWorkgroupCommandOutput>;

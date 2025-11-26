@@ -1,0 +1,50 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  GetCredentialsRequest,
+  GetCredentialsResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface GetCredentialsCommandInput extends GetCredentialsRequest {}
+export interface GetCredentialsCommandOutput
+  extends GetCredentialsResponse,
+    __MetadataBearer {}
+declare const GetCredentialsCommand_base: {
+  new (
+    input: GetCredentialsCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetCredentialsCommandInput,
+    GetCredentialsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    ...[input]: [] | [GetCredentialsCommandInput]
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetCredentialsCommandInput,
+    GetCredentialsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class GetCredentialsCommand extends GetCredentialsCommand_base {
+  protected static __types: {
+    api: {
+      input: GetCredentialsRequest;
+      output: GetCredentialsResponse;
+    };
+    sdk: {
+      input: GetCredentialsCommandInput;
+      output: GetCredentialsCommandOutput;
+    };
+  };
+}

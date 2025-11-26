@@ -1,0 +1,11 @@
+import { AxiosInstance } from "axios";
+import { GetMeResponse } from "../schemas";
+export declare class MeEndpoints {
+    private client;
+    constructor(client: AxiosInstance);
+    /**
+     * Validate the API key and return the organization name
+     * @returns The organization name
+     */
+    me(): Promise<GetMeResponse>;
+}

@@ -1,0 +1,160 @@
+/*
+ * Copyright 2023-present columns.ai
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { Affixes, Baseline, ChartType, GradientColor, Margin, MissingPolicy, ValueOption } from './common';
+import { FontProps } from './font';
+
+export type LegendType = 'none' | 'square' | 'dot';
+export type GridLineType = 'none' | 'row' | 'column';
+
+// in-graph filter props
+export type FilterProps = {
+  visibility: 'show' | 'hide' | 'auto';
+
+  // when query changes, how many items to show by default
+  defaultMetrics: number;
+
+  // max items filter can choose, default 0/null means no limit
+  maxMetrics: number;
+};
+
+export type TargetLine = {
+  // the metric which the target line is for
+  metric: string;
+
+  // target value
+  value: number;
+
+  // target line color
+  color: string;
+
+  // target line thickness
+  thickness: number;
+
+  // opacity of the line
+  opacity: number;
+
+  // dots for the target line
+  dots: number;
+
+  // font for the label of the target line
+  font: FontProps;
+
+  // emoji for the label of the target line
+  emoji: string;
+
+  // label placement
+  placement: 'start' | 'center' | 'end';
+};
+
+export type SketchProps = {
+  enabled: boolean;
+};
+
+export type TooltipProps = {
+  color: string;
+  background: string;
+  affix: Affixes;
+};
+
+// general props set for the whole graph
+export type GeneralProps = {
+  // graph global font family
+  font: FontProps;
+
+  // value baseline: v = v - {base}
+  baseline: Baseline;
+
+  // using percentage value instead
+  percentage: boolean;
+
+  // distribute by metric or by key
+  distribute: 'metric' | 'key';
+
+  // use accumulated view along the line
+  accumulated: boolean;
+
+  // missing value policy for pivot
+  policy: MissingPolicy;
+
+  // number 0~8 for all value precision
+  precision: number;
+
+  // value option to format values
+  valueOption: ValueOption;
+
+  // play the graph from beginning to the end
+  playback: number;
+
+  // if playback is on, do we need to loop or not
+  looping: boolean;
+
+  // indicating no auto title
+  autotitle: boolean;
+
+  // control display of tooltip
+  hideTooltip: boolean;
+
+  // tooltip color
+  tooltip: TooltipProps;
+
+  // margin of the chart
+  margins: Partial<Record<ChartType, Margin>>;
+
+  // background color or pattern name
+  background: string;
+
+  // use linear gradient if exists, precedent to background
+  gradient: GradientColor;
+
+  // palette used to form metrics
+  palette: string[];
+
+  // control display legend or not
+  // [DEPRECATED] use legend instead
+  hideLegend: boolean;
+
+  // legend type
+  legend: LegendType;
+
+  // draw grid line on the graph (usually when axis is present)
+  gridLine: {
+    type: GridLineType;
+    color: string;
+  };
+
+  // control display of graph filter
+  filter: FilterProps;
+
+  // control max key length for display
+  maxKeyLength: number;
+
+  // indicate if we use log scale for the metric
+  logScale: boolean;
+
+  // backlink to the original columns url
+  // false: 
+  hideBacklink: boolean;
+
+  // list of metrics to display on the second axis
+  secondAxis: string[];
+
+  // target lines to draw on the graph (like arrow target)
+  targets: TargetLine[];
+
+  // sketchy mode props
+  sketch: SketchProps;
+};

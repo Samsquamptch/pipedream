@@ -1,0 +1,453 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotFileFilterInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    robot: z.ZodLiteral<"/file/filter">;
+    accepts: z.ZodOptional<z.ZodUnion<[z.ZodNull, z.ZodString, z.ZodArray<z.ZodTuple<[z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull]>, "many">]>, z.ZodUnion<[z.ZodLiteral<"=">, z.ZodLiteral<"==">, z.ZodLiteral<"===">, z.ZodLiteral<"<">, z.ZodLiteral<">">, z.ZodLiteral<"<=">, z.ZodLiteral<">=">, z.ZodLiteral<"!=">, z.ZodLiteral<"!==">, z.ZodLiteral<"regex">, z.ZodLiteral<"!regex">, z.ZodLiteral<"includes">, z.ZodLiteral<"!includes">, z.ZodLiteral<"empty">, z.ZodLiteral<"!empty">]>, z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull]>, "many">]>], null>, "many">]>>;
+    declines: z.ZodOptional<z.ZodUnion<[z.ZodNull, z.ZodString, z.ZodArray<z.ZodTuple<[z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull]>, "many">]>, z.ZodUnion<[z.ZodLiteral<"=">, z.ZodLiteral<"==">, z.ZodLiteral<"===">, z.ZodLiteral<"<">, z.ZodLiteral<">">, z.ZodLiteral<"<=">, z.ZodLiteral<">=">, z.ZodLiteral<"!=">, z.ZodLiteral<"!==">, z.ZodLiteral<"regex">, z.ZodLiteral<"!regex">, z.ZodLiteral<"includes">, z.ZodLiteral<"!includes">, z.ZodLiteral<"empty">, z.ZodLiteral<"!empty">]>, z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull]>, "many">]>], null>, "many">]>>;
+    condition_type: z.ZodDefault<z.ZodEnum<["and", "or"]>>;
+    error_on_decline: z.ZodDefault<z.ZodBoolean>;
+    error_msg: z.ZodDefault<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/file/filter";
+    result: boolean;
+    force_accept: boolean;
+    condition_type: "or" | "and";
+    error_on_decline: boolean;
+    error_msg: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    accepts?: string | [string | number | (string | number | null)[] | null, "includes" | "<" | "=" | ">" | "regex" | "empty" | "==" | "===" | "<=" | ">=" | "!=" | "!==" | "!regex" | "!includes" | "!empty", string | number | (string | number | null)[] | null][] | null | undefined;
+    declines?: string | [string | number | (string | number | null)[] | null, "includes" | "<" | "=" | ">" | "regex" | "empty" | "==" | "===" | "<=" | ">=" | "!=" | "!==" | "!regex" | "!includes" | "!empty", string | number | (string | number | null)[] | null][] | null | undefined;
+}, {
+    robot: "/file/filter";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    accepts?: string | [string | number | (string | number | null)[] | null, "includes" | "<" | "=" | ">" | "regex" | "empty" | "==" | "===" | "<=" | ">=" | "!=" | "!==" | "!regex" | "!includes" | "!empty", string | number | (string | number | null)[] | null][] | null | undefined;
+    declines?: string | [string | number | (string | number | null)[] | null, "includes" | "<" | "=" | ">" | "regex" | "empty" | "==" | "===" | "<=" | ">=" | "!=" | "!==" | "!regex" | "!includes" | "!empty", string | number | (string | number | null)[] | null][] | null | undefined;
+    condition_type?: "or" | "and" | undefined;
+    error_on_decline?: boolean | undefined;
+    error_msg?: string | undefined;
+}>;
+export declare const robotFileFilterInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/file/filter">;
+    accepts: z.ZodOptional<z.ZodUnion<[z.ZodNull, z.ZodString, z.ZodArray<z.ZodTuple<[z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull]>, "many">]>, z.ZodUnion<[z.ZodLiteral<"=">, z.ZodLiteral<"==">, z.ZodLiteral<"===">, z.ZodLiteral<"<">, z.ZodLiteral<">">, z.ZodLiteral<"<=">, z.ZodLiteral<">=">, z.ZodLiteral<"!=">, z.ZodLiteral<"!==">, z.ZodLiteral<"regex">, z.ZodLiteral<"!regex">, z.ZodLiteral<"includes">, z.ZodLiteral<"!includes">, z.ZodLiteral<"empty">, z.ZodLiteral<"!empty">]>, z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull]>, "many">]>], null>, "many">]>>;
+    declines: z.ZodOptional<z.ZodUnion<[z.ZodNull, z.ZodString, z.ZodArray<z.ZodTuple<[z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull]>, "many">]>, z.ZodUnion<[z.ZodLiteral<"=">, z.ZodLiteral<"==">, z.ZodLiteral<"===">, z.ZodLiteral<"<">, z.ZodLiteral<">">, z.ZodLiteral<"<=">, z.ZodLiteral<">=">, z.ZodLiteral<"!=">, z.ZodLiteral<"!==">, z.ZodLiteral<"regex">, z.ZodLiteral<"!regex">, z.ZodLiteral<"includes">, z.ZodLiteral<"!includes">, z.ZodLiteral<"empty">, z.ZodLiteral<"!empty">]>, z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodNull]>, "many">]>], null>, "many">]>>;
+    condition_type: z.ZodDefault<z.ZodEnum<["and", "or"]>>;
+    error_on_decline: z.ZodDefault<z.ZodBoolean>;
+    error_msg: z.ZodDefault<z.ZodString>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/file/filter";
+    force_accept: boolean;
+    condition_type: "or" | "and";
+    error_on_decline: boolean;
+    error_msg: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    accepts?: string | [string | number | (string | number | null)[] | null, "includes" | "<" | "=" | ">" | "regex" | "empty" | "==" | "===" | "<=" | ">=" | "!=" | "!==" | "!regex" | "!includes" | "!empty", string | number | (string | number | null)[] | null][] | null | undefined;
+    declines?: string | [string | number | (string | number | null)[] | null, "includes" | "<" | "=" | ">" | "regex" | "empty" | "==" | "===" | "<=" | ">=" | "!=" | "!==" | "!regex" | "!includes" | "!empty", string | number | (string | number | null)[] | null][] | null | undefined;
+}, {
+    robot: "/file/filter";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    accepts?: string | [string | number | (string | number | null)[] | null, "includes" | "<" | "=" | ">" | "regex" | "empty" | "==" | "===" | "<=" | ">=" | "!=" | "!==" | "!regex" | "!includes" | "!empty", string | number | (string | number | null)[] | null][] | null | undefined;
+    declines?: string | [string | number | (string | number | null)[] | null, "includes" | "<" | "=" | ">" | "regex" | "empty" | "==" | "===" | "<=" | ">=" | "!=" | "!==" | "!regex" | "!includes" | "!empty", string | number | (string | number | null)[] | null][] | null | undefined;
+    condition_type?: "or" | "and" | undefined;
+    error_on_decline?: boolean | undefined;
+    error_msg?: string | undefined;
+}>;
+export type RobotFileFilterInstructions = z.infer<typeof robotFileFilterInstructionsSchema>;
+export type RobotFileFilterInstructionsWithHiddenFields = z.infer<typeof robotFileFilterInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotFileFilterInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/file/filter">;
+    accepts: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNull, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodTuple<[z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull]>, "many">]>]>, z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"==">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"===">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"<">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<">">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"<=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<">=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!==">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"regex">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!regex">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"includes">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!includes">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!empty">]>]>, z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull]>, "many">]>]>], null>]>, "many">]>]>>;
+    declines: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNull, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodTuple<[z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull]>, "many">]>]>, z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"==">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"===">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"<">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<">">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"<=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<">=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!==">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"regex">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!regex">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"includes">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!includes">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!empty">]>]>, z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull]>, "many">]>]>], null>]>, "many">]>]>>;
+    condition_type: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["and", "or"]>]>>;
+    error_on_decline: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    error_msg: z.ZodDefault<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/file/filter";
+    result: string | boolean;
+    force_accept: string | boolean;
+    condition_type: string;
+    error_on_decline: string | boolean;
+    error_msg: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    accepts?: string | (string | [string | number | (string | number | null)[] | null, string, string | number | (string | number | null)[] | null])[] | null | undefined;
+    declines?: string | (string | [string | number | (string | number | null)[] | null, string, string | number | (string | number | null)[] | null])[] | null | undefined;
+}, {
+    robot: "/file/filter";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    accepts?: string | (string | [string | number | (string | number | null)[] | null, string, string | number | (string | number | null)[] | null])[] | null | undefined;
+    declines?: string | (string | [string | number | (string | number | null)[] | null, string, string | number | (string | number | null)[] | null])[] | null | undefined;
+    condition_type?: string | undefined;
+    error_on_decline?: string | boolean | undefined;
+    error_msg?: string | undefined;
+}>;
+export type InterpolatableRobotFileFilterInstructions = InterpolatableRobotFileFilterInstructionsInput;
+export type InterpolatableRobotFileFilterInstructionsInput = z.input<typeof interpolatableRobotFileFilterInstructionsSchema>;
+export declare const interpolatableRobotFileFilterInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/file/filter">;
+    accepts: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNull, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodTuple<[z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull]>, "many">]>]>, z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"==">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"===">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"<">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<">">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"<=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<">=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!==">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"regex">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!regex">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"includes">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!includes">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!empty">]>]>, z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull]>, "many">]>]>], null>]>, "many">]>]>>;
+    declines: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNull, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodTuple<[z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull]>, "many">]>]>, z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"==">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"===">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"<">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<">">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"<=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<">=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!=">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!==">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"regex">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!regex">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"includes">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!includes">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>, z.ZodUnion<[z.ZodString, z.ZodLiteral<"!empty">]>]>, z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodNull]>, "many">]>]>], null>]>, "many">]>]>>;
+    condition_type: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["and", "or"]>]>>;
+    error_on_decline: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    error_msg: z.ZodDefault<z.ZodString>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/file/filter";
+    force_accept: string | boolean;
+    condition_type: string;
+    error_on_decline: string | boolean;
+    error_msg: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    accepts?: string | (string | [string | number | (string | number | null)[] | null, string, string | number | (string | number | null)[] | null])[] | null | undefined;
+    declines?: string | (string | [string | number | (string | number | null)[] | null, string, string | number | (string | number | null)[] | null])[] | null | undefined;
+}, {
+    robot: "/file/filter";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    accepts?: string | (string | [string | number | (string | number | null)[] | null, string, string | number | (string | number | null)[] | null])[] | null | undefined;
+    declines?: string | (string | [string | number | (string | number | null)[] | null, string, string | number | (string | number | null)[] | null])[] | null | undefined;
+    condition_type?: string | undefined;
+    error_on_decline?: string | boolean | undefined;
+    error_msg?: string | undefined;
+}>;
+export type InterpolatableRobotFileFilterInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotFileFilterInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotFileFilterInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotFileFilterInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=file-filter.d.ts.map

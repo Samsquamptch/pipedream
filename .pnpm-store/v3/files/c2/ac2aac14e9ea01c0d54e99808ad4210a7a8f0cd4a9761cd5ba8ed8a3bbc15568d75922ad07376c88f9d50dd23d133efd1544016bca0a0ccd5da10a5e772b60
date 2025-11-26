@@ -1,0 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.defaultAnimation = void 0;
+const defaultAnimation = () => ({ off: true, duration: 3, infinite: false, size: 2000 });
+exports.defaultAnimation = defaultAnimation;
+//# sourceMappingURL=line.js.map

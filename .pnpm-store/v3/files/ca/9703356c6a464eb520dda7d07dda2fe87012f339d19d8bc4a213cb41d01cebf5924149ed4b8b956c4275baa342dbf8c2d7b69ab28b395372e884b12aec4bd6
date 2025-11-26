@@ -1,0 +1,41 @@
+{
+  "name": "delighted",
+  "version": "2.1.0",
+  "description": "Delighted API Node Client",
+  "main": "delighted.js",
+  "files": [
+    "README.md",
+    "delighted.js",
+    "server.js",
+    "lib/",
+    "test/support/server"
+  ],
+  "scripts": {
+    "lint": "jshint lib",
+    "test": "mocha 'test/*_test.js' 'test/**/*_test.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/delighted/delighted-node"
+  },
+  "keywords": [
+    "delighted"
+  ],
+  "author": "Ben Turner",
+  "contributors": [
+    {
+      "name": "Parker Selbert"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/delighted/delighted-node/issues"
+  },
+  "homepage": "https://github.com/delighted/delighted-node",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "jshint": "^2.5.11",
+    "mocha": "^2.1.0",
+    "sinon": "^1.12.2"
+  }
+}

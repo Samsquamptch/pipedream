@@ -1,0 +1,52 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.tfmt = void 0;
+const date_fns_1 = require("date-fns");
+const common_1 = require("./common");
+const UnitFormats = {
+    [common_1.TimeUnit.YEAR]: (d) => `Y${(0, date_fns_1.format)(d, 'yy')}`,
+    [common_1.TimeUnit.QUARTER]: (d) => `Q${(0, date_fns_1.format)(d, 'Q yyyy')}`,
+    [common_1.TimeUnit.MONTH]: (d) => `${(0, date_fns_1.format)(d, `MMM 'Y'yy`)}`,
+    [common_1.TimeUnit.WEEK]: (d) => `W${(0, date_fns_1.format)(d, 'ww YYYY', {
+        useAdditionalWeekYearTokens: true,
+    })}`,
+};
+const pad2 = (v) => `${v}`.padStart(2, '0');
+const tfmt = (unix_ms, range_ms = 0, unit = common_1.TimeUnit.NONE) => {
+    if (isNaN(unix_ms)) {
+        return '0';
+    }
+    const date = new Date(unix_ms);
+    date.setTime(date.getTime() + date.getTimezoneOffset() * common_1.MINUTE_MS);
+    if (date instanceof Date && !(0, date_fns_1.isValid)(date)) {
+        return '0';
+    }
+    const unitFmt = UnitFormats[unit];
+    if (unitFmt) {
+        return unitFmt(date);
+    }
+    if (range_ms == 0) {
+        const y = date.getUTCFullYear();
+        const m = pad2(date.getUTCMonth() + 1);
+        const d = pad2(date.getUTCDate());
+        const h = pad2(date.getUTCHours());
+        const mi = pad2(date.getUTCMinutes());
+        const s = pad2(date.getUTCSeconds());
+        return `${y}-${m}-${d} ${h}:${mi}:${s}`;
+    }
+    if (range_ms <= common_1.HOUR_MS) {
+        return `${(0, date_fns_1.format)(date, 'mm')}m`;
+    }
+    if (range_ms <= common_1.DAY_MS) {
+        return (0, date_fns_1.format)(date, 'HH:mm');
+    }
+    if (range_ms <= common_1.WEEK_MS) {
+        return (0, date_fns_1.format)(date, 'EEE dd');
+    }
+    if (range_ms <= common_1.MONTH_MS) {
+        return (0, date_fns_1.format)(date, 'MMM dd');
+    }
+    return (0, date_fns_1.format)(date, 'M/d/yy');
+};
+exports.tfmt = tfmt;
+//# sourceMappingURL=time.js.map

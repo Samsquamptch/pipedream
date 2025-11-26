@@ -1,0 +1,13 @@
+import { AnchorType, Size } from './common';
+import { FontProps } from './font';
+export type Annotation = {
+    id: string;
+    text: string;
+    image: string;
+    link: string;
+    width: number;
+    font: FontProps;
+    imageSize: Size;
+    anchor: AnchorType;
+    byUser: boolean;
+};

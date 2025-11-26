@@ -1,0 +1,2 @@
+export declare function isZodObject(schema: unknown): boolean;
+//# sourceMappingURL=schema.utils.d.ts.map

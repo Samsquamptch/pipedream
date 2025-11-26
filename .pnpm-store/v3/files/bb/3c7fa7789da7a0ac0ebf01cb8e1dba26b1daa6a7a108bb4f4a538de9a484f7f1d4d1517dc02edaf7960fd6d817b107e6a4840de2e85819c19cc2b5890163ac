@@ -1,0 +1,11 @@
+import { Paginator } from "@smithy/types";
+import {
+  ListReservationOfferingsCommandInput,
+  ListReservationOfferingsCommandOutput,
+} from "../commands/ListReservationOfferingsCommand";
+import { RedshiftServerlessPaginationConfiguration } from "./Interfaces";
+export declare const paginateListReservationOfferings: (
+  config: RedshiftServerlessPaginationConfiguration,
+  input: ListReservationOfferingsCommandInput,
+  ...rest: any[]
+) => Paginator<ListReservationOfferingsCommandOutput>;

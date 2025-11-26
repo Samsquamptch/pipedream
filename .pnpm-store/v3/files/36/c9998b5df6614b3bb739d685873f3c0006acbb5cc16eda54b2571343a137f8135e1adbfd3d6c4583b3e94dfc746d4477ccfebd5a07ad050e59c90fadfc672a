@@ -1,0 +1,9 @@
+export default class ResourceOwnerPasswordGrantAuthenticator {
+    private clientId;
+    private username;
+    private password;
+    private tokenEndpoint;
+    constructor(clientId: string, username: string, password: string, tokenEndpoint: string);
+    getToken(): Promise<any>;
+}
+//# sourceMappingURL=ResourceOwnerPasswordGrantAuthenticator.d.ts.map

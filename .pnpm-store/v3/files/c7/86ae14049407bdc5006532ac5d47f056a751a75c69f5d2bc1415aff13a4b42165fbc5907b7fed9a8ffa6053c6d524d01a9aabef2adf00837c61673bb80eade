@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  ListEndpointAccessRequest,
+  ListEndpointAccessResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface ListEndpointAccessCommandInput
+  extends ListEndpointAccessRequest {}
+export interface ListEndpointAccessCommandOutput
+  extends ListEndpointAccessResponse,
+    __MetadataBearer {}
+declare const ListEndpointAccessCommand_base: {
+  new (
+    input: ListEndpointAccessCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListEndpointAccessCommandInput,
+    ListEndpointAccessCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    ...[input]: [] | [ListEndpointAccessCommandInput]
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListEndpointAccessCommandInput,
+    ListEndpointAccessCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class ListEndpointAccessCommand extends ListEndpointAccessCommand_base {
+  protected static __types: {
+    api: {
+      input: ListEndpointAccessRequest;
+      output: ListEndpointAccessResponse;
+    };
+    sdk: {
+      input: ListEndpointAccessCommandInput;
+      output: ListEndpointAccessCommandOutput;
+    };
+  };
+}

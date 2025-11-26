@@ -1,0 +1,20 @@
+import { FontProps } from '../font';
+export type TreeFields = {
+    id: string;
+    parent: string;
+    label: string;
+    metric: string;
+};
+export type TreeLayout = 'tree' | 'cluster' | 'map';
+export type TileType = 'squarify' | 'binary' | 'dice' | 'resquarify' | 'slice' | 'slicedice';
+export type TreeProps = {
+    layout: TreeLayout;
+    radius: number;
+    color: string;
+    fid: string;
+    fparent: string;
+    flabel: string;
+    label: FontProps;
+    linkColor: string;
+    tile: TileType;
+};

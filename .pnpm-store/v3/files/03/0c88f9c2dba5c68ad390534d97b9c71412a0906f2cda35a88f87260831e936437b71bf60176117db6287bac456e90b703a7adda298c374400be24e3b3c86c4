@@ -1,0 +1,429 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotTextTranslateInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    robot: z.ZodLiteral<"/text/translate">;
+    provider: z.ZodEnum<["aws", "gcp", "replicate", "fal", "transloadit"]>;
+    target_language: z.ZodDefault<z.ZodEnum<["af", "am", "ar", "az", "be", "bg", "bn", "bs", "ca", "ceb", "co", "cs", "cy", "da", "de", "el", "en", "en-US", "eo", "es", "es-MX", "et", "eu", "fa", "fa-AF", "fi", "fr", "fr-CA", "fy", "ga", "gd", "gl", "gu", "ha", "haw", "he", "hi", "hmn", "hr", "ht", "hu", "hy", "id", "ig", "is", "it", "iw", "ja", "jv", "ka", "kk", "km", "kn", "ko", "ku", "ky", "la", "lb", "lo", "lt", "lv", "mg", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "ne", "nl", "no", "ny", "or", "pa", "pl", "ps", "pt", "ro", "ru", "rw", "sd", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "tk", "tl", "tr", "tt", "ug", "uk", "ur", "uz", "vi", "xh", "yi", "yo", "zh", "zh-CN", "zh-TW", "zu"]>>;
+    source_language: z.ZodDefault<z.ZodEnum<["af", "am", "ar", "az", "be", "bg", "bn", "bs", "ca", "ceb", "co", "cs", "cy", "da", "de", "el", "en", "en-US", "eo", "es", "es-MX", "et", "eu", "fa", "fa-AF", "fi", "fr", "fr-CA", "fy", "ga", "gd", "gl", "gu", "ha", "haw", "he", "hi", "hmn", "hr", "ht", "hu", "hy", "id", "ig", "is", "it", "iw", "ja", "jv", "ka", "kk", "km", "kn", "ko", "ku", "ky", "la", "lb", "lo", "lt", "lv", "mg", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "ne", "nl", "no", "ny", "or", "pa", "pl", "ps", "pt", "ro", "ru", "rw", "sd", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "tk", "tl", "tr", "tt", "ug", "uk", "ur", "uz", "vi", "xh", "yi", "yo", "zh", "zh-CN", "zh-TW", "zu"]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/text/translate";
+    result: boolean;
+    force_accept: boolean;
+    provider: "aws" | "gcp" | "replicate" | "fal" | "transloadit";
+    source_language: "ca" | "tk" | "te" | "th" | "co" | "sl" | "so" | "la" | "fi" | "ht" | "en" | "es" | "or" | "lt" | "af" | "ar" | "uk" | "ps" | "en-US" | "de" | "am" | "az" | "be" | "bg" | "bn" | "bs" | "ceb" | "cs" | "cy" | "da" | "el" | "eo" | "es-MX" | "et" | "eu" | "fa" | "fa-AF" | "fr" | "fr-CA" | "fy" | "ga" | "gd" | "gl" | "gu" | "ha" | "haw" | "he" | "hi" | "hmn" | "hr" | "hu" | "hy" | "id" | "ig" | "is" | "it" | "iw" | "ja" | "jv" | "ka" | "kk" | "km" | "kn" | "ko" | "ku" | "ky" | "lb" | "lo" | "lv" | "mg" | "mi" | "mk" | "ml" | "mn" | "mr" | "ms" | "mt" | "my" | "ne" | "nl" | "no" | "ny" | "pa" | "pl" | "pt" | "ro" | "ru" | "rw" | "sd" | "si" | "sk" | "sm" | "sn" | "sq" | "sr" | "st" | "su" | "sv" | "sw" | "ta" | "tg" | "tl" | "tr" | "tt" | "ug" | "ur" | "uz" | "vi" | "xh" | "yi" | "yo" | "zh" | "zh-CN" | "zh-TW" | "zu";
+    target_language: "ca" | "tk" | "te" | "th" | "co" | "sl" | "so" | "la" | "fi" | "ht" | "en" | "es" | "or" | "lt" | "af" | "ar" | "uk" | "ps" | "en-US" | "de" | "am" | "az" | "be" | "bg" | "bn" | "bs" | "ceb" | "cs" | "cy" | "da" | "el" | "eo" | "es-MX" | "et" | "eu" | "fa" | "fa-AF" | "fr" | "fr-CA" | "fy" | "ga" | "gd" | "gl" | "gu" | "ha" | "haw" | "he" | "hi" | "hmn" | "hr" | "hu" | "hy" | "id" | "ig" | "is" | "it" | "iw" | "ja" | "jv" | "ka" | "kk" | "km" | "kn" | "ko" | "ku" | "ky" | "lb" | "lo" | "lv" | "mg" | "mi" | "mk" | "ml" | "mn" | "mr" | "ms" | "mt" | "my" | "ne" | "nl" | "no" | "ny" | "pa" | "pl" | "pt" | "ro" | "ru" | "rw" | "sd" | "si" | "sk" | "sm" | "sn" | "sq" | "sr" | "st" | "su" | "sv" | "sw" | "ta" | "tg" | "tl" | "tr" | "tt" | "ug" | "ur" | "uz" | "vi" | "xh" | "yi" | "yo" | "zh" | "zh-CN" | "zh-TW" | "zu";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+}, {
+    robot: "/text/translate";
+    provider: "aws" | "gcp" | "replicate" | "fal" | "transloadit";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    source_language?: "ca" | "tk" | "te" | "th" | "co" | "sl" | "so" | "la" | "fi" | "ht" | "en" | "es" | "or" | "lt" | "af" | "ar" | "uk" | "ps" | "en-US" | "de" | "am" | "az" | "be" | "bg" | "bn" | "bs" | "ceb" | "cs" | "cy" | "da" | "el" | "eo" | "es-MX" | "et" | "eu" | "fa" | "fa-AF" | "fr" | "fr-CA" | "fy" | "ga" | "gd" | "gl" | "gu" | "ha" | "haw" | "he" | "hi" | "hmn" | "hr" | "hu" | "hy" | "id" | "ig" | "is" | "it" | "iw" | "ja" | "jv" | "ka" | "kk" | "km" | "kn" | "ko" | "ku" | "ky" | "lb" | "lo" | "lv" | "mg" | "mi" | "mk" | "ml" | "mn" | "mr" | "ms" | "mt" | "my" | "ne" | "nl" | "no" | "ny" | "pa" | "pl" | "pt" | "ro" | "ru" | "rw" | "sd" | "si" | "sk" | "sm" | "sn" | "sq" | "sr" | "st" | "su" | "sv" | "sw" | "ta" | "tg" | "tl" | "tr" | "tt" | "ug" | "ur" | "uz" | "vi" | "xh" | "yi" | "yo" | "zh" | "zh-CN" | "zh-TW" | "zu" | undefined;
+    target_language?: "ca" | "tk" | "te" | "th" | "co" | "sl" | "so" | "la" | "fi" | "ht" | "en" | "es" | "or" | "lt" | "af" | "ar" | "uk" | "ps" | "en-US" | "de" | "am" | "az" | "be" | "bg" | "bn" | "bs" | "ceb" | "cs" | "cy" | "da" | "el" | "eo" | "es-MX" | "et" | "eu" | "fa" | "fa-AF" | "fr" | "fr-CA" | "fy" | "ga" | "gd" | "gl" | "gu" | "ha" | "haw" | "he" | "hi" | "hmn" | "hr" | "hu" | "hy" | "id" | "ig" | "is" | "it" | "iw" | "ja" | "jv" | "ka" | "kk" | "km" | "kn" | "ko" | "ku" | "ky" | "lb" | "lo" | "lv" | "mg" | "mi" | "mk" | "ml" | "mn" | "mr" | "ms" | "mt" | "my" | "ne" | "nl" | "no" | "ny" | "pa" | "pl" | "pt" | "ro" | "ru" | "rw" | "sd" | "si" | "sk" | "sm" | "sn" | "sq" | "sr" | "st" | "su" | "sv" | "sw" | "ta" | "tg" | "tl" | "tr" | "tt" | "ug" | "ur" | "uz" | "vi" | "xh" | "yi" | "yo" | "zh" | "zh-CN" | "zh-TW" | "zu" | undefined;
+}>;
+export declare const robotTextTranslateInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/text/translate">;
+    provider: z.ZodEnum<["aws", "gcp", "replicate", "fal", "transloadit"]>;
+    target_language: z.ZodDefault<z.ZodEnum<["af", "am", "ar", "az", "be", "bg", "bn", "bs", "ca", "ceb", "co", "cs", "cy", "da", "de", "el", "en", "en-US", "eo", "es", "es-MX", "et", "eu", "fa", "fa-AF", "fi", "fr", "fr-CA", "fy", "ga", "gd", "gl", "gu", "ha", "haw", "he", "hi", "hmn", "hr", "ht", "hu", "hy", "id", "ig", "is", "it", "iw", "ja", "jv", "ka", "kk", "km", "kn", "ko", "ku", "ky", "la", "lb", "lo", "lt", "lv", "mg", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "ne", "nl", "no", "ny", "or", "pa", "pl", "ps", "pt", "ro", "ru", "rw", "sd", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "tk", "tl", "tr", "tt", "ug", "uk", "ur", "uz", "vi", "xh", "yi", "yo", "zh", "zh-CN", "zh-TW", "zu"]>>;
+    source_language: z.ZodDefault<z.ZodEnum<["af", "am", "ar", "az", "be", "bg", "bn", "bs", "ca", "ceb", "co", "cs", "cy", "da", "de", "el", "en", "en-US", "eo", "es", "es-MX", "et", "eu", "fa", "fa-AF", "fi", "fr", "fr-CA", "fy", "ga", "gd", "gl", "gu", "ha", "haw", "he", "hi", "hmn", "hr", "ht", "hu", "hy", "id", "ig", "is", "it", "iw", "ja", "jv", "ka", "kk", "km", "kn", "ko", "ku", "ky", "la", "lb", "lo", "lt", "lv", "mg", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "ne", "nl", "no", "ny", "or", "pa", "pl", "ps", "pt", "ro", "ru", "rw", "sd", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "tk", "tl", "tr", "tt", "ug", "uk", "ur", "uz", "vi", "xh", "yi", "yo", "zh", "zh-CN", "zh-TW", "zu"]>>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/text/translate";
+    force_accept: boolean;
+    provider: "aws" | "gcp" | "replicate" | "fal" | "transloadit";
+    source_language: "ca" | "tk" | "te" | "th" | "co" | "sl" | "so" | "la" | "fi" | "ht" | "en" | "es" | "or" | "lt" | "af" | "ar" | "uk" | "ps" | "en-US" | "de" | "am" | "az" | "be" | "bg" | "bn" | "bs" | "ceb" | "cs" | "cy" | "da" | "el" | "eo" | "es-MX" | "et" | "eu" | "fa" | "fa-AF" | "fr" | "fr-CA" | "fy" | "ga" | "gd" | "gl" | "gu" | "ha" | "haw" | "he" | "hi" | "hmn" | "hr" | "hu" | "hy" | "id" | "ig" | "is" | "it" | "iw" | "ja" | "jv" | "ka" | "kk" | "km" | "kn" | "ko" | "ku" | "ky" | "lb" | "lo" | "lv" | "mg" | "mi" | "mk" | "ml" | "mn" | "mr" | "ms" | "mt" | "my" | "ne" | "nl" | "no" | "ny" | "pa" | "pl" | "pt" | "ro" | "ru" | "rw" | "sd" | "si" | "sk" | "sm" | "sn" | "sq" | "sr" | "st" | "su" | "sv" | "sw" | "ta" | "tg" | "tl" | "tr" | "tt" | "ug" | "ur" | "uz" | "vi" | "xh" | "yi" | "yo" | "zh" | "zh-CN" | "zh-TW" | "zu";
+    target_language: "ca" | "tk" | "te" | "th" | "co" | "sl" | "so" | "la" | "fi" | "ht" | "en" | "es" | "or" | "lt" | "af" | "ar" | "uk" | "ps" | "en-US" | "de" | "am" | "az" | "be" | "bg" | "bn" | "bs" | "ceb" | "cs" | "cy" | "da" | "el" | "eo" | "es-MX" | "et" | "eu" | "fa" | "fa-AF" | "fr" | "fr-CA" | "fy" | "ga" | "gd" | "gl" | "gu" | "ha" | "haw" | "he" | "hi" | "hmn" | "hr" | "hu" | "hy" | "id" | "ig" | "is" | "it" | "iw" | "ja" | "jv" | "ka" | "kk" | "km" | "kn" | "ko" | "ku" | "ky" | "lb" | "lo" | "lv" | "mg" | "mi" | "mk" | "ml" | "mn" | "mr" | "ms" | "mt" | "my" | "ne" | "nl" | "no" | "ny" | "pa" | "pl" | "pt" | "ro" | "ru" | "rw" | "sd" | "si" | "sk" | "sm" | "sn" | "sq" | "sr" | "st" | "su" | "sv" | "sw" | "ta" | "tg" | "tl" | "tr" | "tt" | "ug" | "ur" | "uz" | "vi" | "xh" | "yi" | "yo" | "zh" | "zh-CN" | "zh-TW" | "zu";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+}, {
+    robot: "/text/translate";
+    provider: "aws" | "gcp" | "replicate" | "fal" | "transloadit";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    source_language?: "ca" | "tk" | "te" | "th" | "co" | "sl" | "so" | "la" | "fi" | "ht" | "en" | "es" | "or" | "lt" | "af" | "ar" | "uk" | "ps" | "en-US" | "de" | "am" | "az" | "be" | "bg" | "bn" | "bs" | "ceb" | "cs" | "cy" | "da" | "el" | "eo" | "es-MX" | "et" | "eu" | "fa" | "fa-AF" | "fr" | "fr-CA" | "fy" | "ga" | "gd" | "gl" | "gu" | "ha" | "haw" | "he" | "hi" | "hmn" | "hr" | "hu" | "hy" | "id" | "ig" | "is" | "it" | "iw" | "ja" | "jv" | "ka" | "kk" | "km" | "kn" | "ko" | "ku" | "ky" | "lb" | "lo" | "lv" | "mg" | "mi" | "mk" | "ml" | "mn" | "mr" | "ms" | "mt" | "my" | "ne" | "nl" | "no" | "ny" | "pa" | "pl" | "pt" | "ro" | "ru" | "rw" | "sd" | "si" | "sk" | "sm" | "sn" | "sq" | "sr" | "st" | "su" | "sv" | "sw" | "ta" | "tg" | "tl" | "tr" | "tt" | "ug" | "ur" | "uz" | "vi" | "xh" | "yi" | "yo" | "zh" | "zh-CN" | "zh-TW" | "zu" | undefined;
+    target_language?: "ca" | "tk" | "te" | "th" | "co" | "sl" | "so" | "la" | "fi" | "ht" | "en" | "es" | "or" | "lt" | "af" | "ar" | "uk" | "ps" | "en-US" | "de" | "am" | "az" | "be" | "bg" | "bn" | "bs" | "ceb" | "cs" | "cy" | "da" | "el" | "eo" | "es-MX" | "et" | "eu" | "fa" | "fa-AF" | "fr" | "fr-CA" | "fy" | "ga" | "gd" | "gl" | "gu" | "ha" | "haw" | "he" | "hi" | "hmn" | "hr" | "hu" | "hy" | "id" | "ig" | "is" | "it" | "iw" | "ja" | "jv" | "ka" | "kk" | "km" | "kn" | "ko" | "ku" | "ky" | "lb" | "lo" | "lv" | "mg" | "mi" | "mk" | "ml" | "mn" | "mr" | "ms" | "mt" | "my" | "ne" | "nl" | "no" | "ny" | "pa" | "pl" | "pt" | "ro" | "ru" | "rw" | "sd" | "si" | "sk" | "sm" | "sn" | "sq" | "sr" | "st" | "su" | "sv" | "sw" | "ta" | "tg" | "tl" | "tr" | "tt" | "ug" | "ur" | "uz" | "vi" | "xh" | "yi" | "yo" | "zh" | "zh-CN" | "zh-TW" | "zu" | undefined;
+}>;
+export type RobotTextTranslateInstructions = z.infer<typeof robotTextTranslateInstructionsSchema>;
+export type RobotTextTranslateInstructionsWithHiddenFields = z.infer<typeof robotTextTranslateInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotTextTranslateInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/text/translate">;
+    provider: z.ZodUnion<[z.ZodString, z.ZodEnum<["aws", "gcp", "replicate", "fal", "transloadit"]>]>;
+    target_language: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["af", "am", "ar", "az", "be", "bg", "bn", "bs", "ca", "ceb", "co", "cs", "cy", "da", "de", "el", "en", "en-US", "eo", "es", "es-MX", "et", "eu", "fa", "fa-AF", "fi", "fr", "fr-CA", "fy", "ga", "gd", "gl", "gu", "ha", "haw", "he", "hi", "hmn", "hr", "ht", "hu", "hy", "id", "ig", "is", "it", "iw", "ja", "jv", "ka", "kk", "km", "kn", "ko", "ku", "ky", "la", "lb", "lo", "lt", "lv", "mg", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "ne", "nl", "no", "ny", "or", "pa", "pl", "ps", "pt", "ro", "ru", "rw", "sd", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "tk", "tl", "tr", "tt", "ug", "uk", "ur", "uz", "vi", "xh", "yi", "yo", "zh", "zh-CN", "zh-TW", "zu"]>]>>;
+    source_language: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["af", "am", "ar", "az", "be", "bg", "bn", "bs", "ca", "ceb", "co", "cs", "cy", "da", "de", "el", "en", "en-US", "eo", "es", "es-MX", "et", "eu", "fa", "fa-AF", "fi", "fr", "fr-CA", "fy", "ga", "gd", "gl", "gu", "ha", "haw", "he", "hi", "hmn", "hr", "ht", "hu", "hy", "id", "ig", "is", "it", "iw", "ja", "jv", "ka", "kk", "km", "kn", "ko", "ku", "ky", "la", "lb", "lo", "lt", "lv", "mg", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "ne", "nl", "no", "ny", "or", "pa", "pl", "ps", "pt", "ro", "ru", "rw", "sd", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "tk", "tl", "tr", "tt", "ug", "uk", "ur", "uz", "vi", "xh", "yi", "yo", "zh", "zh-CN", "zh-TW", "zu"]>]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/text/translate";
+    result: string | boolean;
+    force_accept: string | boolean;
+    provider: string;
+    source_language: string;
+    target_language: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+}, {
+    robot: "/text/translate";
+    provider: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    source_language?: string | undefined;
+    target_language?: string | undefined;
+}>;
+export type InterpolatableRobotTextTranslateInstructions = InterpolatableRobotTextTranslateInstructionsInput;
+export type InterpolatableRobotTextTranslateInstructionsInput = z.input<typeof interpolatableRobotTextTranslateInstructionsSchema>;
+export declare const interpolatableRobotTextTranslateInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/text/translate">;
+    provider: z.ZodUnion<[z.ZodString, z.ZodEnum<["aws", "gcp", "replicate", "fal", "transloadit"]>]>;
+    target_language: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["af", "am", "ar", "az", "be", "bg", "bn", "bs", "ca", "ceb", "co", "cs", "cy", "da", "de", "el", "en", "en-US", "eo", "es", "es-MX", "et", "eu", "fa", "fa-AF", "fi", "fr", "fr-CA", "fy", "ga", "gd", "gl", "gu", "ha", "haw", "he", "hi", "hmn", "hr", "ht", "hu", "hy", "id", "ig", "is", "it", "iw", "ja", "jv", "ka", "kk", "km", "kn", "ko", "ku", "ky", "la", "lb", "lo", "lt", "lv", "mg", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "ne", "nl", "no", "ny", "or", "pa", "pl", "ps", "pt", "ro", "ru", "rw", "sd", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "tk", "tl", "tr", "tt", "ug", "uk", "ur", "uz", "vi", "xh", "yi", "yo", "zh", "zh-CN", "zh-TW", "zu"]>]>>;
+    source_language: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["af", "am", "ar", "az", "be", "bg", "bn", "bs", "ca", "ceb", "co", "cs", "cy", "da", "de", "el", "en", "en-US", "eo", "es", "es-MX", "et", "eu", "fa", "fa-AF", "fi", "fr", "fr-CA", "fy", "ga", "gd", "gl", "gu", "ha", "haw", "he", "hi", "hmn", "hr", "ht", "hu", "hy", "id", "ig", "is", "it", "iw", "ja", "jv", "ka", "kk", "km", "kn", "ko", "ku", "ky", "la", "lb", "lo", "lt", "lv", "mg", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "ne", "nl", "no", "ny", "or", "pa", "pl", "ps", "pt", "ro", "ru", "rw", "sd", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "tk", "tl", "tr", "tt", "ug", "uk", "ur", "uz", "vi", "xh", "yi", "yo", "zh", "zh-CN", "zh-TW", "zu"]>]>>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/text/translate";
+    force_accept: string | boolean;
+    provider: string;
+    source_language: string;
+    target_language: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+}, {
+    robot: "/text/translate";
+    provider: string;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    source_language?: string | undefined;
+    target_language?: string | undefined;
+}>;
+export type InterpolatableRobotTextTranslateInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotTextTranslateInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotTextTranslateInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotTextTranslateInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=text-translate.d.ts.map

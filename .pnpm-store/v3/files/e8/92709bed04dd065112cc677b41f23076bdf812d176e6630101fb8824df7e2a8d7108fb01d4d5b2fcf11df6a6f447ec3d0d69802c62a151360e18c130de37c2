@@ -1,0 +1,6 @@
+export const sdkInfo = {
+    host: 'npmjs.com',
+    version: '14.11.0',
+    name: '@kontent-ai/delivery-sdk'
+};
+//# sourceMappingURL=sdk-info.generated.js.map

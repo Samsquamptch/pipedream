@@ -1,0 +1,1015 @@
+import { ExceptionOptionType as __ExceptionOptionType } from "@smithy/smithy-client";
+import { RedshiftServerlessServiceException as __BaseException } from "./RedshiftServerlessServiceException";
+export declare class AccessDeniedException extends __BaseException {
+  readonly name: "AccessDeniedException";
+  readonly $fault: "client";
+  code?: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<AccessDeniedException, __BaseException>
+  );
+}
+export interface Association {
+  customDomainCertificateArn?: string | undefined;
+  customDomainCertificateExpiryTime?: Date | undefined;
+  customDomainName?: string | undefined;
+  workgroupName?: string | undefined;
+}
+export interface ConfigParameter {
+  parameterKey?: string | undefined;
+  parameterValue?: string | undefined;
+}
+export declare class ConflictException extends __BaseException {
+  readonly name: "ConflictException";
+  readonly $fault: "client";
+  constructor(opts: __ExceptionOptionType<ConflictException, __BaseException>);
+}
+export interface Tag {
+  key: string | undefined;
+  value: string | undefined;
+}
+export interface ConvertRecoveryPointToSnapshotRequest {
+  recoveryPointId: string | undefined;
+  snapshotName: string | undefined;
+  retentionPeriod?: number | undefined;
+  tags?: Tag[] | undefined;
+}
+export declare const SnapshotStatus: {
+  readonly AVAILABLE: "AVAILABLE";
+  readonly CANCELLED: "CANCELLED";
+  readonly COPYING: "COPYING";
+  readonly CREATING: "CREATING";
+  readonly DELETED: "DELETED";
+  readonly FAILED: "FAILED";
+};
+export type SnapshotStatus =
+  (typeof SnapshotStatus)[keyof typeof SnapshotStatus];
+export interface Snapshot {
+  namespaceName?: string | undefined;
+  namespaceArn?: string | undefined;
+  snapshotName?: string | undefined;
+  snapshotCreateTime?: Date | undefined;
+  adminUsername?: string | undefined;
+  status?: SnapshotStatus | undefined;
+  kmsKeyId?: string | undefined;
+  ownerAccount?: string | undefined;
+  totalBackupSizeInMegaBytes?: number | undefined;
+  actualIncrementalBackupSizeInMegaBytes?: number | undefined;
+  backupProgressInMegaBytes?: number | undefined;
+  currentBackupRateInMegaBytesPerSecond?: number | undefined;
+  estimatedSecondsToCompletion?: number | undefined;
+  elapsedTimeInSeconds?: number | undefined;
+  snapshotRetentionPeriod?: number | undefined;
+  snapshotRemainingDays?: number | undefined;
+  snapshotRetentionStartTime?: Date | undefined;
+  snapshotArn?: string | undefined;
+  accountsWithRestoreAccess?: string[] | undefined;
+  accountsWithProvisionedRestoreAccess?: string[] | undefined;
+  adminPasswordSecretArn?: string | undefined;
+  adminPasswordSecretKmsKeyId?: string | undefined;
+}
+export interface ConvertRecoveryPointToSnapshotResponse {
+  snapshot?: Snapshot | undefined;
+}
+export declare class InternalServerException extends __BaseException {
+  readonly name: "InternalServerException";
+  readonly $fault: "server";
+  $retryable: {};
+  constructor(
+    opts: __ExceptionOptionType<InternalServerException, __BaseException>
+  );
+}
+export declare class ResourceNotFoundException extends __BaseException {
+  readonly name: "ResourceNotFoundException";
+  readonly $fault: "client";
+  resourceName?: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<ResourceNotFoundException, __BaseException>
+  );
+}
+export declare class ServiceQuotaExceededException extends __BaseException {
+  readonly name: "ServiceQuotaExceededException";
+  readonly $fault: "client";
+  constructor(
+    opts: __ExceptionOptionType<ServiceQuotaExceededException, __BaseException>
+  );
+}
+export declare class TooManyTagsException extends __BaseException {
+  readonly name: "TooManyTagsException";
+  readonly $fault: "client";
+  resourceName?: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<TooManyTagsException, __BaseException>
+  );
+}
+export declare class ValidationException extends __BaseException {
+  readonly name: "ValidationException";
+  readonly $fault: "client";
+  constructor(
+    opts: __ExceptionOptionType<ValidationException, __BaseException>
+  );
+}
+export interface CreateCustomDomainAssociationRequest {
+  workgroupName: string | undefined;
+  customDomainName: string | undefined;
+  customDomainCertificateArn: string | undefined;
+}
+export interface CreateCustomDomainAssociationResponse {
+  customDomainName?: string | undefined;
+  workgroupName?: string | undefined;
+  customDomainCertificateArn?: string | undefined;
+  customDomainCertificateExpiryTime?: Date | undefined;
+}
+export declare class ThrottlingException extends __BaseException {
+  readonly name: "ThrottlingException";
+  readonly $fault: "client";
+  $retryable: {};
+  code?: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<ThrottlingException, __BaseException>
+  );
+}
+export interface CreateEndpointAccessRequest {
+  endpointName: string | undefined;
+  subnetIds: string[] | undefined;
+  workgroupName: string | undefined;
+  vpcSecurityGroupIds?: string[] | undefined;
+  ownerAccount?: string | undefined;
+}
+export interface NetworkInterface {
+  networkInterfaceId?: string | undefined;
+  subnetId?: string | undefined;
+  privateIpAddress?: string | undefined;
+  availabilityZone?: string | undefined;
+  ipv6Address?: string | undefined;
+}
+export interface VpcEndpoint {
+  vpcEndpointId?: string | undefined;
+  vpcId?: string | undefined;
+  networkInterfaces?: NetworkInterface[] | undefined;
+}
+export interface VpcSecurityGroupMembership {
+  vpcSecurityGroupId?: string | undefined;
+  status?: string | undefined;
+}
+export interface EndpointAccess {
+  endpointName?: string | undefined;
+  endpointStatus?: string | undefined;
+  workgroupName?: string | undefined;
+  endpointCreateTime?: Date | undefined;
+  port?: number | undefined;
+  address?: string | undefined;
+  subnetIds?: string[] | undefined;
+  vpcSecurityGroups?: VpcSecurityGroupMembership[] | undefined;
+  vpcEndpoint?: VpcEndpoint | undefined;
+  endpointArn?: string | undefined;
+}
+export interface CreateEndpointAccessResponse {
+  endpoint?: EndpointAccess | undefined;
+}
+export declare const LogExport: {
+  readonly CONNECTION_LOG: "connectionlog";
+  readonly USER_ACTIVITY_LOG: "useractivitylog";
+  readonly USER_LOG: "userlog";
+};
+export type LogExport = (typeof LogExport)[keyof typeof LogExport];
+export interface CreateNamespaceRequest {
+  namespaceName: string | undefined;
+  adminUsername?: string | undefined;
+  adminUserPassword?: string | undefined;
+  dbName?: string | undefined;
+  kmsKeyId?: string | undefined;
+  defaultIamRoleArn?: string | undefined;
+  iamRoles?: string[] | undefined;
+  logExports?: LogExport[] | undefined;
+  tags?: Tag[] | undefined;
+  manageAdminPassword?: boolean | undefined;
+  adminPasswordSecretKmsKeyId?: string | undefined;
+  redshiftIdcApplicationArn?: string | undefined;
+}
+export declare const NamespaceStatus: {
+  readonly AVAILABLE: "AVAILABLE";
+  readonly DELETING: "DELETING";
+  readonly MODIFYING: "MODIFYING";
+};
+export type NamespaceStatus =
+  (typeof NamespaceStatus)[keyof typeof NamespaceStatus];
+export interface Namespace {
+  namespaceArn?: string | undefined;
+  namespaceId?: string | undefined;
+  namespaceName?: string | undefined;
+  adminUsername?: string | undefined;
+  dbName?: string | undefined;
+  kmsKeyId?: string | undefined;
+  defaultIamRoleArn?: string | undefined;
+  iamRoles?: string[] | undefined;
+  logExports?: LogExport[] | undefined;
+  status?: NamespaceStatus | undefined;
+  creationDate?: Date | undefined;
+  adminPasswordSecretArn?: string | undefined;
+  adminPasswordSecretKmsKeyId?: string | undefined;
+}
+export interface CreateNamespaceResponse {
+  namespace?: Namespace | undefined;
+}
+export interface CreateReservationRequest {
+  capacity: number | undefined;
+  offeringId: string | undefined;
+  clientToken?: string | undefined;
+}
+export declare const OfferingType: {
+  readonly ALL_UPFRONT: "ALL_UPFRONT";
+  readonly NO_UPFRONT: "NO_UPFRONT";
+};
+export type OfferingType = (typeof OfferingType)[keyof typeof OfferingType];
+export interface ReservationOffering {
+  offeringId?: string | undefined;
+  duration?: number | undefined;
+  upfrontCharge?: number | undefined;
+  hourlyCharge?: number | undefined;
+  currencyCode?: string | undefined;
+  offeringType?: OfferingType | undefined;
+}
+export interface Reservation {
+  reservationId?: string | undefined;
+  reservationArn?: string | undefined;
+  startDate?: Date | undefined;
+  endDate?: Date | undefined;
+  capacity?: number | undefined;
+  offering?: ReservationOffering | undefined;
+  status?: string | undefined;
+}
+export interface CreateReservationResponse {
+  reservation?: Reservation | undefined;
+}
+export type Schedule =
+  | Schedule.AtMember
+  | Schedule.CronMember
+  | Schedule.$UnknownMember;
+export declare namespace Schedule {
+  interface AtMember {
+    at: Date;
+    cron?: never;
+    $unknown?: never;
+  }
+  interface CronMember {
+    at?: never;
+    cron: string;
+    $unknown?: never;
+  }
+  interface $UnknownMember {
+    at?: never;
+    cron?: never;
+    $unknown: [string, any];
+  }
+  interface Visitor<T> {
+    at: (value: Date) => T;
+    cron: (value: string) => T;
+    _: (name: string, value: any) => T;
+  }
+  const visit: <T>(value: Schedule, visitor: Visitor<T>) => T;
+}
+export interface CreateSnapshotScheduleActionParameters {
+  namespaceName: string | undefined;
+  snapshotNamePrefix: string | undefined;
+  retentionPeriod?: number | undefined;
+  tags?: Tag[] | undefined;
+}
+export type TargetAction =
+  | TargetAction.CreateSnapshotMember
+  | TargetAction.$UnknownMember;
+export declare namespace TargetAction {
+  interface CreateSnapshotMember {
+    createSnapshot: CreateSnapshotScheduleActionParameters;
+    $unknown?: never;
+  }
+  interface $UnknownMember {
+    createSnapshot?: never;
+    $unknown: [string, any];
+  }
+  interface Visitor<T> {
+    createSnapshot: (value: CreateSnapshotScheduleActionParameters) => T;
+    _: (name: string, value: any) => T;
+  }
+  const visit: <T>(value: TargetAction, visitor: Visitor<T>) => T;
+}
+export interface CreateScheduledActionRequest {
+  scheduledActionName: string | undefined;
+  targetAction: TargetAction | undefined;
+  schedule: Schedule | undefined;
+  roleArn: string | undefined;
+  namespaceName: string | undefined;
+  enabled?: boolean | undefined;
+  scheduledActionDescription?: string | undefined;
+  startTime?: Date | undefined;
+  endTime?: Date | undefined;
+}
+export declare const State: {
+  readonly ACTIVE: "ACTIVE";
+  readonly DISABLED: "DISABLED";
+};
+export type State = (typeof State)[keyof typeof State];
+export interface ScheduledActionResponse {
+  scheduledActionName?: string | undefined;
+  schedule?: Schedule | undefined;
+  scheduledActionDescription?: string | undefined;
+  nextInvocations?: Date[] | undefined;
+  roleArn?: string | undefined;
+  state?: State | undefined;
+  startTime?: Date | undefined;
+  endTime?: Date | undefined;
+  targetAction?: TargetAction | undefined;
+  namespaceName?: string | undefined;
+  scheduledActionUuid?: string | undefined;
+}
+export interface CreateScheduledActionResponse {
+  scheduledAction?: ScheduledActionResponse | undefined;
+}
+export interface CreateSnapshotRequest {
+  namespaceName: string | undefined;
+  snapshotName: string | undefined;
+  retentionPeriod?: number | undefined;
+  tags?: Tag[] | undefined;
+}
+export interface CreateSnapshotResponse {
+  snapshot?: Snapshot | undefined;
+}
+export interface CreateSnapshotCopyConfigurationRequest {
+  namespaceName: string | undefined;
+  destinationRegion: string | undefined;
+  snapshotRetentionPeriod?: number | undefined;
+  destinationKmsKeyId?: string | undefined;
+}
+export interface SnapshotCopyConfiguration {
+  snapshotCopyConfigurationId?: string | undefined;
+  snapshotCopyConfigurationArn?: string | undefined;
+  namespaceName?: string | undefined;
+  destinationRegion?: string | undefined;
+  snapshotRetentionPeriod?: number | undefined;
+  destinationKmsKeyId?: string | undefined;
+}
+export interface CreateSnapshotCopyConfigurationResponse {
+  snapshotCopyConfiguration: SnapshotCopyConfiguration | undefined;
+}
+export declare const UsageLimitBreachAction: {
+  readonly DEACTIVATE: "deactivate";
+  readonly EMIT_METRIC: "emit-metric";
+  readonly LOG: "log";
+};
+export type UsageLimitBreachAction =
+  (typeof UsageLimitBreachAction)[keyof typeof UsageLimitBreachAction];
+export declare const UsageLimitPeriod: {
+  readonly DAILY: "daily";
+  readonly MONTHLY: "monthly";
+  readonly WEEKLY: "weekly";
+};
+export type UsageLimitPeriod =
+  (typeof UsageLimitPeriod)[keyof typeof UsageLimitPeriod];
+export declare const UsageLimitUsageType: {
+  readonly CROSS_REGION_DATASHARING: "cross-region-datasharing";
+  readonly SERVERLESS_COMPUTE: "serverless-compute";
+};
+export type UsageLimitUsageType =
+  (typeof UsageLimitUsageType)[keyof typeof UsageLimitUsageType];
+export interface CreateUsageLimitRequest {
+  resourceArn: string | undefined;
+  usageType: UsageLimitUsageType | undefined;
+  amount: number | undefined;
+  period?: UsageLimitPeriod | undefined;
+  breachAction?: UsageLimitBreachAction | undefined;
+}
+export interface UsageLimit {
+  usageLimitId?: string | undefined;
+  usageLimitArn?: string | undefined;
+  resourceArn?: string | undefined;
+  usageType?: UsageLimitUsageType | undefined;
+  amount?: number | undefined;
+  period?: UsageLimitPeriod | undefined;
+  breachAction?: UsageLimitBreachAction | undefined;
+}
+export interface CreateUsageLimitResponse {
+  usageLimit?: UsageLimit | undefined;
+}
+export declare const PerformanceTargetStatus: {
+  readonly DISABLED: "DISABLED";
+  readonly ENABLED: "ENABLED";
+};
+export type PerformanceTargetStatus =
+  (typeof PerformanceTargetStatus)[keyof typeof PerformanceTargetStatus];
+export interface PerformanceTarget {
+  status?: PerformanceTargetStatus | undefined;
+  level?: number | undefined;
+}
+export interface CreateWorkgroupRequest {
+  workgroupName: string | undefined;
+  namespaceName: string | undefined;
+  baseCapacity?: number | undefined;
+  enhancedVpcRouting?: boolean | undefined;
+  configParameters?: ConfigParameter[] | undefined;
+  securityGroupIds?: string[] | undefined;
+  subnetIds?: string[] | undefined;
+  publiclyAccessible?: boolean | undefined;
+  tags?: Tag[] | undefined;
+  port?: number | undefined;
+  maxCapacity?: number | undefined;
+  pricePerformanceTarget?: PerformanceTarget | undefined;
+  ipAddressType?: string | undefined;
+  trackName?: string | undefined;
+}
+export interface Endpoint {
+  address?: string | undefined;
+  port?: number | undefined;
+  vpcEndpoints?: VpcEndpoint[] | undefined;
+}
+export declare const WorkgroupStatus: {
+  readonly AVAILABLE: "AVAILABLE";
+  readonly CREATING: "CREATING";
+  readonly DELETING: "DELETING";
+  readonly MODIFYING: "MODIFYING";
+};
+export type WorkgroupStatus =
+  (typeof WorkgroupStatus)[keyof typeof WorkgroupStatus];
+export interface Workgroup {
+  workgroupId?: string | undefined;
+  workgroupArn?: string | undefined;
+  workgroupName?: string | undefined;
+  namespaceName?: string | undefined;
+  baseCapacity?: number | undefined;
+  enhancedVpcRouting?: boolean | undefined;
+  configParameters?: ConfigParameter[] | undefined;
+  securityGroupIds?: string[] | undefined;
+  subnetIds?: string[] | undefined;
+  status?: WorkgroupStatus | undefined;
+  endpoint?: Endpoint | undefined;
+  publiclyAccessible?: boolean | undefined;
+  creationDate?: Date | undefined;
+  port?: number | undefined;
+  customDomainName?: string | undefined;
+  customDomainCertificateArn?: string | undefined;
+  customDomainCertificateExpiryTime?: Date | undefined;
+  workgroupVersion?: string | undefined;
+  patchVersion?: string | undefined;
+  maxCapacity?: number | undefined;
+  crossAccountVpcs?: string[] | undefined;
+  ipAddressType?: string | undefined;
+  pricePerformanceTarget?: PerformanceTarget | undefined;
+  trackName?: string | undefined;
+  pendingTrackName?: string | undefined;
+}
+export interface CreateWorkgroupResponse {
+  workgroup?: Workgroup | undefined;
+}
+export declare class InsufficientCapacityException extends __BaseException {
+  readonly name: "InsufficientCapacityException";
+  readonly $fault: "client";
+  $retryable: {};
+  constructor(
+    opts: __ExceptionOptionType<InsufficientCapacityException, __BaseException>
+  );
+}
+export declare class Ipv6CidrBlockNotFoundException extends __BaseException {
+  readonly name: "Ipv6CidrBlockNotFoundException";
+  readonly $fault: "client";
+  constructor(
+    opts: __ExceptionOptionType<Ipv6CidrBlockNotFoundException, __BaseException>
+  );
+}
+export interface DeleteEndpointAccessRequest {
+  endpointName: string | undefined;
+}
+export interface DeleteEndpointAccessResponse {
+  endpoint?: EndpointAccess | undefined;
+}
+export interface GetEndpointAccessRequest {
+  endpointName: string | undefined;
+}
+export interface GetEndpointAccessResponse {
+  endpoint?: EndpointAccess | undefined;
+}
+export interface ListEndpointAccessRequest {
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+  workgroupName?: string | undefined;
+  vpcId?: string | undefined;
+  ownerAccount?: string | undefined;
+}
+export interface ListEndpointAccessResponse {
+  nextToken?: string | undefined;
+  endpoints: EndpointAccess[] | undefined;
+}
+export interface UpdateEndpointAccessRequest {
+  endpointName: string | undefined;
+  vpcSecurityGroupIds?: string[] | undefined;
+}
+export interface UpdateEndpointAccessResponse {
+  endpoint?: EndpointAccess | undefined;
+}
+export interface DeleteCustomDomainAssociationRequest {
+  workgroupName: string | undefined;
+  customDomainName: string | undefined;
+}
+export interface DeleteCustomDomainAssociationResponse {}
+export interface DeleteNamespaceRequest {
+  namespaceName: string | undefined;
+  finalSnapshotName?: string | undefined;
+  finalSnapshotRetentionPeriod?: number | undefined;
+}
+export interface DeleteNamespaceResponse {
+  namespace: Namespace | undefined;
+}
+export interface DeleteResourcePolicyRequest {
+  resourceArn: string | undefined;
+}
+export interface DeleteResourcePolicyResponse {}
+export interface DeleteScheduledActionRequest {
+  scheduledActionName: string | undefined;
+}
+export interface DeleteScheduledActionResponse {
+  scheduledAction?: ScheduledActionResponse | undefined;
+}
+export interface DeleteSnapshotRequest {
+  snapshotName: string | undefined;
+}
+export interface DeleteSnapshotResponse {
+  snapshot?: Snapshot | undefined;
+}
+export interface DeleteSnapshotCopyConfigurationRequest {
+  snapshotCopyConfigurationId: string | undefined;
+}
+export interface DeleteSnapshotCopyConfigurationResponse {
+  snapshotCopyConfiguration: SnapshotCopyConfiguration | undefined;
+}
+export interface DeleteUsageLimitRequest {
+  usageLimitId: string | undefined;
+}
+export interface DeleteUsageLimitResponse {
+  usageLimit?: UsageLimit | undefined;
+}
+export interface DeleteWorkgroupRequest {
+  workgroupName: string | undefined;
+}
+export interface DeleteWorkgroupResponse {
+  workgroup: Workgroup | undefined;
+}
+export interface GetCredentialsRequest {
+  dbName?: string | undefined;
+  durationSeconds?: number | undefined;
+  workgroupName?: string | undefined;
+  customDomainName?: string | undefined;
+}
+export interface GetCredentialsResponse {
+  dbUser?: string | undefined;
+  dbPassword?: string | undefined;
+  expiration?: Date | undefined;
+  nextRefreshTime?: Date | undefined;
+}
+export interface GetCustomDomainAssociationRequest {
+  customDomainName: string | undefined;
+  workgroupName: string | undefined;
+}
+export interface GetCustomDomainAssociationResponse {
+  customDomainName?: string | undefined;
+  workgroupName?: string | undefined;
+  customDomainCertificateArn?: string | undefined;
+  customDomainCertificateExpiryTime?: Date | undefined;
+}
+export interface GetNamespaceRequest {
+  namespaceName: string | undefined;
+}
+export interface GetNamespaceResponse {
+  namespace: Namespace | undefined;
+}
+export interface GetRecoveryPointRequest {
+  recoveryPointId: string | undefined;
+}
+export interface RecoveryPoint {
+  recoveryPointId?: string | undefined;
+  recoveryPointCreateTime?: Date | undefined;
+  totalSizeInMegaBytes?: number | undefined;
+  namespaceName?: string | undefined;
+  workgroupName?: string | undefined;
+  namespaceArn?: string | undefined;
+}
+export interface GetRecoveryPointResponse {
+  recoveryPoint?: RecoveryPoint | undefined;
+}
+export interface GetReservationRequest {
+  reservationId: string | undefined;
+}
+export interface GetReservationResponse {
+  reservation: Reservation | undefined;
+}
+export interface GetReservationOfferingRequest {
+  offeringId: string | undefined;
+}
+export interface GetReservationOfferingResponse {
+  reservationOffering: ReservationOffering | undefined;
+}
+export interface GetResourcePolicyRequest {
+  resourceArn: string | undefined;
+}
+export interface ResourcePolicy {
+  resourceArn?: string | undefined;
+  policy?: string | undefined;
+}
+export interface GetResourcePolicyResponse {
+  resourcePolicy?: ResourcePolicy | undefined;
+}
+export interface GetScheduledActionRequest {
+  scheduledActionName: string | undefined;
+}
+export interface GetScheduledActionResponse {
+  scheduledAction?: ScheduledActionResponse | undefined;
+}
+export interface GetSnapshotRequest {
+  snapshotName?: string | undefined;
+  ownerAccount?: string | undefined;
+  snapshotArn?: string | undefined;
+}
+export interface GetSnapshotResponse {
+  snapshot?: Snapshot | undefined;
+}
+export interface GetTableRestoreStatusRequest {
+  tableRestoreRequestId: string | undefined;
+}
+export interface TableRestoreStatus {
+  tableRestoreRequestId?: string | undefined;
+  status?: string | undefined;
+  message?: string | undefined;
+  requestTime?: Date | undefined;
+  namespaceName?: string | undefined;
+  workgroupName?: string | undefined;
+  snapshotName?: string | undefined;
+  progressInMegaBytes?: number | undefined;
+  totalDataInMegaBytes?: number | undefined;
+  sourceDatabaseName?: string | undefined;
+  sourceSchemaName?: string | undefined;
+  sourceTableName?: string | undefined;
+  targetDatabaseName?: string | undefined;
+  targetSchemaName?: string | undefined;
+  newTableName?: string | undefined;
+  recoveryPointId?: string | undefined;
+}
+export interface GetTableRestoreStatusResponse {
+  tableRestoreStatus?: TableRestoreStatus | undefined;
+}
+export interface GetTrackRequest {
+  trackName: string | undefined;
+}
+export interface UpdateTarget {
+  trackName?: string | undefined;
+  workgroupVersion?: string | undefined;
+}
+export interface ServerlessTrack {
+  trackName?: string | undefined;
+  workgroupVersion?: string | undefined;
+  updateTargets?: UpdateTarget[] | undefined;
+}
+export interface GetTrackResponse {
+  track?: ServerlessTrack | undefined;
+}
+export interface GetUsageLimitRequest {
+  usageLimitId: string | undefined;
+}
+export interface GetUsageLimitResponse {
+  usageLimit?: UsageLimit | undefined;
+}
+export interface GetWorkgroupRequest {
+  workgroupName: string | undefined;
+}
+export interface GetWorkgroupResponse {
+  workgroup: Workgroup | undefined;
+}
+export declare class InvalidPaginationException extends __BaseException {
+  readonly name: "InvalidPaginationException";
+  readonly $fault: "client";
+  constructor(
+    opts: __ExceptionOptionType<InvalidPaginationException, __BaseException>
+  );
+}
+export interface ListCustomDomainAssociationsRequest {
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+  customDomainName?: string | undefined;
+  customDomainCertificateArn?: string | undefined;
+}
+export interface ListCustomDomainAssociationsResponse {
+  nextToken?: string | undefined;
+  associations?: Association[] | undefined;
+}
+export interface ListManagedWorkgroupsRequest {
+  sourceArn?: string | undefined;
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+}
+export declare const ManagedWorkgroupStatus: {
+  readonly AVAILABLE: "AVAILABLE";
+  readonly CREATING: "CREATING";
+  readonly DELETING: "DELETING";
+  readonly MODIFYING: "MODIFYING";
+  readonly NOT_AVAILABLE: "NOT_AVAILABLE";
+};
+export type ManagedWorkgroupStatus =
+  (typeof ManagedWorkgroupStatus)[keyof typeof ManagedWorkgroupStatus];
+export interface ManagedWorkgroupListItem {
+  managedWorkgroupName?: string | undefined;
+  managedWorkgroupId?: string | undefined;
+  sourceArn?: string | undefined;
+  status?: ManagedWorkgroupStatus | undefined;
+  creationDate?: Date | undefined;
+}
+export interface ListManagedWorkgroupsResponse {
+  nextToken?: string | undefined;
+  managedWorkgroups?: ManagedWorkgroupListItem[] | undefined;
+}
+export interface ListNamespacesRequest {
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+}
+export interface ListNamespacesResponse {
+  nextToken?: string | undefined;
+  namespaces: Namespace[] | undefined;
+}
+export interface ListRecoveryPointsRequest {
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+  startTime?: Date | undefined;
+  endTime?: Date | undefined;
+  namespaceName?: string | undefined;
+  namespaceArn?: string | undefined;
+}
+export interface ListRecoveryPointsResponse {
+  recoveryPoints?: RecoveryPoint[] | undefined;
+  nextToken?: string | undefined;
+}
+export interface ListReservationOfferingsRequest {
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+}
+export interface ListReservationOfferingsResponse {
+  reservationOfferingsList: ReservationOffering[] | undefined;
+  nextToken?: string | undefined;
+}
+export interface ListReservationsRequest {
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+}
+export interface ListReservationsResponse {
+  reservationsList: Reservation[] | undefined;
+  nextToken?: string | undefined;
+}
+export interface ListScheduledActionsRequest {
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+  namespaceName?: string | undefined;
+}
+export interface ScheduledActionAssociation {
+  namespaceName?: string | undefined;
+  scheduledActionName?: string | undefined;
+}
+export interface ListScheduledActionsResponse {
+  nextToken?: string | undefined;
+  scheduledActions?: ScheduledActionAssociation[] | undefined;
+}
+export interface ListSnapshotCopyConfigurationsRequest {
+  namespaceName?: string | undefined;
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+}
+export interface ListSnapshotCopyConfigurationsResponse {
+  nextToken?: string | undefined;
+  snapshotCopyConfigurations: SnapshotCopyConfiguration[] | undefined;
+}
+export interface ListSnapshotsRequest {
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+  namespaceName?: string | undefined;
+  namespaceArn?: string | undefined;
+  ownerAccount?: string | undefined;
+  startTime?: Date | undefined;
+  endTime?: Date | undefined;
+}
+export interface ListSnapshotsResponse {
+  nextToken?: string | undefined;
+  snapshots?: Snapshot[] | undefined;
+}
+export interface ListTableRestoreStatusRequest {
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+  namespaceName?: string | undefined;
+  workgroupName?: string | undefined;
+}
+export interface ListTableRestoreStatusResponse {
+  nextToken?: string | undefined;
+  tableRestoreStatuses?: TableRestoreStatus[] | undefined;
+}
+export interface ListTagsForResourceRequest {
+  resourceArn: string | undefined;
+}
+export interface ListTagsForResourceResponse {
+  tags?: Tag[] | undefined;
+}
+export interface ListTracksRequest {
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+}
+export interface ListTracksResponse {
+  tracks?: ServerlessTrack[] | undefined;
+  nextToken?: string | undefined;
+}
+export interface ListUsageLimitsRequest {
+  resourceArn?: string | undefined;
+  usageType?: UsageLimitUsageType | undefined;
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+}
+export interface ListUsageLimitsResponse {
+  usageLimits?: UsageLimit[] | undefined;
+  nextToken?: string | undefined;
+}
+export interface ListWorkgroupsRequest {
+  nextToken?: string | undefined;
+  maxResults?: number | undefined;
+  ownerAccount?: string | undefined;
+}
+export interface ListWorkgroupsResponse {
+  nextToken?: string | undefined;
+  workgroups: Workgroup[] | undefined;
+}
+export interface UpdateNamespaceRequest {
+  namespaceName: string | undefined;
+  adminUserPassword?: string | undefined;
+  adminUsername?: string | undefined;
+  kmsKeyId?: string | undefined;
+  defaultIamRoleArn?: string | undefined;
+  iamRoles?: string[] | undefined;
+  logExports?: LogExport[] | undefined;
+  manageAdminPassword?: boolean | undefined;
+  adminPasswordSecretKmsKeyId?: string | undefined;
+}
+export interface UpdateNamespaceResponse {
+  namespace: Namespace | undefined;
+}
+export interface PutResourcePolicyRequest {
+  resourceArn: string | undefined;
+  policy: string | undefined;
+}
+export interface PutResourcePolicyResponse {
+  resourcePolicy?: ResourcePolicy | undefined;
+}
+export interface RestoreFromRecoveryPointRequest {
+  recoveryPointId: string | undefined;
+  namespaceName: string | undefined;
+  workgroupName: string | undefined;
+}
+export interface RestoreFromRecoveryPointResponse {
+  recoveryPointId?: string | undefined;
+  namespace?: Namespace | undefined;
+}
+export interface RestoreTableFromRecoveryPointRequest {
+  namespaceName: string | undefined;
+  workgroupName: string | undefined;
+  recoveryPointId: string | undefined;
+  sourceDatabaseName: string | undefined;
+  sourceSchemaName?: string | undefined;
+  sourceTableName: string | undefined;
+  targetDatabaseName?: string | undefined;
+  targetSchemaName?: string | undefined;
+  newTableName: string | undefined;
+  activateCaseSensitiveIdentifier?: boolean | undefined;
+}
+export interface RestoreTableFromRecoveryPointResponse {
+  tableRestoreStatus?: TableRestoreStatus | undefined;
+}
+export interface UpdateScheduledActionRequest {
+  scheduledActionName: string | undefined;
+  targetAction?: TargetAction | undefined;
+  schedule?: Schedule | undefined;
+  roleArn?: string | undefined;
+  enabled?: boolean | undefined;
+  scheduledActionDescription?: string | undefined;
+  startTime?: Date | undefined;
+  endTime?: Date | undefined;
+}
+export interface UpdateScheduledActionResponse {
+  scheduledAction?: ScheduledActionResponse | undefined;
+}
+export interface RestoreFromSnapshotRequest {
+  namespaceName: string | undefined;
+  workgroupName: string | undefined;
+  snapshotName?: string | undefined;
+  snapshotArn?: string | undefined;
+  ownerAccount?: string | undefined;
+  manageAdminPassword?: boolean | undefined;
+  adminPasswordSecretKmsKeyId?: string | undefined;
+}
+export interface RestoreFromSnapshotResponse {
+  snapshotName?: string | undefined;
+  ownerAccount?: string | undefined;
+  namespace?: Namespace | undefined;
+}
+export interface RestoreTableFromSnapshotRequest {
+  namespaceName: string | undefined;
+  workgroupName: string | undefined;
+  snapshotName: string | undefined;
+  sourceDatabaseName: string | undefined;
+  sourceSchemaName?: string | undefined;
+  sourceTableName: string | undefined;
+  targetDatabaseName?: string | undefined;
+  targetSchemaName?: string | undefined;
+  newTableName: string | undefined;
+  activateCaseSensitiveIdentifier?: boolean | undefined;
+}
+export interface RestoreTableFromSnapshotResponse {
+  tableRestoreStatus?: TableRestoreStatus | undefined;
+}
+export interface UpdateSnapshotRequest {
+  snapshotName: string | undefined;
+  retentionPeriod?: number | undefined;
+}
+export interface UpdateSnapshotResponse {
+  snapshot?: Snapshot | undefined;
+}
+export interface UpdateSnapshotCopyConfigurationRequest {
+  snapshotCopyConfigurationId: string | undefined;
+  snapshotRetentionPeriod?: number | undefined;
+}
+export interface UpdateSnapshotCopyConfigurationResponse {
+  snapshotCopyConfiguration: SnapshotCopyConfiguration | undefined;
+}
+export interface TagResourceRequest {
+  resourceArn: string | undefined;
+  tags: Tag[] | undefined;
+}
+export interface TagResourceResponse {}
+export interface UntagResourceRequest {
+  resourceArn: string | undefined;
+  tagKeys: string[] | undefined;
+}
+export interface UntagResourceResponse {}
+export interface UpdateCustomDomainAssociationRequest {
+  workgroupName: string | undefined;
+  customDomainName: string | undefined;
+  customDomainCertificateArn: string | undefined;
+}
+export interface UpdateCustomDomainAssociationResponse {
+  customDomainName?: string | undefined;
+  workgroupName?: string | undefined;
+  customDomainCertificateArn?: string | undefined;
+  customDomainCertificateExpiryTime?: Date | undefined;
+}
+export interface UpdateUsageLimitRequest {
+  usageLimitId: string | undefined;
+  amount?: number | undefined;
+  breachAction?: UsageLimitBreachAction | undefined;
+}
+export interface UpdateUsageLimitResponse {
+  usageLimit?: UsageLimit | undefined;
+}
+export interface UpdateWorkgroupRequest {
+  workgroupName: string | undefined;
+  baseCapacity?: number | undefined;
+  enhancedVpcRouting?: boolean | undefined;
+  configParameters?: ConfigParameter[] | undefined;
+  publiclyAccessible?: boolean | undefined;
+  subnetIds?: string[] | undefined;
+  securityGroupIds?: string[] | undefined;
+  port?: number | undefined;
+  maxCapacity?: number | undefined;
+  ipAddressType?: string | undefined;
+  pricePerformanceTarget?: PerformanceTarget | undefined;
+  trackName?: string | undefined;
+}
+export interface UpdateWorkgroupResponse {
+  workgroup: Workgroup | undefined;
+}
+export declare const CreateNamespaceRequestFilterSensitiveLog: (
+  obj: CreateNamespaceRequest
+) => any;
+export declare const NamespaceFilterSensitiveLog: (obj: Namespace) => any;
+export declare const CreateNamespaceResponseFilterSensitiveLog: (
+  obj: CreateNamespaceResponse
+) => any;
+export declare const DeleteNamespaceResponseFilterSensitiveLog: (
+  obj: DeleteNamespaceResponse
+) => any;
+export declare const GetCredentialsResponseFilterSensitiveLog: (
+  obj: GetCredentialsResponse
+) => any;
+export declare const GetNamespaceResponseFilterSensitiveLog: (
+  obj: GetNamespaceResponse
+) => any;
+export declare const ListNamespacesResponseFilterSensitiveLog: (
+  obj: ListNamespacesResponse
+) => any;
+export declare const UpdateNamespaceRequestFilterSensitiveLog: (
+  obj: UpdateNamespaceRequest
+) => any;
+export declare const UpdateNamespaceResponseFilterSensitiveLog: (
+  obj: UpdateNamespaceResponse
+) => any;
+export declare const RestoreFromRecoveryPointResponseFilterSensitiveLog: (
+  obj: RestoreFromRecoveryPointResponse
+) => any;
+export declare const RestoreFromSnapshotResponseFilterSensitiveLog: (
+  obj: RestoreFromSnapshotResponse
+) => any;

@@ -1,0 +1,1 @@
+{"version":3,"file":"verdict_request_for_url.d.ts","sourceRoot":"","sources":["../../src/messages/verdict_request_for_url.ts"],"names":[],"mappings":"AACA,OAAO,EAAQ,OAAO,EAAE,MAAM,WAAW,CAAC;AAE1C,qBACa,oBAAqB,SAAQ,OAAO;gBAC5B,GAAG,EAAE,GAAG,EAAE,IAAI,EAAE,MAAM,EAAE,UAAU,EAAE,MAAM;IAOtC,GAAG,EAAE,MAAM,CAAC;IACZ,IAAI,EAAE,MAAM,CAAC;IACb,UAAU,EAAE,MAAM,CAAC;CAC3C"}

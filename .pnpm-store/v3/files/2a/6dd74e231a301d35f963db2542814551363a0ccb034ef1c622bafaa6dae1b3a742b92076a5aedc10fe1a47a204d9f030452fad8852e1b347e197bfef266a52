@@ -1,0 +1,2867 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotAudioLoopInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    ffmpeg: z.ZodOptional<z.ZodObject<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodEnum<["baseline", "main", "high"]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodNumber>;
+        'qscale:v': z.ZodOptional<z.ZodNumber>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodNumber>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodNumber>;
+        'row-mt': z.ZodOptional<z.ZodNumber>;
+        'x265-params': z.ZodOptional<z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodNumber>;
+            'vbv-bufsize': z.ZodOptional<z.ZodNumber>;
+            'rc-lookahead': z.ZodOptional<z.ZodNumber>;
+            'b-adapt': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }>>;
+        'svtav1-params': z.ZodOptional<z.ZodObject<{
+            tune: z.ZodOptional<z.ZodNumber>;
+            'enable-qm': z.ZodOptional<z.ZodNumber>;
+            'fast-decode': z.ZodOptional<z.ZodNumber>;
+            'film-grain-denoise': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }>>;
+        ac: z.ZodOptional<z.ZodNumber>;
+        an: z.ZodOptional<z.ZodBoolean>;
+        ar: z.ZodOptional<z.ZodNumber>;
+        async: z.ZodOptional<z.ZodNumber>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+            v: z.ZodOptional<z.ZodNumber>;
+            a: z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>>;
+        coder: z.ZodOptional<z.ZodNumber>;
+        crf: z.ZodOptional<z.ZodNumber>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodNumber>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        keyint_min: z.ZodOptional<z.ZodNumber>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        me_range: z.ZodOptional<z.ZodNumber>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodNumber>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qdiff: z.ZodOptional<z.ZodNumber>;
+        qmax: z.ZodOptional<z.ZodNumber>;
+        qmin: z.ZodOptional<z.ZodNumber>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodNumber, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodNumber>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodNumber>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodNumber>;
+        trellis: z.ZodOptional<z.ZodNumber>;
+        transloaditffpreset: z.ZodOptional<z.ZodLiteral<"empty">>;
+        vn: z.ZodOptional<z.ZodBoolean>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, "passthrough", z.ZodTypeAny, z.objectOutputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodEnum<["baseline", "main", "high"]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodNumber>;
+        'qscale:v': z.ZodOptional<z.ZodNumber>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodNumber>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodNumber>;
+        'row-mt': z.ZodOptional<z.ZodNumber>;
+        'x265-params': z.ZodOptional<z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodNumber>;
+            'vbv-bufsize': z.ZodOptional<z.ZodNumber>;
+            'rc-lookahead': z.ZodOptional<z.ZodNumber>;
+            'b-adapt': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }>>;
+        'svtav1-params': z.ZodOptional<z.ZodObject<{
+            tune: z.ZodOptional<z.ZodNumber>;
+            'enable-qm': z.ZodOptional<z.ZodNumber>;
+            'fast-decode': z.ZodOptional<z.ZodNumber>;
+            'film-grain-denoise': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }>>;
+        ac: z.ZodOptional<z.ZodNumber>;
+        an: z.ZodOptional<z.ZodBoolean>;
+        ar: z.ZodOptional<z.ZodNumber>;
+        async: z.ZodOptional<z.ZodNumber>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+            v: z.ZodOptional<z.ZodNumber>;
+            a: z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>>;
+        coder: z.ZodOptional<z.ZodNumber>;
+        crf: z.ZodOptional<z.ZodNumber>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodNumber>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        keyint_min: z.ZodOptional<z.ZodNumber>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        me_range: z.ZodOptional<z.ZodNumber>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodNumber>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qdiff: z.ZodOptional<z.ZodNumber>;
+        qmax: z.ZodOptional<z.ZodNumber>;
+        qmin: z.ZodOptional<z.ZodNumber>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodNumber, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodNumber>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodNumber>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodNumber>;
+        trellis: z.ZodOptional<z.ZodNumber>;
+        transloaditffpreset: z.ZodOptional<z.ZodLiteral<"empty">>;
+        vn: z.ZodOptional<z.ZodBoolean>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, z.ZodTypeAny, "passthrough">, z.objectInputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodEnum<["baseline", "main", "high"]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodNumber>;
+        'qscale:v': z.ZodOptional<z.ZodNumber>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodNumber>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodNumber>;
+        'row-mt': z.ZodOptional<z.ZodNumber>;
+        'x265-params': z.ZodOptional<z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodNumber>;
+            'vbv-bufsize': z.ZodOptional<z.ZodNumber>;
+            'rc-lookahead': z.ZodOptional<z.ZodNumber>;
+            'b-adapt': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }>>;
+        'svtav1-params': z.ZodOptional<z.ZodObject<{
+            tune: z.ZodOptional<z.ZodNumber>;
+            'enable-qm': z.ZodOptional<z.ZodNumber>;
+            'fast-decode': z.ZodOptional<z.ZodNumber>;
+            'film-grain-denoise': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }>>;
+        ac: z.ZodOptional<z.ZodNumber>;
+        an: z.ZodOptional<z.ZodBoolean>;
+        ar: z.ZodOptional<z.ZodNumber>;
+        async: z.ZodOptional<z.ZodNumber>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+            v: z.ZodOptional<z.ZodNumber>;
+            a: z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>>;
+        coder: z.ZodOptional<z.ZodNumber>;
+        crf: z.ZodOptional<z.ZodNumber>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodNumber>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        keyint_min: z.ZodOptional<z.ZodNumber>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        me_range: z.ZodOptional<z.ZodNumber>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodNumber>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qdiff: z.ZodOptional<z.ZodNumber>;
+        qmax: z.ZodOptional<z.ZodNumber>;
+        qmin: z.ZodOptional<z.ZodNumber>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodNumber, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodNumber>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodNumber>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodNumber>;
+        trellis: z.ZodOptional<z.ZodNumber>;
+        transloaditffpreset: z.ZodOptional<z.ZodLiteral<"empty">>;
+        vn: z.ZodOptional<z.ZodBoolean>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, z.ZodTypeAny, "passthrough">>>;
+    ffmpeg_stack: z.ZodDefault<z.ZodUnion<[z.ZodEnum<["v5", "v6", "v7"]>, z.ZodString]>>;
+} & {
+    preset: z.ZodOptional<z.ZodEffects<z.ZodEnum<["empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio", ...("empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio")[]]>, "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav", "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio">>;
+} & {
+    robot: z.ZodLiteral<"/audio/loop">;
+    bitrate: z.ZodOptional<z.ZodNumber>;
+    sample_rate: z.ZodOptional<z.ZodNumber>;
+    duration: z.ZodDefault<z.ZodNumber>;
+}, "strict", z.ZodTypeAny, {
+    duration: number;
+    robot: "/audio/loop";
+    result: boolean;
+    force_accept: boolean;
+    ffmpeg_stack: string;
+    ffmpeg?: z.objectOutputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodEnum<["baseline", "main", "high"]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodNumber>;
+        'qscale:v': z.ZodOptional<z.ZodNumber>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodNumber>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodNumber>;
+        'row-mt': z.ZodOptional<z.ZodNumber>;
+        'x265-params': z.ZodOptional<z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodNumber>;
+            'vbv-bufsize': z.ZodOptional<z.ZodNumber>;
+            'rc-lookahead': z.ZodOptional<z.ZodNumber>;
+            'b-adapt': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }>>;
+        'svtav1-params': z.ZodOptional<z.ZodObject<{
+            tune: z.ZodOptional<z.ZodNumber>;
+            'enable-qm': z.ZodOptional<z.ZodNumber>;
+            'fast-decode': z.ZodOptional<z.ZodNumber>;
+            'film-grain-denoise': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }>>;
+        ac: z.ZodOptional<z.ZodNumber>;
+        an: z.ZodOptional<z.ZodBoolean>;
+        ar: z.ZodOptional<z.ZodNumber>;
+        async: z.ZodOptional<z.ZodNumber>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+            v: z.ZodOptional<z.ZodNumber>;
+            a: z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>>;
+        coder: z.ZodOptional<z.ZodNumber>;
+        crf: z.ZodOptional<z.ZodNumber>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodNumber>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        keyint_min: z.ZodOptional<z.ZodNumber>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        me_range: z.ZodOptional<z.ZodNumber>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodNumber>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qdiff: z.ZodOptional<z.ZodNumber>;
+        qmax: z.ZodOptional<z.ZodNumber>;
+        qmin: z.ZodOptional<z.ZodNumber>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodNumber, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodNumber>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodNumber>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodNumber>;
+        trellis: z.ZodOptional<z.ZodNumber>;
+        transloaditffpreset: z.ZodOptional<z.ZodLiteral<"empty">>;
+        vn: z.ZodOptional<z.ZodBoolean>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, z.ZodTypeAny, "passthrough"> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    preset?: "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | undefined;
+    bitrate?: number | undefined;
+    sample_rate?: number | undefined;
+}, {
+    robot: "/audio/loop";
+    duration?: number | undefined;
+    ffmpeg?: z.objectInputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodEnum<["baseline", "main", "high"]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodNumber>;
+        'qscale:v': z.ZodOptional<z.ZodNumber>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodNumber>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodNumber>;
+        'row-mt': z.ZodOptional<z.ZodNumber>;
+        'x265-params': z.ZodOptional<z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodNumber>;
+            'vbv-bufsize': z.ZodOptional<z.ZodNumber>;
+            'rc-lookahead': z.ZodOptional<z.ZodNumber>;
+            'b-adapt': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }>>;
+        'svtav1-params': z.ZodOptional<z.ZodObject<{
+            tune: z.ZodOptional<z.ZodNumber>;
+            'enable-qm': z.ZodOptional<z.ZodNumber>;
+            'fast-decode': z.ZodOptional<z.ZodNumber>;
+            'film-grain-denoise': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }>>;
+        ac: z.ZodOptional<z.ZodNumber>;
+        an: z.ZodOptional<z.ZodBoolean>;
+        ar: z.ZodOptional<z.ZodNumber>;
+        async: z.ZodOptional<z.ZodNumber>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+            v: z.ZodOptional<z.ZodNumber>;
+            a: z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>>;
+        coder: z.ZodOptional<z.ZodNumber>;
+        crf: z.ZodOptional<z.ZodNumber>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodNumber>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        keyint_min: z.ZodOptional<z.ZodNumber>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        me_range: z.ZodOptional<z.ZodNumber>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodNumber>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qdiff: z.ZodOptional<z.ZodNumber>;
+        qmax: z.ZodOptional<z.ZodNumber>;
+        qmin: z.ZodOptional<z.ZodNumber>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodNumber, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodNumber>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodNumber>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodNumber>;
+        trellis: z.ZodOptional<z.ZodNumber>;
+        transloaditffpreset: z.ZodOptional<z.ZodLiteral<"empty">>;
+        vn: z.ZodOptional<z.ZodBoolean>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, z.ZodTypeAny, "passthrough"> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    preset?: "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio" | undefined;
+    ffmpeg_stack?: string | undefined;
+    bitrate?: number | undefined;
+    sample_rate?: number | undefined;
+}>;
+export declare const robotAudioLoopInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    ffmpeg: z.ZodOptional<z.ZodObject<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodEnum<["baseline", "main", "high"]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodNumber>;
+        'qscale:v': z.ZodOptional<z.ZodNumber>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodNumber>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodNumber>;
+        'row-mt': z.ZodOptional<z.ZodNumber>;
+        'x265-params': z.ZodOptional<z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodNumber>;
+            'vbv-bufsize': z.ZodOptional<z.ZodNumber>;
+            'rc-lookahead': z.ZodOptional<z.ZodNumber>;
+            'b-adapt': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }>>;
+        'svtav1-params': z.ZodOptional<z.ZodObject<{
+            tune: z.ZodOptional<z.ZodNumber>;
+            'enable-qm': z.ZodOptional<z.ZodNumber>;
+            'fast-decode': z.ZodOptional<z.ZodNumber>;
+            'film-grain-denoise': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }>>;
+        ac: z.ZodOptional<z.ZodNumber>;
+        an: z.ZodOptional<z.ZodBoolean>;
+        ar: z.ZodOptional<z.ZodNumber>;
+        async: z.ZodOptional<z.ZodNumber>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+            v: z.ZodOptional<z.ZodNumber>;
+            a: z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>>;
+        coder: z.ZodOptional<z.ZodNumber>;
+        crf: z.ZodOptional<z.ZodNumber>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodNumber>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        keyint_min: z.ZodOptional<z.ZodNumber>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        me_range: z.ZodOptional<z.ZodNumber>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodNumber>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qdiff: z.ZodOptional<z.ZodNumber>;
+        qmax: z.ZodOptional<z.ZodNumber>;
+        qmin: z.ZodOptional<z.ZodNumber>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodNumber, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodNumber>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodNumber>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodNumber>;
+        trellis: z.ZodOptional<z.ZodNumber>;
+        transloaditffpreset: z.ZodOptional<z.ZodLiteral<"empty">>;
+        vn: z.ZodOptional<z.ZodBoolean>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, "passthrough", z.ZodTypeAny, z.objectOutputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodEnum<["baseline", "main", "high"]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodNumber>;
+        'qscale:v': z.ZodOptional<z.ZodNumber>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodNumber>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodNumber>;
+        'row-mt': z.ZodOptional<z.ZodNumber>;
+        'x265-params': z.ZodOptional<z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodNumber>;
+            'vbv-bufsize': z.ZodOptional<z.ZodNumber>;
+            'rc-lookahead': z.ZodOptional<z.ZodNumber>;
+            'b-adapt': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }>>;
+        'svtav1-params': z.ZodOptional<z.ZodObject<{
+            tune: z.ZodOptional<z.ZodNumber>;
+            'enable-qm': z.ZodOptional<z.ZodNumber>;
+            'fast-decode': z.ZodOptional<z.ZodNumber>;
+            'film-grain-denoise': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }>>;
+        ac: z.ZodOptional<z.ZodNumber>;
+        an: z.ZodOptional<z.ZodBoolean>;
+        ar: z.ZodOptional<z.ZodNumber>;
+        async: z.ZodOptional<z.ZodNumber>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+            v: z.ZodOptional<z.ZodNumber>;
+            a: z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>>;
+        coder: z.ZodOptional<z.ZodNumber>;
+        crf: z.ZodOptional<z.ZodNumber>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodNumber>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        keyint_min: z.ZodOptional<z.ZodNumber>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        me_range: z.ZodOptional<z.ZodNumber>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodNumber>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qdiff: z.ZodOptional<z.ZodNumber>;
+        qmax: z.ZodOptional<z.ZodNumber>;
+        qmin: z.ZodOptional<z.ZodNumber>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodNumber, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodNumber>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodNumber>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodNumber>;
+        trellis: z.ZodOptional<z.ZodNumber>;
+        transloaditffpreset: z.ZodOptional<z.ZodLiteral<"empty">>;
+        vn: z.ZodOptional<z.ZodBoolean>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, z.ZodTypeAny, "passthrough">, z.objectInputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodEnum<["baseline", "main", "high"]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodNumber>;
+        'qscale:v': z.ZodOptional<z.ZodNumber>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodNumber>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodNumber>;
+        'row-mt': z.ZodOptional<z.ZodNumber>;
+        'x265-params': z.ZodOptional<z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodNumber>;
+            'vbv-bufsize': z.ZodOptional<z.ZodNumber>;
+            'rc-lookahead': z.ZodOptional<z.ZodNumber>;
+            'b-adapt': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }>>;
+        'svtav1-params': z.ZodOptional<z.ZodObject<{
+            tune: z.ZodOptional<z.ZodNumber>;
+            'enable-qm': z.ZodOptional<z.ZodNumber>;
+            'fast-decode': z.ZodOptional<z.ZodNumber>;
+            'film-grain-denoise': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }>>;
+        ac: z.ZodOptional<z.ZodNumber>;
+        an: z.ZodOptional<z.ZodBoolean>;
+        ar: z.ZodOptional<z.ZodNumber>;
+        async: z.ZodOptional<z.ZodNumber>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+            v: z.ZodOptional<z.ZodNumber>;
+            a: z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>>;
+        coder: z.ZodOptional<z.ZodNumber>;
+        crf: z.ZodOptional<z.ZodNumber>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodNumber>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        keyint_min: z.ZodOptional<z.ZodNumber>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        me_range: z.ZodOptional<z.ZodNumber>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodNumber>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qdiff: z.ZodOptional<z.ZodNumber>;
+        qmax: z.ZodOptional<z.ZodNumber>;
+        qmin: z.ZodOptional<z.ZodNumber>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodNumber, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodNumber>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodNumber>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodNumber>;
+        trellis: z.ZodOptional<z.ZodNumber>;
+        transloaditffpreset: z.ZodOptional<z.ZodLiteral<"empty">>;
+        vn: z.ZodOptional<z.ZodBoolean>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, z.ZodTypeAny, "passthrough">>>;
+    ffmpeg_stack: z.ZodDefault<z.ZodUnion<[z.ZodEnum<["v5", "v6", "v7"]>, z.ZodString]>>;
+    preset: z.ZodOptional<z.ZodEffects<z.ZodEnum<["empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio", ...("empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio")[]]>, "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav", "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio">>;
+    robot: z.ZodLiteral<"/audio/loop">;
+    bitrate: z.ZodOptional<z.ZodNumber>;
+    sample_rate: z.ZodOptional<z.ZodNumber>;
+    duration: z.ZodDefault<z.ZodNumber>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    duration: number;
+    robot: "/audio/loop";
+    force_accept: boolean;
+    ffmpeg_stack: string;
+    ffmpeg?: z.objectOutputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodEnum<["baseline", "main", "high"]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodNumber>;
+        'qscale:v': z.ZodOptional<z.ZodNumber>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodNumber>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodNumber>;
+        'row-mt': z.ZodOptional<z.ZodNumber>;
+        'x265-params': z.ZodOptional<z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodNumber>;
+            'vbv-bufsize': z.ZodOptional<z.ZodNumber>;
+            'rc-lookahead': z.ZodOptional<z.ZodNumber>;
+            'b-adapt': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }>>;
+        'svtav1-params': z.ZodOptional<z.ZodObject<{
+            tune: z.ZodOptional<z.ZodNumber>;
+            'enable-qm': z.ZodOptional<z.ZodNumber>;
+            'fast-decode': z.ZodOptional<z.ZodNumber>;
+            'film-grain-denoise': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }>>;
+        ac: z.ZodOptional<z.ZodNumber>;
+        an: z.ZodOptional<z.ZodBoolean>;
+        ar: z.ZodOptional<z.ZodNumber>;
+        async: z.ZodOptional<z.ZodNumber>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+            v: z.ZodOptional<z.ZodNumber>;
+            a: z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>>;
+        coder: z.ZodOptional<z.ZodNumber>;
+        crf: z.ZodOptional<z.ZodNumber>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodNumber>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        keyint_min: z.ZodOptional<z.ZodNumber>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        me_range: z.ZodOptional<z.ZodNumber>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodNumber>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qdiff: z.ZodOptional<z.ZodNumber>;
+        qmax: z.ZodOptional<z.ZodNumber>;
+        qmin: z.ZodOptional<z.ZodNumber>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodNumber, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodNumber>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodNumber>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodNumber>;
+        trellis: z.ZodOptional<z.ZodNumber>;
+        transloaditffpreset: z.ZodOptional<z.ZodLiteral<"empty">>;
+        vn: z.ZodOptional<z.ZodBoolean>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, z.ZodTypeAny, "passthrough"> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    preset?: "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | undefined;
+    bitrate?: number | undefined;
+    sample_rate?: number | undefined;
+}, {
+    robot: "/audio/loop";
+    duration?: number | undefined;
+    ffmpeg?: z.objectInputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodEnum<["baseline", "main", "high"]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodNumber>;
+        'qscale:v': z.ZodOptional<z.ZodNumber>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodNumber>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodNumber>;
+        'row-mt': z.ZodOptional<z.ZodNumber>;
+        'x265-params': z.ZodOptional<z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodNumber>;
+            'vbv-bufsize': z.ZodOptional<z.ZodNumber>;
+            'rc-lookahead': z.ZodOptional<z.ZodNumber>;
+            'b-adapt': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }, {
+            'vbv-maxrate'?: number | undefined;
+            'vbv-bufsize'?: number | undefined;
+            'rc-lookahead'?: number | undefined;
+            'b-adapt'?: number | undefined;
+        }>>;
+        'svtav1-params': z.ZodOptional<z.ZodObject<{
+            tune: z.ZodOptional<z.ZodNumber>;
+            'enable-qm': z.ZodOptional<z.ZodNumber>;
+            'fast-decode': z.ZodOptional<z.ZodNumber>;
+            'film-grain-denoise': z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }, {
+            tune?: number | undefined;
+            'enable-qm'?: number | undefined;
+            'fast-decode'?: number | undefined;
+            'film-grain-denoise'?: number | undefined;
+        }>>;
+        ac: z.ZodOptional<z.ZodNumber>;
+        an: z.ZodOptional<z.ZodBoolean>;
+        ar: z.ZodOptional<z.ZodNumber>;
+        async: z.ZodOptional<z.ZodNumber>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodObject<{
+            v: z.ZodOptional<z.ZodNumber>;
+            a: z.ZodOptional<z.ZodNumber>;
+        }, "strict", z.ZodTypeAny, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }, {
+            a?: number | undefined;
+            v?: number | undefined;
+        }>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodNumber, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>>;
+        coder: z.ZodOptional<z.ZodNumber>;
+        crf: z.ZodOptional<z.ZodNumber>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodNumber>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        keyint_min: z.ZodOptional<z.ZodNumber>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        me_range: z.ZodOptional<z.ZodNumber>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodNumber>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qdiff: z.ZodOptional<z.ZodNumber>;
+        qmax: z.ZodOptional<z.ZodNumber>;
+        qmin: z.ZodOptional<z.ZodNumber>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodNumber, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodNumber>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodNumber>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodNumber>;
+        trellis: z.ZodOptional<z.ZodNumber>;
+        transloaditffpreset: z.ZodOptional<z.ZodLiteral<"empty">>;
+        vn: z.ZodOptional<z.ZodBoolean>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    }, z.ZodTypeAny, "passthrough"> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    preset?: "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio" | undefined;
+    ffmpeg_stack?: string | undefined;
+    bitrate?: number | undefined;
+    sample_rate?: number | undefined;
+}>;
+export type RobotAudioLoopInstructions = z.infer<typeof robotAudioLoopInstructionsSchema>;
+export type RobotAudioLoopInstructionsWithHiddenFields = z.infer<typeof robotAudioLoopInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotAudioLoopInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    ffmpeg: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodEnum<["baseline", "main", "high"]>]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'qscale:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'row-mt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x265-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'vbv-bufsize': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'rc-lookahead': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'b-adapt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }>]>>;
+        'svtav1-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            tune: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'enable-qm': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'fast-decode': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'film-grain-denoise': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }>]>>;
+        ac: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        an: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        ar: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        async: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            a: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }>]>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>]>>;
+        coder: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        crf: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        keyint_min: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        me_range: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        qdiff: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmax: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmin: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        trellis: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        transloaditffpreset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>>;
+        vn: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+    }, "passthrough", z.ZodTypeAny, z.objectOutputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodEnum<["baseline", "main", "high"]>]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'qscale:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'row-mt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x265-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'vbv-bufsize': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'rc-lookahead': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'b-adapt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }>]>>;
+        'svtav1-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            tune: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'enable-qm': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'fast-decode': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'film-grain-denoise': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }>]>>;
+        ac: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        an: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        ar: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        async: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            a: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }>]>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>]>>;
+        coder: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        crf: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        keyint_min: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        me_range: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        qdiff: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmax: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmin: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        trellis: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        transloaditffpreset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>>;
+        vn: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+    }, z.ZodTypeAny, "passthrough">, z.objectInputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodEnum<["baseline", "main", "high"]>]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'qscale:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'row-mt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x265-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'vbv-bufsize': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'rc-lookahead': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'b-adapt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }>]>>;
+        'svtav1-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            tune: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'enable-qm': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'fast-decode': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'film-grain-denoise': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }>]>>;
+        ac: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        an: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        ar: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        async: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            a: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }>]>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>]>>;
+        coder: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        crf: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        keyint_min: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        me_range: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        qdiff: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmax: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmin: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        trellis: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        transloaditffpreset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>>;
+        vn: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+    }, z.ZodTypeAny, "passthrough">>]>>;
+    ffmpeg_stack: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["v5", "v6", "v7"]>]>, z.ZodString]>>;
+    preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodEnum<["empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio", ...("empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio")[]]>, "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav", "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio">]>>;
+    robot: z.ZodLiteral<"/audio/loop">;
+    bitrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    sample_rate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    duration: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+}, "strict", z.ZodTypeAny, {
+    duration: string | number;
+    robot: "/audio/loop";
+    result: string | boolean;
+    force_accept: string | boolean;
+    ffmpeg_stack: string;
+    ffmpeg?: string | z.objectOutputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodEnum<["baseline", "main", "high"]>]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'qscale:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'row-mt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x265-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'vbv-bufsize': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'rc-lookahead': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'b-adapt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }>]>>;
+        'svtav1-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            tune: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'enable-qm': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'fast-decode': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'film-grain-denoise': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }>]>>;
+        ac: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        an: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        ar: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        async: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            a: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }>]>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>]>>;
+        coder: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        crf: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        keyint_min: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        me_range: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        qdiff: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmax: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmin: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        trellis: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        transloaditffpreset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>>;
+        vn: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+    }, z.ZodTypeAny, "passthrough"> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    preset?: string | undefined;
+    bitrate?: string | number | undefined;
+    sample_rate?: string | number | undefined;
+}, {
+    robot: "/audio/loop";
+    duration?: string | number | undefined;
+    ffmpeg?: string | z.objectInputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodEnum<["baseline", "main", "high"]>]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'qscale:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'row-mt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x265-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'vbv-bufsize': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'rc-lookahead': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'b-adapt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }>]>>;
+        'svtav1-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            tune: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'enable-qm': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'fast-decode': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'film-grain-denoise': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }>]>>;
+        ac: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        an: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        ar: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        async: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            a: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }>]>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>]>>;
+        coder: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        crf: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        keyint_min: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        me_range: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        qdiff: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmax: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmin: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        trellis: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        transloaditffpreset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>>;
+        vn: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+    }, z.ZodTypeAny, "passthrough"> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    preset?: string | undefined;
+    ffmpeg_stack?: string | undefined;
+    bitrate?: string | number | undefined;
+    sample_rate?: string | number | undefined;
+}>;
+export type InterpolatableRobotAudioLoopInstructions = InterpolatableRobotAudioLoopInstructionsInput;
+export type InterpolatableRobotAudioLoopInstructionsInput = z.input<typeof interpolatableRobotAudioLoopInstructionsSchema>;
+export declare const interpolatableRobotAudioLoopInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    ffmpeg: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodEnum<["baseline", "main", "high"]>]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'qscale:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'row-mt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x265-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'vbv-bufsize': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'rc-lookahead': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'b-adapt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }>]>>;
+        'svtav1-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            tune: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'enable-qm': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'fast-decode': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'film-grain-denoise': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }>]>>;
+        ac: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        an: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        ar: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        async: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            a: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }>]>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>]>>;
+        coder: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        crf: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        keyint_min: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        me_range: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        qdiff: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmax: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmin: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        trellis: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        transloaditffpreset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>>;
+        vn: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+    }, "passthrough", z.ZodTypeAny, z.objectOutputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodEnum<["baseline", "main", "high"]>]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'qscale:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'row-mt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x265-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'vbv-bufsize': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'rc-lookahead': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'b-adapt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }>]>>;
+        'svtav1-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            tune: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'enable-qm': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'fast-decode': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'film-grain-denoise': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }>]>>;
+        ac: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        an: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        ar: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        async: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            a: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }>]>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>]>>;
+        coder: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        crf: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        keyint_min: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        me_range: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        qdiff: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmax: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmin: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        trellis: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        transloaditffpreset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>>;
+        vn: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+    }, z.ZodTypeAny, "passthrough">, z.objectInputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodEnum<["baseline", "main", "high"]>]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'qscale:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'row-mt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x265-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'vbv-bufsize': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'rc-lookahead': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'b-adapt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }>]>>;
+        'svtav1-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            tune: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'enable-qm': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'fast-decode': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'film-grain-denoise': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }>]>>;
+        ac: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        an: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        ar: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        async: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            a: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }>]>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>]>>;
+        coder: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        crf: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        keyint_min: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        me_range: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        qdiff: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmax: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmin: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        trellis: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        transloaditffpreset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>>;
+        vn: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+    }, z.ZodTypeAny, "passthrough">>]>>;
+    ffmpeg_stack: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["v5", "v6", "v7"]>]>, z.ZodString]>>;
+    preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodEnum<["empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio", ...("empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio")[]]>, "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav", "empty" | "aac" | "alac" | "audio/aac" | "audio/alac" | "audio/flac" | "audio/mp3" | "audio/ogg" | "dash-32k-audio" | "dash-64k-audio" | "dash-128k-audio" | "dash-256k-audio" | "dash/32k-audio" | "dash/64k-audio" | "dash/128k-audio" | "dash/256k-audio" | "flac" | "hg-transformers-audio" | "mp3" | "ogg" | "opus" | "speech" | "wav" | "dash-32k_audio" | "dash_32k-audio" | "dash_32k_audio" | "dash-64k_audio" | "dash_64k-audio" | "dash_64k_audio" | "dash-128k_audio" | "dash_128k-audio" | "dash_128k_audio" | "dash-256k_audio" | "dash_256k-audio" | "dash_256k_audio" | "dash/32k_audio" | "dash/64k_audio" | "dash/128k_audio" | "dash/256k_audio" | "hg-transformers_audio" | "hg_transformers-audio" | "hg_transformers_audio">]>>;
+    robot: z.ZodLiteral<"/audio/loop">;
+    bitrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    sample_rate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    duration: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    duration: string | number;
+    robot: "/audio/loop";
+    force_accept: string | boolean;
+    ffmpeg_stack: string;
+    ffmpeg?: string | z.objectOutputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodEnum<["baseline", "main", "high"]>]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'qscale:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'row-mt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x265-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'vbv-bufsize': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'rc-lookahead': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'b-adapt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }>]>>;
+        'svtav1-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            tune: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'enable-qm': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'fast-decode': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'film-grain-denoise': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }>]>>;
+        ac: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        an: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        ar: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        async: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            a: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }>]>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>]>>;
+        coder: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        crf: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        keyint_min: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        me_range: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        qdiff: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmax: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmin: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        trellis: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        transloaditffpreset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>>;
+        vn: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+    }, z.ZodTypeAny, "passthrough"> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    preset?: string | undefined;
+    bitrate?: string | number | undefined;
+    sample_rate?: string | number | undefined;
+}, {
+    robot: "/audio/loop";
+    duration?: string | number | undefined;
+    ffmpeg?: string | z.objectInputType<{
+        af: z.ZodOptional<z.ZodString>;
+        'b:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'b:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'c:a': z.ZodOptional<z.ZodString>;
+        'c:v': z.ZodOptional<z.ZodString>;
+        'codec:a': z.ZodOptional<z.ZodString>;
+        'codec:v': z.ZodOptional<z.ZodString>;
+        'filter:v': z.ZodOptional<z.ZodString>;
+        'filter:a': z.ZodOptional<z.ZodString>;
+        bits_per_mb: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        ss: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        t: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        to: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        vendor: z.ZodOptional<z.ZodString>;
+        shortest: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>>;
+        filter_complex: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodRecord<z.ZodString, z.ZodString>]>>;
+        'level:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        'profile:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodUnion<[z.ZodString, z.ZodEnum<["baseline", "main", "high"]>]>]>>;
+        'qscale:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'qscale:v': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x264-params': z.ZodOptional<z.ZodString>;
+        'overshoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        deadline: z.ZodOptional<z.ZodString>;
+        'cpu-used': z.ZodOptional<z.ZodString>;
+        'undershoot-pct': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'row-mt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        'x265-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            'vbv-maxrate': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'vbv-bufsize': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'rc-lookahead': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'b-adapt': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }, {
+            'vbv-maxrate'?: string | number | undefined;
+            'vbv-bufsize'?: string | number | undefined;
+            'rc-lookahead'?: string | number | undefined;
+            'b-adapt'?: string | number | undefined;
+        }>]>>;
+        'svtav1-params': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            tune: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'enable-qm': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'fast-decode': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            'film-grain-denoise': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }, {
+            tune?: string | number | undefined;
+            'enable-qm'?: string | number | undefined;
+            'fast-decode'?: string | number | undefined;
+            'film-grain-denoise'?: string | number | undefined;
+        }>]>>;
+        ac: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        an: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        ar: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        async: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        b: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+            a: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }, {
+            a?: string | number | undefined;
+            v?: string | number | undefined;
+        }>]>, z.ZodString]>>;
+        bt: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>;
+        bufsize: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        c: z.ZodOptional<z.ZodString>;
+        codec: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodObject<{
+            v: z.ZodOptional<z.ZodString>;
+            a: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }, {
+            a?: string | undefined;
+            v?: string | undefined;
+        }>]>>;
+        coder: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        crf: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        f: z.ZodOptional<z.ZodString>;
+        flags: z.ZodOptional<z.ZodString>;
+        g: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        i_qfactor: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        keyint_min: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        level: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        map: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+        maxrate: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        me_range: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        movflags: z.ZodOptional<z.ZodString>;
+        partitions: z.ZodOptional<z.ZodString>;
+        pix_fmt: z.ZodOptional<z.ZodString>;
+        preset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        profile: z.ZodOptional<z.ZodString>;
+        'q:a': z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qcomp: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+        qdiff: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmax: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        qmin: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        r: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodString]>>>;
+        rc_eq: z.ZodOptional<z.ZodString>;
+        refs: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        s: z.ZodOptional<z.ZodString>;
+        sc_threshold: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        sws_flags: z.ZodOptional<z.ZodString>;
+        threads: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        trellis: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+        transloaditffpreset: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodLiteral<"empty">]>>;
+        vn: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+        vf: z.ZodOptional<z.ZodString>;
+        x264opts: z.ZodOptional<z.ZodString>;
+        vbr: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodNumber]>]>>;
+    }, z.ZodTypeAny, "passthrough"> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    preset?: string | undefined;
+    ffmpeg_stack?: string | undefined;
+    bitrate?: string | number | undefined;
+    sample_rate?: string | number | undefined;
+}>;
+export type InterpolatableRobotAudioLoopInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotAudioLoopInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotAudioLoopInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotAudioLoopInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=audio-loop.d.ts.map

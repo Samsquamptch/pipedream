@@ -1,0 +1,3775 @@
+"use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/index.ts
+var index_exports = {};
+__export(index_exports, {
+  AccessDeniedException: () => AccessDeniedException,
+  ConflictException: () => ConflictException,
+  ConvertRecoveryPointToSnapshotCommand: () => ConvertRecoveryPointToSnapshotCommand,
+  CreateCustomDomainAssociationCommand: () => CreateCustomDomainAssociationCommand,
+  CreateEndpointAccessCommand: () => CreateEndpointAccessCommand,
+  CreateNamespaceCommand: () => CreateNamespaceCommand,
+  CreateNamespaceRequestFilterSensitiveLog: () => CreateNamespaceRequestFilterSensitiveLog,
+  CreateNamespaceResponseFilterSensitiveLog: () => CreateNamespaceResponseFilterSensitiveLog,
+  CreateReservationCommand: () => CreateReservationCommand,
+  CreateScheduledActionCommand: () => CreateScheduledActionCommand,
+  CreateSnapshotCommand: () => CreateSnapshotCommand,
+  CreateSnapshotCopyConfigurationCommand: () => CreateSnapshotCopyConfigurationCommand,
+  CreateUsageLimitCommand: () => CreateUsageLimitCommand,
+  CreateWorkgroupCommand: () => CreateWorkgroupCommand,
+  DeleteCustomDomainAssociationCommand: () => DeleteCustomDomainAssociationCommand,
+  DeleteEndpointAccessCommand: () => DeleteEndpointAccessCommand,
+  DeleteNamespaceCommand: () => DeleteNamespaceCommand,
+  DeleteNamespaceResponseFilterSensitiveLog: () => DeleteNamespaceResponseFilterSensitiveLog,
+  DeleteResourcePolicyCommand: () => DeleteResourcePolicyCommand,
+  DeleteScheduledActionCommand: () => DeleteScheduledActionCommand,
+  DeleteSnapshotCommand: () => DeleteSnapshotCommand,
+  DeleteSnapshotCopyConfigurationCommand: () => DeleteSnapshotCopyConfigurationCommand,
+  DeleteUsageLimitCommand: () => DeleteUsageLimitCommand,
+  DeleteWorkgroupCommand: () => DeleteWorkgroupCommand,
+  GetCredentialsCommand: () => GetCredentialsCommand,
+  GetCredentialsResponseFilterSensitiveLog: () => GetCredentialsResponseFilterSensitiveLog,
+  GetCustomDomainAssociationCommand: () => GetCustomDomainAssociationCommand,
+  GetEndpointAccessCommand: () => GetEndpointAccessCommand,
+  GetNamespaceCommand: () => GetNamespaceCommand,
+  GetNamespaceResponseFilterSensitiveLog: () => GetNamespaceResponseFilterSensitiveLog,
+  GetRecoveryPointCommand: () => GetRecoveryPointCommand,
+  GetReservationCommand: () => GetReservationCommand,
+  GetReservationOfferingCommand: () => GetReservationOfferingCommand,
+  GetResourcePolicyCommand: () => GetResourcePolicyCommand,
+  GetScheduledActionCommand: () => GetScheduledActionCommand,
+  GetSnapshotCommand: () => GetSnapshotCommand,
+  GetTableRestoreStatusCommand: () => GetTableRestoreStatusCommand,
+  GetTrackCommand: () => GetTrackCommand,
+  GetUsageLimitCommand: () => GetUsageLimitCommand,
+  GetWorkgroupCommand: () => GetWorkgroupCommand,
+  InsufficientCapacityException: () => InsufficientCapacityException,
+  InternalServerException: () => InternalServerException,
+  InvalidPaginationException: () => InvalidPaginationException,
+  Ipv6CidrBlockNotFoundException: () => Ipv6CidrBlockNotFoundException,
+  ListCustomDomainAssociationsCommand: () => ListCustomDomainAssociationsCommand,
+  ListEndpointAccessCommand: () => ListEndpointAccessCommand,
+  ListManagedWorkgroupsCommand: () => ListManagedWorkgroupsCommand,
+  ListNamespacesCommand: () => ListNamespacesCommand,
+  ListNamespacesResponseFilterSensitiveLog: () => ListNamespacesResponseFilterSensitiveLog,
+  ListRecoveryPointsCommand: () => ListRecoveryPointsCommand,
+  ListReservationOfferingsCommand: () => ListReservationOfferingsCommand,
+  ListReservationsCommand: () => ListReservationsCommand,
+  ListScheduledActionsCommand: () => ListScheduledActionsCommand,
+  ListSnapshotCopyConfigurationsCommand: () => ListSnapshotCopyConfigurationsCommand,
+  ListSnapshotsCommand: () => ListSnapshotsCommand,
+  ListTableRestoreStatusCommand: () => ListTableRestoreStatusCommand,
+  ListTagsForResourceCommand: () => ListTagsForResourceCommand,
+  ListTracksCommand: () => ListTracksCommand,
+  ListUsageLimitsCommand: () => ListUsageLimitsCommand,
+  ListWorkgroupsCommand: () => ListWorkgroupsCommand,
+  LogExport: () => LogExport,
+  ManagedWorkgroupStatus: () => ManagedWorkgroupStatus,
+  NamespaceFilterSensitiveLog: () => NamespaceFilterSensitiveLog,
+  NamespaceStatus: () => NamespaceStatus,
+  OfferingType: () => OfferingType,
+  PerformanceTargetStatus: () => PerformanceTargetStatus,
+  PutResourcePolicyCommand: () => PutResourcePolicyCommand,
+  RedshiftServerless: () => RedshiftServerless,
+  RedshiftServerlessClient: () => RedshiftServerlessClient,
+  RedshiftServerlessServiceException: () => RedshiftServerlessServiceException,
+  ResourceNotFoundException: () => ResourceNotFoundException,
+  RestoreFromRecoveryPointCommand: () => RestoreFromRecoveryPointCommand,
+  RestoreFromRecoveryPointResponseFilterSensitiveLog: () => RestoreFromRecoveryPointResponseFilterSensitiveLog,
+  RestoreFromSnapshotCommand: () => RestoreFromSnapshotCommand,
+  RestoreFromSnapshotResponseFilterSensitiveLog: () => RestoreFromSnapshotResponseFilterSensitiveLog,
+  RestoreTableFromRecoveryPointCommand: () => RestoreTableFromRecoveryPointCommand,
+  RestoreTableFromSnapshotCommand: () => RestoreTableFromSnapshotCommand,
+  Schedule: () => Schedule,
+  ServiceQuotaExceededException: () => ServiceQuotaExceededException,
+  SnapshotStatus: () => SnapshotStatus,
+  State: () => State,
+  TagResourceCommand: () => TagResourceCommand,
+  TargetAction: () => TargetAction,
+  ThrottlingException: () => ThrottlingException,
+  TooManyTagsException: () => TooManyTagsException,
+  UntagResourceCommand: () => UntagResourceCommand,
+  UpdateCustomDomainAssociationCommand: () => UpdateCustomDomainAssociationCommand,
+  UpdateEndpointAccessCommand: () => UpdateEndpointAccessCommand,
+  UpdateNamespaceCommand: () => UpdateNamespaceCommand,
+  UpdateNamespaceRequestFilterSensitiveLog: () => UpdateNamespaceRequestFilterSensitiveLog,
+  UpdateNamespaceResponseFilterSensitiveLog: () => UpdateNamespaceResponseFilterSensitiveLog,
+  UpdateScheduledActionCommand: () => UpdateScheduledActionCommand,
+  UpdateSnapshotCommand: () => UpdateSnapshotCommand,
+  UpdateSnapshotCopyConfigurationCommand: () => UpdateSnapshotCopyConfigurationCommand,
+  UpdateUsageLimitCommand: () => UpdateUsageLimitCommand,
+  UpdateWorkgroupCommand: () => UpdateWorkgroupCommand,
+  UsageLimitBreachAction: () => UsageLimitBreachAction,
+  UsageLimitPeriod: () => UsageLimitPeriod,
+  UsageLimitUsageType: () => UsageLimitUsageType,
+  ValidationException: () => ValidationException,
+  WorkgroupStatus: () => WorkgroupStatus,
+  __Client: () => import_smithy_client.Client,
+  paginateListCustomDomainAssociations: () => paginateListCustomDomainAssociations,
+  paginateListEndpointAccess: () => paginateListEndpointAccess,
+  paginateListManagedWorkgroups: () => paginateListManagedWorkgroups,
+  paginateListNamespaces: () => paginateListNamespaces,
+  paginateListRecoveryPoints: () => paginateListRecoveryPoints,
+  paginateListReservationOfferings: () => paginateListReservationOfferings,
+  paginateListReservations: () => paginateListReservations,
+  paginateListScheduledActions: () => paginateListScheduledActions,
+  paginateListSnapshotCopyConfigurations: () => paginateListSnapshotCopyConfigurations,
+  paginateListSnapshots: () => paginateListSnapshots,
+  paginateListTableRestoreStatus: () => paginateListTableRestoreStatus,
+  paginateListTracks: () => paginateListTracks,
+  paginateListUsageLimits: () => paginateListUsageLimits,
+  paginateListWorkgroups: () => paginateListWorkgroups
+});
+module.exports = __toCommonJS(index_exports);
+
+// src/RedshiftServerlessClient.ts
+var import_middleware_host_header = require("@aws-sdk/middleware-host-header");
+var import_middleware_logger = require("@aws-sdk/middleware-logger");
+var import_middleware_recursion_detection = require("@aws-sdk/middleware-recursion-detection");
+var import_middleware_user_agent = require("@aws-sdk/middleware-user-agent");
+var import_config_resolver = require("@smithy/config-resolver");
+var import_core = require("@smithy/core");
+var import_middleware_content_length = require("@smithy/middleware-content-length");
+var import_middleware_endpoint = require("@smithy/middleware-endpoint");
+var import_middleware_retry = require("@smithy/middleware-retry");
+
+var import_httpAuthSchemeProvider = require("./auth/httpAuthSchemeProvider");
+
+// src/endpoint/EndpointParameters.ts
+var resolveClientEndpointParameters = /* @__PURE__ */ __name((options) => {
+  return Object.assign(options, {
+    useDualstackEndpoint: options.useDualstackEndpoint ?? false,
+    useFipsEndpoint: options.useFipsEndpoint ?? false,
+    defaultSigningName: "redshift-serverless"
+  });
+}, "resolveClientEndpointParameters");
+var commonParams = {
+  UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+  Endpoint: { type: "builtInParams", name: "endpoint" },
+  Region: { type: "builtInParams", name: "region" },
+  UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+};
+
+// src/RedshiftServerlessClient.ts
+var import_runtimeConfig = require("././runtimeConfig");
+
+// src/runtimeExtensions.ts
+var import_region_config_resolver = require("@aws-sdk/region-config-resolver");
+var import_protocol_http = require("@smithy/protocol-http");
+var import_smithy_client = require("@smithy/smithy-client");
+
+// src/auth/httpAuthExtensionConfiguration.ts
+var getHttpAuthExtensionConfiguration = /* @__PURE__ */ __name((runtimeConfig) => {
+  const _httpAuthSchemes = runtimeConfig.httpAuthSchemes;
+  let _httpAuthSchemeProvider = runtimeConfig.httpAuthSchemeProvider;
+  let _credentials = runtimeConfig.credentials;
+  return {
+    setHttpAuthScheme(httpAuthScheme) {
+      const index = _httpAuthSchemes.findIndex((scheme) => scheme.schemeId === httpAuthScheme.schemeId);
+      if (index === -1) {
+        _httpAuthSchemes.push(httpAuthScheme);
+      } else {
+        _httpAuthSchemes.splice(index, 1, httpAuthScheme);
+      }
+    },
+    httpAuthSchemes() {
+      return _httpAuthSchemes;
+    },
+    setHttpAuthSchemeProvider(httpAuthSchemeProvider) {
+      _httpAuthSchemeProvider = httpAuthSchemeProvider;
+    },
+    httpAuthSchemeProvider() {
+      return _httpAuthSchemeProvider;
+    },
+    setCredentials(credentials) {
+      _credentials = credentials;
+    },
+    credentials() {
+      return _credentials;
+    }
+  };
+}, "getHttpAuthExtensionConfiguration");
+var resolveHttpAuthRuntimeConfig = /* @__PURE__ */ __name((config) => {
+  return {
+    httpAuthSchemes: config.httpAuthSchemes(),
+    httpAuthSchemeProvider: config.httpAuthSchemeProvider(),
+    credentials: config.credentials()
+  };
+}, "resolveHttpAuthRuntimeConfig");
+
+// src/runtimeExtensions.ts
+var resolveRuntimeExtensions = /* @__PURE__ */ __name((runtimeConfig, extensions) => {
+  const extensionConfiguration = Object.assign(
+    (0, import_region_config_resolver.getAwsRegionExtensionConfiguration)(runtimeConfig),
+    (0, import_smithy_client.getDefaultExtensionConfiguration)(runtimeConfig),
+    (0, import_protocol_http.getHttpHandlerExtensionConfiguration)(runtimeConfig),
+    getHttpAuthExtensionConfiguration(runtimeConfig)
+  );
+  extensions.forEach((extension) => extension.configure(extensionConfiguration));
+  return Object.assign(
+    runtimeConfig,
+    (0, import_region_config_resolver.resolveAwsRegionExtensionConfiguration)(extensionConfiguration),
+    (0, import_smithy_client.resolveDefaultRuntimeConfig)(extensionConfiguration),
+    (0, import_protocol_http.resolveHttpHandlerRuntimeConfig)(extensionConfiguration),
+    resolveHttpAuthRuntimeConfig(extensionConfiguration)
+  );
+}, "resolveRuntimeExtensions");
+
+// src/RedshiftServerlessClient.ts
+var RedshiftServerlessClient = class extends import_smithy_client.Client {
+  static {
+    __name(this, "RedshiftServerlessClient");
+  }
+  /**
+   * The resolved configuration of RedshiftServerlessClient class. This is resolved and normalized from the {@link RedshiftServerlessClientConfig | constructor configuration interface}.
+   */
+  config;
+  constructor(...[configuration]) {
+    const _config_0 = (0, import_runtimeConfig.getRuntimeConfig)(configuration || {});
+    super(_config_0);
+    this.initConfig = _config_0;
+    const _config_1 = resolveClientEndpointParameters(_config_0);
+    const _config_2 = (0, import_middleware_user_agent.resolveUserAgentConfig)(_config_1);
+    const _config_3 = (0, import_middleware_retry.resolveRetryConfig)(_config_2);
+    const _config_4 = (0, import_config_resolver.resolveRegionConfig)(_config_3);
+    const _config_5 = (0, import_middleware_host_header.resolveHostHeaderConfig)(_config_4);
+    const _config_6 = (0, import_middleware_endpoint.resolveEndpointConfig)(_config_5);
+    const _config_7 = (0, import_httpAuthSchemeProvider.resolveHttpAuthSchemeConfig)(_config_6);
+    const _config_8 = resolveRuntimeExtensions(_config_7, configuration?.extensions || []);
+    this.config = _config_8;
+    this.middlewareStack.use((0, import_middleware_user_agent.getUserAgentPlugin)(this.config));
+    this.middlewareStack.use((0, import_middleware_retry.getRetryPlugin)(this.config));
+    this.middlewareStack.use((0, import_middleware_content_length.getContentLengthPlugin)(this.config));
+    this.middlewareStack.use((0, import_middleware_host_header.getHostHeaderPlugin)(this.config));
+    this.middlewareStack.use((0, import_middleware_logger.getLoggerPlugin)(this.config));
+    this.middlewareStack.use((0, import_middleware_recursion_detection.getRecursionDetectionPlugin)(this.config));
+    this.middlewareStack.use(
+      (0, import_core.getHttpAuthSchemeEndpointRuleSetPlugin)(this.config, {
+        httpAuthSchemeParametersProvider: import_httpAuthSchemeProvider.defaultRedshiftServerlessHttpAuthSchemeParametersProvider,
+        identityProviderConfigProvider: /* @__PURE__ */ __name(async (config) => new import_core.DefaultIdentityProviderConfig({
+          "aws.auth#sigv4": config.credentials
+        }), "identityProviderConfigProvider")
+      })
+    );
+    this.middlewareStack.use((0, import_core.getHttpSigningPlugin)(this.config));
+  }
+  /**
+   * Destroy underlying resources, like sockets. It's usually not necessary to do this.
+   * However in Node.js, it's best to explicitly shut down the client's agent when it is no longer needed.
+   * Otherwise, sockets might stay open for quite a long time before the server terminates them.
+   */
+  destroy() {
+    super.destroy();
+  }
+};
+
+// src/RedshiftServerless.ts
+
+
+// src/commands/ConvertRecoveryPointToSnapshotCommand.ts
+
+var import_middleware_serde = require("@smithy/middleware-serde");
+
+
+// src/protocols/Aws_json1_1.ts
+var import_core2 = require("@aws-sdk/core");
+
+
+var import_uuid = require("uuid");
+
+// src/models/models_0.ts
+
+
+// src/models/RedshiftServerlessServiceException.ts
+
+var RedshiftServerlessServiceException = class _RedshiftServerlessServiceException extends import_smithy_client.ServiceException {
+  static {
+    __name(this, "RedshiftServerlessServiceException");
+  }
+  /**
+   * @internal
+   */
+  constructor(options) {
+    super(options);
+    Object.setPrototypeOf(this, _RedshiftServerlessServiceException.prototype);
+  }
+};
+
+// src/models/models_0.ts
+var AccessDeniedException = class _AccessDeniedException extends RedshiftServerlessServiceException {
+  static {
+    __name(this, "AccessDeniedException");
+  }
+  name = "AccessDeniedException";
+  $fault = "client";
+  code;
+  /**
+   * @internal
+   */
+  constructor(opts) {
+    super({
+      name: "AccessDeniedException",
+      $fault: "client",
+      ...opts
+    });
+    Object.setPrototypeOf(this, _AccessDeniedException.prototype);
+    this.code = opts.code;
+  }
+};
+var ConflictException = class _ConflictException extends RedshiftServerlessServiceException {
+  static {
+    __name(this, "ConflictException");
+  }
+  name = "ConflictException";
+  $fault = "client";
+  /**
+   * @internal
+   */
+  constructor(opts) {
+    super({
+      name: "ConflictException",
+      $fault: "client",
+      ...opts
+    });
+    Object.setPrototypeOf(this, _ConflictException.prototype);
+  }
+};
+var SnapshotStatus = {
+  AVAILABLE: "AVAILABLE",
+  CANCELLED: "CANCELLED",
+  COPYING: "COPYING",
+  CREATING: "CREATING",
+  DELETED: "DELETED",
+  FAILED: "FAILED"
+};
+var InternalServerException = class _InternalServerException extends RedshiftServerlessServiceException {
+  static {
+    __name(this, "InternalServerException");
+  }
+  name = "InternalServerException";
+  $fault = "server";
+  $retryable = {};
+  /**
+   * @internal
+   */
+  constructor(opts) {
+    super({
+      name: "InternalServerException",
+      $fault: "server",
+      ...opts
+    });
+    Object.setPrototypeOf(this, _InternalServerException.prototype);
+  }
+};
+var ResourceNotFoundException = class _ResourceNotFoundException extends RedshiftServerlessServiceException {
+  static {
+    __name(this, "ResourceNotFoundException");
+  }
+  name = "ResourceNotFoundException";
+  $fault = "client";
+  /**
+   * <p>The name of the resource that could not be found.</p>
+   * @public
+   */
+  resourceName;
+  /**
+   * @internal
+   */
+  constructor(opts) {
+    super({
+      name: "ResourceNotFoundException",
+      $fault: "client",
+      ...opts
+    });
+    Object.setPrototypeOf(this, _ResourceNotFoundException.prototype);
+    this.resourceName = opts.resourceName;
+  }
+};
+var ServiceQuotaExceededException = class _ServiceQuotaExceededException extends RedshiftServerlessServiceException {
+  static {
+    __name(this, "ServiceQuotaExceededException");
+  }
+  name = "ServiceQuotaExceededException";
+  $fault = "client";
+  /**
+   * @internal
+   */
+  constructor(opts) {
+    super({
+      name: "ServiceQuotaExceededException",
+      $fault: "client",
+      ...opts
+    });
+    Object.setPrototypeOf(this, _ServiceQuotaExceededException.prototype);
+  }
+};
+var TooManyTagsException = class _TooManyTagsException extends RedshiftServerlessServiceException {
+  static {
+    __name(this, "TooManyTagsException");
+  }
+  name = "TooManyTagsException";
+  $fault = "client";
+  /**
+   * <p>The name of the resource that exceeded the number of tags allowed for a resource.</p>
+   * @public
+   */
+  resourceName;
+  /**
+   * @internal
+   */
+  constructor(opts) {
+    super({
+      name: "TooManyTagsException",
+      $fault: "client",
+      ...opts
+    });
+    Object.setPrototypeOf(this, _TooManyTagsException.prototype);
+    this.resourceName = opts.resourceName;
+  }
+};
+var ValidationException = class _ValidationException extends RedshiftServerlessServiceException {
+  static {
+    __name(this, "ValidationException");
+  }
+  name = "ValidationException";
+  $fault = "client";
+  /**
+   * @internal
+   */
+  constructor(opts) {
+    super({
+      name: "ValidationException",
+      $fault: "client",
+      ...opts
+    });
+    Object.setPrototypeOf(this, _ValidationException.prototype);
+  }
+};
+var ThrottlingException = class _ThrottlingException extends RedshiftServerlessServiceException {
+  static {
+    __name(this, "ThrottlingException");
+  }
+  name = "ThrottlingException";
+  $fault = "client";
+  $retryable = {};
+  code;
+  /**
+   * @internal
+   */
+  constructor(opts) {
+    super({
+      name: "ThrottlingException",
+      $fault: "client",
+      ...opts
+    });
+    Object.setPrototypeOf(this, _ThrottlingException.prototype);
+    this.code = opts.code;
+  }
+};
+var LogExport = {
+  CONNECTION_LOG: "connectionlog",
+  USER_ACTIVITY_LOG: "useractivitylog",
+  USER_LOG: "userlog"
+};
+var NamespaceStatus = {
+  AVAILABLE: "AVAILABLE",
+  DELETING: "DELETING",
+  MODIFYING: "MODIFYING"
+};
+var OfferingType = {
+  ALL_UPFRONT: "ALL_UPFRONT",
+  NO_UPFRONT: "NO_UPFRONT"
+};
+var Schedule;
+((Schedule2) => {
+  Schedule2.visit = /* @__PURE__ */ __name((value, visitor) => {
+    if (value.at !== void 0) return visitor.at(value.at);
+    if (value.cron !== void 0) return visitor.cron(value.cron);
+    return visitor._(value.$unknown[0], value.$unknown[1]);
+  }, "visit");
+})(Schedule || (Schedule = {}));
+var TargetAction;
+((TargetAction3) => {
+  TargetAction3.visit = /* @__PURE__ */ __name((value, visitor) => {
+    if (value.createSnapshot !== void 0) return visitor.createSnapshot(value.createSnapshot);
+    return visitor._(value.$unknown[0], value.$unknown[1]);
+  }, "visit");
+})(TargetAction || (TargetAction = {}));
+var State = {
+  ACTIVE: "ACTIVE",
+  DISABLED: "DISABLED"
+};
+var UsageLimitBreachAction = {
+  DEACTIVATE: "deactivate",
+  EMIT_METRIC: "emit-metric",
+  LOG: "log"
+};
+var UsageLimitPeriod = {
+  DAILY: "daily",
+  MONTHLY: "monthly",
+  WEEKLY: "weekly"
+};
+var UsageLimitUsageType = {
+  CROSS_REGION_DATASHARING: "cross-region-datasharing",
+  SERVERLESS_COMPUTE: "serverless-compute"
+};
+var PerformanceTargetStatus = {
+  DISABLED: "DISABLED",
+  ENABLED: "ENABLED"
+};
+var WorkgroupStatus = {
+  AVAILABLE: "AVAILABLE",
+  CREATING: "CREATING",
+  DELETING: "DELETING",
+  MODIFYING: "MODIFYING"
+};
+var InsufficientCapacityException = class _InsufficientCapacityException extends RedshiftServerlessServiceException {
+  static {
+    __name(this, "InsufficientCapacityException");
+  }
+  name = "InsufficientCapacityException";
+  $fault = "client";
+  $retryable = {};
+  /**
+   * @internal
+   */
+  constructor(opts) {
+    super({
+      name: "InsufficientCapacityException",
+      $fault: "client",
+      ...opts
+    });
+    Object.setPrototypeOf(this, _InsufficientCapacityException.prototype);
+  }
+};
+var Ipv6CidrBlockNotFoundException = class _Ipv6CidrBlockNotFoundException extends RedshiftServerlessServiceException {
+  static {
+    __name(this, "Ipv6CidrBlockNotFoundException");
+  }
+  name = "Ipv6CidrBlockNotFoundException";
+  $fault = "client";
+  /**
+   * @internal
+   */
+  constructor(opts) {
+    super({
+      name: "Ipv6CidrBlockNotFoundException",
+      $fault: "client",
+      ...opts
+    });
+    Object.setPrototypeOf(this, _Ipv6CidrBlockNotFoundException.prototype);
+  }
+};
+var InvalidPaginationException = class _InvalidPaginationException extends RedshiftServerlessServiceException {
+  static {
+    __name(this, "InvalidPaginationException");
+  }
+  name = "InvalidPaginationException";
+  $fault = "client";
+  /**
+   * @internal
+   */
+  constructor(opts) {
+    super({
+      name: "InvalidPaginationException",
+      $fault: "client",
+      ...opts
+    });
+    Object.setPrototypeOf(this, _InvalidPaginationException.prototype);
+  }
+};
+var ManagedWorkgroupStatus = {
+  AVAILABLE: "AVAILABLE",
+  CREATING: "CREATING",
+  DELETING: "DELETING",
+  MODIFYING: "MODIFYING",
+  NOT_AVAILABLE: "NOT_AVAILABLE"
+};
+var CreateNamespaceRequestFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
+  ...obj,
+  ...obj.adminUsername && { adminUsername: import_smithy_client.SENSITIVE_STRING },
+  ...obj.adminUserPassword && { adminUserPassword: import_smithy_client.SENSITIVE_STRING }
+}), "CreateNamespaceRequestFilterSensitiveLog");
+var NamespaceFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
+  ...obj,
+  ...obj.adminUsername && { adminUsername: import_smithy_client.SENSITIVE_STRING }
+}), "NamespaceFilterSensitiveLog");
+var CreateNamespaceResponseFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
+  ...obj,
+  ...obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }
+}), "CreateNamespaceResponseFilterSensitiveLog");
+var DeleteNamespaceResponseFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
+  ...obj,
+  ...obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }
+}), "DeleteNamespaceResponseFilterSensitiveLog");
+var GetCredentialsResponseFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
+  ...obj,
+  ...obj.dbUser && { dbUser: import_smithy_client.SENSITIVE_STRING },
+  ...obj.dbPassword && { dbPassword: import_smithy_client.SENSITIVE_STRING }
+}), "GetCredentialsResponseFilterSensitiveLog");
+var GetNamespaceResponseFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
+  ...obj,
+  ...obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }
+}), "GetNamespaceResponseFilterSensitiveLog");
+var ListNamespacesResponseFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
+  ...obj,
+  ...obj.namespaces && { namespaces: obj.namespaces.map((item) => NamespaceFilterSensitiveLog(item)) }
+}), "ListNamespacesResponseFilterSensitiveLog");
+var UpdateNamespaceRequestFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
+  ...obj,
+  ...obj.adminUserPassword && { adminUserPassword: import_smithy_client.SENSITIVE_STRING },
+  ...obj.adminUsername && { adminUsername: import_smithy_client.SENSITIVE_STRING }
+}), "UpdateNamespaceRequestFilterSensitiveLog");
+var UpdateNamespaceResponseFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
+  ...obj,
+  ...obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }
+}), "UpdateNamespaceResponseFilterSensitiveLog");
+var RestoreFromRecoveryPointResponseFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
+  ...obj,
+  ...obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }
+}), "RestoreFromRecoveryPointResponseFilterSensitiveLog");
+var RestoreFromSnapshotResponseFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
+  ...obj,
+  ...obj.namespace && { namespace: NamespaceFilterSensitiveLog(obj.namespace) }
+}), "RestoreFromSnapshotResponseFilterSensitiveLog");
+
+// src/protocols/Aws_json1_1.ts
+var se_ConvertRecoveryPointToSnapshotCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ConvertRecoveryPointToSnapshot");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ConvertRecoveryPointToSnapshotCommand");
+var se_CreateCustomDomainAssociationCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("CreateCustomDomainAssociation");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_CreateCustomDomainAssociationCommand");
+var se_CreateEndpointAccessCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("CreateEndpointAccess");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_CreateEndpointAccessCommand");
+var se_CreateNamespaceCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("CreateNamespace");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_CreateNamespaceCommand");
+var se_CreateReservationCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("CreateReservation");
+  let body;
+  body = JSON.stringify(se_CreateReservationRequest(input, context));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_CreateReservationCommand");
+var se_CreateScheduledActionCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("CreateScheduledAction");
+  let body;
+  body = JSON.stringify(se_CreateScheduledActionRequest(input, context));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_CreateScheduledActionCommand");
+var se_CreateSnapshotCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("CreateSnapshot");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_CreateSnapshotCommand");
+var se_CreateSnapshotCopyConfigurationCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("CreateSnapshotCopyConfiguration");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_CreateSnapshotCopyConfigurationCommand");
+var se_CreateUsageLimitCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("CreateUsageLimit");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_CreateUsageLimitCommand");
+var se_CreateWorkgroupCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("CreateWorkgroup");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_CreateWorkgroupCommand");
+var se_DeleteCustomDomainAssociationCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("DeleteCustomDomainAssociation");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_DeleteCustomDomainAssociationCommand");
+var se_DeleteEndpointAccessCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("DeleteEndpointAccess");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_DeleteEndpointAccessCommand");
+var se_DeleteNamespaceCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("DeleteNamespace");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_DeleteNamespaceCommand");
+var se_DeleteResourcePolicyCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("DeleteResourcePolicy");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_DeleteResourcePolicyCommand");
+var se_DeleteScheduledActionCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("DeleteScheduledAction");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_DeleteScheduledActionCommand");
+var se_DeleteSnapshotCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("DeleteSnapshot");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_DeleteSnapshotCommand");
+var se_DeleteSnapshotCopyConfigurationCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("DeleteSnapshotCopyConfiguration");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_DeleteSnapshotCopyConfigurationCommand");
+var se_DeleteUsageLimitCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("DeleteUsageLimit");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_DeleteUsageLimitCommand");
+var se_DeleteWorkgroupCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("DeleteWorkgroup");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_DeleteWorkgroupCommand");
+var se_GetCredentialsCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetCredentials");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetCredentialsCommand");
+var se_GetCustomDomainAssociationCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetCustomDomainAssociation");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetCustomDomainAssociationCommand");
+var se_GetEndpointAccessCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetEndpointAccess");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetEndpointAccessCommand");
+var se_GetNamespaceCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetNamespace");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetNamespaceCommand");
+var se_GetRecoveryPointCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetRecoveryPoint");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetRecoveryPointCommand");
+var se_GetReservationCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetReservation");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetReservationCommand");
+var se_GetReservationOfferingCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetReservationOffering");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetReservationOfferingCommand");
+var se_GetResourcePolicyCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetResourcePolicy");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetResourcePolicyCommand");
+var se_GetScheduledActionCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetScheduledAction");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetScheduledActionCommand");
+var se_GetSnapshotCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetSnapshot");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetSnapshotCommand");
+var se_GetTableRestoreStatusCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetTableRestoreStatus");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetTableRestoreStatusCommand");
+var se_GetTrackCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetTrack");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetTrackCommand");
+var se_GetUsageLimitCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetUsageLimit");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetUsageLimitCommand");
+var se_GetWorkgroupCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("GetWorkgroup");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_GetWorkgroupCommand");
+var se_ListCustomDomainAssociationsCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListCustomDomainAssociations");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListCustomDomainAssociationsCommand");
+var se_ListEndpointAccessCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListEndpointAccess");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListEndpointAccessCommand");
+var se_ListManagedWorkgroupsCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListManagedWorkgroups");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListManagedWorkgroupsCommand");
+var se_ListNamespacesCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListNamespaces");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListNamespacesCommand");
+var se_ListRecoveryPointsCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListRecoveryPoints");
+  let body;
+  body = JSON.stringify(se_ListRecoveryPointsRequest(input, context));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListRecoveryPointsCommand");
+var se_ListReservationOfferingsCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListReservationOfferings");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListReservationOfferingsCommand");
+var se_ListReservationsCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListReservations");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListReservationsCommand");
+var se_ListScheduledActionsCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListScheduledActions");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListScheduledActionsCommand");
+var se_ListSnapshotCopyConfigurationsCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListSnapshotCopyConfigurations");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListSnapshotCopyConfigurationsCommand");
+var se_ListSnapshotsCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListSnapshots");
+  let body;
+  body = JSON.stringify(se_ListSnapshotsRequest(input, context));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListSnapshotsCommand");
+var se_ListTableRestoreStatusCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListTableRestoreStatus");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListTableRestoreStatusCommand");
+var se_ListTagsForResourceCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListTagsForResource");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListTagsForResourceCommand");
+var se_ListTracksCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListTracks");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListTracksCommand");
+var se_ListUsageLimitsCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListUsageLimits");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListUsageLimitsCommand");
+var se_ListWorkgroupsCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("ListWorkgroups");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_ListWorkgroupsCommand");
+var se_PutResourcePolicyCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("PutResourcePolicy");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_PutResourcePolicyCommand");
+var se_RestoreFromRecoveryPointCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("RestoreFromRecoveryPoint");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_RestoreFromRecoveryPointCommand");
+var se_RestoreFromSnapshotCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("RestoreFromSnapshot");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_RestoreFromSnapshotCommand");
+var se_RestoreTableFromRecoveryPointCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("RestoreTableFromRecoveryPoint");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_RestoreTableFromRecoveryPointCommand");
+var se_RestoreTableFromSnapshotCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("RestoreTableFromSnapshot");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_RestoreTableFromSnapshotCommand");
+var se_TagResourceCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("TagResource");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_TagResourceCommand");
+var se_UntagResourceCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("UntagResource");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_UntagResourceCommand");
+var se_UpdateCustomDomainAssociationCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("UpdateCustomDomainAssociation");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_UpdateCustomDomainAssociationCommand");
+var se_UpdateEndpointAccessCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("UpdateEndpointAccess");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_UpdateEndpointAccessCommand");
+var se_UpdateNamespaceCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("UpdateNamespace");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_UpdateNamespaceCommand");
+var se_UpdateScheduledActionCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("UpdateScheduledAction");
+  let body;
+  body = JSON.stringify(se_UpdateScheduledActionRequest(input, context));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_UpdateScheduledActionCommand");
+var se_UpdateSnapshotCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("UpdateSnapshot");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_UpdateSnapshotCommand");
+var se_UpdateSnapshotCopyConfigurationCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("UpdateSnapshotCopyConfiguration");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_UpdateSnapshotCopyConfigurationCommand");
+var se_UpdateUsageLimitCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("UpdateUsageLimit");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_UpdateUsageLimitCommand");
+var se_UpdateWorkgroupCommand = /* @__PURE__ */ __name(async (input, context) => {
+  const headers = sharedHeaders("UpdateWorkgroup");
+  let body;
+  body = JSON.stringify((0, import_smithy_client._json)(input));
+  return buildHttpRpcRequest(context, headers, "/", void 0, body);
+}, "se_UpdateWorkgroupCommand");
+var de_ConvertRecoveryPointToSnapshotCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_ConvertRecoveryPointToSnapshotResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ConvertRecoveryPointToSnapshotCommand");
+var de_CreateCustomDomainAssociationCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_CreateCustomDomainAssociationResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_CreateCustomDomainAssociationCommand");
+var de_CreateEndpointAccessCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_CreateEndpointAccessResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_CreateEndpointAccessCommand");
+var de_CreateNamespaceCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_CreateNamespaceResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_CreateNamespaceCommand");
+var de_CreateReservationCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_CreateReservationResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_CreateReservationCommand");
+var de_CreateScheduledActionCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_CreateScheduledActionResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_CreateScheduledActionCommand");
+var de_CreateSnapshotCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_CreateSnapshotResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_CreateSnapshotCommand");
+var de_CreateSnapshotCopyConfigurationCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_CreateSnapshotCopyConfigurationCommand");
+var de_CreateUsageLimitCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_CreateUsageLimitCommand");
+var de_CreateWorkgroupCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_CreateWorkgroupResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_CreateWorkgroupCommand");
+var de_DeleteCustomDomainAssociationCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_DeleteCustomDomainAssociationCommand");
+var de_DeleteEndpointAccessCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_DeleteEndpointAccessResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_DeleteEndpointAccessCommand");
+var de_DeleteNamespaceCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_DeleteNamespaceResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_DeleteNamespaceCommand");
+var de_DeleteResourcePolicyCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_DeleteResourcePolicyCommand");
+var de_DeleteScheduledActionCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_DeleteScheduledActionResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_DeleteScheduledActionCommand");
+var de_DeleteSnapshotCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_DeleteSnapshotResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_DeleteSnapshotCommand");
+var de_DeleteSnapshotCopyConfigurationCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_DeleteSnapshotCopyConfigurationCommand");
+var de_DeleteUsageLimitCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_DeleteUsageLimitCommand");
+var de_DeleteWorkgroupCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_DeleteWorkgroupResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_DeleteWorkgroupCommand");
+var de_GetCredentialsCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_GetCredentialsResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetCredentialsCommand");
+var de_GetCustomDomainAssociationCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_GetCustomDomainAssociationResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetCustomDomainAssociationCommand");
+var de_GetEndpointAccessCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_GetEndpointAccessResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetEndpointAccessCommand");
+var de_GetNamespaceCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_GetNamespaceResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetNamespaceCommand");
+var de_GetRecoveryPointCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_GetRecoveryPointResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetRecoveryPointCommand");
+var de_GetReservationCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_GetReservationResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetReservationCommand");
+var de_GetReservationOfferingCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_GetReservationOfferingResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetReservationOfferingCommand");
+var de_GetResourcePolicyCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetResourcePolicyCommand");
+var de_GetScheduledActionCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_GetScheduledActionResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetScheduledActionCommand");
+var de_GetSnapshotCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_GetSnapshotResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetSnapshotCommand");
+var de_GetTableRestoreStatusCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_GetTableRestoreStatusResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetTableRestoreStatusCommand");
+var de_GetTrackCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetTrackCommand");
+var de_GetUsageLimitCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetUsageLimitCommand");
+var de_GetWorkgroupCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_GetWorkgroupResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetWorkgroupCommand");
+var de_ListCustomDomainAssociationsCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_ListCustomDomainAssociationsResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListCustomDomainAssociationsCommand");
+var de_ListEndpointAccessCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_ListEndpointAccessResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListEndpointAccessCommand");
+var de_ListManagedWorkgroupsCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_ListManagedWorkgroupsResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListManagedWorkgroupsCommand");
+var de_ListNamespacesCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_ListNamespacesResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListNamespacesCommand");
+var de_ListRecoveryPointsCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_ListRecoveryPointsResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListRecoveryPointsCommand");
+var de_ListReservationOfferingsCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_ListReservationOfferingsResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListReservationOfferingsCommand");
+var de_ListReservationsCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_ListReservationsResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListReservationsCommand");
+var de_ListScheduledActionsCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListScheduledActionsCommand");
+var de_ListSnapshotCopyConfigurationsCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListSnapshotCopyConfigurationsCommand");
+var de_ListSnapshotsCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_ListSnapshotsResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListSnapshotsCommand");
+var de_ListTableRestoreStatusCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_ListTableRestoreStatusResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListTableRestoreStatusCommand");
+var de_ListTagsForResourceCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListTagsForResourceCommand");
+var de_ListTracksCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListTracksCommand");
+var de_ListUsageLimitsCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListUsageLimitsCommand");
+var de_ListWorkgroupsCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_ListWorkgroupsResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_ListWorkgroupsCommand");
+var de_PutResourcePolicyCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_PutResourcePolicyCommand");
+var de_RestoreFromRecoveryPointCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_RestoreFromRecoveryPointResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_RestoreFromRecoveryPointCommand");
+var de_RestoreFromSnapshotCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_RestoreFromSnapshotResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_RestoreFromSnapshotCommand");
+var de_RestoreTableFromRecoveryPointCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_RestoreTableFromRecoveryPointResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_RestoreTableFromRecoveryPointCommand");
+var de_RestoreTableFromSnapshotCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_RestoreTableFromSnapshotResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_RestoreTableFromSnapshotCommand");
+var de_TagResourceCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_TagResourceCommand");
+var de_UntagResourceCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_UntagResourceCommand");
+var de_UpdateCustomDomainAssociationCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_UpdateCustomDomainAssociationResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_UpdateCustomDomainAssociationCommand");
+var de_UpdateEndpointAccessCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_UpdateEndpointAccessResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_UpdateEndpointAccessCommand");
+var de_UpdateNamespaceCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_UpdateNamespaceResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_UpdateNamespaceCommand");
+var de_UpdateScheduledActionCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_UpdateScheduledActionResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_UpdateScheduledActionCommand");
+var de_UpdateSnapshotCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_UpdateSnapshotResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_UpdateSnapshotCommand");
+var de_UpdateSnapshotCopyConfigurationCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_UpdateSnapshotCopyConfigurationCommand");
+var de_UpdateUsageLimitCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = (0, import_smithy_client._json)(data);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_UpdateUsageLimitCommand");
+var de_UpdateWorkgroupCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await (0, import_core2.parseJsonBody)(output.body, context);
+  let contents = {};
+  contents = de_UpdateWorkgroupResponse(data, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_UpdateWorkgroupCommand");
+var de_CommandError = /* @__PURE__ */ __name(async (output, context) => {
+  const parsedOutput = {
+    ...output,
+    body: await (0, import_core2.parseJsonErrorBody)(output.body, context)
+  };
+  const errorCode = (0, import_core2.loadRestJsonErrorCode)(output, parsedOutput.body);
+  switch (errorCode) {
+    case "ConflictException":
+    case "com.amazonaws.redshiftserverless#ConflictException":
+      throw await de_ConflictExceptionRes(parsedOutput, context);
+    case "InternalServerException":
+    case "com.amazonaws.redshiftserverless#InternalServerException":
+      throw await de_InternalServerExceptionRes(parsedOutput, context);
+    case "ResourceNotFoundException":
+    case "com.amazonaws.redshiftserverless#ResourceNotFoundException":
+      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
+    case "ServiceQuotaExceededException":
+    case "com.amazonaws.redshiftserverless#ServiceQuotaExceededException":
+      throw await de_ServiceQuotaExceededExceptionRes(parsedOutput, context);
+    case "TooManyTagsException":
+    case "com.amazonaws.redshiftserverless#TooManyTagsException":
+      throw await de_TooManyTagsExceptionRes(parsedOutput, context);
+    case "ValidationException":
+    case "com.amazonaws.redshiftserverless#ValidationException":
+      throw await de_ValidationExceptionRes(parsedOutput, context);
+    case "AccessDeniedException":
+    case "com.amazonaws.redshiftserverless#AccessDeniedException":
+      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
+    case "ThrottlingException":
+    case "com.amazonaws.redshiftserverless#ThrottlingException":
+      throw await de_ThrottlingExceptionRes(parsedOutput, context);
+    case "InsufficientCapacityException":
+    case "com.amazonaws.redshiftserverless#InsufficientCapacityException":
+      throw await de_InsufficientCapacityExceptionRes(parsedOutput, context);
+    case "Ipv6CidrBlockNotFoundException":
+    case "com.amazonaws.redshiftserverless#Ipv6CidrBlockNotFoundException":
+      throw await de_Ipv6CidrBlockNotFoundExceptionRes(parsedOutput, context);
+    case "InvalidPaginationException":
+    case "com.amazonaws.redshiftserverless#InvalidPaginationException":
+      throw await de_InvalidPaginationExceptionRes(parsedOutput, context);
+    default:
+      const parsedBody = parsedOutput.body;
+      return throwDefaultError({
+        output,
+        parsedBody,
+        errorCode
+      });
+  }
+}, "de_CommandError");
+var de_AccessDeniedExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
+  const body = parsedOutput.body;
+  const deserialized = (0, import_smithy_client._json)(body);
+  const exception = new AccessDeniedException({
+    $metadata: deserializeMetadata(parsedOutput),
+    ...deserialized
+  });
+  return (0, import_smithy_client.decorateServiceException)(exception, body);
+}, "de_AccessDeniedExceptionRes");
+var de_ConflictExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
+  const body = parsedOutput.body;
+  const deserialized = (0, import_smithy_client._json)(body);
+  const exception = new ConflictException({
+    $metadata: deserializeMetadata(parsedOutput),
+    ...deserialized
+  });
+  return (0, import_smithy_client.decorateServiceException)(exception, body);
+}, "de_ConflictExceptionRes");
+var de_InsufficientCapacityExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
+  const body = parsedOutput.body;
+  const deserialized = (0, import_smithy_client._json)(body);
+  const exception = new InsufficientCapacityException({
+    $metadata: deserializeMetadata(parsedOutput),
+    ...deserialized
+  });
+  return (0, import_smithy_client.decorateServiceException)(exception, body);
+}, "de_InsufficientCapacityExceptionRes");
+var de_InternalServerExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
+  const body = parsedOutput.body;
+  const deserialized = (0, import_smithy_client._json)(body);
+  const exception = new InternalServerException({
+    $metadata: deserializeMetadata(parsedOutput),
+    ...deserialized
+  });
+  return (0, import_smithy_client.decorateServiceException)(exception, body);
+}, "de_InternalServerExceptionRes");
+var de_InvalidPaginationExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
+  const body = parsedOutput.body;
+  const deserialized = (0, import_smithy_client._json)(body);
+  const exception = new InvalidPaginationException({
+    $metadata: deserializeMetadata(parsedOutput),
+    ...deserialized
+  });
+  return (0, import_smithy_client.decorateServiceException)(exception, body);
+}, "de_InvalidPaginationExceptionRes");
+var de_Ipv6CidrBlockNotFoundExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
+  const body = parsedOutput.body;
+  const deserialized = (0, import_smithy_client._json)(body);
+  const exception = new Ipv6CidrBlockNotFoundException({
+    $metadata: deserializeMetadata(parsedOutput),
+    ...deserialized
+  });
+  return (0, import_smithy_client.decorateServiceException)(exception, body);
+}, "de_Ipv6CidrBlockNotFoundExceptionRes");
+var de_ResourceNotFoundExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
+  const body = parsedOutput.body;
+  const deserialized = (0, import_smithy_client._json)(body);
+  const exception = new ResourceNotFoundException({
+    $metadata: deserializeMetadata(parsedOutput),
+    ...deserialized
+  });
+  return (0, import_smithy_client.decorateServiceException)(exception, body);
+}, "de_ResourceNotFoundExceptionRes");
+var de_ServiceQuotaExceededExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
+  const body = parsedOutput.body;
+  const deserialized = (0, import_smithy_client._json)(body);
+  const exception = new ServiceQuotaExceededException({
+    $metadata: deserializeMetadata(parsedOutput),
+    ...deserialized
+  });
+  return (0, import_smithy_client.decorateServiceException)(exception, body);
+}, "de_ServiceQuotaExceededExceptionRes");
+var de_ThrottlingExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
+  const body = parsedOutput.body;
+  const deserialized = (0, import_smithy_client._json)(body);
+  const exception = new ThrottlingException({
+    $metadata: deserializeMetadata(parsedOutput),
+    ...deserialized
+  });
+  return (0, import_smithy_client.decorateServiceException)(exception, body);
+}, "de_ThrottlingExceptionRes");
+var de_TooManyTagsExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
+  const body = parsedOutput.body;
+  const deserialized = (0, import_smithy_client._json)(body);
+  const exception = new TooManyTagsException({
+    $metadata: deserializeMetadata(parsedOutput),
+    ...deserialized
+  });
+  return (0, import_smithy_client.decorateServiceException)(exception, body);
+}, "de_TooManyTagsExceptionRes");
+var de_ValidationExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
+  const body = parsedOutput.body;
+  const deserialized = (0, import_smithy_client._json)(body);
+  const exception = new ValidationException({
+    $metadata: deserializeMetadata(parsedOutput),
+    ...deserialized
+  });
+  return (0, import_smithy_client.decorateServiceException)(exception, body);
+}, "de_ValidationExceptionRes");
+var se_CreateReservationRequest = /* @__PURE__ */ __name((input, context) => {
+  return (0, import_smithy_client.take)(input, {
+    capacity: [],
+    clientToken: [true, (_) => _ ?? (0, import_uuid.v4)()],
+    offeringId: []
+  });
+}, "se_CreateReservationRequest");
+var se_CreateScheduledActionRequest = /* @__PURE__ */ __name((input, context) => {
+  return (0, import_smithy_client.take)(input, {
+    enabled: [],
+    endTime: /* @__PURE__ */ __name((_) => _.getTime() / 1e3, "endTime"),
+    namespaceName: [],
+    roleArn: [],
+    schedule: /* @__PURE__ */ __name((_) => se_Schedule(_, context), "schedule"),
+    scheduledActionDescription: [],
+    scheduledActionName: [],
+    startTime: /* @__PURE__ */ __name((_) => _.getTime() / 1e3, "startTime"),
+    targetAction: import_smithy_client._json
+  });
+}, "se_CreateScheduledActionRequest");
+var se_ListRecoveryPointsRequest = /* @__PURE__ */ __name((input, context) => {
+  return (0, import_smithy_client.take)(input, {
+    endTime: /* @__PURE__ */ __name((_) => _.getTime() / 1e3, "endTime"),
+    maxResults: [],
+    namespaceArn: [],
+    namespaceName: [],
+    nextToken: [],
+    startTime: /* @__PURE__ */ __name((_) => _.getTime() / 1e3, "startTime")
+  });
+}, "se_ListRecoveryPointsRequest");
+var se_ListSnapshotsRequest = /* @__PURE__ */ __name((input, context) => {
+  return (0, import_smithy_client.take)(input, {
+    endTime: /* @__PURE__ */ __name((_) => _.getTime() / 1e3, "endTime"),
+    maxResults: [],
+    namespaceArn: [],
+    namespaceName: [],
+    nextToken: [],
+    ownerAccount: [],
+    startTime: /* @__PURE__ */ __name((_) => _.getTime() / 1e3, "startTime")
+  });
+}, "se_ListSnapshotsRequest");
+var se_Schedule = /* @__PURE__ */ __name((input, context) => {
+  return Schedule.visit(input, {
+    at: /* @__PURE__ */ __name((value) => ({ at: value.getTime() / 1e3 }), "at"),
+    cron: /* @__PURE__ */ __name((value) => ({ cron: value }), "cron"),
+    _: /* @__PURE__ */ __name((name, value) => ({ [name]: value }), "_")
+  });
+}, "se_Schedule");
+var se_UpdateScheduledActionRequest = /* @__PURE__ */ __name((input, context) => {
+  return (0, import_smithy_client.take)(input, {
+    enabled: [],
+    endTime: /* @__PURE__ */ __name((_) => _.getTime() / 1e3, "endTime"),
+    roleArn: [],
+    schedule: /* @__PURE__ */ __name((_) => se_Schedule(_, context), "schedule"),
+    scheduledActionDescription: [],
+    scheduledActionName: [],
+    startTime: /* @__PURE__ */ __name((_) => _.getTime() / 1e3, "startTime"),
+    targetAction: import_smithy_client._json
+  });
+}, "se_UpdateScheduledActionRequest");
+var de_Association = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    customDomainCertificateArn: import_smithy_client.expectString,
+    customDomainCertificateExpiryTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "customDomainCertificateExpiryTime"),
+    customDomainName: import_smithy_client.expectString,
+    workgroupName: import_smithy_client.expectString
+  });
+}, "de_Association");
+var de_AssociationList = /* @__PURE__ */ __name((output, context) => {
+  const retVal = (output || []).filter((e) => e != null).map((entry) => {
+    return de_Association(entry, context);
+  });
+  return retVal;
+}, "de_AssociationList");
+var de_ConvertRecoveryPointToSnapshotResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    snapshot: /* @__PURE__ */ __name((_) => de_Snapshot(_, context), "snapshot")
+  });
+}, "de_ConvertRecoveryPointToSnapshotResponse");
+var de_CreateCustomDomainAssociationResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    customDomainCertificateArn: import_smithy_client.expectString,
+    customDomainCertificateExpiryTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "customDomainCertificateExpiryTime"),
+    customDomainName: import_smithy_client.expectString,
+    workgroupName: import_smithy_client.expectString
+  });
+}, "de_CreateCustomDomainAssociationResponse");
+var de_CreateEndpointAccessResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    endpoint: /* @__PURE__ */ __name((_) => de_EndpointAccess(_, context), "endpoint")
+  });
+}, "de_CreateEndpointAccessResponse");
+var de_CreateNamespaceResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    namespace: /* @__PURE__ */ __name((_) => de_Namespace(_, context), "namespace")
+  });
+}, "de_CreateNamespaceResponse");
+var de_CreateReservationResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    reservation: /* @__PURE__ */ __name((_) => de_Reservation(_, context), "reservation")
+  });
+}, "de_CreateReservationResponse");
+var de_CreateScheduledActionResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    scheduledAction: /* @__PURE__ */ __name((_) => de_ScheduledActionResponse(_, context), "scheduledAction")
+  });
+}, "de_CreateScheduledActionResponse");
+var de_CreateSnapshotResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    snapshot: /* @__PURE__ */ __name((_) => de_Snapshot(_, context), "snapshot")
+  });
+}, "de_CreateSnapshotResponse");
+var de_CreateWorkgroupResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    workgroup: /* @__PURE__ */ __name((_) => de_Workgroup(_, context), "workgroup")
+  });
+}, "de_CreateWorkgroupResponse");
+var de_DeleteEndpointAccessResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    endpoint: /* @__PURE__ */ __name((_) => de_EndpointAccess(_, context), "endpoint")
+  });
+}, "de_DeleteEndpointAccessResponse");
+var de_DeleteNamespaceResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    namespace: /* @__PURE__ */ __name((_) => de_Namespace(_, context), "namespace")
+  });
+}, "de_DeleteNamespaceResponse");
+var de_DeleteScheduledActionResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    scheduledAction: /* @__PURE__ */ __name((_) => de_ScheduledActionResponse(_, context), "scheduledAction")
+  });
+}, "de_DeleteScheduledActionResponse");
+var de_DeleteSnapshotResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    snapshot: /* @__PURE__ */ __name((_) => de_Snapshot(_, context), "snapshot")
+  });
+}, "de_DeleteSnapshotResponse");
+var de_DeleteWorkgroupResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    workgroup: /* @__PURE__ */ __name((_) => de_Workgroup(_, context), "workgroup")
+  });
+}, "de_DeleteWorkgroupResponse");
+var de_EndpointAccess = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    address: import_smithy_client.expectString,
+    endpointArn: import_smithy_client.expectString,
+    endpointCreateTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "endpointCreateTime"),
+    endpointName: import_smithy_client.expectString,
+    endpointStatus: import_smithy_client.expectString,
+    port: import_smithy_client.expectInt32,
+    subnetIds: import_smithy_client._json,
+    vpcEndpoint: import_smithy_client._json,
+    vpcSecurityGroups: import_smithy_client._json,
+    workgroupName: import_smithy_client.expectString
+  });
+}, "de_EndpointAccess");
+var de_EndpointAccessList = /* @__PURE__ */ __name((output, context) => {
+  const retVal = (output || []).filter((e) => e != null).map((entry) => {
+    return de_EndpointAccess(entry, context);
+  });
+  return retVal;
+}, "de_EndpointAccessList");
+var de_GetCredentialsResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    dbPassword: import_smithy_client.expectString,
+    dbUser: import_smithy_client.expectString,
+    expiration: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseEpochTimestamp)((0, import_smithy_client.expectNumber)(_))), "expiration"),
+    nextRefreshTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseEpochTimestamp)((0, import_smithy_client.expectNumber)(_))), "nextRefreshTime")
+  });
+}, "de_GetCredentialsResponse");
+var de_GetCustomDomainAssociationResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    customDomainCertificateArn: import_smithy_client.expectString,
+    customDomainCertificateExpiryTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "customDomainCertificateExpiryTime"),
+    customDomainName: import_smithy_client.expectString,
+    workgroupName: import_smithy_client.expectString
+  });
+}, "de_GetCustomDomainAssociationResponse");
+var de_GetEndpointAccessResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    endpoint: /* @__PURE__ */ __name((_) => de_EndpointAccess(_, context), "endpoint")
+  });
+}, "de_GetEndpointAccessResponse");
+var de_GetNamespaceResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    namespace: /* @__PURE__ */ __name((_) => de_Namespace(_, context), "namespace")
+  });
+}, "de_GetNamespaceResponse");
+var de_GetRecoveryPointResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    recoveryPoint: /* @__PURE__ */ __name((_) => de_RecoveryPoint(_, context), "recoveryPoint")
+  });
+}, "de_GetRecoveryPointResponse");
+var de_GetReservationOfferingResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    reservationOffering: /* @__PURE__ */ __name((_) => de_ReservationOffering(_, context), "reservationOffering")
+  });
+}, "de_GetReservationOfferingResponse");
+var de_GetReservationResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    reservation: /* @__PURE__ */ __name((_) => de_Reservation(_, context), "reservation")
+  });
+}, "de_GetReservationResponse");
+var de_GetScheduledActionResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    scheduledAction: /* @__PURE__ */ __name((_) => de_ScheduledActionResponse(_, context), "scheduledAction")
+  });
+}, "de_GetScheduledActionResponse");
+var de_GetSnapshotResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    snapshot: /* @__PURE__ */ __name((_) => de_Snapshot(_, context), "snapshot")
+  });
+}, "de_GetSnapshotResponse");
+var de_GetTableRestoreStatusResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    tableRestoreStatus: /* @__PURE__ */ __name((_) => de_TableRestoreStatus(_, context), "tableRestoreStatus")
+  });
+}, "de_GetTableRestoreStatusResponse");
+var de_GetWorkgroupResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    workgroup: /* @__PURE__ */ __name((_) => de_Workgroup(_, context), "workgroup")
+  });
+}, "de_GetWorkgroupResponse");
+var de_ListCustomDomainAssociationsResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    associations: /* @__PURE__ */ __name((_) => de_AssociationList(_, context), "associations"),
+    nextToken: import_smithy_client.expectString
+  });
+}, "de_ListCustomDomainAssociationsResponse");
+var de_ListEndpointAccessResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    endpoints: /* @__PURE__ */ __name((_) => de_EndpointAccessList(_, context), "endpoints"),
+    nextToken: import_smithy_client.expectString
+  });
+}, "de_ListEndpointAccessResponse");
+var de_ListManagedWorkgroupsResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    managedWorkgroups: /* @__PURE__ */ __name((_) => de_ManagedWorkgroups(_, context), "managedWorkgroups"),
+    nextToken: import_smithy_client.expectString
+  });
+}, "de_ListManagedWorkgroupsResponse");
+var de_ListNamespacesResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    namespaces: /* @__PURE__ */ __name((_) => de_NamespaceList(_, context), "namespaces"),
+    nextToken: import_smithy_client.expectString
+  });
+}, "de_ListNamespacesResponse");
+var de_ListRecoveryPointsResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    nextToken: import_smithy_client.expectString,
+    recoveryPoints: /* @__PURE__ */ __name((_) => de_RecoveryPointList(_, context), "recoveryPoints")
+  });
+}, "de_ListRecoveryPointsResponse");
+var de_ListReservationOfferingsResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    nextToken: import_smithy_client.expectString,
+    reservationOfferingsList: /* @__PURE__ */ __name((_) => de_ReservationOfferingsList(_, context), "reservationOfferingsList")
+  });
+}, "de_ListReservationOfferingsResponse");
+var de_ListReservationsResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    nextToken: import_smithy_client.expectString,
+    reservationsList: /* @__PURE__ */ __name((_) => de_ReservationsList(_, context), "reservationsList")
+  });
+}, "de_ListReservationsResponse");
+var de_ListSnapshotsResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    nextToken: import_smithy_client.expectString,
+    snapshots: /* @__PURE__ */ __name((_) => de_SnapshotList(_, context), "snapshots")
+  });
+}, "de_ListSnapshotsResponse");
+var de_ListTableRestoreStatusResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    nextToken: import_smithy_client.expectString,
+    tableRestoreStatuses: /* @__PURE__ */ __name((_) => de_TableRestoreStatusList(_, context), "tableRestoreStatuses")
+  });
+}, "de_ListTableRestoreStatusResponse");
+var de_ListWorkgroupsResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    nextToken: import_smithy_client.expectString,
+    workgroups: /* @__PURE__ */ __name((_) => de_WorkgroupList(_, context), "workgroups")
+  });
+}, "de_ListWorkgroupsResponse");
+var de_ManagedWorkgroupListItem = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    creationDate: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "creationDate"),
+    managedWorkgroupId: import_smithy_client.expectString,
+    managedWorkgroupName: import_smithy_client.expectString,
+    sourceArn: import_smithy_client.expectString,
+    status: import_smithy_client.expectString
+  });
+}, "de_ManagedWorkgroupListItem");
+var de_ManagedWorkgroups = /* @__PURE__ */ __name((output, context) => {
+  const retVal = (output || []).filter((e) => e != null).map((entry) => {
+    return de_ManagedWorkgroupListItem(entry, context);
+  });
+  return retVal;
+}, "de_ManagedWorkgroups");
+var de_Namespace = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    adminPasswordSecretArn: import_smithy_client.expectString,
+    adminPasswordSecretKmsKeyId: import_smithy_client.expectString,
+    adminUsername: import_smithy_client.expectString,
+    creationDate: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "creationDate"),
+    dbName: import_smithy_client.expectString,
+    defaultIamRoleArn: import_smithy_client.expectString,
+    iamRoles: import_smithy_client._json,
+    kmsKeyId: import_smithy_client.expectString,
+    logExports: import_smithy_client._json,
+    namespaceArn: import_smithy_client.expectString,
+    namespaceId: import_smithy_client.expectString,
+    namespaceName: import_smithy_client.expectString,
+    status: import_smithy_client.expectString
+  });
+}, "de_Namespace");
+var de_NamespaceList = /* @__PURE__ */ __name((output, context) => {
+  const retVal = (output || []).filter((e) => e != null).map((entry) => {
+    return de_Namespace(entry, context);
+  });
+  return retVal;
+}, "de_NamespaceList");
+var de_NextInvocationsList = /* @__PURE__ */ __name((output, context) => {
+  const retVal = (output || []).filter((e) => e != null).map((entry) => {
+    return (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseEpochTimestamp)((0, import_smithy_client.expectNumber)(entry)));
+  });
+  return retVal;
+}, "de_NextInvocationsList");
+var de_RecoveryPoint = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    namespaceArn: import_smithy_client.expectString,
+    namespaceName: import_smithy_client.expectString,
+    recoveryPointCreateTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "recoveryPointCreateTime"),
+    recoveryPointId: import_smithy_client.expectString,
+    totalSizeInMegaBytes: import_smithy_client.limitedParseDouble,
+    workgroupName: import_smithy_client.expectString
+  });
+}, "de_RecoveryPoint");
+var de_RecoveryPointList = /* @__PURE__ */ __name((output, context) => {
+  const retVal = (output || []).filter((e) => e != null).map((entry) => {
+    return de_RecoveryPoint(entry, context);
+  });
+  return retVal;
+}, "de_RecoveryPointList");
+var de_Reservation = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    capacity: import_smithy_client.expectInt32,
+    endDate: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "endDate"),
+    offering: /* @__PURE__ */ __name((_) => de_ReservationOffering(_, context), "offering"),
+    reservationArn: import_smithy_client.expectString,
+    reservationId: import_smithy_client.expectString,
+    startDate: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "startDate"),
+    status: import_smithy_client.expectString
+  });
+}, "de_Reservation");
+var de_ReservationOffering = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    currencyCode: import_smithy_client.expectString,
+    duration: import_smithy_client.expectInt32,
+    hourlyCharge: import_smithy_client.limitedParseDouble,
+    offeringId: import_smithy_client.expectString,
+    offeringType: import_smithy_client.expectString,
+    upfrontCharge: import_smithy_client.limitedParseDouble
+  });
+}, "de_ReservationOffering");
+var de_ReservationOfferingsList = /* @__PURE__ */ __name((output, context) => {
+  const retVal = (output || []).filter((e) => e != null).map((entry) => {
+    return de_ReservationOffering(entry, context);
+  });
+  return retVal;
+}, "de_ReservationOfferingsList");
+var de_ReservationsList = /* @__PURE__ */ __name((output, context) => {
+  const retVal = (output || []).filter((e) => e != null).map((entry) => {
+    return de_Reservation(entry, context);
+  });
+  return retVal;
+}, "de_ReservationsList");
+var de_RestoreFromRecoveryPointResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    namespace: /* @__PURE__ */ __name((_) => de_Namespace(_, context), "namespace"),
+    recoveryPointId: import_smithy_client.expectString
+  });
+}, "de_RestoreFromRecoveryPointResponse");
+var de_RestoreFromSnapshotResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    namespace: /* @__PURE__ */ __name((_) => de_Namespace(_, context), "namespace"),
+    ownerAccount: import_smithy_client.expectString,
+    snapshotName: import_smithy_client.expectString
+  });
+}, "de_RestoreFromSnapshotResponse");
+var de_RestoreTableFromRecoveryPointResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    tableRestoreStatus: /* @__PURE__ */ __name((_) => de_TableRestoreStatus(_, context), "tableRestoreStatus")
+  });
+}, "de_RestoreTableFromRecoveryPointResponse");
+var de_RestoreTableFromSnapshotResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    tableRestoreStatus: /* @__PURE__ */ __name((_) => de_TableRestoreStatus(_, context), "tableRestoreStatus")
+  });
+}, "de_RestoreTableFromSnapshotResponse");
+var de_Schedule = /* @__PURE__ */ __name((output, context) => {
+  if (output.at != null) {
+    return {
+      at: (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseEpochTimestamp)((0, import_smithy_client.expectNumber)(output.at)))
+    };
+  }
+  if ((0, import_smithy_client.expectString)(output.cron) !== void 0) {
+    return { cron: (0, import_smithy_client.expectString)(output.cron) };
+  }
+  return { $unknown: Object.entries(output)[0] };
+}, "de_Schedule");
+var de_ScheduledActionResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    endTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseEpochTimestamp)((0, import_smithy_client.expectNumber)(_))), "endTime"),
+    namespaceName: import_smithy_client.expectString,
+    nextInvocations: /* @__PURE__ */ __name((_) => de_NextInvocationsList(_, context), "nextInvocations"),
+    roleArn: import_smithy_client.expectString,
+    schedule: /* @__PURE__ */ __name((_) => de_Schedule((0, import_core2.awsExpectUnion)(_), context), "schedule"),
+    scheduledActionDescription: import_smithy_client.expectString,
+    scheduledActionName: import_smithy_client.expectString,
+    scheduledActionUuid: import_smithy_client.expectString,
+    startTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseEpochTimestamp)((0, import_smithy_client.expectNumber)(_))), "startTime"),
+    state: import_smithy_client.expectString,
+    targetAction: /* @__PURE__ */ __name((_) => (0, import_smithy_client._json)((0, import_core2.awsExpectUnion)(_)), "targetAction")
+  });
+}, "de_ScheduledActionResponse");
+var de_Snapshot = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    accountsWithProvisionedRestoreAccess: import_smithy_client._json,
+    accountsWithRestoreAccess: import_smithy_client._json,
+    actualIncrementalBackupSizeInMegaBytes: import_smithy_client.limitedParseDouble,
+    adminPasswordSecretArn: import_smithy_client.expectString,
+    adminPasswordSecretKmsKeyId: import_smithy_client.expectString,
+    adminUsername: import_smithy_client.expectString,
+    backupProgressInMegaBytes: import_smithy_client.limitedParseDouble,
+    currentBackupRateInMegaBytesPerSecond: import_smithy_client.limitedParseDouble,
+    elapsedTimeInSeconds: import_smithy_client.expectLong,
+    estimatedSecondsToCompletion: import_smithy_client.expectLong,
+    kmsKeyId: import_smithy_client.expectString,
+    namespaceArn: import_smithy_client.expectString,
+    namespaceName: import_smithy_client.expectString,
+    ownerAccount: import_smithy_client.expectString,
+    snapshotArn: import_smithy_client.expectString,
+    snapshotCreateTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "snapshotCreateTime"),
+    snapshotName: import_smithy_client.expectString,
+    snapshotRemainingDays: import_smithy_client.expectInt32,
+    snapshotRetentionPeriod: import_smithy_client.expectInt32,
+    snapshotRetentionStartTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "snapshotRetentionStartTime"),
+    status: import_smithy_client.expectString,
+    totalBackupSizeInMegaBytes: import_smithy_client.limitedParseDouble
+  });
+}, "de_Snapshot");
+var de_SnapshotList = /* @__PURE__ */ __name((output, context) => {
+  const retVal = (output || []).filter((e) => e != null).map((entry) => {
+    return de_Snapshot(entry, context);
+  });
+  return retVal;
+}, "de_SnapshotList");
+var de_TableRestoreStatus = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    message: import_smithy_client.expectString,
+    namespaceName: import_smithy_client.expectString,
+    newTableName: import_smithy_client.expectString,
+    progressInMegaBytes: import_smithy_client.expectLong,
+    recoveryPointId: import_smithy_client.expectString,
+    requestTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseEpochTimestamp)((0, import_smithy_client.expectNumber)(_))), "requestTime"),
+    snapshotName: import_smithy_client.expectString,
+    sourceDatabaseName: import_smithy_client.expectString,
+    sourceSchemaName: import_smithy_client.expectString,
+    sourceTableName: import_smithy_client.expectString,
+    status: import_smithy_client.expectString,
+    tableRestoreRequestId: import_smithy_client.expectString,
+    targetDatabaseName: import_smithy_client.expectString,
+    targetSchemaName: import_smithy_client.expectString,
+    totalDataInMegaBytes: import_smithy_client.expectLong,
+    workgroupName: import_smithy_client.expectString
+  });
+}, "de_TableRestoreStatus");
+var de_TableRestoreStatusList = /* @__PURE__ */ __name((output, context) => {
+  const retVal = (output || []).filter((e) => e != null).map((entry) => {
+    return de_TableRestoreStatus(entry, context);
+  });
+  return retVal;
+}, "de_TableRestoreStatusList");
+var de_UpdateCustomDomainAssociationResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    customDomainCertificateArn: import_smithy_client.expectString,
+    customDomainCertificateExpiryTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "customDomainCertificateExpiryTime"),
+    customDomainName: import_smithy_client.expectString,
+    workgroupName: import_smithy_client.expectString
+  });
+}, "de_UpdateCustomDomainAssociationResponse");
+var de_UpdateEndpointAccessResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    endpoint: /* @__PURE__ */ __name((_) => de_EndpointAccess(_, context), "endpoint")
+  });
+}, "de_UpdateEndpointAccessResponse");
+var de_UpdateNamespaceResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    namespace: /* @__PURE__ */ __name((_) => de_Namespace(_, context), "namespace")
+  });
+}, "de_UpdateNamespaceResponse");
+var de_UpdateScheduledActionResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    scheduledAction: /* @__PURE__ */ __name((_) => de_ScheduledActionResponse(_, context), "scheduledAction")
+  });
+}, "de_UpdateScheduledActionResponse");
+var de_UpdateSnapshotResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    snapshot: /* @__PURE__ */ __name((_) => de_Snapshot(_, context), "snapshot")
+  });
+}, "de_UpdateSnapshotResponse");
+var de_UpdateWorkgroupResponse = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    workgroup: /* @__PURE__ */ __name((_) => de_Workgroup(_, context), "workgroup")
+  });
+}, "de_UpdateWorkgroupResponse");
+var de_Workgroup = /* @__PURE__ */ __name((output, context) => {
+  return (0, import_smithy_client.take)(output, {
+    baseCapacity: import_smithy_client.expectInt32,
+    configParameters: import_smithy_client._json,
+    creationDate: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "creationDate"),
+    crossAccountVpcs: import_smithy_client._json,
+    customDomainCertificateArn: import_smithy_client.expectString,
+    customDomainCertificateExpiryTime: /* @__PURE__ */ __name((_) => (0, import_smithy_client.expectNonNull)((0, import_smithy_client.parseRfc3339DateTimeWithOffset)(_)), "customDomainCertificateExpiryTime"),
+    customDomainName: import_smithy_client.expectString,
+    endpoint: import_smithy_client._json,
+    enhancedVpcRouting: import_smithy_client.expectBoolean,
+    ipAddressType: import_smithy_client.expectString,
+    maxCapacity: import_smithy_client.expectInt32,
+    namespaceName: import_smithy_client.expectString,
+    patchVersion: import_smithy_client.expectString,
+    pendingTrackName: import_smithy_client.expectString,
+    port: import_smithy_client.expectInt32,
+    pricePerformanceTarget: import_smithy_client._json,
+    publiclyAccessible: import_smithy_client.expectBoolean,
+    securityGroupIds: import_smithy_client._json,
+    status: import_smithy_client.expectString,
+    subnetIds: import_smithy_client._json,
+    trackName: import_smithy_client.expectString,
+    workgroupArn: import_smithy_client.expectString,
+    workgroupId: import_smithy_client.expectString,
+    workgroupName: import_smithy_client.expectString,
+    workgroupVersion: import_smithy_client.expectString
+  });
+}, "de_Workgroup");
+var de_WorkgroupList = /* @__PURE__ */ __name((output, context) => {
+  const retVal = (output || []).filter((e) => e != null).map((entry) => {
+    return de_Workgroup(entry, context);
+  });
+  return retVal;
+}, "de_WorkgroupList");
+var deserializeMetadata = /* @__PURE__ */ __name((output) => ({
+  httpStatusCode: output.statusCode,
+  requestId: output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ?? output.headers["x-amz-request-id"],
+  extendedRequestId: output.headers["x-amz-id-2"],
+  cfId: output.headers["x-amz-cf-id"]
+}), "deserializeMetadata");
+var throwDefaultError = (0, import_smithy_client.withBaseException)(RedshiftServerlessServiceException);
+var buildHttpRpcRequest = /* @__PURE__ */ __name(async (context, headers, path, resolvedHostname, body) => {
+  const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+  const contents = {
+    protocol,
+    hostname,
+    port,
+    method: "POST",
+    path: basePath.endsWith("/") ? basePath.slice(0, -1) + path : basePath + path,
+    headers
+  };
+  if (resolvedHostname !== void 0) {
+    contents.hostname = resolvedHostname;
+  }
+  if (body !== void 0) {
+    contents.body = body;
+  }
+  return new import_protocol_http.HttpRequest(contents);
+}, "buildHttpRpcRequest");
+function sharedHeaders(operation) {
+  return {
+    "content-type": "application/x-amz-json-1.1",
+    "x-amz-target": `RedshiftServerless.${operation}`
+  };
+}
+__name(sharedHeaders, "sharedHeaders");
+
+// src/commands/ConvertRecoveryPointToSnapshotCommand.ts
+var ConvertRecoveryPointToSnapshotCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ConvertRecoveryPointToSnapshot", {}).n("RedshiftServerlessClient", "ConvertRecoveryPointToSnapshotCommand").f(void 0, void 0).ser(se_ConvertRecoveryPointToSnapshotCommand).de(de_ConvertRecoveryPointToSnapshotCommand).build() {
+  static {
+    __name(this, "ConvertRecoveryPointToSnapshotCommand");
+  }
+};
+
+// src/commands/CreateCustomDomainAssociationCommand.ts
+
+
+
+var CreateCustomDomainAssociationCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "CreateCustomDomainAssociation", {}).n("RedshiftServerlessClient", "CreateCustomDomainAssociationCommand").f(void 0, void 0).ser(se_CreateCustomDomainAssociationCommand).de(de_CreateCustomDomainAssociationCommand).build() {
+  static {
+    __name(this, "CreateCustomDomainAssociationCommand");
+  }
+};
+
+// src/commands/CreateEndpointAccessCommand.ts
+
+
+
+var CreateEndpointAccessCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "CreateEndpointAccess", {}).n("RedshiftServerlessClient", "CreateEndpointAccessCommand").f(void 0, void 0).ser(se_CreateEndpointAccessCommand).de(de_CreateEndpointAccessCommand).build() {
+  static {
+    __name(this, "CreateEndpointAccessCommand");
+  }
+};
+
+// src/commands/CreateNamespaceCommand.ts
+
+
+
+var CreateNamespaceCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "CreateNamespace", {}).n("RedshiftServerlessClient", "CreateNamespaceCommand").f(CreateNamespaceRequestFilterSensitiveLog, CreateNamespaceResponseFilterSensitiveLog).ser(se_CreateNamespaceCommand).de(de_CreateNamespaceCommand).build() {
+  static {
+    __name(this, "CreateNamespaceCommand");
+  }
+};
+
+// src/commands/CreateReservationCommand.ts
+
+
+
+var CreateReservationCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "CreateReservation", {}).n("RedshiftServerlessClient", "CreateReservationCommand").f(void 0, void 0).ser(se_CreateReservationCommand).de(de_CreateReservationCommand).build() {
+  static {
+    __name(this, "CreateReservationCommand");
+  }
+};
+
+// src/commands/CreateScheduledActionCommand.ts
+
+
+
+var CreateScheduledActionCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "CreateScheduledAction", {}).n("RedshiftServerlessClient", "CreateScheduledActionCommand").f(void 0, void 0).ser(se_CreateScheduledActionCommand).de(de_CreateScheduledActionCommand).build() {
+  static {
+    __name(this, "CreateScheduledActionCommand");
+  }
+};
+
+// src/commands/CreateSnapshotCommand.ts
+
+
+
+var CreateSnapshotCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "CreateSnapshot", {}).n("RedshiftServerlessClient", "CreateSnapshotCommand").f(void 0, void 0).ser(se_CreateSnapshotCommand).de(de_CreateSnapshotCommand).build() {
+  static {
+    __name(this, "CreateSnapshotCommand");
+  }
+};
+
+// src/commands/CreateSnapshotCopyConfigurationCommand.ts
+
+
+
+var CreateSnapshotCopyConfigurationCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "CreateSnapshotCopyConfiguration", {}).n("RedshiftServerlessClient", "CreateSnapshotCopyConfigurationCommand").f(void 0, void 0).ser(se_CreateSnapshotCopyConfigurationCommand).de(de_CreateSnapshotCopyConfigurationCommand).build() {
+  static {
+    __name(this, "CreateSnapshotCopyConfigurationCommand");
+  }
+};
+
+// src/commands/CreateUsageLimitCommand.ts
+
+
+
+var CreateUsageLimitCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "CreateUsageLimit", {}).n("RedshiftServerlessClient", "CreateUsageLimitCommand").f(void 0, void 0).ser(se_CreateUsageLimitCommand).de(de_CreateUsageLimitCommand).build() {
+  static {
+    __name(this, "CreateUsageLimitCommand");
+  }
+};
+
+// src/commands/CreateWorkgroupCommand.ts
+
+
+
+var CreateWorkgroupCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "CreateWorkgroup", {}).n("RedshiftServerlessClient", "CreateWorkgroupCommand").f(void 0, void 0).ser(se_CreateWorkgroupCommand).de(de_CreateWorkgroupCommand).build() {
+  static {
+    __name(this, "CreateWorkgroupCommand");
+  }
+};
+
+// src/commands/DeleteCustomDomainAssociationCommand.ts
+
+
+
+var DeleteCustomDomainAssociationCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "DeleteCustomDomainAssociation", {}).n("RedshiftServerlessClient", "DeleteCustomDomainAssociationCommand").f(void 0, void 0).ser(se_DeleteCustomDomainAssociationCommand).de(de_DeleteCustomDomainAssociationCommand).build() {
+  static {
+    __name(this, "DeleteCustomDomainAssociationCommand");
+  }
+};
+
+// src/commands/DeleteEndpointAccessCommand.ts
+
+
+
+var DeleteEndpointAccessCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "DeleteEndpointAccess", {}).n("RedshiftServerlessClient", "DeleteEndpointAccessCommand").f(void 0, void 0).ser(se_DeleteEndpointAccessCommand).de(de_DeleteEndpointAccessCommand).build() {
+  static {
+    __name(this, "DeleteEndpointAccessCommand");
+  }
+};
+
+// src/commands/DeleteNamespaceCommand.ts
+
+
+
+var DeleteNamespaceCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "DeleteNamespace", {}).n("RedshiftServerlessClient", "DeleteNamespaceCommand").f(void 0, DeleteNamespaceResponseFilterSensitiveLog).ser(se_DeleteNamespaceCommand).de(de_DeleteNamespaceCommand).build() {
+  static {
+    __name(this, "DeleteNamespaceCommand");
+  }
+};
+
+// src/commands/DeleteResourcePolicyCommand.ts
+
+
+
+var DeleteResourcePolicyCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "DeleteResourcePolicy", {}).n("RedshiftServerlessClient", "DeleteResourcePolicyCommand").f(void 0, void 0).ser(se_DeleteResourcePolicyCommand).de(de_DeleteResourcePolicyCommand).build() {
+  static {
+    __name(this, "DeleteResourcePolicyCommand");
+  }
+};
+
+// src/commands/DeleteScheduledActionCommand.ts
+
+
+
+var DeleteScheduledActionCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "DeleteScheduledAction", {}).n("RedshiftServerlessClient", "DeleteScheduledActionCommand").f(void 0, void 0).ser(se_DeleteScheduledActionCommand).de(de_DeleteScheduledActionCommand).build() {
+  static {
+    __name(this, "DeleteScheduledActionCommand");
+  }
+};
+
+// src/commands/DeleteSnapshotCommand.ts
+
+
+
+var DeleteSnapshotCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "DeleteSnapshot", {}).n("RedshiftServerlessClient", "DeleteSnapshotCommand").f(void 0, void 0).ser(se_DeleteSnapshotCommand).de(de_DeleteSnapshotCommand).build() {
+  static {
+    __name(this, "DeleteSnapshotCommand");
+  }
+};
+
+// src/commands/DeleteSnapshotCopyConfigurationCommand.ts
+
+
+
+var DeleteSnapshotCopyConfigurationCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "DeleteSnapshotCopyConfiguration", {}).n("RedshiftServerlessClient", "DeleteSnapshotCopyConfigurationCommand").f(void 0, void 0).ser(se_DeleteSnapshotCopyConfigurationCommand).de(de_DeleteSnapshotCopyConfigurationCommand).build() {
+  static {
+    __name(this, "DeleteSnapshotCopyConfigurationCommand");
+  }
+};
+
+// src/commands/DeleteUsageLimitCommand.ts
+
+
+
+var DeleteUsageLimitCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "DeleteUsageLimit", {}).n("RedshiftServerlessClient", "DeleteUsageLimitCommand").f(void 0, void 0).ser(se_DeleteUsageLimitCommand).de(de_DeleteUsageLimitCommand).build() {
+  static {
+    __name(this, "DeleteUsageLimitCommand");
+  }
+};
+
+// src/commands/DeleteWorkgroupCommand.ts
+
+
+
+var DeleteWorkgroupCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "DeleteWorkgroup", {}).n("RedshiftServerlessClient", "DeleteWorkgroupCommand").f(void 0, void 0).ser(se_DeleteWorkgroupCommand).de(de_DeleteWorkgroupCommand).build() {
+  static {
+    __name(this, "DeleteWorkgroupCommand");
+  }
+};
+
+// src/commands/GetCredentialsCommand.ts
+
+
+
+var GetCredentialsCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetCredentials", {}).n("RedshiftServerlessClient", "GetCredentialsCommand").f(void 0, GetCredentialsResponseFilterSensitiveLog).ser(se_GetCredentialsCommand).de(de_GetCredentialsCommand).build() {
+  static {
+    __name(this, "GetCredentialsCommand");
+  }
+};
+
+// src/commands/GetCustomDomainAssociationCommand.ts
+
+
+
+var GetCustomDomainAssociationCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetCustomDomainAssociation", {}).n("RedshiftServerlessClient", "GetCustomDomainAssociationCommand").f(void 0, void 0).ser(se_GetCustomDomainAssociationCommand).de(de_GetCustomDomainAssociationCommand).build() {
+  static {
+    __name(this, "GetCustomDomainAssociationCommand");
+  }
+};
+
+// src/commands/GetEndpointAccessCommand.ts
+
+
+
+var GetEndpointAccessCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetEndpointAccess", {}).n("RedshiftServerlessClient", "GetEndpointAccessCommand").f(void 0, void 0).ser(se_GetEndpointAccessCommand).de(de_GetEndpointAccessCommand).build() {
+  static {
+    __name(this, "GetEndpointAccessCommand");
+  }
+};
+
+// src/commands/GetNamespaceCommand.ts
+
+
+
+var GetNamespaceCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetNamespace", {}).n("RedshiftServerlessClient", "GetNamespaceCommand").f(void 0, GetNamespaceResponseFilterSensitiveLog).ser(se_GetNamespaceCommand).de(de_GetNamespaceCommand).build() {
+  static {
+    __name(this, "GetNamespaceCommand");
+  }
+};
+
+// src/commands/GetRecoveryPointCommand.ts
+
+
+
+var GetRecoveryPointCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetRecoveryPoint", {}).n("RedshiftServerlessClient", "GetRecoveryPointCommand").f(void 0, void 0).ser(se_GetRecoveryPointCommand).de(de_GetRecoveryPointCommand).build() {
+  static {
+    __name(this, "GetRecoveryPointCommand");
+  }
+};
+
+// src/commands/GetReservationCommand.ts
+
+
+
+var GetReservationCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetReservation", {}).n("RedshiftServerlessClient", "GetReservationCommand").f(void 0, void 0).ser(se_GetReservationCommand).de(de_GetReservationCommand).build() {
+  static {
+    __name(this, "GetReservationCommand");
+  }
+};
+
+// src/commands/GetReservationOfferingCommand.ts
+
+
+
+var GetReservationOfferingCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetReservationOffering", {}).n("RedshiftServerlessClient", "GetReservationOfferingCommand").f(void 0, void 0).ser(se_GetReservationOfferingCommand).de(de_GetReservationOfferingCommand).build() {
+  static {
+    __name(this, "GetReservationOfferingCommand");
+  }
+};
+
+// src/commands/GetResourcePolicyCommand.ts
+
+
+
+var GetResourcePolicyCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetResourcePolicy", {}).n("RedshiftServerlessClient", "GetResourcePolicyCommand").f(void 0, void 0).ser(se_GetResourcePolicyCommand).de(de_GetResourcePolicyCommand).build() {
+  static {
+    __name(this, "GetResourcePolicyCommand");
+  }
+};
+
+// src/commands/GetScheduledActionCommand.ts
+
+
+
+var GetScheduledActionCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetScheduledAction", {}).n("RedshiftServerlessClient", "GetScheduledActionCommand").f(void 0, void 0).ser(se_GetScheduledActionCommand).de(de_GetScheduledActionCommand).build() {
+  static {
+    __name(this, "GetScheduledActionCommand");
+  }
+};
+
+// src/commands/GetSnapshotCommand.ts
+
+
+
+var GetSnapshotCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetSnapshot", {}).n("RedshiftServerlessClient", "GetSnapshotCommand").f(void 0, void 0).ser(se_GetSnapshotCommand).de(de_GetSnapshotCommand).build() {
+  static {
+    __name(this, "GetSnapshotCommand");
+  }
+};
+
+// src/commands/GetTableRestoreStatusCommand.ts
+
+
+
+var GetTableRestoreStatusCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetTableRestoreStatus", {}).n("RedshiftServerlessClient", "GetTableRestoreStatusCommand").f(void 0, void 0).ser(se_GetTableRestoreStatusCommand).de(de_GetTableRestoreStatusCommand).build() {
+  static {
+    __name(this, "GetTableRestoreStatusCommand");
+  }
+};
+
+// src/commands/GetTrackCommand.ts
+
+
+
+var GetTrackCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetTrack", {}).n("RedshiftServerlessClient", "GetTrackCommand").f(void 0, void 0).ser(se_GetTrackCommand).de(de_GetTrackCommand).build() {
+  static {
+    __name(this, "GetTrackCommand");
+  }
+};
+
+// src/commands/GetUsageLimitCommand.ts
+
+
+
+var GetUsageLimitCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetUsageLimit", {}).n("RedshiftServerlessClient", "GetUsageLimitCommand").f(void 0, void 0).ser(se_GetUsageLimitCommand).de(de_GetUsageLimitCommand).build() {
+  static {
+    __name(this, "GetUsageLimitCommand");
+  }
+};
+
+// src/commands/GetWorkgroupCommand.ts
+
+
+
+var GetWorkgroupCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "GetWorkgroup", {}).n("RedshiftServerlessClient", "GetWorkgroupCommand").f(void 0, void 0).ser(se_GetWorkgroupCommand).de(de_GetWorkgroupCommand).build() {
+  static {
+    __name(this, "GetWorkgroupCommand");
+  }
+};
+
+// src/commands/ListCustomDomainAssociationsCommand.ts
+
+
+
+var ListCustomDomainAssociationsCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListCustomDomainAssociations", {}).n("RedshiftServerlessClient", "ListCustomDomainAssociationsCommand").f(void 0, void 0).ser(se_ListCustomDomainAssociationsCommand).de(de_ListCustomDomainAssociationsCommand).build() {
+  static {
+    __name(this, "ListCustomDomainAssociationsCommand");
+  }
+};
+
+// src/commands/ListEndpointAccessCommand.ts
+
+
+
+var ListEndpointAccessCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListEndpointAccess", {}).n("RedshiftServerlessClient", "ListEndpointAccessCommand").f(void 0, void 0).ser(se_ListEndpointAccessCommand).de(de_ListEndpointAccessCommand).build() {
+  static {
+    __name(this, "ListEndpointAccessCommand");
+  }
+};
+
+// src/commands/ListManagedWorkgroupsCommand.ts
+
+
+
+var ListManagedWorkgroupsCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListManagedWorkgroups", {}).n("RedshiftServerlessClient", "ListManagedWorkgroupsCommand").f(void 0, void 0).ser(se_ListManagedWorkgroupsCommand).de(de_ListManagedWorkgroupsCommand).build() {
+  static {
+    __name(this, "ListManagedWorkgroupsCommand");
+  }
+};
+
+// src/commands/ListNamespacesCommand.ts
+
+
+
+var ListNamespacesCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListNamespaces", {}).n("RedshiftServerlessClient", "ListNamespacesCommand").f(void 0, ListNamespacesResponseFilterSensitiveLog).ser(se_ListNamespacesCommand).de(de_ListNamespacesCommand).build() {
+  static {
+    __name(this, "ListNamespacesCommand");
+  }
+};
+
+// src/commands/ListRecoveryPointsCommand.ts
+
+
+
+var ListRecoveryPointsCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListRecoveryPoints", {}).n("RedshiftServerlessClient", "ListRecoveryPointsCommand").f(void 0, void 0).ser(se_ListRecoveryPointsCommand).de(de_ListRecoveryPointsCommand).build() {
+  static {
+    __name(this, "ListRecoveryPointsCommand");
+  }
+};
+
+// src/commands/ListReservationOfferingsCommand.ts
+
+
+
+var ListReservationOfferingsCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListReservationOfferings", {}).n("RedshiftServerlessClient", "ListReservationOfferingsCommand").f(void 0, void 0).ser(se_ListReservationOfferingsCommand).de(de_ListReservationOfferingsCommand).build() {
+  static {
+    __name(this, "ListReservationOfferingsCommand");
+  }
+};
+
+// src/commands/ListReservationsCommand.ts
+
+
+
+var ListReservationsCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListReservations", {}).n("RedshiftServerlessClient", "ListReservationsCommand").f(void 0, void 0).ser(se_ListReservationsCommand).de(de_ListReservationsCommand).build() {
+  static {
+    __name(this, "ListReservationsCommand");
+  }
+};
+
+// src/commands/ListScheduledActionsCommand.ts
+
+
+
+var ListScheduledActionsCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListScheduledActions", {}).n("RedshiftServerlessClient", "ListScheduledActionsCommand").f(void 0, void 0).ser(se_ListScheduledActionsCommand).de(de_ListScheduledActionsCommand).build() {
+  static {
+    __name(this, "ListScheduledActionsCommand");
+  }
+};
+
+// src/commands/ListSnapshotCopyConfigurationsCommand.ts
+
+
+
+var ListSnapshotCopyConfigurationsCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListSnapshotCopyConfigurations", {}).n("RedshiftServerlessClient", "ListSnapshotCopyConfigurationsCommand").f(void 0, void 0).ser(se_ListSnapshotCopyConfigurationsCommand).de(de_ListSnapshotCopyConfigurationsCommand).build() {
+  static {
+    __name(this, "ListSnapshotCopyConfigurationsCommand");
+  }
+};
+
+// src/commands/ListSnapshotsCommand.ts
+
+
+
+var ListSnapshotsCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListSnapshots", {}).n("RedshiftServerlessClient", "ListSnapshotsCommand").f(void 0, void 0).ser(se_ListSnapshotsCommand).de(de_ListSnapshotsCommand).build() {
+  static {
+    __name(this, "ListSnapshotsCommand");
+  }
+};
+
+// src/commands/ListTableRestoreStatusCommand.ts
+
+
+
+var ListTableRestoreStatusCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListTableRestoreStatus", {}).n("RedshiftServerlessClient", "ListTableRestoreStatusCommand").f(void 0, void 0).ser(se_ListTableRestoreStatusCommand).de(de_ListTableRestoreStatusCommand).build() {
+  static {
+    __name(this, "ListTableRestoreStatusCommand");
+  }
+};
+
+// src/commands/ListTagsForResourceCommand.ts
+
+
+
+var ListTagsForResourceCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListTagsForResource", {}).n("RedshiftServerlessClient", "ListTagsForResourceCommand").f(void 0, void 0).ser(se_ListTagsForResourceCommand).de(de_ListTagsForResourceCommand).build() {
+  static {
+    __name(this, "ListTagsForResourceCommand");
+  }
+};
+
+// src/commands/ListTracksCommand.ts
+
+
+
+var ListTracksCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListTracks", {}).n("RedshiftServerlessClient", "ListTracksCommand").f(void 0, void 0).ser(se_ListTracksCommand).de(de_ListTracksCommand).build() {
+  static {
+    __name(this, "ListTracksCommand");
+  }
+};
+
+// src/commands/ListUsageLimitsCommand.ts
+
+
+
+var ListUsageLimitsCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListUsageLimits", {}).n("RedshiftServerlessClient", "ListUsageLimitsCommand").f(void 0, void 0).ser(se_ListUsageLimitsCommand).de(de_ListUsageLimitsCommand).build() {
+  static {
+    __name(this, "ListUsageLimitsCommand");
+  }
+};
+
+// src/commands/ListWorkgroupsCommand.ts
+
+
+
+var ListWorkgroupsCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "ListWorkgroups", {}).n("RedshiftServerlessClient", "ListWorkgroupsCommand").f(void 0, void 0).ser(se_ListWorkgroupsCommand).de(de_ListWorkgroupsCommand).build() {
+  static {
+    __name(this, "ListWorkgroupsCommand");
+  }
+};
+
+// src/commands/PutResourcePolicyCommand.ts
+
+
+
+var PutResourcePolicyCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "PutResourcePolicy", {}).n("RedshiftServerlessClient", "PutResourcePolicyCommand").f(void 0, void 0).ser(se_PutResourcePolicyCommand).de(de_PutResourcePolicyCommand).build() {
+  static {
+    __name(this, "PutResourcePolicyCommand");
+  }
+};
+
+// src/commands/RestoreFromRecoveryPointCommand.ts
+
+
+
+var RestoreFromRecoveryPointCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "RestoreFromRecoveryPoint", {}).n("RedshiftServerlessClient", "RestoreFromRecoveryPointCommand").f(void 0, RestoreFromRecoveryPointResponseFilterSensitiveLog).ser(se_RestoreFromRecoveryPointCommand).de(de_RestoreFromRecoveryPointCommand).build() {
+  static {
+    __name(this, "RestoreFromRecoveryPointCommand");
+  }
+};
+
+// src/commands/RestoreFromSnapshotCommand.ts
+
+
+
+var RestoreFromSnapshotCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "RestoreFromSnapshot", {}).n("RedshiftServerlessClient", "RestoreFromSnapshotCommand").f(void 0, RestoreFromSnapshotResponseFilterSensitiveLog).ser(se_RestoreFromSnapshotCommand).de(de_RestoreFromSnapshotCommand).build() {
+  static {
+    __name(this, "RestoreFromSnapshotCommand");
+  }
+};
+
+// src/commands/RestoreTableFromRecoveryPointCommand.ts
+
+
+
+var RestoreTableFromRecoveryPointCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "RestoreTableFromRecoveryPoint", {}).n("RedshiftServerlessClient", "RestoreTableFromRecoveryPointCommand").f(void 0, void 0).ser(se_RestoreTableFromRecoveryPointCommand).de(de_RestoreTableFromRecoveryPointCommand).build() {
+  static {
+    __name(this, "RestoreTableFromRecoveryPointCommand");
+  }
+};
+
+// src/commands/RestoreTableFromSnapshotCommand.ts
+
+
+
+var RestoreTableFromSnapshotCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "RestoreTableFromSnapshot", {}).n("RedshiftServerlessClient", "RestoreTableFromSnapshotCommand").f(void 0, void 0).ser(se_RestoreTableFromSnapshotCommand).de(de_RestoreTableFromSnapshotCommand).build() {
+  static {
+    __name(this, "RestoreTableFromSnapshotCommand");
+  }
+};
+
+// src/commands/TagResourceCommand.ts
+
+
+
+var TagResourceCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "TagResource", {}).n("RedshiftServerlessClient", "TagResourceCommand").f(void 0, void 0).ser(se_TagResourceCommand).de(de_TagResourceCommand).build() {
+  static {
+    __name(this, "TagResourceCommand");
+  }
+};
+
+// src/commands/UntagResourceCommand.ts
+
+
+
+var UntagResourceCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "UntagResource", {}).n("RedshiftServerlessClient", "UntagResourceCommand").f(void 0, void 0).ser(se_UntagResourceCommand).de(de_UntagResourceCommand).build() {
+  static {
+    __name(this, "UntagResourceCommand");
+  }
+};
+
+// src/commands/UpdateCustomDomainAssociationCommand.ts
+
+
+
+var UpdateCustomDomainAssociationCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "UpdateCustomDomainAssociation", {}).n("RedshiftServerlessClient", "UpdateCustomDomainAssociationCommand").f(void 0, void 0).ser(se_UpdateCustomDomainAssociationCommand).de(de_UpdateCustomDomainAssociationCommand).build() {
+  static {
+    __name(this, "UpdateCustomDomainAssociationCommand");
+  }
+};
+
+// src/commands/UpdateEndpointAccessCommand.ts
+
+
+
+var UpdateEndpointAccessCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "UpdateEndpointAccess", {}).n("RedshiftServerlessClient", "UpdateEndpointAccessCommand").f(void 0, void 0).ser(se_UpdateEndpointAccessCommand).de(de_UpdateEndpointAccessCommand).build() {
+  static {
+    __name(this, "UpdateEndpointAccessCommand");
+  }
+};
+
+// src/commands/UpdateNamespaceCommand.ts
+
+
+
+var UpdateNamespaceCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "UpdateNamespace", {}).n("RedshiftServerlessClient", "UpdateNamespaceCommand").f(UpdateNamespaceRequestFilterSensitiveLog, UpdateNamespaceResponseFilterSensitiveLog).ser(se_UpdateNamespaceCommand).de(de_UpdateNamespaceCommand).build() {
+  static {
+    __name(this, "UpdateNamespaceCommand");
+  }
+};
+
+// src/commands/UpdateScheduledActionCommand.ts
+
+
+
+var UpdateScheduledActionCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "UpdateScheduledAction", {}).n("RedshiftServerlessClient", "UpdateScheduledActionCommand").f(void 0, void 0).ser(se_UpdateScheduledActionCommand).de(de_UpdateScheduledActionCommand).build() {
+  static {
+    __name(this, "UpdateScheduledActionCommand");
+  }
+};
+
+// src/commands/UpdateSnapshotCommand.ts
+
+
+
+var UpdateSnapshotCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "UpdateSnapshot", {}).n("RedshiftServerlessClient", "UpdateSnapshotCommand").f(void 0, void 0).ser(se_UpdateSnapshotCommand).de(de_UpdateSnapshotCommand).build() {
+  static {
+    __name(this, "UpdateSnapshotCommand");
+  }
+};
+
+// src/commands/UpdateSnapshotCopyConfigurationCommand.ts
+
+
+
+var UpdateSnapshotCopyConfigurationCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "UpdateSnapshotCopyConfiguration", {}).n("RedshiftServerlessClient", "UpdateSnapshotCopyConfigurationCommand").f(void 0, void 0).ser(se_UpdateSnapshotCopyConfigurationCommand).de(de_UpdateSnapshotCopyConfigurationCommand).build() {
+  static {
+    __name(this, "UpdateSnapshotCopyConfigurationCommand");
+  }
+};
+
+// src/commands/UpdateUsageLimitCommand.ts
+
+
+
+var UpdateUsageLimitCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "UpdateUsageLimit", {}).n("RedshiftServerlessClient", "UpdateUsageLimitCommand").f(void 0, void 0).ser(se_UpdateUsageLimitCommand).de(de_UpdateUsageLimitCommand).build() {
+  static {
+    __name(this, "UpdateUsageLimitCommand");
+  }
+};
+
+// src/commands/UpdateWorkgroupCommand.ts
+
+
+
+var UpdateWorkgroupCommand = class extends import_smithy_client.Command.classBuilder().ep(commonParams).m(function(Command, cs, config, o) {
+  return [
+    (0, import_middleware_serde.getSerdePlugin)(config, this.serialize, this.deserialize),
+    (0, import_middleware_endpoint.getEndpointPlugin)(config, Command.getEndpointParameterInstructions())
+  ];
+}).s("RedshiftServerless", "UpdateWorkgroup", {}).n("RedshiftServerlessClient", "UpdateWorkgroupCommand").f(void 0, void 0).ser(se_UpdateWorkgroupCommand).de(de_UpdateWorkgroupCommand).build() {
+  static {
+    __name(this, "UpdateWorkgroupCommand");
+  }
+};
+
+// src/RedshiftServerless.ts
+var commands = {
+  ConvertRecoveryPointToSnapshotCommand,
+  CreateCustomDomainAssociationCommand,
+  CreateEndpointAccessCommand,
+  CreateNamespaceCommand,
+  CreateReservationCommand,
+  CreateScheduledActionCommand,
+  CreateSnapshotCommand,
+  CreateSnapshotCopyConfigurationCommand,
+  CreateUsageLimitCommand,
+  CreateWorkgroupCommand,
+  DeleteCustomDomainAssociationCommand,
+  DeleteEndpointAccessCommand,
+  DeleteNamespaceCommand,
+  DeleteResourcePolicyCommand,
+  DeleteScheduledActionCommand,
+  DeleteSnapshotCommand,
+  DeleteSnapshotCopyConfigurationCommand,
+  DeleteUsageLimitCommand,
+  DeleteWorkgroupCommand,
+  GetCredentialsCommand,
+  GetCustomDomainAssociationCommand,
+  GetEndpointAccessCommand,
+  GetNamespaceCommand,
+  GetRecoveryPointCommand,
+  GetReservationCommand,
+  GetReservationOfferingCommand,
+  GetResourcePolicyCommand,
+  GetScheduledActionCommand,
+  GetSnapshotCommand,
+  GetTableRestoreStatusCommand,
+  GetTrackCommand,
+  GetUsageLimitCommand,
+  GetWorkgroupCommand,
+  ListCustomDomainAssociationsCommand,
+  ListEndpointAccessCommand,
+  ListManagedWorkgroupsCommand,
+  ListNamespacesCommand,
+  ListRecoveryPointsCommand,
+  ListReservationOfferingsCommand,
+  ListReservationsCommand,
+  ListScheduledActionsCommand,
+  ListSnapshotCopyConfigurationsCommand,
+  ListSnapshotsCommand,
+  ListTableRestoreStatusCommand,
+  ListTagsForResourceCommand,
+  ListTracksCommand,
+  ListUsageLimitsCommand,
+  ListWorkgroupsCommand,
+  PutResourcePolicyCommand,
+  RestoreFromRecoveryPointCommand,
+  RestoreFromSnapshotCommand,
+  RestoreTableFromRecoveryPointCommand,
+  RestoreTableFromSnapshotCommand,
+  TagResourceCommand,
+  UntagResourceCommand,
+  UpdateCustomDomainAssociationCommand,
+  UpdateEndpointAccessCommand,
+  UpdateNamespaceCommand,
+  UpdateScheduledActionCommand,
+  UpdateSnapshotCommand,
+  UpdateSnapshotCopyConfigurationCommand,
+  UpdateUsageLimitCommand,
+  UpdateWorkgroupCommand
+};
+var RedshiftServerless = class extends RedshiftServerlessClient {
+  static {
+    __name(this, "RedshiftServerless");
+  }
+};
+(0, import_smithy_client.createAggregatedClient)(commands, RedshiftServerless);
+
+// src/pagination/ListCustomDomainAssociationsPaginator.ts
+
+var paginateListCustomDomainAssociations = (0, import_core.createPaginator)(RedshiftServerlessClient, ListCustomDomainAssociationsCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListEndpointAccessPaginator.ts
+
+var paginateListEndpointAccess = (0, import_core.createPaginator)(RedshiftServerlessClient, ListEndpointAccessCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListManagedWorkgroupsPaginator.ts
+
+var paginateListManagedWorkgroups = (0, import_core.createPaginator)(RedshiftServerlessClient, ListManagedWorkgroupsCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListNamespacesPaginator.ts
+
+var paginateListNamespaces = (0, import_core.createPaginator)(RedshiftServerlessClient, ListNamespacesCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListRecoveryPointsPaginator.ts
+
+var paginateListRecoveryPoints = (0, import_core.createPaginator)(RedshiftServerlessClient, ListRecoveryPointsCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListReservationOfferingsPaginator.ts
+
+var paginateListReservationOfferings = (0, import_core.createPaginator)(RedshiftServerlessClient, ListReservationOfferingsCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListReservationsPaginator.ts
+
+var paginateListReservations = (0, import_core.createPaginator)(RedshiftServerlessClient, ListReservationsCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListScheduledActionsPaginator.ts
+
+var paginateListScheduledActions = (0, import_core.createPaginator)(RedshiftServerlessClient, ListScheduledActionsCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListSnapshotCopyConfigurationsPaginator.ts
+
+var paginateListSnapshotCopyConfigurations = (0, import_core.createPaginator)(RedshiftServerlessClient, ListSnapshotCopyConfigurationsCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListSnapshotsPaginator.ts
+
+var paginateListSnapshots = (0, import_core.createPaginator)(RedshiftServerlessClient, ListSnapshotsCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListTableRestoreStatusPaginator.ts
+
+var paginateListTableRestoreStatus = (0, import_core.createPaginator)(RedshiftServerlessClient, ListTableRestoreStatusCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListTracksPaginator.ts
+
+var paginateListTracks = (0, import_core.createPaginator)(RedshiftServerlessClient, ListTracksCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListUsageLimitsPaginator.ts
+
+var paginateListUsageLimits = (0, import_core.createPaginator)(RedshiftServerlessClient, ListUsageLimitsCommand, "nextToken", "nextToken", "maxResults");
+
+// src/pagination/ListWorkgroupsPaginator.ts
+
+var paginateListWorkgroups = (0, import_core.createPaginator)(RedshiftServerlessClient, ListWorkgroupsCommand, "nextToken", "nextToken", "maxResults");
+// Annotate the CommonJS export names for ESM import in node:
+
+0 && (module.exports = {
+  RedshiftServerlessServiceException,
+  __Client,
+  RedshiftServerlessClient,
+  RedshiftServerless,
+  $Command,
+  ConvertRecoveryPointToSnapshotCommand,
+  CreateCustomDomainAssociationCommand,
+  CreateEndpointAccessCommand,
+  CreateNamespaceCommand,
+  CreateReservationCommand,
+  CreateScheduledActionCommand,
+  CreateSnapshotCommand,
+  CreateSnapshotCopyConfigurationCommand,
+  CreateUsageLimitCommand,
+  CreateWorkgroupCommand,
+  DeleteCustomDomainAssociationCommand,
+  DeleteEndpointAccessCommand,
+  DeleteNamespaceCommand,
+  DeleteResourcePolicyCommand,
+  DeleteScheduledActionCommand,
+  DeleteSnapshotCommand,
+  DeleteSnapshotCopyConfigurationCommand,
+  DeleteUsageLimitCommand,
+  DeleteWorkgroupCommand,
+  GetCredentialsCommand,
+  GetCustomDomainAssociationCommand,
+  GetEndpointAccessCommand,
+  GetNamespaceCommand,
+  GetRecoveryPointCommand,
+  GetReservationCommand,
+  GetReservationOfferingCommand,
+  GetResourcePolicyCommand,
+  GetScheduledActionCommand,
+  GetSnapshotCommand,
+  GetTableRestoreStatusCommand,
+  GetTrackCommand,
+  GetUsageLimitCommand,
+  GetWorkgroupCommand,
+  ListCustomDomainAssociationsCommand,
+  ListEndpointAccessCommand,
+  ListManagedWorkgroupsCommand,
+  ListNamespacesCommand,
+  ListRecoveryPointsCommand,
+  ListReservationOfferingsCommand,
+  ListReservationsCommand,
+  ListScheduledActionsCommand,
+  ListSnapshotCopyConfigurationsCommand,
+  ListSnapshotsCommand,
+  ListTableRestoreStatusCommand,
+  ListTagsForResourceCommand,
+  ListTracksCommand,
+  ListUsageLimitsCommand,
+  ListWorkgroupsCommand,
+  PutResourcePolicyCommand,
+  RestoreFromRecoveryPointCommand,
+  RestoreFromSnapshotCommand,
+  RestoreTableFromRecoveryPointCommand,
+  RestoreTableFromSnapshotCommand,
+  TagResourceCommand,
+  UntagResourceCommand,
+  UpdateCustomDomainAssociationCommand,
+  UpdateEndpointAccessCommand,
+  UpdateNamespaceCommand,
+  UpdateScheduledActionCommand,
+  UpdateSnapshotCommand,
+  UpdateSnapshotCopyConfigurationCommand,
+  UpdateUsageLimitCommand,
+  UpdateWorkgroupCommand,
+  paginateListCustomDomainAssociations,
+  paginateListEndpointAccess,
+  paginateListManagedWorkgroups,
+  paginateListNamespaces,
+  paginateListRecoveryPoints,
+  paginateListReservationOfferings,
+  paginateListReservations,
+  paginateListScheduledActions,
+  paginateListSnapshotCopyConfigurations,
+  paginateListSnapshots,
+  paginateListTableRestoreStatus,
+  paginateListTracks,
+  paginateListUsageLimits,
+  paginateListWorkgroups,
+  AccessDeniedException,
+  ConflictException,
+  SnapshotStatus,
+  InternalServerException,
+  ResourceNotFoundException,
+  ServiceQuotaExceededException,
+  TooManyTagsException,
+  ValidationException,
+  ThrottlingException,
+  LogExport,
+  NamespaceStatus,
+  OfferingType,
+  Schedule,
+  TargetAction,
+  State,
+  UsageLimitBreachAction,
+  UsageLimitPeriod,
+  UsageLimitUsageType,
+  PerformanceTargetStatus,
+  WorkgroupStatus,
+  InsufficientCapacityException,
+  Ipv6CidrBlockNotFoundException,
+  InvalidPaginationException,
+  ManagedWorkgroupStatus,
+  CreateNamespaceRequestFilterSensitiveLog,
+  NamespaceFilterSensitiveLog,
+  CreateNamespaceResponseFilterSensitiveLog,
+  DeleteNamespaceResponseFilterSensitiveLog,
+  GetCredentialsResponseFilterSensitiveLog,
+  GetNamespaceResponseFilterSensitiveLog,
+  ListNamespacesResponseFilterSensitiveLog,
+  UpdateNamespaceRequestFilterSensitiveLog,
+  UpdateNamespaceResponseFilterSensitiveLog,
+  RestoreFromRecoveryPointResponseFilterSensitiveLog,
+  RestoreFromSnapshotResponseFilterSensitiveLog
+});
+

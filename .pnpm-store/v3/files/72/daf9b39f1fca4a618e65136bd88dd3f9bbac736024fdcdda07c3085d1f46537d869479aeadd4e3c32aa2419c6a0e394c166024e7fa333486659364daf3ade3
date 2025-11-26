@@ -1,0 +1,9 @@
+import { textHelper } from '../../utilities';
+export const pascalCasePropertyNameResolver = (contentType, element) => {
+    return textHelper.addUnderscoreWhenStarsWithNumber(textHelper.removeZeroWidthCharacters(toPascalCase(element)));
+};
+function toPascalCase(str) {
+    str = str.replace(textHelper.getPropertyNameRegex(), (_, c) => (c ? c.toUpperCase() : ''));
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
+}
+//# sourceMappingURL=pascal-case-property-name-resolver.class.js.map

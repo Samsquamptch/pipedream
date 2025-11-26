@@ -1,0 +1,7 @@
+export declare enum Verdict {
+    CLEAN = "Clean",
+    MALICIOUS = "Malicious",
+    PUP = "Pup",
+    UNKNOWN = "Unknown"
+}
+//# sourceMappingURL=Verdict.d.ts.map

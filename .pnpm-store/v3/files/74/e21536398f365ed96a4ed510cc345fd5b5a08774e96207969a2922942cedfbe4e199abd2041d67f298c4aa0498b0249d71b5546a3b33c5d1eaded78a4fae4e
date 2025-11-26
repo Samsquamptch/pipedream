@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  ListRecoveryPointsRequest,
+  ListRecoveryPointsResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface ListRecoveryPointsCommandInput
+  extends ListRecoveryPointsRequest {}
+export interface ListRecoveryPointsCommandOutput
+  extends ListRecoveryPointsResponse,
+    __MetadataBearer {}
+declare const ListRecoveryPointsCommand_base: {
+  new (
+    input: ListRecoveryPointsCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListRecoveryPointsCommandInput,
+    ListRecoveryPointsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    ...[input]: [] | [ListRecoveryPointsCommandInput]
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListRecoveryPointsCommandInput,
+    ListRecoveryPointsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class ListRecoveryPointsCommand extends ListRecoveryPointsCommand_base {
+  protected static __types: {
+    api: {
+      input: ListRecoveryPointsRequest;
+      output: ListRecoveryPointsResponse;
+    };
+    sdk: {
+      input: ListRecoveryPointsCommandInput;
+      output: ListRecoveryPointsCommandOutput;
+    };
+  };
+}

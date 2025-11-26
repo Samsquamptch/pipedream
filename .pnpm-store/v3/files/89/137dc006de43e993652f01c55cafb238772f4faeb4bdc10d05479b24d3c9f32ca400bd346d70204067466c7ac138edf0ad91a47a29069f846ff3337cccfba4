@@ -1,0 +1,4 @@
+import { createPaginator } from "@smithy/core";
+import { ListScheduledActionsCommand, } from "../commands/ListScheduledActionsCommand";
+import { RedshiftServerlessClient } from "../RedshiftServerlessClient";
+export const paginateListScheduledActions = createPaginator(RedshiftServerlessClient, ListScheduledActionsCommand, "nextToken", "nextToken", "maxResults");

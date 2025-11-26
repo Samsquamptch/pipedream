@@ -1,0 +1,550 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotAzureStoreInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    credentials: z.ZodOptional<z.ZodString>;
+    account: z.ZodOptional<z.ZodString>;
+    container: z.ZodOptional<z.ZodString>;
+    key: z.ZodOptional<z.ZodString>;
+} & {
+    robot: z.ZodLiteral<"/azure/store">;
+    path: z.ZodDefault<z.ZodString>;
+    content_type: z.ZodOptional<z.ZodString>;
+    content_encoding: z.ZodOptional<z.ZodString>;
+    content_language: z.ZodOptional<z.ZodString>;
+    content_disposition: z.ZodOptional<z.ZodString>;
+    cache_control: z.ZodOptional<z.ZodString>;
+    metadata: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodString>>;
+    sas_expires_in: z.ZodOptional<z.ZodNumber>;
+    sas_permissions: z.ZodOptional<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    path: string;
+    robot: "/azure/store";
+    result: boolean;
+    force_accept: boolean;
+    metadata: Record<string, string>;
+    key?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    credentials?: string | undefined;
+    account?: string | undefined;
+    container?: string | undefined;
+    content_type?: string | undefined;
+    content_encoding?: string | undefined;
+    content_language?: string | undefined;
+    content_disposition?: string | undefined;
+    cache_control?: string | undefined;
+    sas_expires_in?: number | undefined;
+    sas_permissions?: string | undefined;
+}, {
+    robot: "/azure/store";
+    path?: string | undefined;
+    key?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    credentials?: string | undefined;
+    account?: string | undefined;
+    container?: string | undefined;
+    content_type?: string | undefined;
+    content_encoding?: string | undefined;
+    content_language?: string | undefined;
+    content_disposition?: string | undefined;
+    cache_control?: string | undefined;
+    metadata?: Record<string, string> | undefined;
+    sas_expires_in?: number | undefined;
+    sas_permissions?: string | undefined;
+}>;
+export declare const robotAzureStoreInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    credentials: z.ZodOptional<z.ZodString>;
+    account: z.ZodOptional<z.ZodString>;
+    container: z.ZodOptional<z.ZodString>;
+    key: z.ZodOptional<z.ZodString>;
+    robot: z.ZodLiteral<"/azure/store">;
+    path: z.ZodDefault<z.ZodString>;
+    content_type: z.ZodOptional<z.ZodString>;
+    content_encoding: z.ZodOptional<z.ZodString>;
+    content_language: z.ZodOptional<z.ZodString>;
+    content_disposition: z.ZodOptional<z.ZodString>;
+    cache_control: z.ZodOptional<z.ZodString>;
+    metadata: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodString>>;
+    sas_expires_in: z.ZodOptional<z.ZodNumber>;
+    sas_permissions: z.ZodOptional<z.ZodString>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    path: string;
+    robot: "/azure/store";
+    force_accept: boolean;
+    metadata: Record<string, string>;
+    key?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    credentials?: string | undefined;
+    account?: string | undefined;
+    container?: string | undefined;
+    content_type?: string | undefined;
+    content_encoding?: string | undefined;
+    content_language?: string | undefined;
+    content_disposition?: string | undefined;
+    cache_control?: string | undefined;
+    sas_expires_in?: number | undefined;
+    sas_permissions?: string | undefined;
+}, {
+    robot: "/azure/store";
+    path?: string | undefined;
+    key?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    credentials?: string | undefined;
+    account?: string | undefined;
+    container?: string | undefined;
+    content_type?: string | undefined;
+    content_encoding?: string | undefined;
+    content_language?: string | undefined;
+    content_disposition?: string | undefined;
+    cache_control?: string | undefined;
+    metadata?: Record<string, string> | undefined;
+    sas_expires_in?: number | undefined;
+    sas_permissions?: string | undefined;
+}>;
+export type RobotAzureStoreInstructions = z.infer<typeof robotAzureStoreInstructionsSchema>;
+export type RobotAzureStoreInstructionsWithHiddenFields = z.infer<typeof robotAzureStoreInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotAzureStoreInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    credentials: z.ZodOptional<z.ZodString>;
+    account: z.ZodOptional<z.ZodString>;
+    container: z.ZodOptional<z.ZodString>;
+    key: z.ZodOptional<z.ZodString>;
+    robot: z.ZodLiteral<"/azure/store">;
+    path: z.ZodDefault<z.ZodString>;
+    content_type: z.ZodOptional<z.ZodString>;
+    content_encoding: z.ZodOptional<z.ZodString>;
+    content_language: z.ZodOptional<z.ZodString>;
+    content_disposition: z.ZodOptional<z.ZodString>;
+    cache_control: z.ZodOptional<z.ZodString>;
+    metadata: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodString>>;
+    sas_expires_in: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    sas_permissions: z.ZodOptional<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    path: string;
+    robot: "/azure/store";
+    result: string | boolean;
+    force_accept: string | boolean;
+    metadata: Record<string, string>;
+    key?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    credentials?: string | undefined;
+    account?: string | undefined;
+    container?: string | undefined;
+    content_type?: string | undefined;
+    content_encoding?: string | undefined;
+    content_language?: string | undefined;
+    content_disposition?: string | undefined;
+    cache_control?: string | undefined;
+    sas_expires_in?: string | number | undefined;
+    sas_permissions?: string | undefined;
+}, {
+    robot: "/azure/store";
+    path?: string | undefined;
+    key?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    credentials?: string | undefined;
+    account?: string | undefined;
+    container?: string | undefined;
+    content_type?: string | undefined;
+    content_encoding?: string | undefined;
+    content_language?: string | undefined;
+    content_disposition?: string | undefined;
+    cache_control?: string | undefined;
+    metadata?: Record<string, string> | undefined;
+    sas_expires_in?: string | number | undefined;
+    sas_permissions?: string | undefined;
+}>;
+export type InterpolatableRobotAzureStoreInstructions = InterpolatableRobotAzureStoreInstructionsInput;
+export type InterpolatableRobotAzureStoreInstructionsInput = z.input<typeof interpolatableRobotAzureStoreInstructionsSchema>;
+export declare const interpolatableRobotAzureStoreInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    credentials: z.ZodOptional<z.ZodString>;
+    account: z.ZodOptional<z.ZodString>;
+    container: z.ZodOptional<z.ZodString>;
+    key: z.ZodOptional<z.ZodString>;
+    robot: z.ZodLiteral<"/azure/store">;
+    path: z.ZodDefault<z.ZodString>;
+    content_type: z.ZodOptional<z.ZodString>;
+    content_encoding: z.ZodOptional<z.ZodString>;
+    content_language: z.ZodOptional<z.ZodString>;
+    content_disposition: z.ZodOptional<z.ZodString>;
+    cache_control: z.ZodOptional<z.ZodString>;
+    metadata: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodString>>;
+    sas_expires_in: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    sas_permissions: z.ZodOptional<z.ZodString>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    path: string;
+    robot: "/azure/store";
+    force_accept: string | boolean;
+    metadata: Record<string, string>;
+    key?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    credentials?: string | undefined;
+    account?: string | undefined;
+    container?: string | undefined;
+    content_type?: string | undefined;
+    content_encoding?: string | undefined;
+    content_language?: string | undefined;
+    content_disposition?: string | undefined;
+    cache_control?: string | undefined;
+    sas_expires_in?: string | number | undefined;
+    sas_permissions?: string | undefined;
+}, {
+    robot: "/azure/store";
+    path?: string | undefined;
+    key?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    credentials?: string | undefined;
+    account?: string | undefined;
+    container?: string | undefined;
+    content_type?: string | undefined;
+    content_encoding?: string | undefined;
+    content_language?: string | undefined;
+    content_disposition?: string | undefined;
+    cache_control?: string | undefined;
+    metadata?: Record<string, string> | undefined;
+    sas_expires_in?: string | number | undefined;
+    sas_permissions?: string | undefined;
+}>;
+export type InterpolatableRobotAzureStoreInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotAzureStoreInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotAzureStoreInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotAzureStoreInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=azure-store.d.ts.map

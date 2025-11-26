@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  GetTableRestoreStatusRequest,
+  GetTableRestoreStatusResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface GetTableRestoreStatusCommandInput
+  extends GetTableRestoreStatusRequest {}
+export interface GetTableRestoreStatusCommandOutput
+  extends GetTableRestoreStatusResponse,
+    __MetadataBearer {}
+declare const GetTableRestoreStatusCommand_base: {
+  new (
+    input: GetTableRestoreStatusCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetTableRestoreStatusCommandInput,
+    GetTableRestoreStatusCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: GetTableRestoreStatusCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetTableRestoreStatusCommandInput,
+    GetTableRestoreStatusCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class GetTableRestoreStatusCommand extends GetTableRestoreStatusCommand_base {
+  protected static __types: {
+    api: {
+      input: GetTableRestoreStatusRequest;
+      output: GetTableRestoreStatusResponse;
+    };
+    sdk: {
+      input: GetTableRestoreStatusCommandInput;
+      output: GetTableRestoreStatusCommandOutput;
+    };
+  };
+}

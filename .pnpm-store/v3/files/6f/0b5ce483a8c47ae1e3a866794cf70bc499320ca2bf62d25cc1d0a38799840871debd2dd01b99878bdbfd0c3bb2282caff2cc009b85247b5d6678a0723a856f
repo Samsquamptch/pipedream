@@ -1,0 +1,6 @@
+import { NebulaRequest, TableState } from '../lib/types';
+export declare class CodeHelper {
+    toSQL(req: NebulaRequest): string;
+    run(code: string, tableState: TableState, onError: (err: string, s: any) => void): NebulaRequest | null;
+}
+export declare const codeHelper: () => CodeHelper;

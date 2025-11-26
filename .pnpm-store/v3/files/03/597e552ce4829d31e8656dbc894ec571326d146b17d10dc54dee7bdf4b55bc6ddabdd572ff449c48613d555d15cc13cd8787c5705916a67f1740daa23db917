@@ -1,0 +1,8 @@
+export default class ClientCredentialsGrantAuthenticator {
+    private clientId;
+    private clientSecret;
+    private tokenEndpoint;
+    constructor(clientId: string, clientSecret: string, tokenEndpoint: string);
+    getToken(): Promise<any>;
+}
+//# sourceMappingURL=ClientCredentialsGrantAuthenticator.d.ts.map

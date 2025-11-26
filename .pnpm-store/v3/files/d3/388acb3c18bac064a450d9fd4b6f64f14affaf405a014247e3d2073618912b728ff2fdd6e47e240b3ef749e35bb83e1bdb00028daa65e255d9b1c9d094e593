@@ -1,0 +1,28 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SDKError = exports.SDKErrorType = void 0;
+// src/errors.ts
+var SDKErrorType;
+(function (SDKErrorType) {
+    SDKErrorType["Unauthorized"] = "unauthorized";
+    SDKErrorType["NotFound"] = "not_found";
+    SDKErrorType["BadRequest"] = "bad_request";
+    SDKErrorType["ApiError"] = "api_error";
+    SDKErrorType["Unknown"] = "unknown";
+    SDKErrorType["RateLimitExceeded"] = "rate_limit_exceeded";
+    SDKErrorType["PaymentRequired"] = "payment_required";
+    SDKErrorType["ValidationError"] = "validation_error";
+})(SDKErrorType || (exports.SDKErrorType = SDKErrorType = {}));
+class SDKError extends Error {
+    constructor(type, message) {
+        super(message);
+        this.name = "UtopianLabsError";
+        this.type = type;
+        // This is needed to make instanceof work correctly in TypeScript
+        Object.setPrototypeOf(this, SDKError.prototype);
+    }
+    static isSDKError(error) {
+        return error instanceof SDKError;
+    }
+}
+exports.SDKError = SDKError;

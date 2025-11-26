@@ -1,0 +1,333 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const stringData = "foo";
+const num = 3;
+const bool = true;
+const n = null;
+const arr = [
+    "hello",
+    "world",
+];
+const arraysAreJSONToo = arr;
+const soAreObject = {
+    foo: "bar",
+    blah: [
+        "hello",
+        "world",
+    ],
+    null: null,
+    bool: false,
+};
+// @ts-expect-error $ExpectError - can't serialize functions to JSON
+const func = () => { console.log("foo"); };
+const httpConfig = {
+    method: "POST",
+    url: "https://example.com",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    params: {
+        foo: "bar",
+    },
+    auth: {
+        username: "user",
+        password: "pass",
+    },
+    data: {
+        foo: "bar",
+    },
+};
+const badHTTPConfig = {
+    // @ts-expect-error $ExpectError - bad method
+    method: "FOO",
+    url: "https://example.com",
+    headers: {
+        "Content-Type": "application/json",
+    },
+};
+const s3Config = {
+    bucket: "foo",
+    prefix: "bar/",
+    payload: {
+        hello: "world",
+    },
+};
+const emailConfig = {
+    subject: "foo",
+};
+const emailOptionalConfig = {
+    subject: "foo",
+    text: "hello, world",
+    html: "<h1>hello, world</h1>",
+};
+const emitConfig = {
+    raw_event: "hello",
+};
+const emitObjectConfig = {
+    raw_event: {
+        foo: "bar",
+    },
+};
+const sseConfig = {
+    channel: "foo",
+    payload: "any",
+};
+const dollarSend = {
+    http: (config) => { console.log("foo"); },
+    email: (config) => { console.log("foo"); },
+    emit: (config) => { console.log("foo"); },
+    s3: (config) => { console.log("foo"); },
+    sse: (config) => { console.log("foo"); },
+};
+// @ts-expect-error $ExpectError - Missing s3
+const badDollarSend = {
+    http: (config) => { console.log("foo"); },
+    email: (config) => { console.log("foo"); },
+    emit: (config) => { console.log("foo"); },
+    sse: (config) => { console.log("foo"); },
+};
+const httpResponse = {
+    status: 200,
+    body: JSON.stringify({
+        foo: "bar",
+    }),
+    immediate: true,
+};
+const methods = {
+    getClient(foo, bar) {
+        return [
+            foo,
+            bar,
+        ];
+    },
+    randomNum() {
+        return Math.random();
+    },
+};
+const flowFunctions = {
+    exit: (reason) => { console.log(reason); },
+    delay: (ms) => {
+        return {
+            resume_url: "https://example.com",
+            cancel_url: "https://example.com",
+        };
+    },
+};
+const theDollar = {
+    export: (key, value) => { console.log("foo"); },
+    send: dollarSend,
+    respond: (response) => { console.log("foo"); },
+    flow: flowFunctions,
+};
+const googleSheets = {
+    type: "app",
+    app: "google_sheets",
+    propDefinitions: {
+        sheetId: {
+            label: "Sheet ID",
+            description: "hello, world",
+            type: "integer",
+            async options() {
+                return [
+                    1,
+                    2,
+                ];
+            },
+            optional: true,
+            default: "foo",
+            min: 0,
+            max: 10,
+        },
+    },
+};
+const github = {
+    type: "app",
+    app: "github",
+    propDefinitions: {
+        googleSheets,
+        sheetId: {
+            propDefinition: [
+                googleSheets,
+                "sheetId",
+            ],
+        },
+        url: {
+            type: "string",
+            options: [
+                "foo",
+                "bar",
+            ],
+            secret: true,
+        },
+    },
+    methods,
+};
+const httpProp = {
+    type: "$.interface.http",
+};
+const timerProp = {
+    type: "$.interface.timer",
+    default: {
+        intervalSeconds: 60 * 15,
+    },
+};
+const httpRequestProp = {
+    type: "http_request",
+    default: {
+        auth: {
+            type: "basic",
+            username: "u",
+            password: "p",
+            token: "t",
+        },
+        body: {
+            contentType: "application/json",
+            fields: [
+                {
+                    name: "n",
+                    value: "v",
+                },
+            ],
+            mode: "fields",
+            raw: "r",
+        },
+        headers: [
+            {
+                name: "n",
+                value: "v",
+            },
+        ],
+        method: "POST",
+        params: [
+            {
+                name: "n",
+                value: "v",
+            },
+        ],
+        tab: "Params",
+        url: "example.com",
+    },
+};
+const hooks = {
+    deploy: async () => { return; },
+    activate: async () => { return; },
+    deactivate: async () => { return; },
+};
+const source = {
+    key: "source",
+    name: "Test Source",
+    description: "hello, world",
+    version: "0.0.1",
+    type: "source",
+    methods,
+    hooks,
+    props: {
+        googleSheets,
+        github,
+        url: {
+            propDefinition: [
+                github,
+                "url",
+            ],
+        },
+    },
+    dedupe: "unique",
+    async run() {
+        this.$emit({
+            foo: "bar ",
+        }, {
+            id: "foo",
+            name: "channel",
+            summary: "Summary",
+            ts: 123,
+        });
+    },
+};
+// Bad sources
+// @ts-expect-error $ExpectError - Missing key
+const sourceMissingKey = {
+    version: "0.0.1",
+    type: "source",
+    run() { console.log("foo"); },
+};
+// @ts-expect-error $ExpectError - Missing version
+const sourceMissingVersion = {
+    key: "foo",
+    type: "source",
+    run() { console.log("foo"); },
+};
+// @ts-expect-error $ExpectError - Missing type
+const sourceMissingType = {
+    key: "foo",
+    version: "0.0.1",
+    run() { console.log("foo"); },
+};
+const sourceWrongType = {
+    key: "foo",
+    version: "0.0.1",
+    // @ts-expect-error $ExpectError - bad type
+    type: "action",
+    run() { console.log("foo"); },
+};
+const sourceWrongDedupeType = {
+    key: "foo",
+    version: "0.0.1",
+    type: "source",
+    // @ts-expect-error $ExpectError - bad dedupe type
+    dedupe: "badValue",
+    run() { console.log("foo"); },
+};
+const sourceReturningDataShouldWarn = {
+    key: "foo",
+    version: "0.0.1",
+    type: "source",
+    // @ts-expect-error $ExpectError - can't return data from source run method
+    run(event) { return "data"; },
+};
+const action = {
+    key: "action",
+    name: "Test Action",
+    description: "hello, world",
+    version: "0.0.1",
+    type: "action",
+    methods,
+    props: {
+        googleSheets,
+        github,
+        url: {
+            propDefinition: [
+                github,
+                "url",
+            ],
+        },
+    },
+    async run(event) {
+        return "foo";
+    },
+};
+// Bad actions
+// @ts-expect-error $ExpectError - Missing key
+const actionMissingKey = {
+    version: "0.0.1",
+    type: "action",
+    run() { console.log("foo"); },
+};
+// @ts-expect-error $ExpectError - Missing version
+const actionMissingVersion = {
+    key: "foo",
+    type: "action",
+    run() { console.log("foo"); },
+};
+// @ts-expect-error $ExpectError - Missing type
+const actionMissingType = {
+    key: "foo",
+    version: "0.0.1",
+    run() { console.log("foo"); },
+};
+const actionWrongType = {
+    key: "foo",
+    version: "0.0.1",
+    // @ts-expect-error $ExpectError - bad type
+    type: "source",
+    run() { console.log("foo"); },
+};

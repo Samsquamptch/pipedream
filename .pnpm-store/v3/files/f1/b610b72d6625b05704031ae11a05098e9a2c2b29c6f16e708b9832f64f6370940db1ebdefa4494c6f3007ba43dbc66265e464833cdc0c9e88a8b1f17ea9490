@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  CreateReservationRequest,
+  CreateReservationResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface CreateReservationCommandInput
+  extends CreateReservationRequest {}
+export interface CreateReservationCommandOutput
+  extends CreateReservationResponse,
+    __MetadataBearer {}
+declare const CreateReservationCommand_base: {
+  new (
+    input: CreateReservationCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    CreateReservationCommandInput,
+    CreateReservationCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: CreateReservationCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    CreateReservationCommandInput,
+    CreateReservationCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class CreateReservationCommand extends CreateReservationCommand_base {
+  protected static __types: {
+    api: {
+      input: CreateReservationRequest;
+      output: CreateReservationResponse;
+    };
+    sdk: {
+      input: CreateReservationCommandInput;
+      output: CreateReservationCommandOutput;
+    };
+  };
+}

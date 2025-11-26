@@ -1,0 +1,1 @@
+{"version":3,"file":"websocket_error.d.ts","sourceRoot":"","sources":["../../src/messages/websocket_error.ts"],"names":[],"mappings":"AACA,OAAO,EAAQ,OAAO,EAAE,MAAM,WAAW,CAAC;AAE1C,qBACa,cAAe,SAAQ,OAAO;IAEhB,IAAI,EAAE,MAAM;IACZ,IAAI,EAAE,MAAM;gBADZ,IAAI,EAAE,MAAM,EACZ,IAAI,EAAE,MAAM;CAItC"}

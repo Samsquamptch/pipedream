@@ -1,0 +1,50 @@
+/*
+ * Copyright 2023-present columns.ai
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { FontProps } from './font';
+
+// widget can be added to a graph, it auto sum/avg results.
+export type WidgetCompute = 'sum' | 'avg' | 'avg_pct' | 'diff_sum' | 'diff_avg' | 'diff_avg_pct';
+export const WidgetComputeNames: Record<WidgetCompute, string> = {
+  'sum': 'Sum',
+  'avg': 'Average',
+  'avg_pct': 'Average %',
+  'diff_sum': 'Growth Total',
+  'diff_avg': 'Growth Average',
+  'diff_avg_pct': 'Growth Average %',
+};
+export type TagData = {
+  value: number;
+  compute: WidgetCompute;
+  display: string;
+  color: string;
+  goal: number;
+};
+
+export type WidgetType = 'sum' | 'avg' | 'pct';
+export type WidgetData = {
+  id: string;
+
+  // @deprecated - each tag has its own compute now
+  type: WidgetType;
+  tags: Record<string, TagData>;
+  filters: string[];
+  font: FontProps;
+  // transpose source data during tags generation
+  transpose: boolean;
+  // display widget type in text
+  displayType: boolean;
+};

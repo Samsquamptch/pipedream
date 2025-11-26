@@ -1,0 +1,62 @@
+{
+  "name": "ongage",
+  "version": "1.1.7",
+  "description": "Ongage API client",
+  "source": "src/index.js",
+  "main": "dist/node.js",
+  "module": "src/",
+  "browser": "dist/browser.min.js",
+  "scripts": {
+    "pretest": "semistandard --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "build": "make build"
+  },
+  "keywords": [],
+  "author": "Jonathon Hill <jonathon@compwright.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "qs": "^6.10.1"
+  },
+  "peerDependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@parcel/babel-plugin-transform-runtime": "^2.0.0-beta.3.1",
+    "@parcel/babel-preset-env": "^2.0.0-beta.3.1",
+    "jest": "^26.6.3",
+    "parcel": "^2.0.0-beta.3.1",
+    "semistandard": "*"
+  },
+  "semistandard": {
+    "env": [
+      "node",
+      "browser",
+      "jest"
+    ],
+    "ignore": [
+      "/dist"
+    ]
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "targets": {
+    "main": {
+      "context": "node",
+      "optimize": false,
+      "sourceMap": false,
+      "isLibrary": true,
+      "outputFormat": "commonjs"
+    },
+    "module": false,
+    "browser": {
+      "context": "browser",
+      "optimize": true,
+      "isLibrary": false,
+      "includeNodeModules": true,
+      "outputFormat": "global"
+    }
+  }
+}

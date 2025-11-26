@@ -1,0 +1,4 @@
+import { createPaginator } from "@smithy/core";
+import { ListCustomDomainAssociationsCommand, } from "../commands/ListCustomDomainAssociationsCommand";
+import { RedshiftServerlessClient } from "../RedshiftServerlessClient";
+export const paginateListCustomDomainAssociations = createPaginator(RedshiftServerlessClient, ListCustomDomainAssociationsCommand, "nextToken", "nextToken", "maxResults");

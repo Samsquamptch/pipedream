@@ -1,0 +1,580 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotDocumentThumbsInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    imagemagick_stack: z.ZodDefault<z.ZodUnion<[z.ZodEnum<["v3"]>, z.ZodString]>>;
+} & {
+    robot: z.ZodLiteral<"/document/thumbs">;
+    page: z.ZodDefault<z.ZodNullable<z.ZodNumber>>;
+    format: z.ZodDefault<z.ZodEnum<["gif", "jpeg", "jpg", "png"]>>;
+    delay: z.ZodOptional<z.ZodNumber>;
+    width: z.ZodOptional<z.ZodNumber>;
+    height: z.ZodOptional<z.ZodNumber>;
+    resize_strategy: z.ZodDefault<z.ZodEnum<["crop", "fillcrop", "fit", "min_fit", "pad", "stretch"]>>;
+    background: z.ZodDefault<z.ZodString>;
+    alpha: z.ZodOptional<z.ZodEnum<["Remove", "Set"]>>;
+    density: z.ZodOptional<z.ZodString>;
+    antialiasing: z.ZodDefault<z.ZodBoolean>;
+    colorspace: z.ZodOptional<z.ZodEnum<["CMY", "CMYK", "Gray", "HCL", "HCLp", "HSB", "HSI", "HSL", "HSV", "HWB", "Jzazbz", "Lab", "LCHab", "LCHuv", "LMS", "Log", "Luv", "OHTA", "OkLab", "OkLCH", "Rec601YCbCr", "Rec709YCbCr", "RGB", "scRGB", "sRGB", "Transparent", "Undefined", "xyY", "XYZ", "YCbCr", "YCC", "YDbDr", "YIQ", "YPbPr", "YUV"]>>;
+    trim_whitespace: z.ZodDefault<z.ZodBoolean>;
+    pdf_use_cropbox: z.ZodDefault<z.ZodBoolean>;
+    turbo: z.ZodDefault<z.ZodBoolean>;
+}, "strict", z.ZodTypeAny, {
+    format: "gif" | "jpeg" | "jpg" | "png";
+    robot: "/document/thumbs";
+    result: boolean;
+    force_accept: boolean;
+    imagemagick_stack: string;
+    resize_strategy: "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch";
+    background: string;
+    turbo: boolean;
+    antialiasing: boolean;
+    page: number | null;
+    trim_whitespace: boolean;
+    pdf_use_cropbox: boolean;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    width?: number | undefined;
+    height?: number | undefined;
+    delay?: number | undefined;
+    alpha?: "Remove" | "Set" | undefined;
+    density?: string | undefined;
+    colorspace?: "CMY" | "CMYK" | "Gray" | "HCL" | "HCLp" | "HSB" | "HSI" | "HSL" | "HSV" | "HWB" | "Jzazbz" | "Lab" | "LCHab" | "LCHuv" | "LMS" | "Log" | "Luv" | "OHTA" | "OkLab" | "OkLCH" | "Rec601YCbCr" | "Rec709YCbCr" | "RGB" | "scRGB" | "sRGB" | "Transparent" | "Undefined" | "xyY" | "XYZ" | "YCbCr" | "YCC" | "YDbDr" | "YIQ" | "YPbPr" | "YUV" | undefined;
+}, {
+    robot: "/document/thumbs";
+    format?: "gif" | "jpeg" | "jpg" | "png" | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    width?: number | undefined;
+    height?: number | undefined;
+    imagemagick_stack?: string | undefined;
+    resize_strategy?: "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch" | undefined;
+    background?: string | undefined;
+    turbo?: boolean | undefined;
+    antialiasing?: boolean | undefined;
+    page?: number | null | undefined;
+    delay?: number | undefined;
+    alpha?: "Remove" | "Set" | undefined;
+    density?: string | undefined;
+    colorspace?: "CMY" | "CMYK" | "Gray" | "HCL" | "HCLp" | "HSB" | "HSI" | "HSL" | "HSV" | "HWB" | "Jzazbz" | "Lab" | "LCHab" | "LCHuv" | "LMS" | "Log" | "Luv" | "OHTA" | "OkLab" | "OkLCH" | "Rec601YCbCr" | "Rec709YCbCr" | "RGB" | "scRGB" | "sRGB" | "Transparent" | "Undefined" | "xyY" | "XYZ" | "YCbCr" | "YCC" | "YDbDr" | "YIQ" | "YPbPr" | "YUV" | undefined;
+    trim_whitespace?: boolean | undefined;
+    pdf_use_cropbox?: boolean | undefined;
+}>;
+export declare const robotDocumentThumbsInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    imagemagick_stack: z.ZodDefault<z.ZodUnion<[z.ZodEnum<["v3"]>, z.ZodString]>>;
+    robot: z.ZodLiteral<"/document/thumbs">;
+    page: z.ZodDefault<z.ZodNullable<z.ZodNumber>>;
+    format: z.ZodDefault<z.ZodEnum<["gif", "jpeg", "jpg", "png"]>>;
+    delay: z.ZodOptional<z.ZodNumber>;
+    width: z.ZodOptional<z.ZodNumber>;
+    height: z.ZodOptional<z.ZodNumber>;
+    background: z.ZodDefault<z.ZodString>;
+    density: z.ZodOptional<z.ZodString>;
+    antialiasing: z.ZodDefault<z.ZodBoolean>;
+    colorspace: z.ZodOptional<z.ZodEnum<["CMY", "CMYK", "Gray", "HCL", "HCLp", "HSB", "HSI", "HSL", "HSV", "HWB", "Jzazbz", "Lab", "LCHab", "LCHuv", "LMS", "Log", "Luv", "OHTA", "OkLab", "OkLCH", "Rec601YCbCr", "Rec709YCbCr", "RGB", "scRGB", "sRGB", "Transparent", "Undefined", "xyY", "XYZ", "YCbCr", "YCC", "YDbDr", "YIQ", "YPbPr", "YUV"]>>;
+    trim_whitespace: z.ZodDefault<z.ZodBoolean>;
+    pdf_use_cropbox: z.ZodDefault<z.ZodBoolean>;
+    turbo: z.ZodDefault<z.ZodBoolean>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+    stack: z.ZodOptional<z.ZodString>;
+    alpha: z.ZodOptional<z.ZodEnum<["Remove", "Set", "remove", "set"]>>;
+    resize_strategy: z.ZodOptional<z.ZodEnum<["crop", "fillcrop", "fit", "min_fit", "pad", "stretch", "none"]>>;
+}, "strict", z.ZodTypeAny, {
+    format: "gif" | "jpeg" | "jpg" | "png";
+    robot: "/document/thumbs";
+    force_accept: boolean;
+    imagemagick_stack: string;
+    background: string;
+    turbo: boolean;
+    antialiasing: boolean;
+    page: number | null;
+    trim_whitespace: boolean;
+    pdf_use_cropbox: boolean;
+    stack?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    width?: number | undefined;
+    height?: number | undefined;
+    resize_strategy?: "none" | "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch" | undefined;
+    delay?: number | undefined;
+    alpha?: "set" | "remove" | "Remove" | "Set" | undefined;
+    density?: string | undefined;
+    colorspace?: "CMY" | "CMYK" | "Gray" | "HCL" | "HCLp" | "HSB" | "HSI" | "HSL" | "HSV" | "HWB" | "Jzazbz" | "Lab" | "LCHab" | "LCHuv" | "LMS" | "Log" | "Luv" | "OHTA" | "OkLab" | "OkLCH" | "Rec601YCbCr" | "Rec709YCbCr" | "RGB" | "scRGB" | "sRGB" | "Transparent" | "Undefined" | "xyY" | "XYZ" | "YCbCr" | "YCC" | "YDbDr" | "YIQ" | "YPbPr" | "YUV" | undefined;
+}, {
+    robot: "/document/thumbs";
+    stack?: string | undefined;
+    format?: "gif" | "jpeg" | "jpg" | "png" | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    width?: number | undefined;
+    height?: number | undefined;
+    imagemagick_stack?: string | undefined;
+    resize_strategy?: "none" | "crop" | "fit" | "fillcrop" | "min_fit" | "pad" | "stretch" | undefined;
+    background?: string | undefined;
+    turbo?: boolean | undefined;
+    antialiasing?: boolean | undefined;
+    page?: number | null | undefined;
+    delay?: number | undefined;
+    alpha?: "set" | "remove" | "Remove" | "Set" | undefined;
+    density?: string | undefined;
+    colorspace?: "CMY" | "CMYK" | "Gray" | "HCL" | "HCLp" | "HSB" | "HSI" | "HSL" | "HSV" | "HWB" | "Jzazbz" | "Lab" | "LCHab" | "LCHuv" | "LMS" | "Log" | "Luv" | "OHTA" | "OkLab" | "OkLCH" | "Rec601YCbCr" | "Rec709YCbCr" | "RGB" | "scRGB" | "sRGB" | "Transparent" | "Undefined" | "xyY" | "XYZ" | "YCbCr" | "YCC" | "YDbDr" | "YIQ" | "YPbPr" | "YUV" | undefined;
+    trim_whitespace?: boolean | undefined;
+    pdf_use_cropbox?: boolean | undefined;
+}>;
+export type RobotDocumentThumbsInstructions = z.infer<typeof robotDocumentThumbsInstructionsSchema>;
+export type RobotDocumentThumbsInstructionsWithHiddenFields = z.infer<typeof robotDocumentThumbsInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotDocumentThumbsInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    imagemagick_stack: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["v3"]>]>, z.ZodString]>>;
+    robot: z.ZodLiteral<"/document/thumbs">;
+    page: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+    format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["gif", "jpeg", "jpg", "png"]>]>>;
+    delay: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    width: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    height: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    resize_strategy: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["crop", "fillcrop", "fit", "min_fit", "pad", "stretch"]>]>>;
+    background: z.ZodDefault<z.ZodString>;
+    alpha: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["Remove", "Set"]>]>>;
+    density: z.ZodOptional<z.ZodString>;
+    antialiasing: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    colorspace: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["CMY", "CMYK", "Gray", "HCL", "HCLp", "HSB", "HSI", "HSL", "HSV", "HWB", "Jzazbz", "Lab", "LCHab", "LCHuv", "LMS", "Log", "Luv", "OHTA", "OkLab", "OkLCH", "Rec601YCbCr", "Rec709YCbCr", "RGB", "scRGB", "sRGB", "Transparent", "Undefined", "xyY", "XYZ", "YCbCr", "YCC", "YDbDr", "YIQ", "YPbPr", "YUV"]>]>>;
+    trim_whitespace: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    pdf_use_cropbox: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    turbo: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string;
+    robot: "/document/thumbs";
+    result: string | boolean;
+    force_accept: string | boolean;
+    imagemagick_stack: string;
+    resize_strategy: string;
+    background: string;
+    turbo: string | boolean;
+    antialiasing: string | boolean;
+    page: string | number | null;
+    trim_whitespace: string | boolean;
+    pdf_use_cropbox: string | boolean;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    width?: string | number | undefined;
+    height?: string | number | undefined;
+    delay?: string | number | undefined;
+    alpha?: string | undefined;
+    density?: string | undefined;
+    colorspace?: string | undefined;
+}, {
+    robot: "/document/thumbs";
+    format?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    width?: string | number | undefined;
+    height?: string | number | undefined;
+    imagemagick_stack?: string | undefined;
+    resize_strategy?: string | undefined;
+    background?: string | undefined;
+    turbo?: string | boolean | undefined;
+    antialiasing?: string | boolean | undefined;
+    page?: string | number | null | undefined;
+    delay?: string | number | undefined;
+    alpha?: string | undefined;
+    density?: string | undefined;
+    colorspace?: string | undefined;
+    trim_whitespace?: string | boolean | undefined;
+    pdf_use_cropbox?: string | boolean | undefined;
+}>;
+export type InterpolatableRobotDocumentThumbsInstructions = InterpolatableRobotDocumentThumbsInstructionsInput;
+export type InterpolatableRobotDocumentThumbsInstructionsInput = z.input<typeof interpolatableRobotDocumentThumbsInstructionsSchema>;
+export declare const interpolatableRobotDocumentThumbsInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    imagemagick_stack: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodEnum<["v3"]>]>, z.ZodString]>>;
+    robot: z.ZodLiteral<"/document/thumbs">;
+    page: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodNumber]>>>;
+    format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["gif", "jpeg", "jpg", "png"]>]>>;
+    delay: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    width: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    height: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    background: z.ZodDefault<z.ZodString>;
+    density: z.ZodOptional<z.ZodString>;
+    antialiasing: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    colorspace: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["CMY", "CMYK", "Gray", "HCL", "HCLp", "HSB", "HSI", "HSL", "HSV", "HWB", "Jzazbz", "Lab", "LCHab", "LCHuv", "LMS", "Log", "Luv", "OHTA", "OkLab", "OkLCH", "Rec601YCbCr", "Rec709YCbCr", "RGB", "scRGB", "sRGB", "Transparent", "Undefined", "xyY", "XYZ", "YCbCr", "YCC", "YDbDr", "YIQ", "YPbPr", "YUV"]>]>>;
+    trim_whitespace: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    pdf_use_cropbox: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    turbo: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+    stack: z.ZodOptional<z.ZodString>;
+    alpha: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["Remove", "Set", "remove", "set"]>]>>;
+    resize_strategy: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["crop", "fillcrop", "fit", "min_fit", "pad", "stretch", "none"]>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string;
+    robot: "/document/thumbs";
+    force_accept: string | boolean;
+    imagemagick_stack: string;
+    background: string;
+    turbo: string | boolean;
+    antialiasing: string | boolean;
+    page: string | number | null;
+    trim_whitespace: string | boolean;
+    pdf_use_cropbox: string | boolean;
+    stack?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    width?: string | number | undefined;
+    height?: string | number | undefined;
+    resize_strategy?: string | undefined;
+    delay?: string | number | undefined;
+    alpha?: string | undefined;
+    density?: string | undefined;
+    colorspace?: string | undefined;
+}, {
+    robot: "/document/thumbs";
+    stack?: string | undefined;
+    format?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    width?: string | number | undefined;
+    height?: string | number | undefined;
+    imagemagick_stack?: string | undefined;
+    resize_strategy?: string | undefined;
+    background?: string | undefined;
+    turbo?: string | boolean | undefined;
+    antialiasing?: string | boolean | undefined;
+    page?: string | number | null | undefined;
+    delay?: string | number | undefined;
+    alpha?: string | undefined;
+    density?: string | undefined;
+    colorspace?: string | undefined;
+    trim_whitespace?: string | boolean | undefined;
+    pdf_use_cropbox?: string | boolean | undefined;
+}>;
+export type InterpolatableRobotDocumentThumbsInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotDocumentThumbsInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotDocumentThumbsInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotDocumentThumbsInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=document-thumbs.d.ts.map

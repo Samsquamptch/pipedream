@@ -1,0 +1,28 @@
+import WebSocket from "@d-fischer/isomorphic-ws";
+/** Connection was closed with error. */
+export declare class VaasConnectionClosedError extends Error {
+    /** Code and reason for connection close. */
+    closeEvent?: WebSocket.CloseEvent;
+    constructor(closeEvent?: WebSocket.CloseEvent);
+}
+/** Vaas authentication failed. */
+export declare class VaasAuthenticationError extends Error {
+    constructor();
+}
+/** Vaas invalid state error.
+ * @description These are coding errors and be prevented by the developer.
+ */
+export declare class VaasInvalidStateError extends Error {
+    constructor(message: string);
+}
+/** Vaas timeout. */
+export declare class VaasTimeoutError extends Error {
+    constructor();
+}
+/** Vaas server error.
+ * @description These are coding errors and be prevented by the developer.
+ */
+export declare class VaasServerError extends Error {
+    constructor(message: string);
+}
+//# sourceMappingURL=VaasErrors.d.ts.map

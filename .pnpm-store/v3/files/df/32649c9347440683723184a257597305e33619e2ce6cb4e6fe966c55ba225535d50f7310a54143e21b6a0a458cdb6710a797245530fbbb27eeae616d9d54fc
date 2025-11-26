@@ -1,0 +1,7 @@
+import { Paginator } from "@smithy/types";
+import { ListScheduledActionsCommandInput, ListScheduledActionsCommandOutput } from "../commands/ListScheduledActionsCommand";
+import { RedshiftServerlessPaginationConfiguration } from "./Interfaces";
+/**
+ * @public
+ */
+export declare const paginateListScheduledActions: (config: RedshiftServerlessPaginationConfiguration, input: ListScheduledActionsCommandInput, ...rest: any[]) => Paginator<ListScheduledActionsCommandOutput>;

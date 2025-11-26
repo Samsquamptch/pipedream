@@ -1,0 +1,3 @@
+export { UpdateTriggerOpts } from "./UpdateTriggerOpts.mjs";
+export { UpdateTriggerWorkflowsOpts } from "./UpdateTriggerWorkflowsOpts.mjs";
+export { UpdateTriggerWebhooksOpts } from "./UpdateTriggerWebhooksOpts.mjs";

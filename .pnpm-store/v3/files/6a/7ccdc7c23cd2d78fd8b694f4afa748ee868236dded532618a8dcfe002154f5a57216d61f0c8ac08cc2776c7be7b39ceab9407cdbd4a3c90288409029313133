@@ -1,0 +1,9 @@
+import { textHelper } from '../../utilities';
+export const camelCasePropertyNameResolver = (contentType, element) => {
+    return textHelper.addUnderscoreWhenStarsWithNumber(textHelper.removeZeroWidthCharacters(toCamelCase(element)));
+};
+function toCamelCase(str) {
+    str = str.replace(textHelper.getPropertyNameRegex(), (_, c) => (c ? c.toUpperCase() : ''));
+    return str.substring(0, 1).toLowerCase() + str.substring(1);
+}
+//# sourceMappingURL=camel-case-property-name-resolver.class.js.map

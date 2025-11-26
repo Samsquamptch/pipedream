@@ -1,0 +1,12 @@
+import { LoadRequest, LoadResponse } from '../gen/nebula';
+import { NebulaRequest, NebulaResponse, TableState } from './types';
+export declare class NebulaClient {
+    private client;
+    constructor();
+    listTables(user: string): Promise<string[]>;
+    unloadTable(user: string, tableName: string): Promise<boolean>;
+    tableState(user: string, tableName: string): Promise<TableState>;
+    loadTable(user: string, req: LoadRequest): Promise<LoadResponse>;
+    query(user: string, query: NebulaRequest): Promise<NebulaResponse>;
+}
+export declare const nebulaClient: () => NebulaClient;

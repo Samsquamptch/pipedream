@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  ListCustomDomainAssociationsRequest,
+  ListCustomDomainAssociationsResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface ListCustomDomainAssociationsCommandInput
+  extends ListCustomDomainAssociationsRequest {}
+export interface ListCustomDomainAssociationsCommandOutput
+  extends ListCustomDomainAssociationsResponse,
+    __MetadataBearer {}
+declare const ListCustomDomainAssociationsCommand_base: {
+  new (
+    input: ListCustomDomainAssociationsCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListCustomDomainAssociationsCommandInput,
+    ListCustomDomainAssociationsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    ...[input]: [] | [ListCustomDomainAssociationsCommandInput]
+  ): import("@smithy/smithy-client").CommandImpl<
+    ListCustomDomainAssociationsCommandInput,
+    ListCustomDomainAssociationsCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class ListCustomDomainAssociationsCommand extends ListCustomDomainAssociationsCommand_base {
+  protected static __types: {
+    api: {
+      input: ListCustomDomainAssociationsRequest;
+      output: ListCustomDomainAssociationsResponse;
+    };
+    sdk: {
+      input: ListCustomDomainAssociationsCommandInput;
+      output: ListCustomDomainAssociationsCommandOutput;
+    };
+  };
+}

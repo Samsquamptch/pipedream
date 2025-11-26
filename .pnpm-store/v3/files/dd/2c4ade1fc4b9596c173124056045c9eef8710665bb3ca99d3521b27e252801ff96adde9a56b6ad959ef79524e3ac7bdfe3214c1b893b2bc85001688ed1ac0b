@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  UpdateCustomDomainAssociationRequest,
+  UpdateCustomDomainAssociationResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface UpdateCustomDomainAssociationCommandInput
+  extends UpdateCustomDomainAssociationRequest {}
+export interface UpdateCustomDomainAssociationCommandOutput
+  extends UpdateCustomDomainAssociationResponse,
+    __MetadataBearer {}
+declare const UpdateCustomDomainAssociationCommand_base: {
+  new (
+    input: UpdateCustomDomainAssociationCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    UpdateCustomDomainAssociationCommandInput,
+    UpdateCustomDomainAssociationCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: UpdateCustomDomainAssociationCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    UpdateCustomDomainAssociationCommandInput,
+    UpdateCustomDomainAssociationCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class UpdateCustomDomainAssociationCommand extends UpdateCustomDomainAssociationCommand_base {
+  protected static __types: {
+    api: {
+      input: UpdateCustomDomainAssociationRequest;
+      output: UpdateCustomDomainAssociationResponse;
+    };
+    sdk: {
+      input: UpdateCustomDomainAssociationCommandInput;
+      output: UpdateCustomDomainAssociationCommandOutput;
+    };
+  };
+}

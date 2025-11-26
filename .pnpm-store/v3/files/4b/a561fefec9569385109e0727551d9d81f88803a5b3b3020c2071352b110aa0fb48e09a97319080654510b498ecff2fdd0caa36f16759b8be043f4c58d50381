@@ -1,0 +1,249 @@
+/// <reference types="node" />
+/// <reference types="node" />
+export declare type JSONValue = string | number | boolean | null | JSONValue[] | {
+    [key: string]: JSONValue;
+};
+export declare type SendPayload = any;
+export interface SendConfigHTTPKv {
+    [key: string]: string;
+}
+export interface SendConfigHTTPAuth {
+    username: string;
+    password: string;
+}
+export declare type UppercaseHTTPMethod = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";
+export interface SendConfigHTTP {
+    method?: UppercaseHTTPMethod;
+    url: string;
+    headers?: SendConfigHTTPKv;
+    params?: SendConfigHTTPKv;
+    auth?: SendConfigHTTPAuth;
+    data?: SendPayload;
+}
+export interface SendConfigS3 {
+    bucket: string;
+    prefix: string;
+    payload: SendPayload;
+}
+export interface SendConfigEmail {
+    subject: string;
+    text?: string;
+    html?: string;
+}
+export interface SendConfigEmit {
+    raw_event: SendPayload;
+}
+export interface SendConfigSSE {
+    channel: string;
+    payload: SendPayload;
+}
+export interface SendFunctionsWrapper {
+    http: (config: SendConfigHTTP) => void;
+    email: (config: SendConfigEmail) => void;
+    emit: (config: SendConfigEmit) => void;
+    s3: (config: SendConfigS3) => void;
+    sse: (config: SendConfigSSE) => void;
+}
+/**
+ * Http Response.
+ */
+export interface HTTPResponse {
+    /**
+     * HTTP Status
+     */
+    status: number;
+    /**
+     * Http Body
+     */
+    body: string | Buffer | NodeJS.ReadableStream;
+    /**
+     * If true, issue the response when the promise returned is resolved, otherwise issue
+     * the response at the end of the workflow execution
+     */
+    immediate?: boolean;
+}
+export interface Methods {
+    [key: string]: (...args: any) => unknown;
+}
+export interface FlowFunctions {
+    exit: (reason: string) => void;
+    delay: (ms: number) => {
+        resume_url: string;
+        cancel_url: string;
+    };
+}
+export interface Pipedream {
+    export: (key: string, value: JSONValue) => void;
+    send: SendFunctionsWrapper;
+    /**
+     * Respond to an HTTP interface.
+     * @param response Define the status and body of the request.
+     * @returns A promise that is fulfilled when the body is read or an immediate response is issued
+     */
+    respond: (response: HTTPResponse) => Promise<any> | void;
+    flow: FlowFunctions;
+}
+export interface OptionsMethodArgs {
+    page?: number;
+    prevContext?: any;
+    [key: string]: any;
+}
+export interface OptionalOptsFn {
+    (configuredProps: {
+        [key: string]: any;
+    }): object;
+}
+export declare type PropDefinition = [
+    App<Methods, AppPropDefinitions>,
+    string
+] | [
+    App<Methods, AppPropDefinitions>,
+    string,
+    OptionalOptsFn
+];
+export interface PropDefinitionReference {
+    propDefinition: PropDefinition;
+}
+export interface App<Methods, AppPropDefinitions> {
+    type: "app";
+    app: string;
+    propDefinitions?: AppPropDefinitions;
+    methods?: Methods & ThisType<Methods & AppPropDefinitions>;
+}
+export declare function defineApp<Methods, AppPropDefinitions>(app: App<Methods, AppPropDefinitions>): App<Methods, AppPropDefinitions>;
+export interface DefaultConfig {
+    intervalSeconds?: number;
+    cron?: string;
+}
+export interface Field {
+    name: string;
+    value: string;
+}
+export interface HttpAuth {
+    type?: "basic" | "bearer" | "none";
+    username?: string;
+    password?: string;
+    token?: string;
+}
+export interface HttpBody {
+    type?: "fields" | "raw";
+    contentType?: string;
+    fields?: Field[];
+    mode?: "fields" | "raw";
+    raw?: string;
+}
+export interface DefaultHttpRequestPropConfig {
+    auth?: HttpAuth;
+    body?: HttpBody;
+    headers?: Field[];
+    params?: Field[];
+    tab?: string;
+    method?: string;
+    url?: string;
+}
+export interface BasePropInterface {
+    label?: string;
+    description?: string;
+}
+export declare type PropOptions = any[] | Array<{
+    [key: string]: string;
+}>;
+export interface UserProp extends BasePropInterface {
+    type: "boolean" | "boolean[]" | "integer" | "integer[]" | "string" | "string[]" | "object" | "any";
+    options?: PropOptions | ((this: any, opts: OptionsMethodArgs) => Promise<PropOptions>);
+    optional?: boolean;
+    default?: JSONValue;
+    secret?: boolean;
+    min?: number;
+    max?: number;
+}
+export interface InterfaceProp extends BasePropInterface {
+    type: "$.interface.http" | "$.interface.timer";
+    default?: string | DefaultConfig;
+}
+export interface ServiceDBProp extends BasePropInterface {
+    type: "$.service.db";
+}
+export interface DataStoreProp extends BasePropInterface {
+    type: "data_store";
+}
+export interface HttpRequestProp extends BasePropInterface {
+    type: "http_request";
+    default?: DefaultHttpRequestPropConfig;
+}
+export interface SourcePropDefinitions {
+    [name: string]: PropDefinitionReference | App<Methods, AppPropDefinitions> | UserProp | InterfaceProp | ServiceDBProp | HttpRequestProp;
+}
+export interface ActionPropDefinitions {
+    [name: string]: PropDefinitionReference | App<Methods, AppPropDefinitions> | UserProp | DataStoreProp | HttpRequestProp;
+}
+export interface AppPropDefinitions {
+    [name: string]: PropDefinitionReference | App<Methods, AppPropDefinitions> | UserProp;
+}
+export interface Hooks {
+    deploy?: () => Promise<void>;
+    activate?: () => Promise<void>;
+    deactivate?: () => Promise<void>;
+}
+export declare type SourceHttpRunOptions = {
+    method: string;
+    path: string;
+    query: {
+        [key: string]: string;
+    };
+    headers: {
+        [key: string]: string;
+    };
+    bodyRaw?: string;
+    body?: {
+        [key: string]: JSONValue;
+    };
+};
+export declare type SourceTimerRunOptions = {
+    timestamp: number;
+    interval_seconds: number;
+};
+export declare type SourceRunOptions = SourceHttpRunOptions | SourceTimerRunOptions;
+export interface ActionRunOptions {
+    $: Pipedream;
+    steps: JSONValue;
+}
+export interface EmitMetadata {
+    id?: string | number;
+    name?: string;
+    summary?: string;
+    ts?: number;
+}
+declare type EmitFunction = {
+    $emit: (event: JSONValue, metadata?: EmitMetadata) => Promise<void>;
+};
+declare type PropThis<Props> = {
+    [Prop in keyof Props]: Props[Prop] extends App<Methods, AppPropDefinitions> ? any : any;
+};
+export interface Source<Methods, SourcePropDefinitions> {
+    key: string;
+    name?: string;
+    description?: string;
+    version: string;
+    type: "source";
+    methods?: Methods & ThisType<PropThis<SourcePropDefinitions> & Methods & EmitFunction>;
+    hooks?: Hooks & ThisType<PropThis<SourcePropDefinitions> & Methods & EmitFunction>;
+    props?: SourcePropDefinitions;
+    dedupe?: "last" | "greatest" | "unique";
+    additionalProps?: (previousPropDefs: SourcePropDefinitions) => Promise<SourcePropDefinitions>;
+    run: (this: PropThis<SourcePropDefinitions> & Methods & EmitFunction, options?: SourceRunOptions) => void | Promise<void>;
+}
+export declare function defineSource<Methods, SourcePropDefinitions>(component: Source<Methods, SourcePropDefinitions>): Source<Methods, SourcePropDefinitions>;
+export interface Action<Methods, ActionPropDefinitions> {
+    key: string;
+    name?: string;
+    description?: string;
+    version: string;
+    type: "action";
+    methods?: Methods & ThisType<PropThis<ActionPropDefinitions> & Methods>;
+    props?: ActionPropDefinitions;
+    additionalProps?: (previousPropDefs: ActionPropDefinitions) => Promise<ActionPropDefinitions>;
+    run: (this: PropThis<ActionPropDefinitions> & Methods, options?: ActionRunOptions) => any;
+}
+export declare function defineAction<Methods, ActionPropDefinitions>(component: Action<Methods, ActionPropDefinitions>): Action<Methods, ActionPropDefinitions>;
+export {};

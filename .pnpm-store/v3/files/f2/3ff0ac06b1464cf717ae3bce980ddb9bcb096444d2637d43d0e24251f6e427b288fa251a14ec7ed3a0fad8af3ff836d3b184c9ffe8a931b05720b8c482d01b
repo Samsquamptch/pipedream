@@ -1,0 +1,11 @@
+import { Paginator } from "@smithy/types";
+import {
+  ListCustomDomainAssociationsCommandInput,
+  ListCustomDomainAssociationsCommandOutput,
+} from "../commands/ListCustomDomainAssociationsCommand";
+import { RedshiftServerlessPaginationConfiguration } from "./Interfaces";
+export declare const paginateListCustomDomainAssociations: (
+  config: RedshiftServerlessPaginationConfiguration,
+  input: ListCustomDomainAssociationsCommandInput,
+  ...rest: any[]
+) => Paginator<ListCustomDomainAssociationsCommandOutput>;

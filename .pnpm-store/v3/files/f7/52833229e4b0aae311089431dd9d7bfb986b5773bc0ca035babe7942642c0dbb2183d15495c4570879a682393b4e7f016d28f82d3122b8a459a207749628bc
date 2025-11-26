@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WidgetComputeNames = void 0;
+exports.WidgetComputeNames = {
+    'sum': 'Sum',
+    'avg': 'Average',
+    'avg_pct': 'Average %',
+    'diff_sum': 'Growth Total',
+    'diff_avg': 'Growth Average',
+    'diff_avg_pct': 'Growth Average %',
+};
+//# sourceMappingURL=widget.js.map

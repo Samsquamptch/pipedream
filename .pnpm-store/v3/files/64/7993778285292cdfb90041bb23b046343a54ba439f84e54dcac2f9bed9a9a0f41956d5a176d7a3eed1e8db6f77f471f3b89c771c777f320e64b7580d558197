@@ -1,0 +1,4 @@
+export { fix, fixFilenameExtensions, } from './fix.js';
+export { DEFAULT_FIX_OPTIONS, } from './options.js';
+export { fixBlankFiles, fixContents, fixFilenameVar, fixDirnameVar, fixModuleReferences, fixSourceMapRef, fixDefaultExport, } from './legacy.js';
+export * from './interface.js';

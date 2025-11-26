@@ -1,0 +1,27 @@
+declare const _exports: {
+    mode: string;
+    target: string;
+    context: string;
+    node: boolean;
+    externals: any[];
+    entry: {
+        lib: string;
+    };
+    output: {
+        filename: string;
+        path: string;
+        library: string;
+        libraryTarget: string;
+        libraryExport: string;
+    };
+    resolve: {
+        alias: {
+            "google-protobuf": string;
+            grpc: string;
+        };
+        extensions: string[];
+        descriptionFiles: string[];
+        modules: string[];
+    };
+}[];
+export = _exports;

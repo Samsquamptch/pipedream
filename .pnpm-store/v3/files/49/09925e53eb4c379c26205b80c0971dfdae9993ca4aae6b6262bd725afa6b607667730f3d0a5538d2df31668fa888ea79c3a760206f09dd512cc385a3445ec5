@@ -1,0 +1,49 @@
+import type { TokenProvider } from "../core/auth/TokenProvider.js";
+import { ProjectEnvironment } from "../api/index.js";
+import { Workflows } from "../api/resources/workflows/client/Client.js";
+import { PipedreamClient } from "../Client.js";
+import { PipedreamEnvironment } from "../environments.js";
+export type PipedreamClientOpts = {
+    /**
+     * Optional client ID for authentication.
+     */
+    clientId?: string;
+    /**
+     * Optional client secret for authentication.
+     */
+    clientSecret?: string;
+    /**
+     * The Pipedream environment to connect to.
+     */
+    environment?: PipedreamEnvironment;
+    /**
+     * The project environment configuration.
+     */
+    projectEnvironment?: ProjectEnvironment;
+    /**
+     * The unique identifier for the project. This field is required, passed
+     * either explicitly or by setting the `PIPEDREAM_PROJECT_ID` environment
+     * variable.
+     */
+    projectId?: string;
+    /**
+     * Optional token provider for authentication.
+     */
+    tokenProvider?: TokenProvider;
+    /**
+     * Optional custom domain for workflow execution.
+     */
+    workflowDomain?: string;
+};
+export declare class Pipedream extends PipedreamClient {
+    private _workflowDomain?;
+    private _workflows;
+    constructor(opts?: PipedreamClientOpts);
+    /**
+     * Returns an access token that can be used to authenticate API requests
+     *
+     * @returns A promise that resolves to the access token string.
+     */
+    get rawAccessToken(): Promise<string>;
+    get workflows(): Workflows;
+}

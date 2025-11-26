@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.defineApp = defineApp;
+exports.defineSource = defineSource;
+exports.defineAction = defineAction;
+function defineApp(app) {
+    return app;
+}
+function defineSource(component) {
+    return component;
+}
+function defineAction(component) {
+    return component;
+}

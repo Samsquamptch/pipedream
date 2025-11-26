@@ -1,0 +1,3 @@
+import { IFixOptions, IFixOptionsNormalized } from "./interface.js";
+export declare const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized;
+export declare const normalizeOptions: (opts?: IFixOptions) => IFixOptionsNormalized;

@@ -1,0 +1,17 @@
+import { PredicateProto } from './json-property';
+export declare type Type<T> = new (...args: Array<any>) => T;
+export declare const hasConstructor: <T = any>(f: unknown) => f is Type<T>;
+export declare const isString: (value: unknown) => value is string;
+export declare const isNumber: (value: any) => value is number;
+export declare const isBoolean: (value: any) => value is number;
+export declare const isObject: (value: unknown) => value is object;
+export declare const isArray: (value: unknown) => value is any[];
+export declare const isDateObject: (value: any) => value is Date;
+export declare const isDateValue: (value: any) => value is string | number;
+export declare const isJsonObject: (propertyType: any) => boolean;
+export declare const isMap: (value: unknown) => value is Map<any, any>;
+export declare const isNullish: (value: any) => value is null | undefined;
+export declare const isPredicate: (value: any) => value is PredicateProto;
+export declare const isSet: (value: unknown) => value is Set<any>;
+export declare const tryParse: (value: any) => any;
+export declare const difference: (arr1: Array<string>, arr2: Array<string>) => Array<string>;

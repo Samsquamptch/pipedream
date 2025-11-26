@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  UpdateSnapshotCopyConfigurationRequest,
+  UpdateSnapshotCopyConfigurationResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface UpdateSnapshotCopyConfigurationCommandInput
+  extends UpdateSnapshotCopyConfigurationRequest {}
+export interface UpdateSnapshotCopyConfigurationCommandOutput
+  extends UpdateSnapshotCopyConfigurationResponse,
+    __MetadataBearer {}
+declare const UpdateSnapshotCopyConfigurationCommand_base: {
+  new (
+    input: UpdateSnapshotCopyConfigurationCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    UpdateSnapshotCopyConfigurationCommandInput,
+    UpdateSnapshotCopyConfigurationCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: UpdateSnapshotCopyConfigurationCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    UpdateSnapshotCopyConfigurationCommandInput,
+    UpdateSnapshotCopyConfigurationCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class UpdateSnapshotCopyConfigurationCommand extends UpdateSnapshotCopyConfigurationCommand_base {
+  protected static __types: {
+    api: {
+      input: UpdateSnapshotCopyConfigurationRequest;
+      output: UpdateSnapshotCopyConfigurationResponse;
+    };
+    sdk: {
+      input: UpdateSnapshotCopyConfigurationCommandInput;
+      output: UpdateSnapshotCopyConfigurationCommandOutput;
+    };
+  };
+}

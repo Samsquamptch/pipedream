@@ -1,0 +1,87 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LinkupClient = void 0;
+const axios_1 = __importDefault(require("axios"));
+const errors_1 = require("./errors");
+const zod_to_json_schema_1 = __importDefault(require("zod-to-json-schema"));
+const schema_utils_1 = require("./utils/schema.utils");
+class LinkupClient {
+    USER_AGENT = 'Linkup-JS-SDK/1.0.3';
+    apiKey;
+    baseUrl;
+    constructor(config) {
+        this.apiKey = config.apiKey;
+        this.baseUrl = config.baseUrl || 'https://api.linkup.so/v1';
+    }
+    async search(params) {
+        return axios_1.default
+            .post('/search', this.sanitizeParams(params), {
+            baseURL: this.baseUrl,
+            headers: {
+                'User-Agent': this.USER_AGENT,
+                Authorization: `Bearer ${this.apiKey}`,
+            },
+        })
+            .then((response) => this.formatResponse(response.data, params.outputType))
+            .catch((e) => {
+            throw this.refineError(e);
+        });
+    }
+    sanitizeParams({ query, depth, outputType, includeImages = false, structuredOutputSchema, }) {
+        const searchParams = {
+            q: query,
+            depth,
+            outputType,
+            includeImages,
+        };
+        if (structuredOutputSchema) {
+            searchParams.structuredOutputSchema = JSON.stringify((0, schema_utils_1.isZodObject)(structuredOutputSchema)
+                ? (0, zod_to_json_schema_1.default)(structuredOutputSchema)
+                : structuredOutputSchema);
+        }
+        return searchParams;
+    }
+    formatResponse(searchResponse, outputType) {
+        switch (outputType) {
+            case 'sourcedAnswer':
+                return {
+                    answer: searchResponse.answer,
+                    sources: searchResponse.sources,
+                };
+            case 'searchResults':
+                return {
+                    results: searchResponse.results,
+                };
+            case 'structured':
+            default:
+                return searchResponse;
+        }
+    }
+    refineError(error) {
+        const unknownErrorMessage = `An unknown error occurred: ${error.message}`;
+        if (!axios_1.default.isAxiosError(error) ||
+            !error.response ||
+            !('message' in error.response.data)) {
+            return new errors_1.LinkupUnknownError(unknownErrorMessage);
+        }
+        const { data: { message }, status, } = error.response;
+        switch (status) {
+            case 400:
+                if (message === 'The query did not yield any result') {
+                    return new errors_1.LinkupNoResultError();
+                }
+                return new errors_1.LinkupInvalidRequestError(Array.isArray(message) ? message.join(',') : message);
+            case 403:
+                return new errors_1.LinkupAuthenticationError();
+            case 429:
+                return new errors_1.LinkupInsufficientCreditError();
+            default:
+                return new errors_1.LinkupUnknownError(unknownErrorMessage);
+        }
+    }
+}
+exports.LinkupClient = LinkupClient;
+//# sourceMappingURL=linkup-client.js.map

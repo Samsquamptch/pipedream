@@ -1,0 +1,5 @@
+declare const _default: (data: any, interpolation: string, options?: {
+    formatters?: any;
+    fallback?: string | undefined;
+} | undefined) => any;
+export default _default;

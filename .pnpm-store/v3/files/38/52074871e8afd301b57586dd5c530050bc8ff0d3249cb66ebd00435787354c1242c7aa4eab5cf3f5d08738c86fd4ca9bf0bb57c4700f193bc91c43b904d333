@@ -1,0 +1,28 @@
+import { AnchorType, ValueOption, ValueRange } from '../common';
+import { FontProps } from '../font';
+export type TickProps = {
+    fill: string;
+    font: FontProps;
+    textAnchor: AnchorType;
+    scaleToFit: boolean;
+};
+export type AxisProps = {
+    numTicks: number;
+    tickProps: TickProps;
+    tickHidden: boolean;
+    modByUser: boolean;
+    range: ValueRange;
+    hidden: boolean;
+    format: {
+        option: ValueOption;
+        precision: number;
+    };
+};
+export type AxesProps = {
+    left: AxisProps;
+    right: AxisProps;
+    top: AxisProps;
+    bottom: AxisProps;
+    keyLeft: boolean;
+};
+export declare const axis: (numTicks: number, color: string) => AxisProps;

@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  GetReservationOfferingRequest,
+  GetReservationOfferingResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface GetReservationOfferingCommandInput
+  extends GetReservationOfferingRequest {}
+export interface GetReservationOfferingCommandOutput
+  extends GetReservationOfferingResponse,
+    __MetadataBearer {}
+declare const GetReservationOfferingCommand_base: {
+  new (
+    input: GetReservationOfferingCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetReservationOfferingCommandInput,
+    GetReservationOfferingCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: GetReservationOfferingCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetReservationOfferingCommandInput,
+    GetReservationOfferingCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class GetReservationOfferingCommand extends GetReservationOfferingCommand_base {
+  protected static __types: {
+    api: {
+      input: GetReservationOfferingRequest;
+      output: GetReservationOfferingResponse;
+    };
+    sdk: {
+      input: GetReservationOfferingCommandInput;
+      output: GetReservationOfferingCommandOutput;
+    };
+  };
+}

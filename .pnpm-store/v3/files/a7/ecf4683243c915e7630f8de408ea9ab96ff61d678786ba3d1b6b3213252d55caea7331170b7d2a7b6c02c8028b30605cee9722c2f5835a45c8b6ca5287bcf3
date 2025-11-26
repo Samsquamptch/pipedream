@@ -1,0 +1,60 @@
+import { Affixes, Baseline, ChartType, GradientColor, Margin, MissingPolicy, ValueOption } from './common';
+import { FontProps } from './font';
+export type LegendType = 'none' | 'square' | 'dot';
+export type GridLineType = 'none' | 'row' | 'column';
+export type FilterProps = {
+    visibility: 'show' | 'hide' | 'auto';
+    defaultMetrics: number;
+    maxMetrics: number;
+};
+export type TargetLine = {
+    metric: string;
+    value: number;
+    color: string;
+    thickness: number;
+    opacity: number;
+    dots: number;
+    font: FontProps;
+    emoji: string;
+    placement: 'start' | 'center' | 'end';
+};
+export type SketchProps = {
+    enabled: boolean;
+};
+export type TooltipProps = {
+    color: string;
+    background: string;
+    affix: Affixes;
+};
+export type GeneralProps = {
+    font: FontProps;
+    baseline: Baseline;
+    percentage: boolean;
+    distribute: 'metric' | 'key';
+    accumulated: boolean;
+    policy: MissingPolicy;
+    precision: number;
+    valueOption: ValueOption;
+    playback: number;
+    looping: boolean;
+    autotitle: boolean;
+    hideTooltip: boolean;
+    tooltip: TooltipProps;
+    margins: Partial<Record<ChartType, Margin>>;
+    background: string;
+    gradient: GradientColor;
+    palette: string[];
+    hideLegend: boolean;
+    legend: LegendType;
+    gridLine: {
+        type: GridLineType;
+        color: string;
+    };
+    filter: FilterProps;
+    maxKeyLength: number;
+    logScale: boolean;
+    hideBacklink: boolean;
+    secondAxis: string[];
+    targets: TargetLine[];
+    sketch: SketchProps;
+};

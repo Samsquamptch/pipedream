@@ -1,0 +1,18 @@
+import { Api } from "./generated/Api.mjs";
+
+//#region src/ShortcutClient.ts
+var ShortcutClient = class extends Api {
+	constructor(apiToken, config = {}) {
+		if (apiToken == null || typeof apiToken !== "string") console.error("You need to supply an API Token.");
+		super({
+			headers: {
+				"Shortcut-Token": apiToken,
+				...config.headers
+			},
+			...config
+		});
+	}
+};
+
+//#endregion
+export { ShortcutClient };

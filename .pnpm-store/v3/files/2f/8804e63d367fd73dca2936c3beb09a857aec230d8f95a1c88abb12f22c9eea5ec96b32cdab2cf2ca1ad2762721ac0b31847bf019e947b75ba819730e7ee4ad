@@ -1,0 +1,88 @@
+import WebSocket from "@d-fischer/isomorphic-ws";
+import { AuthenticationResponse } from "./messages/authentication_response";
+import { VerdictResponse } from "./messages/verdict_response";
+import { CancellationToken } from "./CancellationToken";
+import { VaasVerdict } from "./messages/vaas_verdict";
+import { Readable } from "stream";
+declare const VAAS_URL = "wss://gateway.production.vaas.gdatasecurity.de";
+export { VAAS_URL };
+export interface VerdictPromise {
+    resolve(verdictResponse: VerdictResponse): Promise<void>;
+    reject(reason?: any): void;
+}
+export type VaasConnection = {
+    ws: WebSocket.WebSocket;
+    sessionId?: string;
+};
+export declare class Vaas {
+    private webSocketFactory;
+    verdictPromises: Map<string, VerdictPromise>;
+    connection: VaasConnection | null;
+    closeEvent?: WebSocket.CloseEvent;
+    authenticationError?: AuthenticationResponse;
+    pingTimeout?: NodeJS.Timeout;
+    defaultTimeoutHashReq: number;
+    defaultTimeoutFileReq: number;
+    defaultTimeoutUrlReq: number;
+    defaultTimeoutStreamReq: number;
+    debug: boolean;
+    constructor(webSocketFactory?: (url: string) => import("ws"));
+    static toHexString(byteArray: Uint8Array): string;
+    /** Get verdict for Readable Stream
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     * @throws {VaasServerError} Stream could not be read properly in VaaS clouds
+     */
+    forStream(stream: Readable, ct?: CancellationToken): Promise<VaasVerdict>;
+    /** Get verdict for URL
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     */
+    forUrl(url: URL, ct?: CancellationToken): Promise<VaasVerdict>;
+    /** Get verdict for a SHA256
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     */
+    forSha256(sha256: string, ct?: CancellationToken): Promise<VaasVerdict>;
+    /** Get verdict for list of SHA256
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     */
+    forSha256List(sha256List: string[], ct?: CancellationToken): Promise<VaasVerdict[]>;
+    /** Get verdict for a file
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     */
+    forFile(fileBuffer: Uint8Array, ct?: CancellationToken): Promise<VaasVerdict>;
+    /** Get verdict for a list of files
+     * @throws {VaasInvalidStateError} If connect() has not been called and awaited. Signifies caller error.
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     * @throws {VaasTimeoutError} Timeout. Retry request.
+     */
+    forFileList(fileBuffers: Uint8Array[], ct?: CancellationToken): Promise<VaasVerdict[]>;
+    private forRequest;
+    private forUrlRequest;
+    private forStreamRequest;
+    /** Connect to VaaS
+     * @throws {VaasAuthenticationError} Authentication failed.
+     * @throws {VaasConnectionClosedError} Connection was closed. Call connect() to reconnect.
+     */
+    connect(token: string, url?: string): Promise<void>;
+    private upload;
+    close(): void;
+    private authenticate;
+    private getConnectedWebSocket;
+    private getAuthenticatedWebSocket;
+}
+//# sourceMappingURL=Vaas.d.ts.map

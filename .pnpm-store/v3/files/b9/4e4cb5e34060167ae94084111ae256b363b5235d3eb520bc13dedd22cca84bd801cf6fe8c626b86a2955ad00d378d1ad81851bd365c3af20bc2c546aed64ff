@@ -1,0 +1,19 @@
+import { dirname, resolve } from 'node:path';
+import fse from 'fs-extra';
+import json5 from 'json5';
+export { globby } from 'globby';
+export { existsSync } from 'node:fs';
+export const read = (file) => fse.readFileSync(file, { encoding: 'utf8' });
+export const write = (file, contents) => fse.outputFileSync(file, contents, { encoding: 'utf8' });
+export const readJson = (file) => json5.parse(read(file));
+export const asArray = (value) => value ? (Array.isArray(value) ? value : [value]) : [];
+export const remove = fse.unlinkSync;
+export const unixify = (path) => path.replace(/\\/g, '/');
+export const resolveTsConfig = (file) => {
+    const data = readJson(file);
+    if (data.extends) {
+        const parent = resolveTsConfig(resolve(dirname(file), data.extends));
+        return Object.assign(Object.assign(Object.assign({}, parent), data), { compilerOptions: Object.assign(Object.assign({}, parent.compilerOptions), data.compilerOptions) });
+    }
+    return data;
+};

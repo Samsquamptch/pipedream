@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isZodObject = isZodObject;
+const zod_1 = require("zod");
+function isZodObject(schema) {
+    return (schema instanceof zod_1.ZodObject ||
+        (typeof schema === 'object' &&
+            schema !== null &&
+            'parse' in schema &&
+            'shape' in schema));
+}
+//# sourceMappingURL=schema.utils.js.map

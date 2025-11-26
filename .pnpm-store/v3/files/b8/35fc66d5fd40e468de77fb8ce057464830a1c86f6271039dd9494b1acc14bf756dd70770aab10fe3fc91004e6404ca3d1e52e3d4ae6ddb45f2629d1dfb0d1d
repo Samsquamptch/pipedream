@@ -1,0 +1,67 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.timeWindowMs = exports.TimeUnit = exports.MONTH_MS = exports.WEEK_MS = exports.DAY_MS = exports.SIX_HOUR_MS = exports.HOUR_MS = exports.TEN_MINUTE_MS = exports.FIVE_MINUTE_MS = exports.MINUTE_MS = exports.shortId = exports.Baselines = exports.ChartType = exports.TITLE_ANNOTATION_ID = exports.ColumnsVersion = void 0;
+const short_unique_id_1 = __importDefault(require("short-unique-id"));
+exports.ColumnsVersion = 1;
+exports.TITLE_ANNOTATION_ID = 'g_auto_title';
+var ChartType;
+(function (ChartType) {
+    ChartType[ChartType["BAR"] = 0] = "BAR";
+    ChartType[ChartType["COLUMN"] = 1] = "COLUMN";
+    ChartType[ChartType["LINE"] = 2] = "LINE";
+    ChartType[ChartType["PIE"] = 3] = "PIE";
+    ChartType[ChartType["DOUGHNUT"] = 4] = "DOUGHNUT";
+    ChartType[ChartType["TIMELINE"] = 5] = "TIMELINE";
+    ChartType[ChartType["TIMELINE_AREA"] = 6] = "TIMELINE_AREA";
+    ChartType[ChartType["TIMELINE_BAR"] = 7] = "TIMELINE_BAR";
+    ChartType[ChartType["BAR_RACE"] = 8] = "BAR_RACE";
+    ChartType[ChartType["AREA"] = 9] = "AREA";
+    ChartType[ChartType["TABLE"] = 10] = "TABLE";
+    ChartType[ChartType["MAP"] = 11] = "MAP";
+    ChartType[ChartType["SCATTER"] = 12] = "SCATTER";
+    ChartType[ChartType["TREE"] = 13] = "TREE";
+    ChartType[ChartType["RADAR"] = 14] = "RADAR";
+    ChartType[ChartType["DOT"] = 15] = "DOT";
+    ChartType[ChartType["BOXPLOT"] = 16] = "BOXPLOT";
+    ChartType[ChartType["WORDCLOUD"] = 17] = "WORDCLOUD";
+    ChartType[ChartType["SUMMARY"] = 18] = "SUMMARY";
+    ChartType[ChartType["GAUGE"] = 19] = "GAUGE";
+})(ChartType || (exports.ChartType = ChartType = {}));
+exports.Baselines = ['Raw', 'Mean', 'First', 'Last', 'Prev', 'Flip'];
+const SUID_14 = new short_unique_id_1.default({ length: 14 });
+const shortId = () => SUID_14.rnd();
+exports.shortId = shortId;
+exports.MINUTE_MS = 60000;
+exports.FIVE_MINUTE_MS = 5 * exports.MINUTE_MS;
+exports.TEN_MINUTE_MS = 10 * exports.MINUTE_MS;
+exports.HOUR_MS = 3600000;
+exports.SIX_HOUR_MS = 6 * exports.HOUR_MS;
+exports.DAY_MS = 24 * exports.HOUR_MS;
+exports.WEEK_MS = 7 * exports.DAY_MS;
+exports.MONTH_MS = 30 * exports.DAY_MS;
+var TimeUnit;
+(function (TimeUnit) {
+    TimeUnit[TimeUnit["NONE"] = 0] = "NONE";
+    TimeUnit[TimeUnit["HOUR"] = 1] = "HOUR";
+    TimeUnit[TimeUnit["DAY"] = 2] = "DAY";
+    TimeUnit[TimeUnit["WEEK"] = 3] = "WEEK";
+    TimeUnit[TimeUnit["MONTH"] = 4] = "MONTH";
+    TimeUnit[TimeUnit["QUARTER"] = 5] = "QUARTER";
+    TimeUnit[TimeUnit["YEAR"] = 6] = "YEAR";
+})(TimeUnit || (exports.TimeUnit = TimeUnit = {}));
+;
+const UnitMs = {
+    [TimeUnit.NONE]: 0,
+    [TimeUnit.HOUR]: exports.HOUR_MS,
+    [TimeUnit.DAY]: exports.DAY_MS,
+    [TimeUnit.WEEK]: exports.WEEK_MS,
+    [TimeUnit.MONTH]: exports.MONTH_MS,
+    [TimeUnit.QUARTER]: 3 * exports.MONTH_MS,
+    [TimeUnit.YEAR]: 365 * exports.DAY_MS,
+};
+const timeWindowMs = (offset, unit) => offset * UnitMs[unit];
+exports.timeWindowMs = timeWindowMs;
+//# sourceMappingURL=common.js.map

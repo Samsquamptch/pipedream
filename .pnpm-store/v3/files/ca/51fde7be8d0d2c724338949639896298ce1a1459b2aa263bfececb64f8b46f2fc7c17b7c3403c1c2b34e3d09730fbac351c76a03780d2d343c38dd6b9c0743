@@ -1,0 +1,26 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.textHelper = exports.TextHelper = void 0;
+class TextHelper {
+    getPropertyNameRegex() {
+        return /[+;,/&()?\-='"\\\xa7!%:_\s.]+(.)?/g;
+    }
+    removeZeroWidthCharacters(str) {
+        return str.replace(/[\u200B-\u200D\uFEFF]/g, '');
+    }
+    addUnderscoreWhenStarsWithNumber(str) {
+        if (this.startsWithNumber(str)) {
+            return `_${str}`;
+        }
+        return str;
+    }
+    startsWithNumber(str) {
+        if (str.match(/^\d/)) {
+            return true;
+        }
+        return false;
+    }
+}
+exports.TextHelper = TextHelper;
+exports.textHelper = new TextHelper();
+//# sourceMappingURL=text.helper.js.map

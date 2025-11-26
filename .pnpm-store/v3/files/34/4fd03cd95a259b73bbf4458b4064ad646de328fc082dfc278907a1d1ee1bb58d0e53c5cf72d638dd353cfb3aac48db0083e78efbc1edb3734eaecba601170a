@@ -1,0 +1,154 @@
+import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
+import type { BinaryReadOptions } from "@protobuf-ts/runtime";
+import type { PingResponse } from "./nebula";
+import type { ServiceInfo } from "./nebula";
+import type { UrlData } from "./nebula";
+import type { LoadResponse } from "./nebula";
+import type { LoadRequest } from "./nebula";
+import type { QueryResponse } from "./nebula";
+import type { QueryRequest } from "./nebula";
+import type { TableStateResponse } from "./nebula";
+import type { TableStateRequest } from "./nebula";
+import type { TableList } from "./nebula";
+import type { ListTables } from "./nebula";
+import type { EchoResponse } from "./nebula";
+import type { EchoRequest } from "./nebula";
+import * as grpc from "@grpc/grpc-js";
+/**
+ * all service methods are captilized compared to other regular methods
+ *
+ * @generated from protobuf service nebula.service.V1
+ */
+export interface IV1Client {
+    /**
+     * Sends a greeting
+     *
+     * @generated from protobuf rpc: Echo(nebula.service.EchoRequest) returns (nebula.service.EchoResponse);
+     */
+    echo(input: EchoRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: EchoResponse) => void): grpc.ClientUnaryCall;
+    echo(input: EchoRequest, metadata: grpc.Metadata, callback: (err: grpc.ServiceError | null, value?: EchoResponse) => void): grpc.ClientUnaryCall;
+    echo(input: EchoRequest, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: EchoResponse) => void): grpc.ClientUnaryCall;
+    echo(input: EchoRequest, callback: (err: grpc.ServiceError | null, value?: EchoResponse) => void): grpc.ClientUnaryCall;
+    /**
+     * Get all available data sources
+     *
+     * @generated from protobuf rpc: Tables(nebula.service.ListTables) returns (nebula.service.TableList);
+     */
+    tables(input: ListTables, metadata: grpc.Metadata, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: TableList) => void): grpc.ClientUnaryCall;
+    tables(input: ListTables, metadata: grpc.Metadata, callback: (err: grpc.ServiceError | null, value?: TableList) => void): grpc.ClientUnaryCall;
+    tables(input: ListTables, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: TableList) => void): grpc.ClientUnaryCall;
+    tables(input: ListTables, callback: (err: grpc.ServiceError | null, value?: TableList) => void): grpc.ClientUnaryCall;
+    /**
+     * Get table state for given table
+     *
+     * @generated from protobuf rpc: State(nebula.service.TableStateRequest) returns (nebula.service.TableStateResponse);
+     */
+    state(input: TableStateRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: TableStateResponse) => void): grpc.ClientUnaryCall;
+    state(input: TableStateRequest, metadata: grpc.Metadata, callback: (err: grpc.ServiceError | null, value?: TableStateResponse) => void): grpc.ClientUnaryCall;
+    state(input: TableStateRequest, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: TableStateResponse) => void): grpc.ClientUnaryCall;
+    state(input: TableStateRequest, callback: (err: grpc.ServiceError | null, value?: TableStateResponse) => void): grpc.ClientUnaryCall;
+    /**
+     * Query Nebula to get result
+     *
+     * @generated from protobuf rpc: Query(nebula.service.QueryRequest) returns (nebula.service.QueryResponse);
+     */
+    query(input: QueryRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: QueryResponse) => void): grpc.ClientUnaryCall;
+    query(input: QueryRequest, metadata: grpc.Metadata, callback: (err: grpc.ServiceError | null, value?: QueryResponse) => void): grpc.ClientUnaryCall;
+    query(input: QueryRequest, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: QueryResponse) => void): grpc.ClientUnaryCall;
+    query(input: QueryRequest, callback: (err: grpc.ServiceError | null, value?: QueryResponse) => void): grpc.ClientUnaryCall;
+    /**
+     * on demand loading specified data with parameters
+     * template defined in cluster configuration
+     *
+     * @generated from protobuf rpc: Load(nebula.service.LoadRequest) returns (nebula.service.LoadResponse);
+     */
+    load(input: LoadRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: LoadResponse) => void): grpc.ClientUnaryCall;
+    load(input: LoadRequest, metadata: grpc.Metadata, callback: (err: grpc.ServiceError | null, value?: LoadResponse) => void): grpc.ClientUnaryCall;
+    load(input: LoadRequest, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: LoadResponse) => void): grpc.ClientUnaryCall;
+    load(input: LoadRequest, callback: (err: grpc.ServiceError | null, value?: LoadResponse) => void): grpc.ClientUnaryCall;
+    /**
+     * shut down all work nodes - used for perf profiling
+     *
+     * @generated from protobuf rpc: Nuclear(nebula.service.EchoRequest) returns (nebula.service.EchoResponse);
+     */
+    nuclear(input: EchoRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: EchoResponse) => void): grpc.ClientUnaryCall;
+    nuclear(input: EchoRequest, metadata: grpc.Metadata, callback: (err: grpc.ServiceError | null, value?: EchoResponse) => void): grpc.ClientUnaryCall;
+    nuclear(input: EchoRequest, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: EchoResponse) => void): grpc.ClientUnaryCall;
+    nuclear(input: EchoRequest, callback: (err: grpc.ServiceError | null, value?: EchoResponse) => void): grpc.ClientUnaryCall;
+    /**
+     * URL service - code for raw or raw for code
+     *
+     * @generated from protobuf rpc: Url(nebula.service.UrlData) returns (nebula.service.UrlData);
+     */
+    url(input: UrlData, metadata: grpc.Metadata, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: UrlData) => void): grpc.ClientUnaryCall;
+    url(input: UrlData, metadata: grpc.Metadata, callback: (err: grpc.ServiceError | null, value?: UrlData) => void): grpc.ClientUnaryCall;
+    url(input: UrlData, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: UrlData) => void): grpc.ClientUnaryCall;
+    url(input: UrlData, callback: (err: grpc.ServiceError | null, value?: UrlData) => void): grpc.ClientUnaryCall;
+    /**
+     * Discovery service - register node
+     *
+     * @generated from protobuf rpc: Ping(nebula.service.ServiceInfo) returns (nebula.service.PingResponse);
+     */
+    ping(input: ServiceInfo, metadata: grpc.Metadata, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: PingResponse) => void): grpc.ClientUnaryCall;
+    ping(input: ServiceInfo, metadata: grpc.Metadata, callback: (err: grpc.ServiceError | null, value?: PingResponse) => void): grpc.ClientUnaryCall;
+    ping(input: ServiceInfo, options: grpc.CallOptions, callback: (err: grpc.ServiceError | null, value?: PingResponse) => void): grpc.ClientUnaryCall;
+    ping(input: ServiceInfo, callback: (err: grpc.ServiceError | null, value?: PingResponse) => void): grpc.ClientUnaryCall;
+}
+/**
+ * all service methods are captilized compared to other regular methods
+ *
+ * @generated from protobuf service nebula.service.V1
+ */
+export declare class V1Client extends grpc.Client implements IV1Client {
+    private readonly _binaryOptions;
+    constructor(address: string, credentials: grpc.ChannelCredentials, options?: grpc.ClientOptions, binaryOptions?: Partial<BinaryReadOptions & BinaryWriteOptions>);
+    /**
+     * Sends a greeting
+     *
+     * @generated from protobuf rpc: Echo(nebula.service.EchoRequest) returns (nebula.service.EchoResponse);
+     */
+    echo(input: EchoRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: EchoResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: EchoResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: EchoResponse) => void)): grpc.ClientUnaryCall;
+    /**
+     * Get all available data sources
+     *
+     * @generated from protobuf rpc: Tables(nebula.service.ListTables) returns (nebula.service.TableList);
+     */
+    tables(input: ListTables, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: TableList) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: TableList) => void), callback?: ((err: grpc.ServiceError | null, value?: TableList) => void)): grpc.ClientUnaryCall;
+    /**
+     * Get table state for given table
+     *
+     * @generated from protobuf rpc: State(nebula.service.TableStateRequest) returns (nebula.service.TableStateResponse);
+     */
+    state(input: TableStateRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: TableStateResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: TableStateResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: TableStateResponse) => void)): grpc.ClientUnaryCall;
+    /**
+     * Query Nebula to get result
+     *
+     * @generated from protobuf rpc: Query(nebula.service.QueryRequest) returns (nebula.service.QueryResponse);
+     */
+    query(input: QueryRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: QueryResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: QueryResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: QueryResponse) => void)): grpc.ClientUnaryCall;
+    /**
+     * on demand loading specified data with parameters
+     * template defined in cluster configuration
+     *
+     * @generated from protobuf rpc: Load(nebula.service.LoadRequest) returns (nebula.service.LoadResponse);
+     */
+    load(input: LoadRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: LoadResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: LoadResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: LoadResponse) => void)): grpc.ClientUnaryCall;
+    /**
+     * shut down all work nodes - used for perf profiling
+     *
+     * @generated from protobuf rpc: Nuclear(nebula.service.EchoRequest) returns (nebula.service.EchoResponse);
+     */
+    nuclear(input: EchoRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: EchoResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: EchoResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: EchoResponse) => void)): grpc.ClientUnaryCall;
+    /**
+     * URL service - code for raw or raw for code
+     *
+     * @generated from protobuf rpc: Url(nebula.service.UrlData) returns (nebula.service.UrlData);
+     */
+    url(input: UrlData, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UrlData) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UrlData) => void), callback?: ((err: grpc.ServiceError | null, value?: UrlData) => void)): grpc.ClientUnaryCall;
+    /**
+     * Discovery service - register node
+     *
+     * @generated from protobuf rpc: Ping(nebula.service.ServiceInfo) returns (nebula.service.PingResponse);
+     */
+    ping(input: ServiceInfo, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: PingResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: PingResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: PingResponse) => void)): grpc.ClientUnaryCall;
+}

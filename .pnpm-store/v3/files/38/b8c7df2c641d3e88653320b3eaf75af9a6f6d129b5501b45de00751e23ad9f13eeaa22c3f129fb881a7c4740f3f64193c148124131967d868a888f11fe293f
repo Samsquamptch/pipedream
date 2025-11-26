@@ -1,0 +1,500 @@
+import {
+  HostHeaderInputConfig,
+  HostHeaderResolvedConfig,
+} from "@aws-sdk/middleware-host-header";
+import {
+  UserAgentInputConfig,
+  UserAgentResolvedConfig,
+} from "@aws-sdk/middleware-user-agent";
+import {
+  RegionInputConfig,
+  RegionResolvedConfig,
+} from "@smithy/config-resolver";
+import {
+  EndpointInputConfig,
+  EndpointResolvedConfig,
+} from "@smithy/middleware-endpoint";
+import {
+  RetryInputConfig,
+  RetryResolvedConfig,
+} from "@smithy/middleware-retry";
+import { HttpHandlerUserInput as __HttpHandlerUserInput } from "@smithy/protocol-http";
+import {
+  Client as __Client,
+  DefaultsMode as __DefaultsMode,
+  SmithyConfiguration as __SmithyConfiguration,
+  SmithyResolvedConfiguration as __SmithyResolvedConfiguration,
+} from "@smithy/smithy-client";
+import {
+  AwsCredentialIdentityProvider,
+  BodyLengthCalculator as __BodyLengthCalculator,
+  CheckOptionalClientConfig as __CheckOptionalClientConfig,
+  ChecksumConstructor as __ChecksumConstructor,
+  Decoder as __Decoder,
+  Encoder as __Encoder,
+  HashConstructor as __HashConstructor,
+  HttpHandlerOptions as __HttpHandlerOptions,
+  Logger as __Logger,
+  Provider as __Provider,
+  Provider,
+  StreamCollector as __StreamCollector,
+  UrlParser as __UrlParser,
+  UserAgent as __UserAgent,
+} from "@smithy/types";
+import {
+  HttpAuthSchemeInputConfig,
+  HttpAuthSchemeResolvedConfig,
+} from "./auth/httpAuthSchemeProvider";
+import {
+  ConvertRecoveryPointToSnapshotCommandInput,
+  ConvertRecoveryPointToSnapshotCommandOutput,
+} from "./commands/ConvertRecoveryPointToSnapshotCommand";
+import {
+  CreateCustomDomainAssociationCommandInput,
+  CreateCustomDomainAssociationCommandOutput,
+} from "./commands/CreateCustomDomainAssociationCommand";
+import {
+  CreateEndpointAccessCommandInput,
+  CreateEndpointAccessCommandOutput,
+} from "./commands/CreateEndpointAccessCommand";
+import {
+  CreateNamespaceCommandInput,
+  CreateNamespaceCommandOutput,
+} from "./commands/CreateNamespaceCommand";
+import {
+  CreateReservationCommandInput,
+  CreateReservationCommandOutput,
+} from "./commands/CreateReservationCommand";
+import {
+  CreateScheduledActionCommandInput,
+  CreateScheduledActionCommandOutput,
+} from "./commands/CreateScheduledActionCommand";
+import {
+  CreateSnapshotCommandInput,
+  CreateSnapshotCommandOutput,
+} from "./commands/CreateSnapshotCommand";
+import {
+  CreateSnapshotCopyConfigurationCommandInput,
+  CreateSnapshotCopyConfigurationCommandOutput,
+} from "./commands/CreateSnapshotCopyConfigurationCommand";
+import {
+  CreateUsageLimitCommandInput,
+  CreateUsageLimitCommandOutput,
+} from "./commands/CreateUsageLimitCommand";
+import {
+  CreateWorkgroupCommandInput,
+  CreateWorkgroupCommandOutput,
+} from "./commands/CreateWorkgroupCommand";
+import {
+  DeleteCustomDomainAssociationCommandInput,
+  DeleteCustomDomainAssociationCommandOutput,
+} from "./commands/DeleteCustomDomainAssociationCommand";
+import {
+  DeleteEndpointAccessCommandInput,
+  DeleteEndpointAccessCommandOutput,
+} from "./commands/DeleteEndpointAccessCommand";
+import {
+  DeleteNamespaceCommandInput,
+  DeleteNamespaceCommandOutput,
+} from "./commands/DeleteNamespaceCommand";
+import {
+  DeleteResourcePolicyCommandInput,
+  DeleteResourcePolicyCommandOutput,
+} from "./commands/DeleteResourcePolicyCommand";
+import {
+  DeleteScheduledActionCommandInput,
+  DeleteScheduledActionCommandOutput,
+} from "./commands/DeleteScheduledActionCommand";
+import {
+  DeleteSnapshotCommandInput,
+  DeleteSnapshotCommandOutput,
+} from "./commands/DeleteSnapshotCommand";
+import {
+  DeleteSnapshotCopyConfigurationCommandInput,
+  DeleteSnapshotCopyConfigurationCommandOutput,
+} from "./commands/DeleteSnapshotCopyConfigurationCommand";
+import {
+  DeleteUsageLimitCommandInput,
+  DeleteUsageLimitCommandOutput,
+} from "./commands/DeleteUsageLimitCommand";
+import {
+  DeleteWorkgroupCommandInput,
+  DeleteWorkgroupCommandOutput,
+} from "./commands/DeleteWorkgroupCommand";
+import {
+  GetCredentialsCommandInput,
+  GetCredentialsCommandOutput,
+} from "./commands/GetCredentialsCommand";
+import {
+  GetCustomDomainAssociationCommandInput,
+  GetCustomDomainAssociationCommandOutput,
+} from "./commands/GetCustomDomainAssociationCommand";
+import {
+  GetEndpointAccessCommandInput,
+  GetEndpointAccessCommandOutput,
+} from "./commands/GetEndpointAccessCommand";
+import {
+  GetNamespaceCommandInput,
+  GetNamespaceCommandOutput,
+} from "./commands/GetNamespaceCommand";
+import {
+  GetRecoveryPointCommandInput,
+  GetRecoveryPointCommandOutput,
+} from "./commands/GetRecoveryPointCommand";
+import {
+  GetReservationCommandInput,
+  GetReservationCommandOutput,
+} from "./commands/GetReservationCommand";
+import {
+  GetReservationOfferingCommandInput,
+  GetReservationOfferingCommandOutput,
+} from "./commands/GetReservationOfferingCommand";
+import {
+  GetResourcePolicyCommandInput,
+  GetResourcePolicyCommandOutput,
+} from "./commands/GetResourcePolicyCommand";
+import {
+  GetScheduledActionCommandInput,
+  GetScheduledActionCommandOutput,
+} from "./commands/GetScheduledActionCommand";
+import {
+  GetSnapshotCommandInput,
+  GetSnapshotCommandOutput,
+} from "./commands/GetSnapshotCommand";
+import {
+  GetTableRestoreStatusCommandInput,
+  GetTableRestoreStatusCommandOutput,
+} from "./commands/GetTableRestoreStatusCommand";
+import {
+  GetTrackCommandInput,
+  GetTrackCommandOutput,
+} from "./commands/GetTrackCommand";
+import {
+  GetUsageLimitCommandInput,
+  GetUsageLimitCommandOutput,
+} from "./commands/GetUsageLimitCommand";
+import {
+  GetWorkgroupCommandInput,
+  GetWorkgroupCommandOutput,
+} from "./commands/GetWorkgroupCommand";
+import {
+  ListCustomDomainAssociationsCommandInput,
+  ListCustomDomainAssociationsCommandOutput,
+} from "./commands/ListCustomDomainAssociationsCommand";
+import {
+  ListEndpointAccessCommandInput,
+  ListEndpointAccessCommandOutput,
+} from "./commands/ListEndpointAccessCommand";
+import {
+  ListManagedWorkgroupsCommandInput,
+  ListManagedWorkgroupsCommandOutput,
+} from "./commands/ListManagedWorkgroupsCommand";
+import {
+  ListNamespacesCommandInput,
+  ListNamespacesCommandOutput,
+} from "./commands/ListNamespacesCommand";
+import {
+  ListRecoveryPointsCommandInput,
+  ListRecoveryPointsCommandOutput,
+} from "./commands/ListRecoveryPointsCommand";
+import {
+  ListReservationOfferingsCommandInput,
+  ListReservationOfferingsCommandOutput,
+} from "./commands/ListReservationOfferingsCommand";
+import {
+  ListReservationsCommandInput,
+  ListReservationsCommandOutput,
+} from "./commands/ListReservationsCommand";
+import {
+  ListScheduledActionsCommandInput,
+  ListScheduledActionsCommandOutput,
+} from "./commands/ListScheduledActionsCommand";
+import {
+  ListSnapshotCopyConfigurationsCommandInput,
+  ListSnapshotCopyConfigurationsCommandOutput,
+} from "./commands/ListSnapshotCopyConfigurationsCommand";
+import {
+  ListSnapshotsCommandInput,
+  ListSnapshotsCommandOutput,
+} from "./commands/ListSnapshotsCommand";
+import {
+  ListTableRestoreStatusCommandInput,
+  ListTableRestoreStatusCommandOutput,
+} from "./commands/ListTableRestoreStatusCommand";
+import {
+  ListTagsForResourceCommandInput,
+  ListTagsForResourceCommandOutput,
+} from "./commands/ListTagsForResourceCommand";
+import {
+  ListTracksCommandInput,
+  ListTracksCommandOutput,
+} from "./commands/ListTracksCommand";
+import {
+  ListUsageLimitsCommandInput,
+  ListUsageLimitsCommandOutput,
+} from "./commands/ListUsageLimitsCommand";
+import {
+  ListWorkgroupsCommandInput,
+  ListWorkgroupsCommandOutput,
+} from "./commands/ListWorkgroupsCommand";
+import {
+  PutResourcePolicyCommandInput,
+  PutResourcePolicyCommandOutput,
+} from "./commands/PutResourcePolicyCommand";
+import {
+  RestoreFromRecoveryPointCommandInput,
+  RestoreFromRecoveryPointCommandOutput,
+} from "./commands/RestoreFromRecoveryPointCommand";
+import {
+  RestoreFromSnapshotCommandInput,
+  RestoreFromSnapshotCommandOutput,
+} from "./commands/RestoreFromSnapshotCommand";
+import {
+  RestoreTableFromRecoveryPointCommandInput,
+  RestoreTableFromRecoveryPointCommandOutput,
+} from "./commands/RestoreTableFromRecoveryPointCommand";
+import {
+  RestoreTableFromSnapshotCommandInput,
+  RestoreTableFromSnapshotCommandOutput,
+} from "./commands/RestoreTableFromSnapshotCommand";
+import {
+  TagResourceCommandInput,
+  TagResourceCommandOutput,
+} from "./commands/TagResourceCommand";
+import {
+  UntagResourceCommandInput,
+  UntagResourceCommandOutput,
+} from "./commands/UntagResourceCommand";
+import {
+  UpdateCustomDomainAssociationCommandInput,
+  UpdateCustomDomainAssociationCommandOutput,
+} from "./commands/UpdateCustomDomainAssociationCommand";
+import {
+  UpdateEndpointAccessCommandInput,
+  UpdateEndpointAccessCommandOutput,
+} from "./commands/UpdateEndpointAccessCommand";
+import {
+  UpdateNamespaceCommandInput,
+  UpdateNamespaceCommandOutput,
+} from "./commands/UpdateNamespaceCommand";
+import {
+  UpdateScheduledActionCommandInput,
+  UpdateScheduledActionCommandOutput,
+} from "./commands/UpdateScheduledActionCommand";
+import {
+  UpdateSnapshotCommandInput,
+  UpdateSnapshotCommandOutput,
+} from "./commands/UpdateSnapshotCommand";
+import {
+  UpdateSnapshotCopyConfigurationCommandInput,
+  UpdateSnapshotCopyConfigurationCommandOutput,
+} from "./commands/UpdateSnapshotCopyConfigurationCommand";
+import {
+  UpdateUsageLimitCommandInput,
+  UpdateUsageLimitCommandOutput,
+} from "./commands/UpdateUsageLimitCommand";
+import {
+  UpdateWorkgroupCommandInput,
+  UpdateWorkgroupCommandOutput,
+} from "./commands/UpdateWorkgroupCommand";
+import {
+  ClientInputEndpointParameters,
+  ClientResolvedEndpointParameters,
+  EndpointParameters,
+} from "./endpoint/EndpointParameters";
+import { RuntimeExtension, RuntimeExtensionsConfig } from "./runtimeExtensions";
+export { __Client };
+export type ServiceInputTypes =
+  | ConvertRecoveryPointToSnapshotCommandInput
+  | CreateCustomDomainAssociationCommandInput
+  | CreateEndpointAccessCommandInput
+  | CreateNamespaceCommandInput
+  | CreateReservationCommandInput
+  | CreateScheduledActionCommandInput
+  | CreateSnapshotCommandInput
+  | CreateSnapshotCopyConfigurationCommandInput
+  | CreateUsageLimitCommandInput
+  | CreateWorkgroupCommandInput
+  | DeleteCustomDomainAssociationCommandInput
+  | DeleteEndpointAccessCommandInput
+  | DeleteNamespaceCommandInput
+  | DeleteResourcePolicyCommandInput
+  | DeleteScheduledActionCommandInput
+  | DeleteSnapshotCommandInput
+  | DeleteSnapshotCopyConfigurationCommandInput
+  | DeleteUsageLimitCommandInput
+  | DeleteWorkgroupCommandInput
+  | GetCredentialsCommandInput
+  | GetCustomDomainAssociationCommandInput
+  | GetEndpointAccessCommandInput
+  | GetNamespaceCommandInput
+  | GetRecoveryPointCommandInput
+  | GetReservationCommandInput
+  | GetReservationOfferingCommandInput
+  | GetResourcePolicyCommandInput
+  | GetScheduledActionCommandInput
+  | GetSnapshotCommandInput
+  | GetTableRestoreStatusCommandInput
+  | GetTrackCommandInput
+  | GetUsageLimitCommandInput
+  | GetWorkgroupCommandInput
+  | ListCustomDomainAssociationsCommandInput
+  | ListEndpointAccessCommandInput
+  | ListManagedWorkgroupsCommandInput
+  | ListNamespacesCommandInput
+  | ListRecoveryPointsCommandInput
+  | ListReservationOfferingsCommandInput
+  | ListReservationsCommandInput
+  | ListScheduledActionsCommandInput
+  | ListSnapshotCopyConfigurationsCommandInput
+  | ListSnapshotsCommandInput
+  | ListTableRestoreStatusCommandInput
+  | ListTagsForResourceCommandInput
+  | ListTracksCommandInput
+  | ListUsageLimitsCommandInput
+  | ListWorkgroupsCommandInput
+  | PutResourcePolicyCommandInput
+  | RestoreFromRecoveryPointCommandInput
+  | RestoreFromSnapshotCommandInput
+  | RestoreTableFromRecoveryPointCommandInput
+  | RestoreTableFromSnapshotCommandInput
+  | TagResourceCommandInput
+  | UntagResourceCommandInput
+  | UpdateCustomDomainAssociationCommandInput
+  | UpdateEndpointAccessCommandInput
+  | UpdateNamespaceCommandInput
+  | UpdateScheduledActionCommandInput
+  | UpdateSnapshotCommandInput
+  | UpdateSnapshotCopyConfigurationCommandInput
+  | UpdateUsageLimitCommandInput
+  | UpdateWorkgroupCommandInput;
+export type ServiceOutputTypes =
+  | ConvertRecoveryPointToSnapshotCommandOutput
+  | CreateCustomDomainAssociationCommandOutput
+  | CreateEndpointAccessCommandOutput
+  | CreateNamespaceCommandOutput
+  | CreateReservationCommandOutput
+  | CreateScheduledActionCommandOutput
+  | CreateSnapshotCommandOutput
+  | CreateSnapshotCopyConfigurationCommandOutput
+  | CreateUsageLimitCommandOutput
+  | CreateWorkgroupCommandOutput
+  | DeleteCustomDomainAssociationCommandOutput
+  | DeleteEndpointAccessCommandOutput
+  | DeleteNamespaceCommandOutput
+  | DeleteResourcePolicyCommandOutput
+  | DeleteScheduledActionCommandOutput
+  | DeleteSnapshotCommandOutput
+  | DeleteSnapshotCopyConfigurationCommandOutput
+  | DeleteUsageLimitCommandOutput
+  | DeleteWorkgroupCommandOutput
+  | GetCredentialsCommandOutput
+  | GetCustomDomainAssociationCommandOutput
+  | GetEndpointAccessCommandOutput
+  | GetNamespaceCommandOutput
+  | GetRecoveryPointCommandOutput
+  | GetReservationCommandOutput
+  | GetReservationOfferingCommandOutput
+  | GetResourcePolicyCommandOutput
+  | GetScheduledActionCommandOutput
+  | GetSnapshotCommandOutput
+  | GetTableRestoreStatusCommandOutput
+  | GetTrackCommandOutput
+  | GetUsageLimitCommandOutput
+  | GetWorkgroupCommandOutput
+  | ListCustomDomainAssociationsCommandOutput
+  | ListEndpointAccessCommandOutput
+  | ListManagedWorkgroupsCommandOutput
+  | ListNamespacesCommandOutput
+  | ListRecoveryPointsCommandOutput
+  | ListReservationOfferingsCommandOutput
+  | ListReservationsCommandOutput
+  | ListScheduledActionsCommandOutput
+  | ListSnapshotCopyConfigurationsCommandOutput
+  | ListSnapshotsCommandOutput
+  | ListTableRestoreStatusCommandOutput
+  | ListTagsForResourceCommandOutput
+  | ListTracksCommandOutput
+  | ListUsageLimitsCommandOutput
+  | ListWorkgroupsCommandOutput
+  | PutResourcePolicyCommandOutput
+  | RestoreFromRecoveryPointCommandOutput
+  | RestoreFromSnapshotCommandOutput
+  | RestoreTableFromRecoveryPointCommandOutput
+  | RestoreTableFromSnapshotCommandOutput
+  | TagResourceCommandOutput
+  | UntagResourceCommandOutput
+  | UpdateCustomDomainAssociationCommandOutput
+  | UpdateEndpointAccessCommandOutput
+  | UpdateNamespaceCommandOutput
+  | UpdateScheduledActionCommandOutput
+  | UpdateSnapshotCommandOutput
+  | UpdateSnapshotCopyConfigurationCommandOutput
+  | UpdateUsageLimitCommandOutput
+  | UpdateWorkgroupCommandOutput;
+export interface ClientDefaults
+  extends Partial<__SmithyConfiguration<__HttpHandlerOptions>> {
+  requestHandler?: __HttpHandlerUserInput;
+  sha256?: __ChecksumConstructor | __HashConstructor;
+  urlParser?: __UrlParser;
+  bodyLengthChecker?: __BodyLengthCalculator;
+  streamCollector?: __StreamCollector;
+  base64Decoder?: __Decoder;
+  base64Encoder?: __Encoder;
+  utf8Decoder?: __Decoder;
+  utf8Encoder?: __Encoder;
+  runtime?: string;
+  disableHostPrefix?: boolean;
+  serviceId?: string;
+  useDualstackEndpoint?: boolean | __Provider<boolean>;
+  useFipsEndpoint?: boolean | __Provider<boolean>;
+  region?: string | __Provider<string>;
+  profile?: string;
+  defaultUserAgentProvider?: Provider<__UserAgent>;
+  credentialDefaultProvider?: (input: any) => AwsCredentialIdentityProvider;
+  maxAttempts?: number | __Provider<number>;
+  retryMode?: string | __Provider<string>;
+  logger?: __Logger;
+  extensions?: RuntimeExtension[];
+  defaultsMode?: __DefaultsMode | __Provider<__DefaultsMode>;
+}
+export type RedshiftServerlessClientConfigType = Partial<
+  __SmithyConfiguration<__HttpHandlerOptions>
+> &
+  ClientDefaults &
+  UserAgentInputConfig &
+  RetryInputConfig &
+  RegionInputConfig &
+  HostHeaderInputConfig &
+  EndpointInputConfig<EndpointParameters> &
+  HttpAuthSchemeInputConfig &
+  ClientInputEndpointParameters;
+export interface RedshiftServerlessClientConfig
+  extends RedshiftServerlessClientConfigType {}
+export type RedshiftServerlessClientResolvedConfigType =
+  __SmithyResolvedConfiguration<__HttpHandlerOptions> &
+    Required<ClientDefaults> &
+    RuntimeExtensionsConfig &
+    UserAgentResolvedConfig &
+    RetryResolvedConfig &
+    RegionResolvedConfig &
+    HostHeaderResolvedConfig &
+    EndpointResolvedConfig<EndpointParameters> &
+    HttpAuthSchemeResolvedConfig &
+    ClientResolvedEndpointParameters;
+export interface RedshiftServerlessClientResolvedConfig
+  extends RedshiftServerlessClientResolvedConfigType {}
+export declare class RedshiftServerlessClient extends __Client<
+  __HttpHandlerOptions,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+  RedshiftServerlessClientResolvedConfig
+> {
+  readonly config: RedshiftServerlessClientResolvedConfig;
+  constructor(
+    ...[
+      configuration,
+    ]: __CheckOptionalClientConfig<RedshiftServerlessClientConfig>
+  );
+  destroy(): void;
+}

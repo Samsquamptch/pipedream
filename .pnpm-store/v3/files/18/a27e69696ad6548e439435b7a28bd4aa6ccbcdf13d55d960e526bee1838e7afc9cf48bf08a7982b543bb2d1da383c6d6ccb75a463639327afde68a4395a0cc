@@ -1,0 +1,7 @@
+import { Paginator } from "@smithy/types";
+import { ListRecoveryPointsCommandInput, ListRecoveryPointsCommandOutput } from "../commands/ListRecoveryPointsCommand";
+import { RedshiftServerlessPaginationConfiguration } from "./Interfaces";
+/**
+ * @public
+ */
+export declare const paginateListRecoveryPoints: (config: RedshiftServerlessPaginationConfiguration, input: ListRecoveryPointsCommandInput, ...rest: any[]) => Paginator<ListRecoveryPointsCommandOutput>;

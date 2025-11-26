@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  RestoreTableFromSnapshotRequest,
+  RestoreTableFromSnapshotResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface RestoreTableFromSnapshotCommandInput
+  extends RestoreTableFromSnapshotRequest {}
+export interface RestoreTableFromSnapshotCommandOutput
+  extends RestoreTableFromSnapshotResponse,
+    __MetadataBearer {}
+declare const RestoreTableFromSnapshotCommand_base: {
+  new (
+    input: RestoreTableFromSnapshotCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    RestoreTableFromSnapshotCommandInput,
+    RestoreTableFromSnapshotCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: RestoreTableFromSnapshotCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    RestoreTableFromSnapshotCommandInput,
+    RestoreTableFromSnapshotCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class RestoreTableFromSnapshotCommand extends RestoreTableFromSnapshotCommand_base {
+  protected static __types: {
+    api: {
+      input: RestoreTableFromSnapshotRequest;
+      output: RestoreTableFromSnapshotResponse;
+    };
+    sdk: {
+      input: RestoreTableFromSnapshotCommandInput;
+      output: RestoreTableFromSnapshotCommandOutput;
+    };
+  };
+}

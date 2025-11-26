@@ -1,0 +1,133 @@
+import { createAggregatedClient } from "@smithy/smithy-client";
+import { ConvertRecoveryPointToSnapshotCommand, } from "./commands/ConvertRecoveryPointToSnapshotCommand";
+import { CreateCustomDomainAssociationCommand, } from "./commands/CreateCustomDomainAssociationCommand";
+import { CreateEndpointAccessCommand, } from "./commands/CreateEndpointAccessCommand";
+import { CreateNamespaceCommand, } from "./commands/CreateNamespaceCommand";
+import { CreateReservationCommand, } from "./commands/CreateReservationCommand";
+import { CreateScheduledActionCommand, } from "./commands/CreateScheduledActionCommand";
+import { CreateSnapshotCommand, } from "./commands/CreateSnapshotCommand";
+import { CreateSnapshotCopyConfigurationCommand, } from "./commands/CreateSnapshotCopyConfigurationCommand";
+import { CreateUsageLimitCommand, } from "./commands/CreateUsageLimitCommand";
+import { CreateWorkgroupCommand, } from "./commands/CreateWorkgroupCommand";
+import { DeleteCustomDomainAssociationCommand, } from "./commands/DeleteCustomDomainAssociationCommand";
+import { DeleteEndpointAccessCommand, } from "./commands/DeleteEndpointAccessCommand";
+import { DeleteNamespaceCommand, } from "./commands/DeleteNamespaceCommand";
+import { DeleteResourcePolicyCommand, } from "./commands/DeleteResourcePolicyCommand";
+import { DeleteScheduledActionCommand, } from "./commands/DeleteScheduledActionCommand";
+import { DeleteSnapshotCommand, } from "./commands/DeleteSnapshotCommand";
+import { DeleteSnapshotCopyConfigurationCommand, } from "./commands/DeleteSnapshotCopyConfigurationCommand";
+import { DeleteUsageLimitCommand, } from "./commands/DeleteUsageLimitCommand";
+import { DeleteWorkgroupCommand, } from "./commands/DeleteWorkgroupCommand";
+import { GetCredentialsCommand, } from "./commands/GetCredentialsCommand";
+import { GetCustomDomainAssociationCommand, } from "./commands/GetCustomDomainAssociationCommand";
+import { GetEndpointAccessCommand, } from "./commands/GetEndpointAccessCommand";
+import { GetNamespaceCommand, } from "./commands/GetNamespaceCommand";
+import { GetRecoveryPointCommand, } from "./commands/GetRecoveryPointCommand";
+import { GetReservationCommand, } from "./commands/GetReservationCommand";
+import { GetReservationOfferingCommand, } from "./commands/GetReservationOfferingCommand";
+import { GetResourcePolicyCommand, } from "./commands/GetResourcePolicyCommand";
+import { GetScheduledActionCommand, } from "./commands/GetScheduledActionCommand";
+import { GetSnapshotCommand } from "./commands/GetSnapshotCommand";
+import { GetTableRestoreStatusCommand, } from "./commands/GetTableRestoreStatusCommand";
+import { GetTrackCommand } from "./commands/GetTrackCommand";
+import { GetUsageLimitCommand, } from "./commands/GetUsageLimitCommand";
+import { GetWorkgroupCommand, } from "./commands/GetWorkgroupCommand";
+import { ListCustomDomainAssociationsCommand, } from "./commands/ListCustomDomainAssociationsCommand";
+import { ListEndpointAccessCommand, } from "./commands/ListEndpointAccessCommand";
+import { ListManagedWorkgroupsCommand, } from "./commands/ListManagedWorkgroupsCommand";
+import { ListNamespacesCommand, } from "./commands/ListNamespacesCommand";
+import { ListRecoveryPointsCommand, } from "./commands/ListRecoveryPointsCommand";
+import { ListReservationOfferingsCommand, } from "./commands/ListReservationOfferingsCommand";
+import { ListReservationsCommand, } from "./commands/ListReservationsCommand";
+import { ListScheduledActionsCommand, } from "./commands/ListScheduledActionsCommand";
+import { ListSnapshotCopyConfigurationsCommand, } from "./commands/ListSnapshotCopyConfigurationsCommand";
+import { ListSnapshotsCommand, } from "./commands/ListSnapshotsCommand";
+import { ListTableRestoreStatusCommand, } from "./commands/ListTableRestoreStatusCommand";
+import { ListTagsForResourceCommand, } from "./commands/ListTagsForResourceCommand";
+import { ListTracksCommand } from "./commands/ListTracksCommand";
+import { ListUsageLimitsCommand, } from "./commands/ListUsageLimitsCommand";
+import { ListWorkgroupsCommand, } from "./commands/ListWorkgroupsCommand";
+import { PutResourcePolicyCommand, } from "./commands/PutResourcePolicyCommand";
+import { RestoreFromRecoveryPointCommand, } from "./commands/RestoreFromRecoveryPointCommand";
+import { RestoreFromSnapshotCommand, } from "./commands/RestoreFromSnapshotCommand";
+import { RestoreTableFromRecoveryPointCommand, } from "./commands/RestoreTableFromRecoveryPointCommand";
+import { RestoreTableFromSnapshotCommand, } from "./commands/RestoreTableFromSnapshotCommand";
+import { TagResourceCommand } from "./commands/TagResourceCommand";
+import { UntagResourceCommand, } from "./commands/UntagResourceCommand";
+import { UpdateCustomDomainAssociationCommand, } from "./commands/UpdateCustomDomainAssociationCommand";
+import { UpdateEndpointAccessCommand, } from "./commands/UpdateEndpointAccessCommand";
+import { UpdateNamespaceCommand, } from "./commands/UpdateNamespaceCommand";
+import { UpdateScheduledActionCommand, } from "./commands/UpdateScheduledActionCommand";
+import { UpdateSnapshotCommand, } from "./commands/UpdateSnapshotCommand";
+import { UpdateSnapshotCopyConfigurationCommand, } from "./commands/UpdateSnapshotCopyConfigurationCommand";
+import { UpdateUsageLimitCommand, } from "./commands/UpdateUsageLimitCommand";
+import { UpdateWorkgroupCommand, } from "./commands/UpdateWorkgroupCommand";
+import { RedshiftServerlessClient } from "./RedshiftServerlessClient";
+const commands = {
+    ConvertRecoveryPointToSnapshotCommand,
+    CreateCustomDomainAssociationCommand,
+    CreateEndpointAccessCommand,
+    CreateNamespaceCommand,
+    CreateReservationCommand,
+    CreateScheduledActionCommand,
+    CreateSnapshotCommand,
+    CreateSnapshotCopyConfigurationCommand,
+    CreateUsageLimitCommand,
+    CreateWorkgroupCommand,
+    DeleteCustomDomainAssociationCommand,
+    DeleteEndpointAccessCommand,
+    DeleteNamespaceCommand,
+    DeleteResourcePolicyCommand,
+    DeleteScheduledActionCommand,
+    DeleteSnapshotCommand,
+    DeleteSnapshotCopyConfigurationCommand,
+    DeleteUsageLimitCommand,
+    DeleteWorkgroupCommand,
+    GetCredentialsCommand,
+    GetCustomDomainAssociationCommand,
+    GetEndpointAccessCommand,
+    GetNamespaceCommand,
+    GetRecoveryPointCommand,
+    GetReservationCommand,
+    GetReservationOfferingCommand,
+    GetResourcePolicyCommand,
+    GetScheduledActionCommand,
+    GetSnapshotCommand,
+    GetTableRestoreStatusCommand,
+    GetTrackCommand,
+    GetUsageLimitCommand,
+    GetWorkgroupCommand,
+    ListCustomDomainAssociationsCommand,
+    ListEndpointAccessCommand,
+    ListManagedWorkgroupsCommand,
+    ListNamespacesCommand,
+    ListRecoveryPointsCommand,
+    ListReservationOfferingsCommand,
+    ListReservationsCommand,
+    ListScheduledActionsCommand,
+    ListSnapshotCopyConfigurationsCommand,
+    ListSnapshotsCommand,
+    ListTableRestoreStatusCommand,
+    ListTagsForResourceCommand,
+    ListTracksCommand,
+    ListUsageLimitsCommand,
+    ListWorkgroupsCommand,
+    PutResourcePolicyCommand,
+    RestoreFromRecoveryPointCommand,
+    RestoreFromSnapshotCommand,
+    RestoreTableFromRecoveryPointCommand,
+    RestoreTableFromSnapshotCommand,
+    TagResourceCommand,
+    UntagResourceCommand,
+    UpdateCustomDomainAssociationCommand,
+    UpdateEndpointAccessCommand,
+    UpdateNamespaceCommand,
+    UpdateScheduledActionCommand,
+    UpdateSnapshotCommand,
+    UpdateSnapshotCopyConfigurationCommand,
+    UpdateUsageLimitCommand,
+    UpdateWorkgroupCommand,
+};
+export class RedshiftServerless extends RedshiftServerlessClient {
+}
+createAggregatedClient(commands, RedshiftServerless);

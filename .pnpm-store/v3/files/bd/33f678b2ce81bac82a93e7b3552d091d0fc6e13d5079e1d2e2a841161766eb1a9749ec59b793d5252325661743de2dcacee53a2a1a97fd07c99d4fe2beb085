@@ -1,0 +1,4 @@
+import { createPaginator } from "@smithy/core";
+import { ListRecoveryPointsCommand, } from "../commands/ListRecoveryPointsCommand";
+import { RedshiftServerlessClient } from "../RedshiftServerlessClient";
+export const paginateListRecoveryPoints = createPaginator(RedshiftServerlessClient, ListRecoveryPointsCommand, "nextToken", "nextToken", "maxResults");

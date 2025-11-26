@@ -1,0 +1,88 @@
+import { z } from 'zod';
+import { type RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotTlcdnDeliverInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    robot: z.ZodLiteral<"/tlcdn/deliver">;
+}, "strict", z.ZodTypeAny, {
+    robot: "/tlcdn/deliver";
+    result: boolean;
+    force_accept: boolean;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+}, {
+    robot: "/tlcdn/deliver";
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+}>;
+export declare const robotTlcdnDeliverInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    robot: z.ZodLiteral<"/tlcdn/deliver">;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/tlcdn/deliver";
+    force_accept: boolean;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+}, {
+    robot: "/tlcdn/deliver";
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+}>;
+export type RobotTlcdnDeliverInstructions = z.infer<typeof robotTlcdnDeliverInstructionsSchema>;
+export type RobotTlcdnDeliverInstructionsWithHiddenFields = z.infer<typeof robotTlcdnDeliverInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotTlcdnDeliverInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    robot: z.ZodLiteral<"/tlcdn/deliver">;
+}, "strict", z.ZodTypeAny, {
+    robot: "/tlcdn/deliver";
+    result: string | boolean;
+    force_accept: string | boolean;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+}, {
+    robot: "/tlcdn/deliver";
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+}>;
+export type InterpolatableRobotTlcdnDeliverInstructions = InterpolatableRobotTlcdnDeliverInstructionsInput;
+export type InterpolatableRobotTlcdnDeliverInstructionsInput = z.input<typeof interpolatableRobotTlcdnDeliverInstructionsSchema>;
+export declare const interpolatableRobotTlcdnDeliverInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    robot: z.ZodLiteral<"/tlcdn/deliver">;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    robot: "/tlcdn/deliver";
+    force_accept: string | boolean;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+}, {
+    robot: "/tlcdn/deliver";
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+}>;
+export type InterpolatableRobotTlcdnDeliverInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotTlcdnDeliverInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotTlcdnDeliverInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotTlcdnDeliverInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=tlcdn-deliver.d.ts.map

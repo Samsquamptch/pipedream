@@ -1,0 +1,4 @@
+import { createPaginator } from "@smithy/core";
+import { ListTableRestoreStatusCommand, } from "../commands/ListTableRestoreStatusCommand";
+import { RedshiftServerlessClient } from "../RedshiftServerlessClient";
+export const paginateListTableRestoreStatus = createPaginator(RedshiftServerlessClient, ListTableRestoreStatusCommand, "nextToken", "nextToken", "maxResults");

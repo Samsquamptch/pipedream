@@ -1,0 +1,2 @@
+This folder is only define the sharable module that defines Columns Graph Data Model.
+It's published as a npm package `columns-graph-model` and used by the other projects.

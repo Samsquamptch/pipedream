@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  DeleteScheduledActionRequest,
+  DeleteScheduledActionResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface DeleteScheduledActionCommandInput
+  extends DeleteScheduledActionRequest {}
+export interface DeleteScheduledActionCommandOutput
+  extends DeleteScheduledActionResponse,
+    __MetadataBearer {}
+declare const DeleteScheduledActionCommand_base: {
+  new (
+    input: DeleteScheduledActionCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    DeleteScheduledActionCommandInput,
+    DeleteScheduledActionCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: DeleteScheduledActionCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    DeleteScheduledActionCommandInput,
+    DeleteScheduledActionCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class DeleteScheduledActionCommand extends DeleteScheduledActionCommand_base {
+  protected static __types: {
+    api: {
+      input: DeleteScheduledActionRequest;
+      output: DeleteScheduledActionResponse;
+    };
+    sdk: {
+      input: DeleteScheduledActionCommandInput;
+      output: DeleteScheduledActionCommandOutput;
+    };
+  };
+}

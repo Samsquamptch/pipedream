@@ -1,0 +1,5 @@
+import { ManagementClient } from './management-client.class';
+export function createManagementClient(config) {
+    return new ManagementClient(config);
+}
+//# sourceMappingURL=management-client.factory.js.map

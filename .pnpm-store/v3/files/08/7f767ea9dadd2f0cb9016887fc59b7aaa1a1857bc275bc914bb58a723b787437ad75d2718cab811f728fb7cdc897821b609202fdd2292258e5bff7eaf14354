@@ -1,0 +1,26 @@
+export declare namespace SharedContracts {
+    interface IPaginationModelContract {
+        continuation_token: string | null;
+        next_page: string | null;
+    }
+    interface IReferenceObjectContract {
+        id?: string;
+        codename?: string;
+        external_id?: string;
+    }
+    interface ICodenameIdReferenceContract {
+        id?: string;
+        codename?: string;
+    }
+    interface IValidationErrorContract {
+        message: string;
+    }
+    interface IContentManagementError {
+        message: string;
+        request_id: string;
+        error_code: number;
+        validation_errors?: IValidationErrorContract[];
+    }
+    interface IEmptyResponseContract {
+    }
+}

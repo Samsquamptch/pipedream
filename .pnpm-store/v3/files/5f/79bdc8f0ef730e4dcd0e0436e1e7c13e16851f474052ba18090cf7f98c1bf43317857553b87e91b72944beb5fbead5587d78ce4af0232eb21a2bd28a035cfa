@@ -1,0 +1,11 @@
+import { Paginator } from "@smithy/types";
+import {
+  ListUsageLimitsCommandInput,
+  ListUsageLimitsCommandOutput,
+} from "../commands/ListUsageLimitsCommand";
+import { RedshiftServerlessPaginationConfiguration } from "./Interfaces";
+export declare const paginateListUsageLimits: (
+  config: RedshiftServerlessPaginationConfiguration,
+  input: ListUsageLimitsCommandInput,
+  ...rest: any[]
+) => Paginator<ListUsageLimitsCommandOutput>;

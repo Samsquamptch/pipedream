@@ -1,0 +1,16 @@
+import { FontProps } from '../font';
+export type NeedleProps = {
+    color: string;
+    unlabeled: boolean;
+};
+export type GaugeProps = {
+    segments: number[];
+    needle: NeedleProps;
+    f?: boolean;
+};
+export type BigTextProps = {
+    font: FontProps;
+    value: number;
+    gauged: boolean;
+    gauge: GaugeProps;
+};

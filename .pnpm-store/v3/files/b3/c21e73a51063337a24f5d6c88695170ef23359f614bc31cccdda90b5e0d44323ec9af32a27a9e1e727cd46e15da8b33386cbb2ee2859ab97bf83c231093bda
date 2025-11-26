@@ -1,0 +1,4 @@
+import { createPaginator } from "@smithy/core";
+import { ListTracksCommand } from "../commands/ListTracksCommand";
+import { RedshiftServerlessClient } from "../RedshiftServerlessClient";
+export const paginateListTracks = createPaginator(RedshiftServerlessClient, ListTracksCommand, "nextToken", "nextToken", "maxResults");

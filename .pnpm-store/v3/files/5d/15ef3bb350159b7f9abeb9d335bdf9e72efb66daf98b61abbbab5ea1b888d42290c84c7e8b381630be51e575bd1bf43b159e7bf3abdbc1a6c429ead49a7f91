@@ -1,0 +1,55 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AgentRunsEndpoints = void 0;
+const schemas_1 = require("../../schemas");
+const errors_1 = require("../../errors");
+class AgentRunsEndpoints {
+    constructor(client) {
+        this.client = client;
+    }
+    /**
+     * Get an agent run by ID
+     * @param params Request parameters including run ID
+     * @returns The agent run details
+     */
+    async get(params) {
+        try {
+            // Validate input with Zod
+            const validatedParams = schemas_1.zGetAgentRunRequest.parse(params);
+            const response = await this.client.get(`/agents/runs/${validatedParams.run}`);
+            return response.data;
+        }
+        catch (error) {
+            if (error instanceof Error && error.name === "ZodError") {
+                const zodError = error;
+                throw new errors_1.SDKError(errors_1.SDKErrorType.ValidationError, `Invalid request data: ${zodError.errors
+                    .map((e) => `${e.path.join(".")}: ${e.message}`)
+                    .join(", ")}`);
+            }
+            throw error;
+        }
+    }
+    /**
+     * Create a new agent run
+     * @param data Request data for creating a new agent run
+     * @returns The created agent run
+     */
+    async create(data) {
+        try {
+            // Validate input with Zod
+            const validatedData = schemas_1.zPostAgentRunRequest.parse(data);
+            const response = await this.client.post("/agents/runs", validatedData);
+            return response.data;
+        }
+        catch (error) {
+            if (error instanceof Error && error.name === "ZodError") {
+                const zodError = error;
+                throw new errors_1.SDKError(errors_1.SDKErrorType.ValidationError, `Invalid request data: ${zodError.errors
+                    .map((e) => `${e.path.join(".")}: ${e.message}`)
+                    .join(", ")}`);
+            }
+            throw error;
+        }
+    }
+}
+exports.AgentRunsEndpoints = AgentRunsEndpoints;

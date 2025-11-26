@@ -1,0 +1,519 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotHtmlConvertInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    robot: z.ZodLiteral<"/html/convert">;
+    url: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    format: z.ZodDefault<z.ZodEnum<["jpeg", "jpg", "pdf", "png"]>>;
+    fullpage: z.ZodDefault<z.ZodBoolean>;
+    omit_background: z.ZodDefault<z.ZodBoolean>;
+    width: z.ZodDefault<z.ZodNumber>;
+    height: z.ZodOptional<z.ZodNumber>;
+    delay: z.ZodDefault<z.ZodNumber>;
+    headers: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+    wait_until: z.ZodDefault<z.ZodEnum<["domcontentloaded", "load", "networkidle", "commit"]>>;
+}, "strict", z.ZodTypeAny, {
+    format: "pdf" | "jpeg" | "jpg" | "png";
+    url: string | null;
+    robot: "/html/convert";
+    result: boolean;
+    force_accept: boolean;
+    width: number;
+    delay: number;
+    fullpage: boolean;
+    omit_background: boolean;
+    wait_until: "domcontentloaded" | "load" | "networkidle" | "commit";
+    headers?: Record<string, string> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    height?: number | undefined;
+}, {
+    robot: "/html/convert";
+    headers?: Record<string, string> | undefined;
+    format?: "pdf" | "jpeg" | "jpg" | "png" | undefined;
+    url?: string | null | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    width?: number | undefined;
+    height?: number | undefined;
+    delay?: number | undefined;
+    fullpage?: boolean | undefined;
+    omit_background?: boolean | undefined;
+    wait_until?: "domcontentloaded" | "load" | "networkidle" | "commit" | undefined;
+}>;
+export declare const robotHtmlConvertInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/html/convert">;
+    url: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    format: z.ZodDefault<z.ZodEnum<["jpeg", "jpg", "pdf", "png"]>>;
+    fullpage: z.ZodDefault<z.ZodBoolean>;
+    omit_background: z.ZodDefault<z.ZodBoolean>;
+    width: z.ZodDefault<z.ZodNumber>;
+    height: z.ZodOptional<z.ZodNumber>;
+    delay: z.ZodDefault<z.ZodNumber>;
+    headers: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+    wait_until: z.ZodDefault<z.ZodEnum<["domcontentloaded", "load", "networkidle", "commit"]>>;
+} & {
+    debuginfo: z.ZodOptional<z.ZodBoolean>;
+    timeouts: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+    actions: z.ZodOptional<z.ZodArray<z.ZodRecord<z.ZodString, z.ZodUnknown>, "many">>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: "pdf" | "jpeg" | "jpg" | "png";
+    url: string | null;
+    robot: "/html/convert";
+    force_accept: boolean;
+    width: number;
+    delay: number;
+    fullpage: boolean;
+    omit_background: boolean;
+    wait_until: "domcontentloaded" | "load" | "networkidle" | "commit";
+    headers?: Record<string, string> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    height?: number | undefined;
+    debuginfo?: boolean | undefined;
+    timeouts?: Record<string, unknown> | undefined;
+    actions?: Record<string, unknown>[] | undefined;
+}, {
+    robot: "/html/convert";
+    headers?: Record<string, string> | undefined;
+    format?: "pdf" | "jpeg" | "jpg" | "png" | undefined;
+    url?: string | null | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    width?: number | undefined;
+    height?: number | undefined;
+    delay?: number | undefined;
+    fullpage?: boolean | undefined;
+    omit_background?: boolean | undefined;
+    wait_until?: "domcontentloaded" | "load" | "networkidle" | "commit" | undefined;
+    debuginfo?: boolean | undefined;
+    timeouts?: Record<string, unknown> | undefined;
+    actions?: Record<string, unknown>[] | undefined;
+}>;
+export type RobotHtmlConvertInstructions = z.infer<typeof robotHtmlConvertInstructionsSchema>;
+export type RobotHtmlConvertInstructionsWithHiddenFields = z.infer<typeof robotHtmlConvertInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotHtmlConvertInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/html/convert">;
+    url: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["jpeg", "jpg", "pdf", "png"]>]>>;
+    fullpage: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    omit_background: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    width: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    height: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    delay: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    headers: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+    wait_until: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["domcontentloaded", "load", "networkidle", "commit"]>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string;
+    url: string | null;
+    robot: "/html/convert";
+    result: string | boolean;
+    force_accept: string | boolean;
+    width: string | number;
+    delay: string | number;
+    fullpage: string | boolean;
+    omit_background: string | boolean;
+    wait_until: string;
+    headers?: Record<string, string> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    height?: string | number | undefined;
+}, {
+    robot: "/html/convert";
+    headers?: Record<string, string> | undefined;
+    format?: string | undefined;
+    url?: string | null | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    width?: string | number | undefined;
+    height?: string | number | undefined;
+    delay?: string | number | undefined;
+    fullpage?: string | boolean | undefined;
+    omit_background?: string | boolean | undefined;
+    wait_until?: string | undefined;
+}>;
+export type InterpolatableRobotHtmlConvertInstructions = InterpolatableRobotHtmlConvertInstructionsInput;
+export type InterpolatableRobotHtmlConvertInstructionsInput = z.input<typeof interpolatableRobotHtmlConvertInstructionsSchema>;
+export declare const interpolatableRobotHtmlConvertInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/html/convert">;
+    url: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["jpeg", "jpg", "pdf", "png"]>]>>;
+    fullpage: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    omit_background: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    width: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    height: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    delay: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    headers: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+    wait_until: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["domcontentloaded", "load", "networkidle", "commit"]>]>>;
+    debuginfo: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    timeouts: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+    actions: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodRecord<z.ZodString, z.ZodUnknown>, "many">]>>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string;
+    url: string | null;
+    robot: "/html/convert";
+    force_accept: string | boolean;
+    width: string | number;
+    delay: string | number;
+    fullpage: string | boolean;
+    omit_background: string | boolean;
+    wait_until: string;
+    headers?: Record<string, string> | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    height?: string | number | undefined;
+    debuginfo?: string | boolean | undefined;
+    timeouts?: Record<string, unknown> | undefined;
+    actions?: string | Record<string, unknown>[] | undefined;
+}, {
+    robot: "/html/convert";
+    headers?: Record<string, string> | undefined;
+    format?: string | undefined;
+    url?: string | null | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    width?: string | number | undefined;
+    height?: string | number | undefined;
+    delay?: string | number | undefined;
+    fullpage?: string | boolean | undefined;
+    omit_background?: string | boolean | undefined;
+    wait_until?: string | undefined;
+    debuginfo?: string | boolean | undefined;
+    timeouts?: Record<string, unknown> | undefined;
+    actions?: string | Record<string, unknown>[] | undefined;
+}>;
+export type InterpolatableRobotHtmlConvertInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotHtmlConvertInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotHtmlConvertInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotHtmlConvertInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=html-convert.d.ts.map

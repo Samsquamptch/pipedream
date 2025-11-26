@@ -1,0 +1,18 @@
+const require_Api = require('./generated/Api.js');
+
+//#region src/ShortcutClient.ts
+var ShortcutClient = class extends require_Api.Api {
+	constructor(apiToken, config = {}) {
+		if (apiToken == null || typeof apiToken !== "string") console.error("You need to supply an API Token.");
+		super({
+			headers: {
+				"Shortcut-Token": apiToken,
+				...config.headers
+			},
+			...config
+		});
+	}
+};
+
+//#endregion
+exports.ShortcutClient = ShortcutClient;

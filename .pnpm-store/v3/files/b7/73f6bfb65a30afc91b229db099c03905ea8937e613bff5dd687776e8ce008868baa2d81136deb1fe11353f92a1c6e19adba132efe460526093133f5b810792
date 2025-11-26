@@ -1,0 +1,37 @@
+import { FontProps } from '../font';
+export type CircleProps = {
+    color: string;
+    thickness: number;
+    count: number;
+};
+export type ShellProps = {
+    enabled: boolean;
+    start: number;
+    band: number;
+    sectors: {
+        color: string;
+        text: string;
+        flip: boolean;
+    }[];
+    font: FontProps;
+};
+export type PieLabelFormat = 'percent' | 'key' | 'value' | 'pair' | 'all';
+export type PieProps = {
+    doughnut: number;
+    maxSlices: number;
+    slicePad: number;
+    cornerRadius: number;
+    showValue: boolean;
+    maxKeyLength: number;
+    valueFont: FontProps;
+    labelAlign: boolean;
+    sameRing: boolean;
+    labelFormat: PieLabelFormat;
+    labelGap: number;
+    alwaysKey: boolean;
+    half: boolean;
+    needle: boolean;
+    polarized: boolean;
+    circle: CircleProps;
+    shell: ShellProps;
+};

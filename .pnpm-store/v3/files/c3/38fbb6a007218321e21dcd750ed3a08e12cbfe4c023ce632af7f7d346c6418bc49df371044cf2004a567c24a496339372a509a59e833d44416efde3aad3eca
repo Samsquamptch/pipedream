@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AgentsEndpoints = void 0;
+const runs_1 = require("./runs");
+class AgentsEndpoints {
+    constructor(client) {
+        this.runs = new runs_1.AgentRunsEndpoints(client);
+    }
+}
+exports.AgentsEndpoints = AgentsEndpoints;

@@ -1,0 +1,501 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotDocumentConvertInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    robot: z.ZodLiteral<"/document/convert">;
+    format: z.ZodEnum<["ai", "csv", "doc", "docx", "eps", "gif", "html", "jpeg", "jpg", "latex", "oda", "odd", "odt", "ott", "pdf", "png", "pot", "pps", "ppt", "pptx", "ppz", "ps", "rtf", "rtx", "srt", "svg", "text", "txt", "vtt", "xhtml", "xla", "xls", "xlsx", "xml"]>;
+    markdown_format: z.ZodDefault<z.ZodEnum<["commonmark", "gfm"]>>;
+    markdown_theme: z.ZodDefault<z.ZodEnum<["bare", "github"]>>;
+    pdf_margin: z.ZodDefault<z.ZodString>;
+    pdf_print_background: z.ZodDefault<z.ZodBoolean>;
+    pdf_format: z.ZodDefault<z.ZodEnum<["A0", "A1", "A2", "A3", "A4", "A5", "A6", "Ledger", "Legal", "Letter", "Tabloid"]>>;
+    pdf_display_header_footer: z.ZodDefault<z.ZodBoolean>;
+    pdf_header_template: z.ZodOptional<z.ZodString>;
+    pdf_footer_template: z.ZodOptional<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    format: "text" | "doc" | "gif" | "pdf" | "ai" | "csv" | "docx" | "eps" | "html" | "jpeg" | "jpg" | "latex" | "oda" | "odd" | "odt" | "ott" | "png" | "pot" | "pps" | "ppt" | "pptx" | "ppz" | "ps" | "rtf" | "rtx" | "srt" | "svg" | "txt" | "vtt" | "xhtml" | "xla" | "xls" | "xlsx" | "xml";
+    robot: "/document/convert";
+    result: boolean;
+    force_accept: boolean;
+    markdown_format: "commonmark" | "gfm";
+    markdown_theme: "github" | "bare";
+    pdf_margin: string;
+    pdf_print_background: boolean;
+    pdf_format: "A0" | "A1" | "A2" | "A3" | "A4" | "A5" | "A6" | "Ledger" | "Legal" | "Letter" | "Tabloid";
+    pdf_display_header_footer: boolean;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    pdf_header_template?: string | undefined;
+    pdf_footer_template?: string | undefined;
+}, {
+    format: "text" | "doc" | "gif" | "pdf" | "ai" | "csv" | "docx" | "eps" | "html" | "jpeg" | "jpg" | "latex" | "oda" | "odd" | "odt" | "ott" | "png" | "pot" | "pps" | "ppt" | "pptx" | "ppz" | "ps" | "rtf" | "rtx" | "srt" | "svg" | "txt" | "vtt" | "xhtml" | "xla" | "xls" | "xlsx" | "xml";
+    robot: "/document/convert";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    markdown_format?: "commonmark" | "gfm" | undefined;
+    markdown_theme?: "github" | "bare" | undefined;
+    pdf_margin?: string | undefined;
+    pdf_print_background?: boolean | undefined;
+    pdf_format?: "A0" | "A1" | "A2" | "A3" | "A4" | "A5" | "A6" | "Ledger" | "Legal" | "Letter" | "Tabloid" | undefined;
+    pdf_display_header_footer?: boolean | undefined;
+    pdf_header_template?: string | undefined;
+    pdf_footer_template?: string | undefined;
+}>;
+export declare const robotDocumentConvertInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/document/convert">;
+    format: z.ZodEnum<["ai", "csv", "doc", "docx", "eps", "gif", "html", "jpeg", "jpg", "latex", "oda", "odd", "odt", "ott", "pdf", "png", "pot", "pps", "ppt", "pptx", "ppz", "ps", "rtf", "rtx", "srt", "svg", "text", "txt", "vtt", "xhtml", "xla", "xls", "xlsx", "xml"]>;
+    markdown_format: z.ZodDefault<z.ZodEnum<["commonmark", "gfm"]>>;
+    markdown_theme: z.ZodDefault<z.ZodEnum<["bare", "github"]>>;
+    pdf_margin: z.ZodDefault<z.ZodString>;
+    pdf_print_background: z.ZodDefault<z.ZodBoolean>;
+    pdf_format: z.ZodDefault<z.ZodEnum<["A0", "A1", "A2", "A3", "A4", "A5", "A6", "Ledger", "Legal", "Letter", "Tabloid"]>>;
+    pdf_display_header_footer: z.ZodDefault<z.ZodBoolean>;
+    pdf_header_template: z.ZodOptional<z.ZodString>;
+    pdf_footer_template: z.ZodOptional<z.ZodString>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: "text" | "doc" | "gif" | "pdf" | "ai" | "csv" | "docx" | "eps" | "html" | "jpeg" | "jpg" | "latex" | "oda" | "odd" | "odt" | "ott" | "png" | "pot" | "pps" | "ppt" | "pptx" | "ppz" | "ps" | "rtf" | "rtx" | "srt" | "svg" | "txt" | "vtt" | "xhtml" | "xla" | "xls" | "xlsx" | "xml";
+    robot: "/document/convert";
+    force_accept: boolean;
+    markdown_format: "commonmark" | "gfm";
+    markdown_theme: "github" | "bare";
+    pdf_margin: string;
+    pdf_print_background: boolean;
+    pdf_format: "A0" | "A1" | "A2" | "A3" | "A4" | "A5" | "A6" | "Ledger" | "Legal" | "Letter" | "Tabloid";
+    pdf_display_header_footer: boolean;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    pdf_header_template?: string | undefined;
+    pdf_footer_template?: string | undefined;
+}, {
+    format: "text" | "doc" | "gif" | "pdf" | "ai" | "csv" | "docx" | "eps" | "html" | "jpeg" | "jpg" | "latex" | "oda" | "odd" | "odt" | "ott" | "png" | "pot" | "pps" | "ppt" | "pptx" | "ppz" | "ps" | "rtf" | "rtx" | "srt" | "svg" | "txt" | "vtt" | "xhtml" | "xla" | "xls" | "xlsx" | "xml";
+    robot: "/document/convert";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    markdown_format?: "commonmark" | "gfm" | undefined;
+    markdown_theme?: "github" | "bare" | undefined;
+    pdf_margin?: string | undefined;
+    pdf_print_background?: boolean | undefined;
+    pdf_format?: "A0" | "A1" | "A2" | "A3" | "A4" | "A5" | "A6" | "Ledger" | "Legal" | "Letter" | "Tabloid" | undefined;
+    pdf_display_header_footer?: boolean | undefined;
+    pdf_header_template?: string | undefined;
+    pdf_footer_template?: string | undefined;
+}>;
+export type RobotDocumentConvertInstructions = z.infer<typeof robotDocumentConvertInstructionsSchema>;
+export type RobotDocumentConvertInstructionsWithHiddenFields = z.infer<typeof robotDocumentConvertInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotDocumentConvertInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/document/convert">;
+    format: z.ZodUnion<[z.ZodString, z.ZodEnum<["ai", "csv", "doc", "docx", "eps", "gif", "html", "jpeg", "jpg", "latex", "oda", "odd", "odt", "ott", "pdf", "png", "pot", "pps", "ppt", "pptx", "ppz", "ps", "rtf", "rtx", "srt", "svg", "text", "txt", "vtt", "xhtml", "xla", "xls", "xlsx", "xml"]>]>;
+    markdown_format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["commonmark", "gfm"]>]>>;
+    markdown_theme: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["bare", "github"]>]>>;
+    pdf_margin: z.ZodDefault<z.ZodString>;
+    pdf_print_background: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    pdf_format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["A0", "A1", "A2", "A3", "A4", "A5", "A6", "Ledger", "Legal", "Letter", "Tabloid"]>]>>;
+    pdf_display_header_footer: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    pdf_header_template: z.ZodOptional<z.ZodString>;
+    pdf_footer_template: z.ZodOptional<z.ZodString>;
+}, "strict", z.ZodTypeAny, {
+    format: string;
+    robot: "/document/convert";
+    result: string | boolean;
+    force_accept: string | boolean;
+    markdown_format: string;
+    markdown_theme: string;
+    pdf_margin: string;
+    pdf_print_background: string | boolean;
+    pdf_format: string;
+    pdf_display_header_footer: string | boolean;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    pdf_header_template?: string | undefined;
+    pdf_footer_template?: string | undefined;
+}, {
+    format: string;
+    robot: "/document/convert";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    markdown_format?: string | undefined;
+    markdown_theme?: string | undefined;
+    pdf_margin?: string | undefined;
+    pdf_print_background?: string | boolean | undefined;
+    pdf_format?: string | undefined;
+    pdf_display_header_footer?: string | boolean | undefined;
+    pdf_header_template?: string | undefined;
+    pdf_footer_template?: string | undefined;
+}>;
+export type InterpolatableRobotDocumentConvertInstructions = InterpolatableRobotDocumentConvertInstructionsInput;
+export type InterpolatableRobotDocumentConvertInstructionsInput = z.input<typeof interpolatableRobotDocumentConvertInstructionsSchema>;
+export declare const interpolatableRobotDocumentConvertInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    robot: z.ZodLiteral<"/document/convert">;
+    format: z.ZodUnion<[z.ZodString, z.ZodEnum<["ai", "csv", "doc", "docx", "eps", "gif", "html", "jpeg", "jpg", "latex", "oda", "odd", "odt", "ott", "pdf", "png", "pot", "pps", "ppt", "pptx", "ppz", "ps", "rtf", "rtx", "srt", "svg", "text", "txt", "vtt", "xhtml", "xla", "xls", "xlsx", "xml"]>]>;
+    markdown_format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["commonmark", "gfm"]>]>>;
+    markdown_theme: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["bare", "github"]>]>>;
+    pdf_margin: z.ZodDefault<z.ZodString>;
+    pdf_print_background: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    pdf_format: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["A0", "A1", "A2", "A3", "A4", "A5", "A6", "Ledger", "Legal", "Letter", "Tabloid"]>]>>;
+    pdf_display_header_footer: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    pdf_header_template: z.ZodOptional<z.ZodString>;
+    pdf_footer_template: z.ZodOptional<z.ZodString>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    format: string;
+    robot: "/document/convert";
+    force_accept: string | boolean;
+    markdown_format: string;
+    markdown_theme: string;
+    pdf_margin: string;
+    pdf_print_background: string | boolean;
+    pdf_format: string;
+    pdf_display_header_footer: string | boolean;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    pdf_header_template?: string | undefined;
+    pdf_footer_template?: string | undefined;
+}, {
+    format: string;
+    robot: "/document/convert";
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    markdown_format?: string | undefined;
+    markdown_theme?: string | undefined;
+    pdf_margin?: string | undefined;
+    pdf_print_background?: string | boolean | undefined;
+    pdf_format?: string | undefined;
+    pdf_display_header_footer?: string | boolean | undefined;
+    pdf_header_template?: string | undefined;
+    pdf_footer_template?: string | undefined;
+}>;
+export type InterpolatableRobotDocumentConvertInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotDocumentConvertInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotDocumentConvertInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotDocumentConvertInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=document-convert.d.ts.map

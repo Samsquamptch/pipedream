@@ -1,0 +1,2 @@
+import { JSONValue } from "@pipedream/types";
+export declare const sanitizedArray: (value: JSONValue) => any[];

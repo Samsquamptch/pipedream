@@ -1,0 +1,51 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  GetScheduledActionRequest,
+  GetScheduledActionResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface GetScheduledActionCommandInput
+  extends GetScheduledActionRequest {}
+export interface GetScheduledActionCommandOutput
+  extends GetScheduledActionResponse,
+    __MetadataBearer {}
+declare const GetScheduledActionCommand_base: {
+  new (
+    input: GetScheduledActionCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetScheduledActionCommandInput,
+    GetScheduledActionCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: GetScheduledActionCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    GetScheduledActionCommandInput,
+    GetScheduledActionCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class GetScheduledActionCommand extends GetScheduledActionCommand_base {
+  protected static __types: {
+    api: {
+      input: GetScheduledActionRequest;
+      output: GetScheduledActionResponse;
+    };
+    sdk: {
+      input: GetScheduledActionCommandInput;
+      output: GetScheduledActionCommandOutput;
+    };
+  };
+}

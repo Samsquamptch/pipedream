@@ -1,0 +1,6 @@
+import { AxiosInstance } from "axios";
+import { AgentRunsEndpoints } from "./runs";
+export declare class AgentsEndpoints {
+    runs: AgentRunsEndpoints;
+    constructor(client: AxiosInstance);
+}

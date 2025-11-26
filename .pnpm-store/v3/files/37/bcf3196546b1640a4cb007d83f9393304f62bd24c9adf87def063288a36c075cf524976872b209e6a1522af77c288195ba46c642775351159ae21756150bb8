@@ -1,0 +1,8 @@
+import { Message } from "./message";
+export declare class AuthenticationResponse extends Message {
+    constructor(session_id: string, success: boolean, text: string);
+    session_id: string;
+    success: boolean;
+    text: string;
+}
+//# sourceMappingURL=authentication_response.d.ts.map

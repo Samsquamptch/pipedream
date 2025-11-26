@@ -1,0 +1,4 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var compute_1 = require("./compute");
+exports.default = compute_1.default;

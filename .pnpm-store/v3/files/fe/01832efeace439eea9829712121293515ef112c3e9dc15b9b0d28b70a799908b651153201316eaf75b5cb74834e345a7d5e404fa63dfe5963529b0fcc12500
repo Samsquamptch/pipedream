@@ -1,0 +1,4 @@
+import { createPaginator } from "@smithy/core";
+import { ListSnapshotsCommand, } from "../commands/ListSnapshotsCommand";
+import { RedshiftServerlessClient } from "../RedshiftServerlessClient";
+export const paginateListSnapshots = createPaginator(RedshiftServerlessClient, ListSnapshotsCommand, "nextToken", "nextToken", "maxResults");

@@ -1,0 +1,23 @@
+import { z } from 'zod';
+import { interpolateRobot, robotBase } from "./_instructions-primitives.js";
+// @ts-expect-error - MetaReadRobot is not ready yet @TODO please supply missing keys
+export const meta = {
+    name: 'MetaReadRobot',
+    priceFactor: 0,
+    queueSlotCount: 15,
+    isAllowedForUrlTransform: true,
+    trackOutputFileSize: false,
+    isInternal: true,
+    removeJobResultFilesFromDiskRightAfterStoringOnS3: false,
+};
+export const robotMetaReadInstructionsSchema = robotBase
+    .extend({
+    robot: z.literal('/meta/read').describe(`Reads metadata from a file.`),
+})
+    .strict();
+export const robotMetaReadInstructionsWithHiddenFieldsSchema = robotMetaReadInstructionsSchema.extend({
+    result: z.union([z.literal('debug'), robotMetaReadInstructionsSchema.shape.result]).optional(),
+});
+export const interpolatableRobotMetaReadInstructionsSchema = interpolateRobot(robotMetaReadInstructionsSchema);
+export const interpolatableRobotMetaReadInstructionsWithHiddenFieldsSchema = interpolateRobot(robotMetaReadInstructionsWithHiddenFieldsSchema);
+//# sourceMappingURL=meta-read.js.map

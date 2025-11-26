@@ -1,0 +1,113 @@
+import { CustomType, Operation, Order, Rollup } from "../gen/nebula";
+export type TableState = {
+    table_name: string;
+    block_count: number;
+    row_count: number;
+    memory_size: number;
+    min_time: number;
+    max_time: number;
+    column_keys: string[];
+    column_values: string[];
+    hists: string[];
+};
+export interface Filter {
+    logic: string;
+    rules: Array<Filter>;
+    column?: string;
+    op?: Operation;
+    values?: Array<any>;
+}
+export interface OptionType {
+    column: string;
+    preferred: string;
+    method: Rollup;
+    display: string;
+    key: string;
+    alias: string;
+    edited?: boolean;
+    as: (alias: string) => OptionType;
+}
+export type TimelineOptions = {
+    window: number;
+    autofill: boolean;
+    forecast: number;
+    unit: number;
+    offset: number;
+};
+export interface CodeColumn {
+    name: string;
+    type: CustomType;
+    expr: string;
+}
+export interface NebulaRequest {
+    table: string;
+    start: number;
+    end: number;
+    filter: Filter;
+    keys: string[];
+    metrics: OptionType[];
+    timeline: TimelineOptions;
+    sort: Order;
+    limit: number;
+    code: string;
+    columns: CodeColumn[];
+    pivot: string;
+    map: string;
+    rm: string[];
+}
+export interface NebulaResponse {
+    error: number;
+    duration: number;
+    rows_scan: number;
+    blocks_scan: number;
+    rows_return: number;
+    data: number[];
+}
+export interface IHandler {
+    onError: (err: string) => boolean;
+    onNull: () => boolean;
+    onSuccess: (data: NebulaResponse) => boolean;
+}
+export interface TimeSpec {
+    type: 'column' | 'static' | 'provided' | 'current';
+    column?: string;
+    pattern?: string;
+    value?: number;
+}
+export interface NebulaGsheet {
+    id: string;
+    uid?: string;
+    schema: string;
+    cols: number;
+    rows: number;
+    gtoken: string;
+    key: string;
+    time: TimeSpec;
+}
+export type ColumnOpts = {
+    dict: boolean;
+    bloom: boolean;
+};
+export type CsvProps = {
+    hasHeader: boolean;
+    delimiter: string;
+    compression: string;
+    hasMeta: boolean;
+};
+export type JsonProps = {
+    rowsField: string;
+    columnsMap: any;
+};
+export interface NebulaLoadSpec {
+    uid?: string;
+    path: string;
+    schema: string;
+    options: Record<string, ColumnOpts>;
+    format?: string;
+    csv: CsvProps;
+    json: JsonProps;
+    macros: Record<string, string[]>;
+    token?: string;
+    time: TimeSpec;
+    headers: string[];
+}

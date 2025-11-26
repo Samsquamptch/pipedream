@@ -1,0 +1,64 @@
+import { Contracts } from '../../contracts';
+import { IDeliveryClientConfig } from '../../config';
+import { IContentItem, IItemQueryConfig, IDeliveryNetworkResponse, Responses } from '../../models';
+import { QueryService } from '../../services';
+import { BaseItemListingQuery } from '../common/base-item-listing-query.class';
+export declare class MultipleItemsQuery<TContentItem extends IContentItem = IContentItem> extends BaseItemListingQuery<Responses.IListContentItemsResponse<TContentItem>, Responses.IListContentItemsAllResponse<TContentItem>, IItemQueryConfig, Contracts.IListContentItemsContract> {
+    protected config: IDeliveryClientConfig;
+    protected queryService: QueryService;
+    protected _queryConfig: IItemQueryConfig;
+    constructor(config: IDeliveryClientConfig, queryService: QueryService);
+    /**
+     * Adds information about the total number of content items matching your query.
+     * When set to true, the pagination object returned in the API response contains
+     * an additional total_count property.
+     */
+    includeTotalCountParameter(): this;
+    /**
+     * Gets only item of given type
+     * @param type Codename of type to get
+     */
+    type(type: string): this;
+    /**
+     * Gets items of given types (logical or)
+     * I.e. get items of either 'Actor' or 'Movie' type
+     * @param types Types to get
+     */
+    types(types: string[]): this;
+    /**
+     * Gets only item from given collection
+     * @param collection Codename of collection to get
+     */
+    collection(collection: string): this;
+    /**
+     * Gets items from given collections (logical or)
+     * I.e. get items of either 'default' or 'christmas-campaign' collection
+     * @param collections Collections to get
+     */
+    collections(collections: string[]): this;
+    /**
+     * Indicates depth of query that affects loading of nested linked items.
+     * @param depth Depth of the query (> 0)
+     */
+    depthParameter(depth: number): this;
+    /**
+     * Language codename
+     * @param languageCodename Codename of the language
+     */
+    languageParameter(languageCodename: string): this;
+    /**
+     * Used to limit the number of elements returned by query.
+     * @param elementCodenames Array of element codenames to fetch
+     */
+    elementsParameter(elementCodenames: string[]): this;
+    /**
+     * Used to exclude elements returned by query.
+     * @param elementCodenames Array of element codenames to exclude
+     */
+    excludeElementsParameter(elementCodenames: string[]): this;
+    toPromise(): Promise<IDeliveryNetworkResponse<Responses.IListContentItemsResponse<TContentItem>, Contracts.IListContentItemsContract>>;
+    getUrl(): string;
+    map(json: any): Responses.IListContentItemsResponse<TContentItem>;
+    protected allResponseFactory(items: any[], responses: IDeliveryNetworkResponse<Responses.IListContentItemsResponse<TContentItem>, Contracts.IListContentItemsContract>[]): Responses.IListContentItemsAllResponse<TContentItem>;
+    private linkItems;
+}

@@ -1,0 +1,2 @@
+export default function getTokenWithClientCredentialsGrant(clientId: string, clientSecret: string, tokenEndpoint: string): Promise<any>;
+//# sourceMappingURL=getTokenWithClientCredentialsGrant.d.ts.map

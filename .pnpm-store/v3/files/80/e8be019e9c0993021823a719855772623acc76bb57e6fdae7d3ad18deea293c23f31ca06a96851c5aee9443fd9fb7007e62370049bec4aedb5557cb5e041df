@@ -1,0 +1,11 @@
+export declare const DEFAULT_FONT_SIZE = 14;
+export type FontProps = {
+    name: string;
+    size: number;
+    color: string;
+    weight: number;
+    angle: number;
+    scale: boolean;
+};
+export declare const defaultFont: (color?: any, size?: number) => FontProps;
+export declare const DefaultTextFont: FontProps;

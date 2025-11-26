@@ -1,0 +1,25 @@
+export declare type IOProto = (property: any, currentInstance?: any) => any;
+export declare type PredicateProto = (property: any, parentProperty?: any) => any;
+export declare type DataStructure = 'array' | 'dictionary' | 'map' | 'set';
+export interface JsonPropertyBaseMetadata {
+    dataStructure?: DataStructure;
+    required?: boolean;
+    beforeSerialize?: IOProto;
+    afterSerialize?: IOProto;
+    beforeDeserialize?: IOProto;
+    afterDeserialize?: IOProto;
+}
+export interface JsonPropertiesMetadata {
+    [id: string]: JsonPropertyMetadata;
+}
+export interface JsonPropertyMetadata extends JsonPropertyBaseMetadata {
+    isNameOverridden?: boolean;
+    name: string | Array<string>;
+    type?: Function;
+    predicate?: PredicateProto;
+}
+export interface JsonPropertyOptions extends JsonPropertyBaseMetadata {
+    name?: string | Array<string>;
+    type?: Function | PredicateProto;
+}
+export declare const JsonProperty: (options?: string | JsonPropertyOptions | undefined) => Function;

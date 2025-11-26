@@ -1,0 +1,282 @@
+"use strict";
+/*
+ * Copyright 2020-present columns.ai
+ *
+ * The code belongs to https://columns.ai
+ * Terms & conditions to be found at `LICENSE.txt`.
+ */
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.nebulaClient = exports.NebulaClient = void 0;
+const grpc = __importStar(require("@grpc/grpc-js"));
+const nebula_1 = require("../gen/nebula");
+const nebula_grpc_client_1 = require("../gen/nebula.grpc-client");
+const log_1 = require("./log");
+const utils_1 = require("./utils");
+const MESSAGE_LENGTH = 64 * 1024 * 1024;
+const MIN_RECONNECT_BACKOFF_MS = 1000;
+const MAX_RECONNECT_BACKOFF_MS = 10000;
+const KEEPALIVE_INTERVAL_MS = 30000;
+const KEEPALIVE_TIMEOUT_MS = 10000;
+const serviceAddr = process.env.NS_ADDR || 'localhost:9190';
+const cred = grpc.credentials.createInsecure();
+const options = {
+    nebula: 'node',
+    'grpc.max_receive_message_length': MESSAGE_LENGTH,
+    'grpc.max_send_message_length': MESSAGE_LENGTH,
+    'grpc.min_reconnect_backoff_ms': MIN_RECONNECT_BACKOFF_MS,
+    'grpc.max_reconnect_backoff_ms': MAX_RECONNECT_BACKOFF_MS,
+    'grpc.keepalive_time_ms': KEEPALIVE_INTERVAL_MS,
+    'grpc.keepalive_timeout_ms': KEEPALIVE_TIMEOUT_MS,
+};
+/**
+ * user identifier - usually email
+ */
+const meta = (user) => {
+    const metadata = new grpc.Metadata();
+    // auth user information
+    if (user) {
+        metadata.add('nebula-auth', '1');
+        metadata.add('nebula-user', user);
+    }
+    else {
+        metadata.add('nebula-auth', '0');
+    }
+    return metadata;
+};
+// communication layer error handler, return true if the error is handled, false if no error
+const rejectGrpcError = (err, reject) => {
+    if (!err) {
+        return false;
+    }
+    const reason = `[${err.code}]: ${err.message}`;
+    reject(reason);
+    return true;
+};
+class NebulaClient {
+    constructor() {
+        this.client = new nebula_grpc_client_1.V1Client(serviceAddr, cred, options);
+    }
+    // list all available tables in the cluster visible to the user
+    async listTables(user) {
+        return new Promise((resolve, reject) => {
+            const request = {
+                limit: 100,
+            };
+            this.client.tables(request, meta(user), {}, (err, tables) => {
+                if (rejectGrpcError(err, reject)) {
+                    return;
+                }
+                // empty tables
+                if (!tables) {
+                    reject('[nebula]: null/undefined response');
+                    return;
+                }
+                // resolve the table name list
+                resolve(tables.table);
+            });
+        });
+    }
+    async unloadTable(user, tableName) {
+        return new Promise((resolve, reject) => {
+            const loadReq = {
+                type: nebula_1.LoadType.UNLOAD,
+                table: tableName,
+                json: "",
+                ttl: 0,
+            };
+            // unload the table through LOAD api
+            this.client.load(loadReq, meta(user), {}, (err, reply) => {
+                if (rejectGrpcError(err, reject)) {
+                    return;
+                }
+                if (!reply) {
+                    reject('[nebula]: null/undefined response');
+                    return;
+                }
+                // the result is loaded since it's a sync op for now
+                log_1.LOG.info(`Table ${tableName} unloaded successfully.`);
+                // delete the cache so next reload can read the new data
+                // this.storage.removeCache(dataId);
+                resolve(reply.error == nebula_1.LoadError.SUCCESS);
+            });
+        });
+    }
+    async tableState(user, tableName) {
+        return new Promise((resolve, reject) => {
+            const request = {
+                table: tableName,
+            };
+            this.client.state(request, meta(user), (err, reply) => {
+                if (rejectGrpcError(err, reject)) {
+                    return;
+                }
+                if (!reply) {
+                    reject('[nebula]: null/undefined response');
+                    return;
+                }
+                resolve({
+                    table_name: tableName,
+                    block_count: reply.blockCount,
+                    row_count: reply.rowCount,
+                    memory_size: reply.memSize,
+                    min_time: reply.minTime,
+                    max_time: reply.maxTime,
+                    column_keys: reply.dimension,
+                    column_values: reply.metric,
+                    hists: reply.hists,
+                });
+            });
+        });
+    }
+    ;
+    async loadTable(user, req) {
+        // send the query
+        return new Promise((resolve, reject) => {
+            this.client.load(req, meta(user), {}, (err, reply) => {
+                if (rejectGrpcError(err, reject)) {
+                    return;
+                }
+                if (!reply) {
+                    reject('[nebula]: null/undefined response');
+                    return;
+                }
+                // the result is loaded since it's a sync op for now
+                resolve(reply);
+            });
+        });
+    }
+    // nebula query
+    async query(user, query) {
+        // initialize handler
+        return new Promise((resolve, reject) => {
+            if (!query.table) {
+                log_1.LOG.error('Table name is needed.');
+                reject('Table is missing.');
+                return;
+            }
+            const req = nebula_1.QueryRequest.create({
+                table: query.table,
+                start: (0, utils_1.seconds)(query.start),
+                end: (0, utils_1.seconds)(query.end),
+                top: query.limit,
+                dimension: query.keys,
+            });
+            log_1.LOG.info(`Query nebula: table=${query.table}, start=${query.start}, end=${query.end}.`);
+            // the filter can be much more complex
+            const filter = query.filter;
+            if (filter) {
+                // all rules under this group
+                const rules = filter.rules;
+                if (rules && rules.length > 0) {
+                    const predicates = [];
+                    rules.forEach((r) => {
+                        if (r.values && r.values.length > 0) {
+                            const pred = nebula_1.Predicate.create({ column: r.column, op: r.op, value: r.values });
+                            predicates.push(pred);
+                        }
+                    });
+                    if (predicates.length > 0) {
+                        if (filter.logic === 'AND') {
+                            req.filterA = nebula_1.PredicateAnd.create({ expression: predicates });
+                        }
+                        else if (filter.logic === 'OR') {
+                            req.filterO = nebula_1.PredicateOr.create({ expression: predicates });
+                        }
+                    }
+                }
+            }
+            // set query type (is timeline or not) and window
+            if (query.timeline) {
+                req.timeline = true;
+                req.window = query.timeline.window;
+                req.timeUnit = query.timeline.unit;
+                req.tzOffset = query.timeline.offset;
+            }
+            // Nebula SDK related - customized columns through instant UDF
+            const columns = query.columns;
+            if (columns && columns.length > 0) {
+                const cc = [];
+                columns.forEach((c) => {
+                    cc.push(nebula_1.CustomColumn.create({
+                        column: c.name,
+                        type: c.type,
+                        expr: c.expr,
+                    }));
+                });
+                req.custom = cc;
+            }
+            // set metric for non-samples query
+            // (use implicit type convert != instead of !==)
+            if (query.metrics) {
+                const metrics = [];
+                let m1 = '';
+                query.metrics.forEach((e) => {
+                    // set the first metric column name
+                    if (!m1) {
+                        m1 = e.column;
+                    }
+                    metrics.push(nebula_1.Metric.create(e));
+                });
+                req.metric = metrics;
+                // set order on metric only means we don't order on samples for now
+                if (query.sort) {
+                    req.order = nebula_1.Order.create({ column: m1, type: query.sort.type });
+                }
+            }
+            // send request to service to get result
+            this.client.query(req, meta(user), {}, (err, reply) => {
+                if (rejectGrpcError(err, reject)) {
+                    return;
+                }
+                if (!reply) {
+                    reject('[nebula]: null/undefined response');
+                    return;
+                }
+                const stats = reply.stats;
+                if (!stats) {
+                    reject('[nebula]: invalid query result stats');
+                    return;
+                }
+                // NODEJS issue: new Uint8Array(reply.data) will come back a Buffer
+                // https://github.com/timostamm/protobuf-ts/issues/519#issuecomment-1518624808
+                const data = Array.from(reply.data);
+                const result = {
+                    error: stats.error,
+                    duration: stats.queryTimeMs,
+                    rows_scan: stats.rowsScanned,
+                    blocks_scan: stats.blocksScanned,
+                    rows_return: stats.rowsReturn,
+                    data,
+                };
+                resolve(result);
+            });
+        });
+    }
+    ;
+}
+exports.NebulaClient = NebulaClient;
+const nebulaClient = () => new NebulaClient();
+exports.nebulaClient = nebulaClient;

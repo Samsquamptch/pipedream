@@ -1,0 +1,12 @@
+import { ApiConfig, SearchParams, SearchResults, SourcedAnswer, StructuredOutputSchema } from './types';
+export declare class LinkupClient {
+    private readonly USER_AGENT;
+    private readonly apiKey;
+    private readonly baseUrl;
+    constructor(config: ApiConfig);
+    search<T extends 'sourcedAnswer' | 'searchResults' | 'structured'>(params: SearchParams<T>): Promise<T extends 'sourcedAnswer' ? SourcedAnswer : T extends 'searchResults' ? SearchResults : T extends 'structured' ? StructuredOutputSchema : never>;
+    private sanitizeParams;
+    private formatResponse;
+    private refineError;
+}
+//# sourceMappingURL=linkup-client.d.ts.map

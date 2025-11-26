@@ -1,0 +1,1 @@
+{"version":3,"file":"authentication_response.d.ts","sourceRoot":"","sources":["../../src/messages/authentication_response.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,OAAO,EAAQ,MAAM,WAAW,CAAC;AAE1C,qBACa,sBAAuB,SAAQ,OAAO;gBAC9B,UAAU,EAAE,MAAM,EAAE,OAAO,EAAE,OAAO,EAAE,IAAI,EAAE,MAAM;IAO9C,UAAU,EAAE,MAAM,CAAC;IACnB,OAAO,EAAE,OAAO,CAAC;IACjB,IAAI,EAAE,MAAM,CAAC;CACrC"}

@@ -1,0 +1,50 @@
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+import {
+  DeleteWorkgroupRequest,
+  DeleteWorkgroupResponse,
+} from "../models/models_0";
+import {
+  RedshiftServerlessClientResolvedConfig,
+  ServiceInputTypes,
+  ServiceOutputTypes,
+} from "../RedshiftServerlessClient";
+export { __MetadataBearer };
+export { $Command };
+export interface DeleteWorkgroupCommandInput extends DeleteWorkgroupRequest {}
+export interface DeleteWorkgroupCommandOutput
+  extends DeleteWorkgroupResponse,
+    __MetadataBearer {}
+declare const DeleteWorkgroupCommand_base: {
+  new (
+    input: DeleteWorkgroupCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    DeleteWorkgroupCommandInput,
+    DeleteWorkgroupCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  new (
+    input: DeleteWorkgroupCommandInput
+  ): import("@smithy/smithy-client").CommandImpl<
+    DeleteWorkgroupCommandInput,
+    DeleteWorkgroupCommandOutput,
+    RedshiftServerlessClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >;
+  getEndpointParameterInstructions(): import("@smithy/middleware-endpoint").EndpointParameterInstructions;
+};
+export declare class DeleteWorkgroupCommand extends DeleteWorkgroupCommand_base {
+  protected static __types: {
+    api: {
+      input: DeleteWorkgroupRequest;
+      output: DeleteWorkgroupResponse;
+    };
+    sdk: {
+      input: DeleteWorkgroupCommandInput;
+      output: DeleteWorkgroupCommandOutput;
+    };
+  };
+}

@@ -1,0 +1,40 @@
+"use strict";
+/*
+ * Copyright 2020-present columns.ai
+ *
+ * The code belongs to https://columns.ai
+ * Terms & conditions to be found at `LICENSE.txt`.
+ */
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const path_1 = require("path");
+const vite_1 = require("vite");
+const vite_plugin_dts_1 = __importDefault(require("vite-plugin-dts"));
+// TODO: we'll see if future vite version fixed the issue.
+// very unfortunate, the vite built bundle file is not working well (unsure reason).
+// just share the source as export for now.
+exports.default = (0, vite_1.defineConfig)({
+    build: {
+        outDir: (0, path_1.resolve)(__dirname, './dist'),
+        lib: {
+            // Could also be a dictionary or array of multiple entry points
+            entry: (0, path_1.resolve)(__dirname, './index.ts'),
+            name: 'nebula',
+            fileName: 'index',
+            formats: ['cjs', 'es'],
+        },
+    },
+    plugins: [(0, vite_plugin_dts_1.default)({
+            rollupTypes: true,
+            rollupOptions: {
+                input: (0, path_1.resolve)(__dirname, './index.ts'),
+                output: {
+                    dir: (0, path_1.resolve)(__dirname, './dist'),
+                    entryFileNames: 'index.d.ts',
+                    format: 'es',
+                },
+            }
+        })],
+});

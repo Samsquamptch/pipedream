@@ -1,0 +1,23 @@
+import { getEndpointPlugin } from "@smithy/middleware-endpoint";
+import { getSerdePlugin } from "@smithy/middleware-serde";
+import { Command as $Command } from "@smithy/smithy-client";
+import { commonParams } from "../endpoint/EndpointParameters";
+import { GetCredentialsResponseFilterSensitiveLog, } from "../models/models_0";
+import { de_GetCredentialsCommand, se_GetCredentialsCommand } from "../protocols/Aws_json1_1";
+export { $Command };
+export class GetCredentialsCommand extends $Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [
+        getSerdePlugin(config, this.serialize, this.deserialize),
+        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
+    ];
+})
+    .s("RedshiftServerless", "GetCredentials", {})
+    .n("RedshiftServerlessClient", "GetCredentialsCommand")
+    .f(void 0, GetCredentialsResponseFilterSensitiveLog)
+    .ser(se_GetCredentialsCommand)
+    .de(de_GetCredentialsCommand)
+    .build() {
+}

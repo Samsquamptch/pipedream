@@ -1,0 +1,36 @@
+import { PaletteInput, Position, Size } from '../common';
+import { FontProps } from '../font';
+export type GeoColumnType = 'state' | 'state_code' | 'county' | 'county_code5' | 'county_code3' | 'city' | 'zip' | 'country' | 'country_code';
+export type ValueDisplayProps = {
+    show: boolean;
+    font: FontProps;
+};
+export type LegendProps = {
+    position: Position;
+    size: Size;
+    font: FontProps;
+};
+export type MapBorderProps = {
+    color: string;
+    thickness: number;
+};
+export declare const PerCapitaTypes: string[];
+export type PerCapitaType = typeof PerCapitaTypes[number];
+export declare const MapDisplays: string[];
+export type MapDisplay = typeof MapDisplays[number];
+export type MapType = 'US' | 'World';
+export type MapProps = {
+    type: MapType;
+    indicator: MapDisplay;
+    color: string;
+    palette?: PaletteInput;
+    geocolumns?: Partial<Record<GeoColumnType, string>>;
+    valueDisplay: ValueDisplayProps;
+    hideLegend: boolean;
+    legend: LegendProps;
+    border: MapBorderProps;
+    perCapita: PerCapitaType;
+    enablePerCapita: boolean;
+    sideItemFull: boolean;
+    colorKey: string;
+};

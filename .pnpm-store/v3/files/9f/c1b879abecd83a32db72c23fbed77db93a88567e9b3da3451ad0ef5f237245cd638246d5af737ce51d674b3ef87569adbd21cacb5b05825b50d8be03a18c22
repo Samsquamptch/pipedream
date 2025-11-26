@@ -1,0 +1,8 @@
+import { FontProps } from '../font';
+export type ScatterProps = {
+    circle: boolean;
+    showValue?: boolean;
+    valueFont: FontProps;
+    valuePlacement: 'top' | 'bottom' | 'left' | 'right';
+    scale: number;
+};

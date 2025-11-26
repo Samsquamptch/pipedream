@@ -1,0 +1,14 @@
+export declare class HTTPError extends Error {
+    statusCode: number;
+    name: string;
+    message: string;
+    constructor(code: number, name: string, message: string);
+}
+export declare class NoProtocolError extends Error {
+    name: string;
+    constructor(message: string);
+}
+export declare function createHTTPError(code: number, name: string): (message: string) => HTTPError;
+export declare function generateHTTPErrorClasses(): {
+    [code: number]: (message: string) => HTTPError;
+};

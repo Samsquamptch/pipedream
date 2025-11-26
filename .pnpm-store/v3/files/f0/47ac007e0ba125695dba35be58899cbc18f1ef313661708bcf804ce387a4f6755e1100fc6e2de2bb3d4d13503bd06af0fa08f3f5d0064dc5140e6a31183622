@@ -1,0 +1,35 @@
+import { Contracts } from '../../contracts';
+import { IDeliveryClientConfig } from '../../config';
+import { IContentTypeQueryConfig, IDeliveryNetworkResponse, Responses } from '../../models';
+import { QueryService } from '../../services';
+import { BaseListingQuery } from '../common/base-listing-query.class';
+export declare class MultipleTypeQuery extends BaseListingQuery<Responses.IListContentTypesResponse, Responses.IListContentTypesAllResponse, IContentTypeQueryConfig, Contracts.IListContentTypeContract> {
+    protected config: IDeliveryClientConfig;
+    protected queryService: QueryService;
+    protected _queryConfig: IContentTypeQueryConfig;
+    constructor(config: IDeliveryClientConfig, queryService: QueryService);
+    /**
+     * Used to limit the number of elements returned by query.
+     * @param elementCodenames Array of element codenames to fetch
+     */
+    elementsParameter(elementCodenames: string[]): this;
+    /**
+     * Used to exclude elements returned by query.
+     * @param elementCodenames Array of element codenames to exclude
+     */
+    excludeElementsParameter(elementCodenames: string[]): this;
+    /**
+     * Limits the number of taxonomies returned by query
+     * @param limit Number of taxonomies to load
+     */
+    limitParameter(limit: number): this;
+    /**
+     * Skips the selected number of taxonomies
+     * @param skip Number of taxonomies to skip
+     */
+    skipParameter(skip: number): this;
+    toPromise(): Promise<IDeliveryNetworkResponse<Responses.IListContentTypesResponse, Contracts.IListContentTypeContract>>;
+    getUrl(): string;
+    map(json: any): Responses.IListContentTypesResponse;
+    protected allResponseFactory(items: any[], responses: IDeliveryNetworkResponse<Responses.IListContentTypesResponse, Contracts.IListContentTypeContract>[]): Responses.IListContentTypesAllResponse;
+}

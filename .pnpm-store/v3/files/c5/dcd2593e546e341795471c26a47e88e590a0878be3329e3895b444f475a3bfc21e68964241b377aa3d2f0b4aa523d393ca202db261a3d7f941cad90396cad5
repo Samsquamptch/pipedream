@@ -1,0 +1,18 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const getTokenWithClientCredentialsGrant_1 = __importDefault(require("./getTokenWithClientCredentialsGrant"));
+class ClientCredentialsGrantAuthenticator {
+    constructor(clientId, clientSecret, tokenEndpoint) {
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
+        this.tokenEndpoint = tokenEndpoint;
+    }
+    getToken() {
+        return (0, getTokenWithClientCredentialsGrant_1.default)(this.clientId, this.clientSecret, this.tokenEndpoint);
+    }
+}
+exports.default = ClientCredentialsGrantAuthenticator;
+//# sourceMappingURL=ClientCredentialsGrantAuthenticator.js.map

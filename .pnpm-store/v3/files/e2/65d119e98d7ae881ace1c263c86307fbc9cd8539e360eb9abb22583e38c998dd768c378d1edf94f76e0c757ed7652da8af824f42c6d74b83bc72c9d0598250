@@ -1,0 +1,4 @@
+import { createPaginator } from "@smithy/core";
+import { ListUsageLimitsCommand, } from "../commands/ListUsageLimitsCommand";
+import { RedshiftServerlessClient } from "../RedshiftServerlessClient";
+export const paginateListUsageLimits = createPaginator(RedshiftServerlessClient, ListUsageLimitsCommand, "nextToken", "nextToken", "maxResults");

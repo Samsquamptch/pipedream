@@ -1,0 +1,22 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DefaultTextFont = exports.defaultFont = exports.DEFAULT_FONT_SIZE = void 0;
+exports.DEFAULT_FONT_SIZE = 14;
+const defaultFont = (color = null, size = exports.DEFAULT_FONT_SIZE) => ({
+    name: undefined,
+    size,
+    weight: 400,
+    color,
+    angle: 0,
+    scale: true,
+});
+exports.defaultFont = defaultFont;
+exports.DefaultTextFont = {
+    name: 'Arial',
+    size: exports.DEFAULT_FONT_SIZE,
+    weight: 400,
+    color: null,
+    angle: 0,
+    scale: false,
+};
+//# sourceMappingURL=font.js.map

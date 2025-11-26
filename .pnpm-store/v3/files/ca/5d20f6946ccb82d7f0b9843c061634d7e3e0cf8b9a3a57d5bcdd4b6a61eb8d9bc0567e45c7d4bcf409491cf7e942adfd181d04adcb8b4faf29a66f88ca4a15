@@ -1,0 +1,6 @@
+import { GDoc, Request } from './types';
+declare const findPlaceholders: (doc: GDoc) => string[];
+declare const computeUpdates: (placeholders: string[], data: any, formatters: any) => Request[];
+declare const interpolate: (doc: GDoc, data: any, formatters: any) => Request[];
+export default interpolate;
+export { findPlaceholders, computeUpdates };

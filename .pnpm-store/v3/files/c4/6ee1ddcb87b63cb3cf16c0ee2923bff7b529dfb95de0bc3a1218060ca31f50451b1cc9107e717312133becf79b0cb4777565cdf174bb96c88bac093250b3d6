@@ -1,0 +1,27 @@
+{
+  "name": "@smiirl/smiirl-library-js",
+  "version": "1.0.5",
+  "description": "A node package to simplify interactions with Smiirl objects",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smiirl/smiirl-library-js.git"
+  },
+  "keywords": [
+    "smiirl",
+    "custom",
+    "counters"
+  ],
+  "author": "Smiirl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smiirl/smiirl-library-js/issues"
+  },
+  "homepage": "https://github.com/smiirl/smiirl-library-js#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}

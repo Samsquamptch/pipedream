@@ -1,0 +1,514 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotDigitaloceanStoreInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+} & {
+    credentials: z.ZodOptional<z.ZodString>;
+    space: z.ZodOptional<z.ZodString>;
+    region: z.ZodOptional<z.ZodString>;
+    key: z.ZodOptional<z.ZodString>;
+    secret: z.ZodOptional<z.ZodString>;
+} & {
+    robot: z.ZodLiteral<"/digitalocean/store">;
+    path: z.ZodDefault<z.ZodString>;
+    url_prefix: z.ZodDefault<z.ZodString>;
+    acl: z.ZodDefault<z.ZodEnum<["private", "public-read"]>>;
+    headers: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodString>>;
+    sign_urls_for: z.ZodOptional<z.ZodNumber>;
+}, "strict", z.ZodTypeAny, {
+    headers: Record<string, string>;
+    path: string;
+    robot: "/digitalocean/store";
+    result: boolean;
+    force_accept: boolean;
+    url_prefix: string;
+    acl: "private" | "public-read";
+    key?: string | undefined;
+    secret?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    credentials?: string | undefined;
+    space?: string | undefined;
+    region?: string | undefined;
+    sign_urls_for?: number | undefined;
+}, {
+    robot: "/digitalocean/store";
+    headers?: Record<string, string> | undefined;
+    path?: string | undefined;
+    key?: string | undefined;
+    secret?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    credentials?: string | undefined;
+    space?: string | undefined;
+    region?: string | undefined;
+    sign_urls_for?: number | undefined;
+    url_prefix?: string | undefined;
+    acl?: "private" | "public-read" | undefined;
+}>;
+export declare const robotDigitaloceanStoreInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    credentials: z.ZodOptional<z.ZodString>;
+    space: z.ZodOptional<z.ZodString>;
+    region: z.ZodOptional<z.ZodString>;
+    key: z.ZodOptional<z.ZodString>;
+    secret: z.ZodOptional<z.ZodString>;
+    robot: z.ZodLiteral<"/digitalocean/store">;
+    path: z.ZodDefault<z.ZodString>;
+    url_prefix: z.ZodDefault<z.ZodString>;
+    acl: z.ZodDefault<z.ZodEnum<["private", "public-read"]>>;
+    headers: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodString>>;
+    sign_urls_for: z.ZodOptional<z.ZodNumber>;
+} & {
+    result: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"debug">, z.ZodDefault<z.ZodBoolean>]>>;
+}, "strict", z.ZodTypeAny, {
+    headers: Record<string, string>;
+    path: string;
+    robot: "/digitalocean/store";
+    force_accept: boolean;
+    url_prefix: string;
+    acl: "private" | "public-read";
+    key?: string | undefined;
+    secret?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    credentials?: string | undefined;
+    space?: string | undefined;
+    region?: string | undefined;
+    sign_urls_for?: number | undefined;
+}, {
+    robot: "/digitalocean/store";
+    headers?: Record<string, string> | undefined;
+    path?: string | undefined;
+    key?: string | undefined;
+    secret?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | "debug" | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    credentials?: string | undefined;
+    space?: string | undefined;
+    region?: string | undefined;
+    sign_urls_for?: number | undefined;
+    url_prefix?: string | undefined;
+    acl?: "private" | "public-read" | undefined;
+}>;
+export type RobotDigitaloceanStoreInstructions = z.infer<typeof robotDigitaloceanStoreInstructionsSchema>;
+export type RobotDigitaloceanStoreInstructionsWithHiddenFields = z.infer<typeof robotDigitaloceanStoreInstructionsWithHiddenFieldsSchema>;
+export declare const interpolatableRobotDigitaloceanStoreInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    credentials: z.ZodOptional<z.ZodString>;
+    space: z.ZodOptional<z.ZodString>;
+    region: z.ZodOptional<z.ZodString>;
+    key: z.ZodOptional<z.ZodString>;
+    secret: z.ZodOptional<z.ZodString>;
+    robot: z.ZodLiteral<"/digitalocean/store">;
+    path: z.ZodDefault<z.ZodString>;
+    url_prefix: z.ZodDefault<z.ZodString>;
+    acl: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["private", "public-read"]>]>>;
+    headers: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodString>>;
+    sign_urls_for: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+}, "strict", z.ZodTypeAny, {
+    headers: Record<string, string>;
+    path: string;
+    robot: "/digitalocean/store";
+    result: string | boolean;
+    force_accept: string | boolean;
+    url_prefix: string;
+    acl: string;
+    key?: string | undefined;
+    secret?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    credentials?: string | undefined;
+    space?: string | undefined;
+    region?: string | undefined;
+    sign_urls_for?: string | number | undefined;
+}, {
+    robot: "/digitalocean/store";
+    headers?: Record<string, string> | undefined;
+    path?: string | undefined;
+    key?: string | undefined;
+    secret?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    credentials?: string | undefined;
+    space?: string | undefined;
+    region?: string | undefined;
+    sign_urls_for?: string | number | undefined;
+    url_prefix?: string | undefined;
+    acl?: string | undefined;
+}>;
+export type InterpolatableRobotDigitaloceanStoreInstructions = InterpolatableRobotDigitaloceanStoreInstructionsInput;
+export type InterpolatableRobotDigitaloceanStoreInstructionsInput = z.input<typeof interpolatableRobotDigitaloceanStoreInstructionsSchema>;
+export declare const interpolatableRobotDigitaloceanStoreInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    use: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        fields: z.ZodOptional<z.ZodString>;
+        as: z.ZodOptional<z.ZodString>;
+    }, "strict", z.ZodTypeAny, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }, {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }>, "many">]>, z.ZodObject<{
+        steps: z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">, z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            fields: z.ZodOptional<z.ZodString>;
+            as: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }, {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }>, "many">]>;
+        bundle_steps: z.ZodOptional<z.ZodBoolean>;
+        group_by_original: z.ZodOptional<z.ZodBoolean>;
+        fields: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strict", z.ZodTypeAny, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }, {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    }>]>>;
+    credentials: z.ZodOptional<z.ZodString>;
+    space: z.ZodOptional<z.ZodString>;
+    region: z.ZodOptional<z.ZodString>;
+    key: z.ZodOptional<z.ZodString>;
+    secret: z.ZodOptional<z.ZodString>;
+    robot: z.ZodLiteral<"/digitalocean/store">;
+    path: z.ZodDefault<z.ZodString>;
+    url_prefix: z.ZodDefault<z.ZodString>;
+    acl: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["private", "public-read"]>]>>;
+    headers: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodString>>;
+    sign_urls_for: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    result: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodUnion<[z.ZodString, z.ZodLiteral<"debug">]>, z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>]>>;
+}, "strict", z.ZodTypeAny, {
+    headers: Record<string, string>;
+    path: string;
+    robot: "/digitalocean/store";
+    force_accept: string | boolean;
+    url_prefix: string;
+    acl: string;
+    key?: string | undefined;
+    secret?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    credentials?: string | undefined;
+    space?: string | undefined;
+    region?: string | undefined;
+    sign_urls_for?: string | number | undefined;
+}, {
+    robot: "/digitalocean/store";
+    headers?: Record<string, string> | undefined;
+    path?: string | undefined;
+    key?: string | undefined;
+    secret?: string | undefined;
+    use?: string | string[] | {
+        name: string;
+        fields?: string | undefined;
+        as?: string | undefined;
+    }[] | {
+        steps: string | string[] | {
+            name: string;
+            fields?: string | undefined;
+            as?: string | undefined;
+        }[];
+        fields?: string[] | undefined;
+        bundle_steps?: boolean | undefined;
+        group_by_original?: boolean | undefined;
+    } | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    credentials?: string | undefined;
+    space?: string | undefined;
+    region?: string | undefined;
+    sign_urls_for?: string | number | undefined;
+    url_prefix?: string | undefined;
+    acl?: string | undefined;
+}>;
+export type InterpolatableRobotDigitaloceanStoreInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotDigitaloceanStoreInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotDigitaloceanStoreInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotDigitaloceanStoreInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=digitalocean-store.d.ts.map

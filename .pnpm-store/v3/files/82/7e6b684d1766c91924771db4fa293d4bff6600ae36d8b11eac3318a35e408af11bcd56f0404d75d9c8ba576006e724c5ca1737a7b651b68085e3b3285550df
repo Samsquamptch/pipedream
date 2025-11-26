@@ -1,0 +1,189 @@
+import { z } from 'zod';
+import type { RobotMetaInput } from './_instructions-primitives.ts';
+export declare const meta: RobotMetaInput;
+export declare const robotVimeoImportInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    force_name: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+    ignore_errors: z.ZodDefault<z.ZodEffects<z.ZodUnion<[z.ZodBoolean, z.ZodArray<z.ZodEnum<["meta", "import"]>, "many">]>, string[], boolean | ("import" | "meta")[]>>;
+} & {
+    credentials: z.ZodOptional<z.ZodString>;
+} & {
+    robot: z.ZodLiteral<"/vimeo/import">;
+    path: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+    page_number: z.ZodDefault<z.ZodNumber>;
+    files_per_page: z.ZodDefault<z.ZodNumber>;
+    rendition: z.ZodDefault<z.ZodEnum<["240p", "360p", "540p", "720p", "1080p", "source"]>>;
+}, "strict", z.ZodTypeAny, {
+    path: string | string[];
+    robot: "/vimeo/import";
+    result: boolean;
+    force_accept: boolean;
+    force_name: string | string[] | null;
+    ignore_errors: string[];
+    files_per_page: number;
+    page_number: number;
+    rendition: "source" | "360p" | "540p" | "720p" | "1080p" | "240p";
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    credentials?: string | undefined;
+}, {
+    robot: "/vimeo/import";
+    path?: string | string[] | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    force_name?: string | string[] | null | undefined;
+    ignore_errors?: boolean | ("import" | "meta")[] | undefined;
+    credentials?: string | undefined;
+    files_per_page?: number | undefined;
+    page_number?: number | undefined;
+    rendition?: "source" | "360p" | "540p" | "720p" | "1080p" | "240p" | undefined;
+}>;
+export type RobotVimeoImportInstructions = z.infer<typeof robotVimeoImportInstructionsSchema>;
+export type RobotVimeoImportInstructionsInput = z.input<typeof robotVimeoImportInstructionsSchema>;
+export declare const interpolatableRobotVimeoImportInstructionsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    force_name: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>>;
+    ignore_errors: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodUnion<[z.ZodBoolean, z.ZodArray<z.ZodEnum<["meta", "import"]>, "many">]>, string[], boolean | ("import" | "meta")[]>]>>;
+    credentials: z.ZodOptional<z.ZodString>;
+    robot: z.ZodLiteral<"/vimeo/import">;
+    path: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    page_number: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    files_per_page: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    rendition: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["240p", "360p", "540p", "720p", "1080p", "source"]>]>>;
+}, "strict", z.ZodTypeAny, {
+    path: string | string[];
+    robot: "/vimeo/import";
+    result: string | boolean;
+    force_accept: string | boolean;
+    force_name: string | string[] | null;
+    ignore_errors: string | string[];
+    files_per_page: string | number;
+    page_number: string | number;
+    rendition: string;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    credentials?: string | undefined;
+}, {
+    robot: "/vimeo/import";
+    path?: string | string[] | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    force_name?: string | string[] | null | undefined;
+    ignore_errors?: string | boolean | ("import" | "meta")[] | undefined;
+    credentials?: string | undefined;
+    files_per_page?: string | number | undefined;
+    page_number?: string | number | undefined;
+    rendition?: string | undefined;
+}>;
+export type InterpolatableRobotVimeoImportInstructions = InterpolatableRobotVimeoImportInstructionsInput;
+export type InterpolatableRobotVimeoImportInstructionsInput = z.input<typeof interpolatableRobotVimeoImportInstructionsSchema>;
+export declare const robotVimeoImportInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodRecord<z.ZodString, z.ZodBoolean>, z.ZodBoolean, z.ZodArray<z.ZodString, "many">]>>;
+    result: z.ZodDefault<z.ZodBoolean>;
+    queue: z.ZodOptional<z.ZodEnum<["batch"]>>;
+    force_accept: z.ZodDefault<z.ZodBoolean>;
+} & {
+    force_name: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+    ignore_errors: z.ZodDefault<z.ZodEffects<z.ZodUnion<[z.ZodBoolean, z.ZodArray<z.ZodEnum<["meta", "import"]>, "many">]>, string[], boolean | ("import" | "meta")[]>>;
+} & {
+    credentials: z.ZodOptional<z.ZodString>;
+} & {
+    robot: z.ZodLiteral<"/vimeo/import">;
+    path: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+    page_number: z.ZodDefault<z.ZodNumber>;
+    files_per_page: z.ZodDefault<z.ZodNumber>;
+    rendition: z.ZodDefault<z.ZodEnum<["240p", "360p", "540p", "720p", "1080p", "source"]>>;
+} & {
+    access_token: z.ZodOptional<z.ZodString>;
+    return_file_stubs: z.ZodOptional<z.ZodBoolean>;
+}, "strict", z.ZodTypeAny, {
+    path: string | string[];
+    robot: "/vimeo/import";
+    result: boolean;
+    force_accept: boolean;
+    force_name: string | string[] | null;
+    ignore_errors: string[];
+    files_per_page: number;
+    page_number: number;
+    rendition: "source" | "360p" | "540p" | "720p" | "1080p" | "240p";
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    queue?: "batch" | undefined;
+    credentials?: string | undefined;
+    return_file_stubs?: boolean | undefined;
+    access_token?: string | undefined;
+}, {
+    robot: "/vimeo/import";
+    path?: string | string[] | undefined;
+    output_meta?: boolean | string[] | Record<string, boolean> | undefined;
+    result?: boolean | undefined;
+    queue?: "batch" | undefined;
+    force_accept?: boolean | undefined;
+    force_name?: string | string[] | null | undefined;
+    ignore_errors?: boolean | ("import" | "meta")[] | undefined;
+    credentials?: string | undefined;
+    files_per_page?: number | undefined;
+    page_number?: number | undefined;
+    return_file_stubs?: boolean | undefined;
+    access_token?: string | undefined;
+    rendition?: "source" | "360p" | "540p" | "720p" | "1080p" | "240p" | undefined;
+}>;
+export declare const interpolatableRobotVimeoImportInstructionsWithHiddenFieldsSchema: z.ZodObject<{
+    output_meta: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodBoolean]>>, z.ZodUnion<[z.ZodString, z.ZodBoolean]>, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    result: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    queue: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodEnum<["batch"]>]>>;
+    force_accept: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+    force_name: z.ZodDefault<z.ZodNullable<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>>;
+    ignore_errors: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodUnion<[z.ZodBoolean, z.ZodArray<z.ZodEnum<["meta", "import"]>, "many">]>, string[], boolean | ("import" | "meta")[]>]>>;
+    credentials: z.ZodOptional<z.ZodString>;
+    robot: z.ZodLiteral<"/vimeo/import">;
+    path: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>]>>;
+    page_number: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    files_per_page: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+    rendition: z.ZodDefault<z.ZodUnion<[z.ZodString, z.ZodEnum<["240p", "360p", "540p", "720p", "1080p", "source"]>]>>;
+    access_token: z.ZodOptional<z.ZodString>;
+    return_file_stubs: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodBoolean]>>;
+}, "strict", z.ZodTypeAny, {
+    path: string | string[];
+    robot: "/vimeo/import";
+    result: string | boolean;
+    force_accept: string | boolean;
+    force_name: string | string[] | null;
+    ignore_errors: string | string[];
+    files_per_page: string | number;
+    page_number: string | number;
+    rendition: string;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    queue?: string | undefined;
+    credentials?: string | undefined;
+    return_file_stubs?: string | boolean | undefined;
+    access_token?: string | undefined;
+}, {
+    robot: "/vimeo/import";
+    path?: string | string[] | undefined;
+    output_meta?: string | boolean | string[] | Record<string, string | boolean> | undefined;
+    result?: string | boolean | undefined;
+    queue?: string | undefined;
+    force_accept?: string | boolean | undefined;
+    force_name?: string | string[] | null | undefined;
+    ignore_errors?: string | boolean | ("import" | "meta")[] | undefined;
+    credentials?: string | undefined;
+    files_per_page?: string | number | undefined;
+    page_number?: string | number | undefined;
+    return_file_stubs?: string | boolean | undefined;
+    access_token?: string | undefined;
+    rendition?: string | undefined;
+}>;
+export type InterpolatableRobotVimeoImportInstructionsWithHiddenFields = z.infer<typeof interpolatableRobotVimeoImportInstructionsWithHiddenFieldsSchema>;
+export type InterpolatableRobotVimeoImportInstructionsWithHiddenFieldsInput = z.input<typeof interpolatableRobotVimeoImportInstructionsWithHiddenFieldsSchema>;
+//# sourceMappingURL=vimeo-import.d.ts.map

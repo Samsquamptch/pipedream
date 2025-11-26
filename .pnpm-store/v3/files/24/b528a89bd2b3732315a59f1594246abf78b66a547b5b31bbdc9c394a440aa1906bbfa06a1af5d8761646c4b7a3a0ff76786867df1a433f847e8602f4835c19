@@ -1,0 +1,4092 @@
+import { z } from "zod";
+export declare const zResponse: z.ZodObject<{
+    _status: z.ZodOptional<z.ZodNumber>;
+}, "strip", z.ZodTypeAny, {
+    _status?: number | undefined;
+}, {
+    _status?: number | undefined;
+}>;
+export declare const zMetadata: z.ZodRecord<z.ZodString, z.ZodAny>;
+declare const LANGUAGE_CODES: readonly ["en-US", "en-UK", "en-AU", "nl", "de", "lb", "fr", "es", "pt", "it", "gr", "ru", "tr", "da", "sv", "fi", "is", "no", "zh", "ja", "hi", "th", "vi", "my", "ko", "et", "lt", "lv", "mk", "id", "cs", "pl", "sl", "sk", "bg", "bs", "hu", "uk", "sr", "ro", "sq", "hy", "he", "ar"];
+export type LanguageCode = (typeof LANGUAGE_CODES)[number];
+export declare const zLanguageCode: z.ZodEnum<["en-US", "en-UK", "en-AU", "nl", "de", "lb", "fr", "es", "pt", "it", "gr", "ru", "tr", "da", "sv", "fi", "is", "no", "zh", "ja", "hi", "th", "vi", "my", "ko", "et", "lt", "lv", "mk", "id", "cs", "pl", "sl", "sk", "bg", "bs", "hu", "uk", "sr", "ro", "sq", "hy", "he", "ar"]>;
+export declare const zPostAgentRunBaseRequest: z.ZodObject<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>;
+export declare const zPostResearchAgentRunRequest: z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1", "r1-light"]>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1" | "r1-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1" | "r1-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>;
+export declare const zPostQualifyingAgentRunRequest: z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-qualification", "r1-qualification-light"]>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-qualification" | "r1-qualification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-qualification" | "r1-qualification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>;
+export declare const zPostCopywritingAgentRunRequest: z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-copywriting", "r1-copywriting-light"]>;
+    language: z.ZodDefault<z.ZodOptional<z.ZodEnum<["en-US", "en-UK", "en-AU", "nl", "de", "lb", "fr", "es", "pt", "it", "gr", "ru", "tr", "da", "sv", "fi", "is", "no", "zh", "ja", "hi", "th", "vi", "my", "ko", "et", "lt", "lv", "mk", "id", "cs", "pl", "sl", "sk", "bg", "bs", "hu", "uk", "sr", "ro", "sq", "hy", "he", "ar"]>>>;
+    sequence_length: z.ZodDefault<z.ZodOptional<z.ZodNumber>>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-copywriting" | "r1-copywriting-light";
+    language: "en-US" | "en-UK" | "en-AU" | "nl" | "de" | "lb" | "fr" | "es" | "pt" | "it" | "gr" | "ru" | "tr" | "da" | "sv" | "fi" | "is" | "no" | "zh" | "ja" | "hi" | "th" | "vi" | "my" | "ko" | "et" | "lt" | "lv" | "mk" | "id" | "cs" | "pl" | "sl" | "sk" | "bg" | "bs" | "hu" | "uk" | "sr" | "ro" | "sq" | "hy" | "he" | "ar";
+    sequence_length: number;
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-copywriting" | "r1-copywriting-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+    language?: "en-US" | "en-UK" | "en-AU" | "nl" | "de" | "lb" | "fr" | "es" | "pt" | "it" | "gr" | "ru" | "tr" | "da" | "sv" | "fi" | "is" | "no" | "zh" | "ja" | "hi" | "th" | "vi" | "my" | "ko" | "et" | "lt" | "lv" | "mk" | "id" | "cs" | "pl" | "sl" | "sk" | "bg" | "bs" | "hu" | "uk" | "sr" | "ro" | "sq" | "hy" | "he" | "ar" | undefined;
+    sequence_length?: number | undefined;
+}>;
+export declare const zPostTimingAgentRunRequest: z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-timing", "r1-timing-light"]>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-timing" | "r1-timing-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-timing" | "r1-timing-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>;
+export declare const zPostClassificationAgentRunRequest: z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-classification", "r1-classification-light"]>;
+    options: z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        name: string;
+        description?: string | undefined;
+    }, {
+        name: string;
+        description?: string | undefined;
+    }>, "many">;
+}>, "strip", z.ZodTypeAny, {
+    options: {
+        name: string;
+        description?: string | undefined;
+    }[];
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-classification" | "r1-classification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    options: {
+        name: string;
+        description?: string | undefined;
+    }[];
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-classification" | "r1-classification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>;
+export declare const zPostAgentRunRequestWithoutMetadata: z.ZodDiscriminatedUnion<"agent", [z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1", "r1-light"]>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1" | "r1-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1" | "r1-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-qualification", "r1-qualification-light"]>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-qualification" | "r1-qualification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-qualification" | "r1-qualification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-copywriting", "r1-copywriting-light"]>;
+    language: z.ZodDefault<z.ZodOptional<z.ZodEnum<["en-US", "en-UK", "en-AU", "nl", "de", "lb", "fr", "es", "pt", "it", "gr", "ru", "tr", "da", "sv", "fi", "is", "no", "zh", "ja", "hi", "th", "vi", "my", "ko", "et", "lt", "lv", "mk", "id", "cs", "pl", "sl", "sk", "bg", "bs", "hu", "uk", "sr", "ro", "sq", "hy", "he", "ar"]>>>;
+    sequence_length: z.ZodDefault<z.ZodOptional<z.ZodNumber>>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-copywriting" | "r1-copywriting-light";
+    language: "en-US" | "en-UK" | "en-AU" | "nl" | "de" | "lb" | "fr" | "es" | "pt" | "it" | "gr" | "ru" | "tr" | "da" | "sv" | "fi" | "is" | "no" | "zh" | "ja" | "hi" | "th" | "vi" | "my" | "ko" | "et" | "lt" | "lv" | "mk" | "id" | "cs" | "pl" | "sl" | "sk" | "bg" | "bs" | "hu" | "uk" | "sr" | "ro" | "sq" | "hy" | "he" | "ar";
+    sequence_length: number;
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-copywriting" | "r1-copywriting-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+    language?: "en-US" | "en-UK" | "en-AU" | "nl" | "de" | "lb" | "fr" | "es" | "pt" | "it" | "gr" | "ru" | "tr" | "da" | "sv" | "fi" | "is" | "no" | "zh" | "ja" | "hi" | "th" | "vi" | "my" | "ko" | "et" | "lt" | "lv" | "mk" | "id" | "cs" | "pl" | "sl" | "sk" | "bg" | "bs" | "hu" | "uk" | "sr" | "ro" | "sq" | "hy" | "he" | "ar" | undefined;
+    sequence_length?: number | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-timing", "r1-timing-light"]>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-timing" | "r1-timing-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-timing" | "r1-timing-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-classification", "r1-classification-light"]>;
+    options: z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        name: string;
+        description?: string | undefined;
+    }, {
+        name: string;
+        description?: string | undefined;
+    }>, "many">;
+}>, "strip", z.ZodTypeAny, {
+    options: {
+        name: string;
+        description?: string | undefined;
+    }[];
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-classification" | "r1-classification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    options: {
+        name: string;
+        description?: string | undefined;
+    }[];
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-classification" | "r1-classification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>]>;
+export declare const zPostAgentRunRequest: z.ZodIntersection<z.ZodDiscriminatedUnion<"agent", [z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1", "r1-light"]>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1" | "r1-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1" | "r1-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-qualification", "r1-qualification-light"]>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-qualification" | "r1-qualification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-qualification" | "r1-qualification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-copywriting", "r1-copywriting-light"]>;
+    language: z.ZodDefault<z.ZodOptional<z.ZodEnum<["en-US", "en-UK", "en-AU", "nl", "de", "lb", "fr", "es", "pt", "it", "gr", "ru", "tr", "da", "sv", "fi", "is", "no", "zh", "ja", "hi", "th", "vi", "my", "ko", "et", "lt", "lv", "mk", "id", "cs", "pl", "sl", "sk", "bg", "bs", "hu", "uk", "sr", "ro", "sq", "hy", "he", "ar"]>>>;
+    sequence_length: z.ZodDefault<z.ZodOptional<z.ZodNumber>>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-copywriting" | "r1-copywriting-light";
+    language: "en-US" | "en-UK" | "en-AU" | "nl" | "de" | "lb" | "fr" | "es" | "pt" | "it" | "gr" | "ru" | "tr" | "da" | "sv" | "fi" | "is" | "no" | "zh" | "ja" | "hi" | "th" | "vi" | "my" | "ko" | "et" | "lt" | "lv" | "mk" | "id" | "cs" | "pl" | "sl" | "sk" | "bg" | "bs" | "hu" | "uk" | "sr" | "ro" | "sq" | "hy" | "he" | "ar";
+    sequence_length: number;
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-copywriting" | "r1-copywriting-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+    language?: "en-US" | "en-UK" | "en-AU" | "nl" | "de" | "lb" | "fr" | "es" | "pt" | "it" | "gr" | "ru" | "tr" | "da" | "sv" | "fi" | "is" | "no" | "zh" | "ja" | "hi" | "th" | "vi" | "my" | "ko" | "et" | "lt" | "lv" | "mk" | "id" | "cs" | "pl" | "sl" | "sk" | "bg" | "bs" | "hu" | "uk" | "sr" | "ro" | "sq" | "hy" | "he" | "ar" | undefined;
+    sequence_length?: number | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-timing", "r1-timing-light"]>;
+}>, "strip", z.ZodTypeAny, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-timing" | "r1-timing-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-timing" | "r1-timing-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    lead: z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>;
+    user: z.ZodOptional<z.ZodObject<{
+        company: z.ZodObject<{
+            website: z.ZodEffects<z.ZodString, string, string>;
+            name: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }, {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        }>;
+        person: z.ZodOptional<z.ZodObject<{
+            full_name: z.ZodString;
+            linkedin_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+            email: z.ZodOptional<z.ZodString>;
+            job_title: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }, {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }, {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    }>>;
+    events: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        description: z.ZodString;
+        timestamp_ms: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }, {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }>, "many">>;
+    context: z.ZodOptional<z.ZodString>;
+    min_research_steps: z.ZodOptional<z.ZodNumber>;
+    max_research_steps: z.ZodOptional<z.ZodNumber>;
+    callback_url: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    use_memory: z.ZodOptional<z.ZodBoolean>;
+    output_schema: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+}, {
+    agent: z.ZodEnum<["r1-classification", "r1-classification-light"]>;
+    options: z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        name: string;
+        description?: string | undefined;
+    }, {
+        name: string;
+        description?: string | undefined;
+    }>, "many">;
+}>, "strip", z.ZodTypeAny, {
+    options: {
+        name: string;
+        description?: string | undefined;
+    }[];
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-classification" | "r1-classification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}, {
+    options: {
+        name: string;
+        description?: string | undefined;
+    }[];
+    lead: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    };
+    agent: "r1-classification" | "r1-classification-light";
+    user?: {
+        company: {
+            website: string;
+            name?: string | undefined;
+            description?: string | undefined;
+        };
+        person?: {
+            full_name: string;
+            linkedin_url?: string | undefined;
+            email?: string | undefined;
+            job_title?: string | undefined;
+        } | undefined;
+    } | undefined;
+    events?: {
+        description: string;
+        timestamp_ms?: number | undefined;
+    }[] | undefined;
+    context?: string | undefined;
+    min_research_steps?: number | undefined;
+    max_research_steps?: number | undefined;
+    callback_url?: string | undefined;
+    use_memory?: boolean | undefined;
+    output_schema?: Record<string, unknown> | undefined;
+}>]>, z.ZodObject<{
+    metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+}, "strip", z.ZodTypeAny, {
+    metadata?: Record<string, any> | undefined;
+}, {
+    metadata?: Record<string, any> | undefined;
+}>>;
+export declare const zPostAgentRunResponse: z.ZodObject<z.objectUtil.extendShape<{
+    _status: z.ZodOptional<z.ZodNumber>;
+}, {
+    id: z.ZodString;
+}>, "strip", z.ZodTypeAny, {
+    id: string;
+    _status?: number | undefined;
+}, {
+    id: string;
+    _status?: number | undefined;
+}>;
+export declare const zGetAgentRunRequest: z.ZodObject<{
+    agent: z.ZodOptional<z.ZodEnum<["r1", "r1-light", "r1-qualification", "r1-qualification-light", "r1-copywriting", "r1-copywriting-light", "r1-timing", "r1-timing-light", "r1-classification", "r1-classification-light"]>>;
+    run: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    run: string;
+    agent?: "r1" | "r1-light" | "r1-qualification" | "r1-qualification-light" | "r1-copywriting" | "r1-copywriting-light" | "r1-timing" | "r1-timing-light" | "r1-classification" | "r1-classification-light" | undefined;
+}, {
+    run: string;
+    agent?: "r1" | "r1-light" | "r1-qualification" | "r1-qualification-light" | "r1-copywriting" | "r1-copywriting-light" | "r1-timing" | "r1-timing-light" | "r1-classification" | "r1-classification-light" | undefined;
+}>;
+export declare const zGetAgentRunResponse: z.ZodUnion<[z.ZodUnion<[z.ZodObject<z.objectUtil.extendShape<{
+    _status: z.ZodOptional<z.ZodNumber>;
+}, {
+    id: z.ZodString;
+    agent: z.ZodEnum<["r1", "r1-light", "r1-qualification", "r1-qualification-light", "r1-copywriting", "r1-copywriting-light", "r1-timing", "r1-timing-light", "r1-classification", "r1-classification-light"]>;
+    status: z.ZodLiteral<"queued">;
+    metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+    created_at: z.ZodNumber;
+}>, "strip", z.ZodTypeAny, {
+    status: "queued";
+    id: string;
+    agent: "r1" | "r1-light" | "r1-qualification" | "r1-qualification-light" | "r1-copywriting" | "r1-copywriting-light" | "r1-timing" | "r1-timing-light" | "r1-classification" | "r1-classification-light";
+    created_at: number;
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}, {
+    status: "queued";
+    id: string;
+    agent: "r1" | "r1-light" | "r1-qualification" | "r1-qualification-light" | "r1-copywriting" | "r1-copywriting-light" | "r1-timing" | "r1-timing-light" | "r1-classification" | "r1-classification-light";
+    created_at: number;
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    _status: z.ZodOptional<z.ZodNumber>;
+}, {
+    id: z.ZodString;
+    agent: z.ZodEnum<["r1", "r1-light", "r1-qualification", "r1-qualification-light", "r1-copywriting", "r1-copywriting-light", "r1-timing", "r1-timing-light", "r1-classification", "r1-classification-light"]>;
+    status: z.ZodLiteral<"failed">;
+    error: z.ZodOptional<z.ZodString>;
+    metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+    created_at: z.ZodNumber;
+}>, "strip", z.ZodTypeAny, {
+    status: "failed";
+    id: string;
+    agent: "r1" | "r1-light" | "r1-qualification" | "r1-qualification-light" | "r1-copywriting" | "r1-copywriting-light" | "r1-timing" | "r1-timing-light" | "r1-classification" | "r1-classification-light";
+    created_at: number;
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+    error?: string | undefined;
+}, {
+    status: "failed";
+    id: string;
+    agent: "r1" | "r1-light" | "r1-qualification" | "r1-qualification-light" | "r1-copywriting" | "r1-copywriting-light" | "r1-timing" | "r1-timing-light" | "r1-classification" | "r1-classification-light";
+    created_at: number;
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+    error?: string | undefined;
+}>]>, z.ZodDiscriminatedUnion<"agent", [z.ZodObject<z.objectUtil.extendShape<{
+    _status: z.ZodOptional<z.ZodNumber>;
+}, {
+    id: z.ZodString;
+    agent: z.ZodEnum<["r1", "r1-light"]>;
+    status: z.ZodEnum<["completed", "running"]>;
+    result: z.ZodObject<{
+        research: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            steps: z.ZodArray<z.ZodObject<{
+                action: z.ZodString;
+                outcome: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                action: string;
+                outcome?: string | undefined;
+            }, {
+                action: string;
+                outcome?: string | undefined;
+            }>, "many">;
+            conclusion: z.ZodOptional<z.ZodString>;
+            output: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+        }, "strip", z.ZodTypeAny, {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        }, {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        }>>>;
+    }, "strip", z.ZodTypeAny, {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+    }, {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+    }>;
+    metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+    created_at: z.ZodNumber;
+}>, "strip", z.ZodTypeAny, {
+    status: "completed" | "running";
+    id: string;
+    agent: "r1" | "r1-light";
+    created_at: number;
+    result: {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+    };
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}, {
+    status: "completed" | "running";
+    id: string;
+    agent: "r1" | "r1-light";
+    created_at: number;
+    result: {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+    };
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    _status: z.ZodOptional<z.ZodNumber>;
+}, {
+    id: z.ZodString;
+    agent: z.ZodEnum<["r1-qualification", "r1-qualification-light"]>;
+    status: z.ZodEnum<["completed", "running"]>;
+    result: z.ZodObject<{
+        research: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            steps: z.ZodArray<z.ZodObject<{
+                action: z.ZodString;
+                outcome: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                action: string;
+                outcome?: string | undefined;
+            }, {
+                action: string;
+                outcome?: string | undefined;
+            }>, "many">;
+            conclusion: z.ZodOptional<z.ZodString>;
+            output: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+        }, "strip", z.ZodTypeAny, {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        }, {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        }>>>;
+        qualification: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            score: z.ZodEnum<["high", "medium", "low"]>;
+            reason: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            score: "high" | "medium" | "low";
+            reason: string;
+        }, {
+            score: "high" | "medium" | "low";
+            reason: string;
+        }>>>;
+    }, "strip", z.ZodTypeAny, {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        qualification?: {
+            score: "high" | "medium" | "low";
+            reason: string;
+        } | null | undefined;
+    }, {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        qualification?: {
+            score: "high" | "medium" | "low";
+            reason: string;
+        } | null | undefined;
+    }>;
+    metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+    created_at: z.ZodNumber;
+}>, "strip", z.ZodTypeAny, {
+    status: "completed" | "running";
+    id: string;
+    agent: "r1-qualification" | "r1-qualification-light";
+    created_at: number;
+    result: {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        qualification?: {
+            score: "high" | "medium" | "low";
+            reason: string;
+        } | null | undefined;
+    };
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}, {
+    status: "completed" | "running";
+    id: string;
+    agent: "r1-qualification" | "r1-qualification-light";
+    created_at: number;
+    result: {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        qualification?: {
+            score: "high" | "medium" | "low";
+            reason: string;
+        } | null | undefined;
+    };
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    _status: z.ZodOptional<z.ZodNumber>;
+}, {
+    id: z.ZodString;
+    agent: z.ZodEnum<["r1-copywriting", "r1-copywriting-light"]>;
+    status: z.ZodEnum<["completed", "running"]>;
+    result: z.ZodObject<{
+        research: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            steps: z.ZodArray<z.ZodObject<{
+                action: z.ZodString;
+                outcome: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                action: string;
+                outcome?: string | undefined;
+            }, {
+                action: string;
+                outcome?: string | undefined;
+            }>, "many">;
+            conclusion: z.ZodOptional<z.ZodString>;
+            output: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+        }, "strip", z.ZodTypeAny, {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        }, {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        }>>>;
+        message: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            body: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                markdown: z.ZodString;
+                html: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                markdown: string;
+                html: string;
+            }, {
+                markdown: string;
+                html: string;
+            }>>>;
+            subject: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, "strip", z.ZodTypeAny, {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        }, {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        }>>>;
+        sequence: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            body: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                markdown: z.ZodString;
+                html: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                markdown: string;
+                html: string;
+            }, {
+                markdown: string;
+                html: string;
+            }>>>;
+            subject: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, "strip", z.ZodTypeAny, {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        }, {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        }>, "many">>;
+    }, "strip", z.ZodTypeAny, {
+        message?: {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        } | null | undefined;
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        sequence?: {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        }[] | undefined;
+    }, {
+        message?: {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        } | null | undefined;
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        sequence?: {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        }[] | undefined;
+    }>;
+    metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+    created_at: z.ZodNumber;
+}>, "strip", z.ZodTypeAny, {
+    status: "completed" | "running";
+    id: string;
+    agent: "r1-copywriting" | "r1-copywriting-light";
+    created_at: number;
+    result: {
+        message?: {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        } | null | undefined;
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        sequence?: {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        }[] | undefined;
+    };
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}, {
+    status: "completed" | "running";
+    id: string;
+    agent: "r1-copywriting" | "r1-copywriting-light";
+    created_at: number;
+    result: {
+        message?: {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        } | null | undefined;
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        sequence?: {
+            body?: {
+                markdown: string;
+                html: string;
+            } | null | undefined;
+            subject?: string | null | undefined;
+        }[] | undefined;
+    };
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    _status: z.ZodOptional<z.ZodNumber>;
+}, {
+    id: z.ZodString;
+    agent: z.ZodEnum<["r1-timing", "r1-timing-light"]>;
+    status: z.ZodEnum<["completed", "running"]>;
+    result: z.ZodObject<{
+        research: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            steps: z.ZodArray<z.ZodObject<{
+                action: z.ZodString;
+                outcome: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                action: string;
+                outcome?: string | undefined;
+            }, {
+                action: string;
+                outcome?: string | undefined;
+            }>, "many">;
+            conclusion: z.ZodOptional<z.ZodString>;
+            output: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+        }, "strip", z.ZodTypeAny, {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        }, {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        }>>>;
+        timing: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            score: z.ZodEnum<["high", "medium", "low"]>;
+            reason: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            score: "high" | "medium" | "low";
+            reason: string;
+        }, {
+            score: "high" | "medium" | "low";
+            reason: string;
+        }>>>;
+    }, "strip", z.ZodTypeAny, {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        timing?: {
+            score: "high" | "medium" | "low";
+            reason: string;
+        } | null | undefined;
+    }, {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        timing?: {
+            score: "high" | "medium" | "low";
+            reason: string;
+        } | null | undefined;
+    }>;
+    metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+    created_at: z.ZodNumber;
+}>, "strip", z.ZodTypeAny, {
+    status: "completed" | "running";
+    id: string;
+    agent: "r1-timing" | "r1-timing-light";
+    created_at: number;
+    result: {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        timing?: {
+            score: "high" | "medium" | "low";
+            reason: string;
+        } | null | undefined;
+    };
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}, {
+    status: "completed" | "running";
+    id: string;
+    agent: "r1-timing" | "r1-timing-light";
+    created_at: number;
+    result: {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        timing?: {
+            score: "high" | "medium" | "low";
+            reason: string;
+        } | null | undefined;
+    };
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}>, z.ZodObject<z.objectUtil.extendShape<{
+    _status: z.ZodOptional<z.ZodNumber>;
+}, {
+    id: z.ZodString;
+    agent: z.ZodEnum<["r1-classification", "r1-classification-light"]>;
+    status: z.ZodEnum<["completed", "running"]>;
+    result: z.ZodObject<{
+        research: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            steps: z.ZodArray<z.ZodObject<{
+                action: z.ZodString;
+                outcome: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                action: string;
+                outcome?: string | undefined;
+            }, {
+                action: string;
+                outcome?: string | undefined;
+            }>, "many">;
+            conclusion: z.ZodOptional<z.ZodString>;
+            output: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+        }, "strip", z.ZodTypeAny, {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        }, {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        }>>>;
+        classification: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            choice: z.ZodString;
+            reason: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            reason: string;
+            choice: string;
+        }, {
+            reason: string;
+            choice: string;
+        }>>>;
+    }, "strip", z.ZodTypeAny, {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        classification?: {
+            reason: string;
+            choice: string;
+        } | null | undefined;
+    }, {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        classification?: {
+            reason: string;
+            choice: string;
+        } | null | undefined;
+    }>;
+    metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+    created_at: z.ZodNumber;
+}>, "strip", z.ZodTypeAny, {
+    status: "completed" | "running";
+    id: string;
+    agent: "r1-classification" | "r1-classification-light";
+    created_at: number;
+    result: {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        classification?: {
+            reason: string;
+            choice: string;
+        } | null | undefined;
+    };
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}, {
+    status: "completed" | "running";
+    id: string;
+    agent: "r1-classification" | "r1-classification-light";
+    created_at: number;
+    result: {
+        research?: {
+            steps: {
+                action: string;
+                outcome?: string | undefined;
+            }[];
+            conclusion?: string | undefined;
+            output?: Record<string, unknown> | undefined;
+        } | null | undefined;
+        classification?: {
+            reason: string;
+            choice: string;
+        } | null | undefined;
+    };
+    _status?: number | undefined;
+    metadata?: Record<string, any> | undefined;
+}>]>]>;
+export declare const zGetMeResponse: z.ZodObject<{
+    status: z.ZodEnum<["success", "error"]>;
+    orgName: z.ZodOptional<z.ZodString>;
+    error: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    status: "error" | "success";
+    error?: string | undefined;
+    orgName?: string | undefined;
+}, {
+    status: "error" | "success";
+    error?: string | undefined;
+    orgName?: string | undefined;
+}>;
+export type GetMeResponse = z.infer<typeof zGetMeResponse>;
+export {};

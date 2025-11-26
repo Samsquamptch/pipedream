@@ -1,0 +1,440 @@
+import { ExceptionOptionType as __ExceptionOptionType } from "@smithy/smithy-client";
+import { RedshiftDataServiceException as __BaseException } from "./RedshiftDataServiceException";
+export declare class ActiveSessionsExceededException extends __BaseException {
+  readonly name: "ActiveSessionsExceededException";
+  readonly $fault: "client";
+  Message?: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<
+      ActiveSessionsExceededException,
+      __BaseException
+    >
+  );
+}
+export declare class ActiveStatementsExceededException extends __BaseException {
+  readonly name: "ActiveStatementsExceededException";
+  readonly $fault: "client";
+  Message?: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<
+      ActiveStatementsExceededException,
+      __BaseException
+    >
+  );
+}
+export declare class BatchExecuteStatementException extends __BaseException {
+  readonly name: "BatchExecuteStatementException";
+  readonly $fault: "server";
+  Message: string | undefined;
+  StatementId: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<BatchExecuteStatementException, __BaseException>
+  );
+}
+export declare const ResultFormatString: {
+  readonly CSV: "CSV";
+  readonly JSON: "JSON";
+};
+export type ResultFormatString =
+  (typeof ResultFormatString)[keyof typeof ResultFormatString];
+export interface BatchExecuteStatementInput {
+  Sqls: string[] | undefined;
+  ClusterIdentifier?: string | undefined;
+  SecretArn?: string | undefined;
+  DbUser?: string | undefined;
+  Database?: string | undefined;
+  WithEvent?: boolean | undefined;
+  StatementName?: string | undefined;
+  WorkgroupName?: string | undefined;
+  ClientToken?: string | undefined;
+  SessionKeepAliveSeconds?: number | undefined;
+  SessionId?: string | undefined;
+  ResultFormat?: ResultFormatString | undefined;
+}
+export interface BatchExecuteStatementOutput {
+  Id?: string | undefined;
+  CreatedAt?: Date | undefined;
+  ClusterIdentifier?: string | undefined;
+  DbUser?: string | undefined;
+  DbGroups?: string[] | undefined;
+  Database?: string | undefined;
+  SecretArn?: string | undefined;
+  WorkgroupName?: string | undefined;
+  SessionId?: string | undefined;
+}
+export declare class InternalServerException extends __BaseException {
+  readonly name: "InternalServerException";
+  readonly $fault: "server";
+  Message: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<InternalServerException, __BaseException>
+  );
+}
+export declare class ValidationException extends __BaseException {
+  readonly name: "ValidationException";
+  readonly $fault: "client";
+  Message?: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<ValidationException, __BaseException>
+  );
+}
+export interface CancelStatementRequest {
+  Id: string | undefined;
+}
+export interface CancelStatementResponse {
+  Status?: boolean | undefined;
+}
+export declare class DatabaseConnectionException extends __BaseException {
+  readonly name: "DatabaseConnectionException";
+  readonly $fault: "server";
+  Message: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<DatabaseConnectionException, __BaseException>
+  );
+}
+export declare class ResourceNotFoundException extends __BaseException {
+  readonly name: "ResourceNotFoundException";
+  readonly $fault: "client";
+  Message: string | undefined;
+  ResourceId: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<ResourceNotFoundException, __BaseException>
+  );
+}
+export interface ColumnMetadata {
+  isCaseSensitive?: boolean | undefined;
+  isCurrency?: boolean | undefined;
+  isSigned?: boolean | undefined;
+  label?: string | undefined;
+  name?: string | undefined;
+  nullable?: number | undefined;
+  precision?: number | undefined;
+  scale?: number | undefined;
+  schemaName?: string | undefined;
+  tableName?: string | undefined;
+  typeName?: string | undefined;
+  length?: number | undefined;
+  columnDefault?: string | undefined;
+}
+export interface DescribeStatementRequest {
+  Id: string | undefined;
+}
+export interface SqlParameter {
+  name: string | undefined;
+  value: string | undefined;
+}
+export declare const StatusString: {
+  readonly ABORTED: "ABORTED";
+  readonly ALL: "ALL";
+  readonly FAILED: "FAILED";
+  readonly FINISHED: "FINISHED";
+  readonly PICKED: "PICKED";
+  readonly STARTED: "STARTED";
+  readonly SUBMITTED: "SUBMITTED";
+};
+export type StatusString = (typeof StatusString)[keyof typeof StatusString];
+export declare const StatementStatusString: {
+  readonly ABORTED: "ABORTED";
+  readonly FAILED: "FAILED";
+  readonly FINISHED: "FINISHED";
+  readonly PICKED: "PICKED";
+  readonly STARTED: "STARTED";
+  readonly SUBMITTED: "SUBMITTED";
+};
+export type StatementStatusString =
+  (typeof StatementStatusString)[keyof typeof StatementStatusString];
+export interface SubStatementData {
+  Id: string | undefined;
+  Duration?: number | undefined;
+  Error?: string | undefined;
+  Status?: StatementStatusString | undefined;
+  CreatedAt?: Date | undefined;
+  UpdatedAt?: Date | undefined;
+  QueryString?: string | undefined;
+  ResultRows?: number | undefined;
+  ResultSize?: number | undefined;
+  RedshiftQueryId?: number | undefined;
+  HasResultSet?: boolean | undefined;
+}
+export interface DescribeStatementResponse {
+  Id: string | undefined;
+  SecretArn?: string | undefined;
+  DbUser?: string | undefined;
+  Database?: string | undefined;
+  ClusterIdentifier?: string | undefined;
+  Duration?: number | undefined;
+  Error?: string | undefined;
+  Status?: StatusString | undefined;
+  CreatedAt?: Date | undefined;
+  UpdatedAt?: Date | undefined;
+  RedshiftPid?: number | undefined;
+  HasResultSet?: boolean | undefined;
+  QueryString?: string | undefined;
+  ResultRows?: number | undefined;
+  ResultSize?: number | undefined;
+  RedshiftQueryId?: number | undefined;
+  QueryParameters?: SqlParameter[] | undefined;
+  SubStatements?: SubStatementData[] | undefined;
+  WorkgroupName?: string | undefined;
+  SessionId?: string | undefined;
+  ResultFormat?: ResultFormatString | undefined;
+}
+export interface DescribeTableRequest {
+  ClusterIdentifier?: string | undefined;
+  SecretArn?: string | undefined;
+  DbUser?: string | undefined;
+  Database: string | undefined;
+  ConnectedDatabase?: string | undefined;
+  Schema?: string | undefined;
+  Table?: string | undefined;
+  NextToken?: string | undefined;
+  MaxResults?: number | undefined;
+  WorkgroupName?: string | undefined;
+}
+export interface DescribeTableResponse {
+  TableName?: string | undefined;
+  ColumnList?: ColumnMetadata[] | undefined;
+  NextToken?: string | undefined;
+}
+export declare class QueryTimeoutException extends __BaseException {
+  readonly name: "QueryTimeoutException";
+  readonly $fault: "client";
+  Message?: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<QueryTimeoutException, __BaseException>
+  );
+}
+export declare class ExecuteStatementException extends __BaseException {
+  readonly name: "ExecuteStatementException";
+  readonly $fault: "server";
+  Message: string | undefined;
+  StatementId: string | undefined;
+  constructor(
+    opts: __ExceptionOptionType<ExecuteStatementException, __BaseException>
+  );
+}
+export interface ExecuteStatementInput {
+  Sql: string | undefined;
+  ClusterIdentifier?: string | undefined;
+  SecretArn?: string | undefined;
+  DbUser?: string | undefined;
+  Database?: string | undefined;
+  WithEvent?: boolean | undefined;
+  StatementName?: string | undefined;
+  Parameters?: SqlParameter[] | undefined;
+  WorkgroupName?: string | undefined;
+  ClientToken?: string | undefined;
+  SessionKeepAliveSeconds?: number | undefined;
+  SessionId?: string | undefined;
+  ResultFormat?: ResultFormatString | undefined;
+}
+export interface ExecuteStatementOutput {
+  Id?: string | undefined;
+  CreatedAt?: Date | undefined;
+  ClusterIdentifier?: string | undefined;
+  DbUser?: string | undefined;
+  DbGroups?: string[] | undefined;
+  Database?: string | undefined;
+  SecretArn?: string | undefined;
+  WorkgroupName?: string | undefined;
+  SessionId?: string | undefined;
+}
+export type Field =
+  | Field.BlobValueMember
+  | Field.BooleanValueMember
+  | Field.DoubleValueMember
+  | Field.IsNullMember
+  | Field.LongValueMember
+  | Field.StringValueMember
+  | Field.$UnknownMember;
+export declare namespace Field {
+  interface IsNullMember {
+    isNull: boolean;
+    booleanValue?: never;
+    longValue?: never;
+    doubleValue?: never;
+    stringValue?: never;
+    blobValue?: never;
+    $unknown?: never;
+  }
+  interface BooleanValueMember {
+    isNull?: never;
+    booleanValue: boolean;
+    longValue?: never;
+    doubleValue?: never;
+    stringValue?: never;
+    blobValue?: never;
+    $unknown?: never;
+  }
+  interface LongValueMember {
+    isNull?: never;
+    booleanValue?: never;
+    longValue: number;
+    doubleValue?: never;
+    stringValue?: never;
+    blobValue?: never;
+    $unknown?: never;
+  }
+  interface DoubleValueMember {
+    isNull?: never;
+    booleanValue?: never;
+    longValue?: never;
+    doubleValue: number;
+    stringValue?: never;
+    blobValue?: never;
+    $unknown?: never;
+  }
+  interface StringValueMember {
+    isNull?: never;
+    booleanValue?: never;
+    longValue?: never;
+    doubleValue?: never;
+    stringValue: string;
+    blobValue?: never;
+    $unknown?: never;
+  }
+  interface BlobValueMember {
+    isNull?: never;
+    booleanValue?: never;
+    longValue?: never;
+    doubleValue?: never;
+    stringValue?: never;
+    blobValue: Uint8Array;
+    $unknown?: never;
+  }
+  interface $UnknownMember {
+    isNull?: never;
+    booleanValue?: never;
+    longValue?: never;
+    doubleValue?: never;
+    stringValue?: never;
+    blobValue?: never;
+    $unknown: [string, any];
+  }
+  interface Visitor<T> {
+    isNull: (value: boolean) => T;
+    booleanValue: (value: boolean) => T;
+    longValue: (value: number) => T;
+    doubleValue: (value: number) => T;
+    stringValue: (value: string) => T;
+    blobValue: (value: Uint8Array) => T;
+    _: (name: string, value: any) => T;
+  }
+  const visit: <T>(value: Field, visitor: Visitor<T>) => T;
+}
+export type QueryRecords =
+  | QueryRecords.CSVRecordsMember
+  | QueryRecords.$UnknownMember;
+export declare namespace QueryRecords {
+  interface CSVRecordsMember {
+    CSVRecords: string;
+    $unknown?: never;
+  }
+  interface $UnknownMember {
+    CSVRecords?: never;
+    $unknown: [string, any];
+  }
+  interface Visitor<T> {
+    CSVRecords: (value: string) => T;
+    _: (name: string, value: any) => T;
+  }
+  const visit: <T>(value: QueryRecords, visitor: Visitor<T>) => T;
+}
+export interface GetStatementResultRequest {
+  Id: string | undefined;
+  NextToken?: string | undefined;
+}
+export interface GetStatementResultResponse {
+  Records: Field[][] | undefined;
+  ColumnMetadata?: ColumnMetadata[] | undefined;
+  TotalNumRows?: number | undefined;
+  NextToken?: string | undefined;
+}
+export interface GetStatementResultV2Request {
+  Id: string | undefined;
+  NextToken?: string | undefined;
+}
+export interface GetStatementResultV2Response {
+  Records: QueryRecords[] | undefined;
+  ColumnMetadata?: ColumnMetadata[] | undefined;
+  TotalNumRows?: number | undefined;
+  ResultFormat?: ResultFormatString | undefined;
+  NextToken?: string | undefined;
+}
+export interface ListDatabasesRequest {
+  ClusterIdentifier?: string | undefined;
+  Database: string | undefined;
+  SecretArn?: string | undefined;
+  DbUser?: string | undefined;
+  NextToken?: string | undefined;
+  MaxResults?: number | undefined;
+  WorkgroupName?: string | undefined;
+}
+export interface ListDatabasesResponse {
+  Databases?: string[] | undefined;
+  NextToken?: string | undefined;
+}
+export interface ListSchemasRequest {
+  ClusterIdentifier?: string | undefined;
+  SecretArn?: string | undefined;
+  DbUser?: string | undefined;
+  Database: string | undefined;
+  ConnectedDatabase?: string | undefined;
+  SchemaPattern?: string | undefined;
+  NextToken?: string | undefined;
+  MaxResults?: number | undefined;
+  WorkgroupName?: string | undefined;
+}
+export interface ListSchemasResponse {
+  Schemas?: string[] | undefined;
+  NextToken?: string | undefined;
+}
+export interface ListStatementsRequest {
+  NextToken?: string | undefined;
+  MaxResults?: number | undefined;
+  StatementName?: string | undefined;
+  Status?: StatusString | undefined;
+  RoleLevel?: boolean | undefined;
+  Database?: string | undefined;
+  ClusterIdentifier?: string | undefined;
+  WorkgroupName?: string | undefined;
+}
+export interface StatementData {
+  Id: string | undefined;
+  QueryString?: string | undefined;
+  QueryStrings?: string[] | undefined;
+  SecretArn?: string | undefined;
+  Status?: StatusString | undefined;
+  StatementName?: string | undefined;
+  CreatedAt?: Date | undefined;
+  UpdatedAt?: Date | undefined;
+  QueryParameters?: SqlParameter[] | undefined;
+  IsBatchStatement?: boolean | undefined;
+  ResultFormat?: ResultFormatString | undefined;
+  SessionId?: string | undefined;
+}
+export interface ListStatementsResponse {
+  Statements: StatementData[] | undefined;
+  NextToken?: string | undefined;
+}
+export interface ListTablesRequest {
+  ClusterIdentifier?: string | undefined;
+  SecretArn?: string | undefined;
+  DbUser?: string | undefined;
+  Database: string | undefined;
+  ConnectedDatabase?: string | undefined;
+  SchemaPattern?: string | undefined;
+  TablePattern?: string | undefined;
+  NextToken?: string | undefined;
+  MaxResults?: number | undefined;
+  WorkgroupName?: string | undefined;
+}
+export interface TableMember {
+  name?: string | undefined;
+  type?: string | undefined;
+  schema?: string | undefined;
+}
+export interface ListTablesResponse {
+  Tables?: TableMember[] | undefined;
+  NextToken?: string | undefined;
+}

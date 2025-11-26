@@ -1,0 +1,11 @@
+import { Formatters, Placeholder } from './types';
+import { GDoc, Request } from './gdocTypes';
+declare const findPlaceholders: (doc: GDoc) => Placeholder[];
+declare const analyzePlaceholders: (placeholders: Placeholder[], data: Record<string, any>, options?: {
+    formatters?: Formatters | undefined;
+    strict?: boolean | undefined;
+} | undefined) => Placeholder[];
+declare const buildUpdates: (placeholders: Placeholder[]) => Request[];
+declare const processPlaceholders: (doc: GDoc, data: any, formatters: Formatters, strict?: boolean | undefined) => Placeholder[];
+export default processPlaceholders;
+export { findPlaceholders, analyzePlaceholders, buildUpdates };

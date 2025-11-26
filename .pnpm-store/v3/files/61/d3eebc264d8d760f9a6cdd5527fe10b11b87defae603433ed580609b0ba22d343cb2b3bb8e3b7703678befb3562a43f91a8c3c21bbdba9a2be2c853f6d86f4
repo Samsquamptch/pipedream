@@ -1,0 +1,31 @@
+import { FontProps } from '../font';
+export type HighlightOption = {
+    keys: string[];
+    foreground: string;
+    background: string;
+    showValue: boolean;
+    foreopacity: number;
+    backopacity: number;
+};
+export type TrendLineType = 'avg' | 'linear' | 'exp' | 'poly' | 'slope' | 'slope-2' | 'origin';
+export type TrendlineOptions = {
+    labeled: boolean;
+    dashed: boolean;
+    color: string;
+    thickness: number;
+};
+export type GroupType = 'stack' | 'side';
+export type BarProps = {
+    group: GroupType;
+    vertical: boolean;
+    trends: Record<string, TrendLineType>;
+    trendOptions: TrendlineOptions;
+    showValue: boolean;
+    valueFont?: FontProps;
+    highlight?: HighlightOption;
+    colors: Record<string, string>;
+    colorByKey: boolean;
+    spreadGroup: boolean;
+    zeroBar: boolean;
+    valueTilt: boolean;
+};
